@@ -1,0 +1,13 @@
+strava-database
+challenge-database
+experiments-database
+recording-database
+privacyZonesDatabase
+recentsDatabase
+athlete-workouts.db
+map-style-json-database
+activity-tag-database
+stream_chat_client.db
+exoplayer_internal.db
+videoCache
+com.strava.dynamicmapmre.offline_maps

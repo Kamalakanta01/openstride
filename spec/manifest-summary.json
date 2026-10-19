@@ -1,0 +1,2209 @@
+{
+  "package": "com.strava",
+  "version_code": "12397026",
+  "version_name": "456.10",
+  "min_sdk": "26",
+  "target_sdk": "35",
+  "permissions": [
+    "android.permission.ACCESS_ADSERVICES_AD_ID",
+    "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.ACCESS_MEDIA_LOCATION",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.ACCESS_WIFI_STATE",
+    "android.permission.ACTIVITY_RECOGNITION",
+    "android.permission.BLUETOOTH",
+    "android.permission.BLUETOOTH_ADMIN",
+    "android.permission.BLUETOOTH_CONNECT",
+    "android.permission.BLUETOOTH_SCAN",
+    "android.permission.CAMERA",
+    "android.permission.DETECT_SCREEN_CAPTURE",
+    "android.permission.FOREGROUND_SERVICE",
+    "android.permission.FOREGROUND_SERVICE_LOCATION",
+    "android.permission.GET_ACCOUNTS",
+    "android.permission.INTERNET",
+    "android.permission.POST_NOTIFICATIONS",
+    "android.permission.READ_CONTACTS",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.READ_MEDIA_AUDIO",
+    "android.permission.READ_MEDIA_IMAGES",
+    "android.permission.READ_MEDIA_VIDEO",
+    "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+    "android.permission.RECEIVE_BOOT_COMPLETED",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.SCHEDULE_EXACT_ALARM",
+    "android.permission.USE_CREDENTIALS",
+    "android.permission.VIBRATE",
+    "android.permission.WAKE_LOCK",
+    "android.permission.WRITE_EXTERNAL_STORAGE",
+    "android.permission.health.READ_WEIGHT",
+    "android.permission.health.WRITE_DISTANCE",
+    "android.permission.health.WRITE_EXERCISE",
+    "android.permission.health.WRITE_TOTAL_CALORIES_BURNED",
+    "com.android.vending.BILLING",
+    "com.google.android.c2dm.permission.RECEIVE",
+    "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+    "com.google.android.gms.permission.AD_ID",
+    "com.google.android.providers.gsf.permission.READ_GSERVICES",
+    "com.strava.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+    "com.strava.permission.C2D_MESSAGE"
+  ],
+  "components": {
+    "activity": [
+      {
+        "name": "com.strava.SplashActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN",
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.auth.WelcomeInvitedActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.onboarding.HealthConsentActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.onboarding.ConsentFlowDeviceConnectIntroActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.onboarding.DeviceConnectActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.email.EmailChangedVerificationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.deviceconnect.connect.ThirdPartyConnectActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.clubs.ClubsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.posts.view.PostsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.posts.view.composer.AthleteAddPostActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.segments.SegmentsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.bottomnavigation.BottomNavigationActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.SettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN",
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PrivacySettingProfileActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PrivacySettingActivitiesActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PrivacySettingGroupedActivitiesActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PrivacySettingFlybyActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PrivacySettingLocalLegendsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.MetroHeatmapPreferenceActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.FeedOrderingSettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.HealthDataSettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.EmailPromotionSettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.connect.ThirdPartySettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.password.PasswordChangeActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PartnerIntegrationOptOutActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PartnerIntegrationsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.DisplayPreferenceActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.PushNotificationSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.ContactsSyncPreferenceActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.LegalPreferenceActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.AboutSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.defaultmaps.DefaultMapsPreferenceActivity",
+        "exported": null
+      },
+      {
+        "name": "com.facebook.CustomTabActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.facebook.FacebookActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.ImageViewActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.profile.view.ProfileModularActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.athletes.AthletesIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.onboarding.DeviceConnectIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.activities.ShareIntentCatcherActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.activities.TextShareCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.SEND"
+        ]
+      },
+      {
+        "name": "com.strava.view.activities.ImageShareCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.SEND",
+          "android.intent.action.SEND_MULTIPLE"
+        ]
+      },
+      {
+        "name": "com.strava.view.activities.ActivitiesIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.superuser.SuperUserToolsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.connect.GarminConnectActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.view.connect.FitbitConnectActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.util.RecordingIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.RUN",
+          "android.nfc.action.NDEF_DISCOVERED",
+          "com.strava.intent.action.FINISH",
+          "vnd.google.fitness.TRACK"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.HuevoDePascua",
+        "exported": null
+      },
+      {
+        "name": "com.strava.forceupdate.ForceUpdatePopupActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.activities.BranchIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.notifications.NotificationExternalIntentDispatcher",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.healthconnect.HealthConnectPermissionsActivity",
+        "exported": "true",
+        "actions": [
+          "androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE"
+        ]
+      },
+      {
+        "name": "com.strava.healthconnect.HealthConnectEducationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.workout.detail.generic.GenericWorkoutViewActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.view.ActivityDescriptionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.crop.ActivityCropActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.medialist.ActivityMediaListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.view.kudos.KudoListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.streamcorrection.StreamCorrectionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.view.MatchedActivitiesActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.power.ui.ActivityPowerCurveActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.universal.AdpActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitydetail.results.ActivityResultsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitysave.ui.SaveActivity",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.activitysave.quickedit.view.QuickEditActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.activitysave.quickeditsettings.QuickEditSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.activitysave.postupload.PostUploadActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.activitycalendar.ActivityCalendarActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.ageassurance.BirthdayInputActivity",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.challenges.su.ChallengeCompletionAdminActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.challenges.activitylist.ChallengeActivityListActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.challenges.ChallengeCelebrationActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.challenges.participants.ChallengeParticipantsListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.challenges.ChallengeTermsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.challenges.intent.ChallengeIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.challenges.ChallengeIndividualModularActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.challenges.challengedetail.ChallengeDetailActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.chats.ChatIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.chats.ChatActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.chats.chatlist.ChatListActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.SEND"
+        ]
+      },
+      {
+        "name": "com.strava.chats.settings.ChatSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.chats.rename.RenameChannelActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.chats.clubchannels.presentation.CreateClubChannelActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.chats.clubchannellist.view.ClubChannelListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.GroupEventAttendeeListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.GroupEventEditActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.members.ClubMembersActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.detail.ClubDetailModularActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.posts.view.PostFeedModularActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.detail.LegacyGroupEventDetailActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.detailv2.view.EventDetailActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.feed.ClubFeedActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.search.ClubsSearchActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.leaderboard.ClubLeaderboardActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.information.ClubInformationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.settings.ClubSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.create.CreateClubActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.create.view.EditClubActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.view.EventHistoryActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.EventInsightsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.ui.EventAttendeesActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.create.view.EventCreateEditActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.list.EventListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.waivers.view.WaiverListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.waivers.view.CreateWaiverActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.waivers.view.WaiverSigningActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.waivers.view.WaiverDetailActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.waivers.view.WaiverSignaturesListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.search.view.EventSearchActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.clubs.groupevents.search.view.EventFiltersActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.posts.view.PostKudosListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.posts.view.SingleAthletePostsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.posts.view.postdetailv2.PostDetailActivityV2",
+        "exported": null
+      },
+      {
+        "name": "com.strava.posts.view.composer.ClubAddPostActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.posts.medialist.PostMediaListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.comments.CommentsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.comments.reactions.CommentReactionsModalActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.comments.CommentsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.comments.activitycomments.ActivityCommentsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.comments.ugcalert.UgcAlertActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.onboarding.ftuef.ui.OnboardingActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.onboarding.view.CompleteProfileIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.onboarding.OnboardingIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.communitysearch.view.invite.ClubsAndAthleteSearchActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.communitysearch.view.athletesearch.AthleteSearchActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.communitysearch.view.search.RecentSearchesActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.feed.view.AthleteRelationshipModalActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.feed.view.modal.GroupedActivitiesModalActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.notificationsui.NotificationListActivity",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.profile.view.AthleteConnectionsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.profile.view.AthleteStatsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.profile.medialist.AthleteMediaListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.profile.report.ReportProfileActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.profile.view.SingleAthleteFeedActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.profile.ProfileEditActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.PrivacyCenterActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.NotificationSettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.privacyzones.PrivacyZonesActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.privacyzones.AddPrivacyZoneActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.privacyzones.HideStartEndSelectionActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.privacyzones.HideStartEndDistanceActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.privacyzones.HideEntireMapActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.PrivacySettingMentionsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.messaging.MessagingSettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.statprivacy.StatPrivacyActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.settings.support.TicketDeflectionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.privacyzones.LocalHideStartEndActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.pastactivityeditor.PastActivitiesEditorActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.blocking.BlockedAthletesActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.weather.AboutWeatherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.email.EmailConfirmationActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.email.v2.EmailChangeV2Activity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.phone.PhoneNumberActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.otp.SwitchToOtpActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.settings.view.personalinformation.PersonalInformationShareActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.challenges.ChallengeParticipationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.settings.view.appearance.AppearanceActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.athleteworkouts.AthleteWorkoutsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.authorization.view.welcomeCarouselActivity.WelcomeCarouselActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.authorization.oauth.OauthIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.authorization.oauth.OAuthActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.authorization.loginorsignup.LogInOrSignUpActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.authorization.otp.OtpAndPasswordAuthActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.authorization.facebook.deprecation.FacebookDeprecationModalActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.authorization.facebook.deprecation.login.FacebookDeprecationLoginActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.authorization.facebook.deprecation.confirmemail.FacebookDeprecationConfirmEmailActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.authorization.facebook.deprecation.changeemail.FacebookDeprecationChangeEmailActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.bestefforts.ui.history.BestEffortsHistoryActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.bestefforts.ui.details.BestEffortsDetailsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.fitness.FitnessActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.fitness.modal.FitnessActivityListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.fitness.progress.analysis.ProgressAnalysisActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.flyover.FlyoverActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.flyover.injection.FlyoverIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.widget.glance.configuration.GoalWidgetConfigurationActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.widget.glance.configuration.DetailedGoalWidgetConfigurationActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.widget.superuser.GoalsWidgetSuperUserActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.goals.add.AddGoalActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.goals.list.GoalListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.goals.edit.EditGoalActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.goals.edit.GoalsBottomSheetActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.groups.GroupsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.mapstab.ftux.PoiFtuxActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.mapstab.ftux.RouteBuilderFtuxActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.mapstab.ftux.SurfaceTypeFtuxActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.routebuilder.RouteBuilderActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.routeslistsaved.SavedRoutesActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.superuser.metering.ManageMeteringActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.superuser.AnalyticsCacheActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.superuser.DebugToolsSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.superuser.ChangeLanguageActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.superuser.subscription.ToggleSubscriptionFragmentActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.routing.utils.MapCacheClearingActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.routing.deeplinks.intentHandling.RoutesIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.routing.save.legacy.RouteSaveActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.routing.legacy.oldRoutesList.RouteListActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.routing.legacy.oldRoutesList.LegacyRouteDetailActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.routing.mediaList.RouteMediaListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.SegmentActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.SegmentMapActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.trendline.SegmentEffortTrendLineActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.efforts.SegmentEffortsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.leaderboards.LeaderboardsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.locallegends.LocalLegendsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.segments.segmentslists.SegmentsListsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.traininglog.ui.TrainingLogActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.studentplan.StudentPlanDialogFragmentActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.studentplan.StudentPlanActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.subscriptionsui.SubscriptionIntentDispatcher",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.management.SubscriptionManagementActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.superuser.rive.SubscriptionsRiveSuperUserActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.checkout.CheckoutActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.checkout.cart.CheckoutCartActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.preview.welcome.SubPreviewWelcomeSheetFragmentActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.preview.hub.SubPreviewHubActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.overview.SubscriptionOverviewActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.trialeducation.hub.TrialEducationHubActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.trialeducation.pager.TrialEducationPagerActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.cancellation.SubscriptionCancellationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.customappicons.CustomAppIconsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.crossgrading.CrossgradingPromotionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.deviceconnect.DeviceConnectUpsellActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.checkout.unified.UnifiedCheckoutActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.postcheckout.UnifiedPostCheckoutActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.superuser.SubscriptionSuperUserToolsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.superuser.subscriptiondetail.SubscriptionDetailSuperUserActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.subscriptionsui.screens.interstitial.runna.RunnaInterstitialPromotionActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.insights.view.InsightsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.insights.view.InsightsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.performancepredictions.PerformancePredictionsActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.powerprofile.PowerProfileActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.recordingui.legacy.RecordShortcutIntentCatcher",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.recordingui.RecordIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.recordingui.RecordingScreenActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.settings.SensorSettingsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.recordingui.settings.RecordSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.settings.AutoPauseSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.settings.AudioCuesSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.settings.ScreenDisplaySettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.settings.sensors.LiveSegmentSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.settings.RouteAlertsSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.legacy.beacon.BeaconContactSelectionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recordingui.legacy.beacon.LiveTrackingPreferencesActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.recordingui.legacy.UnsyncedActivitiesActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.trainingzones.intent.TrainingZonesIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.trainingzones.TrainingZonesSummaryActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.zendesk.ZendeskArticleLaunchingActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW",
+          "com.strava.help.VIEW_ARTICLE"
+        ]
+      },
+      {
+        "name": "zendesk.support.guide.HelpCenterActivity",
+        "exported": "false"
+      },
+      {
+        "name": "zendesk.support.guide.ViewArticleActivity",
+        "exported": "false"
+      },
+      {
+        "name": "zendesk.support.request.RequestActivity",
+        "exported": "false"
+      },
+      {
+        "name": "zendesk.support.requestlist.RequestListActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.map.tools.MapSettingsActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.mapplayground.MapPlaygroundActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.placesearch.search.PlaceSearchActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.placesearch.coordinatepicker.CoordinatePickerActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.routedetail.RouteDetailIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.routedetail.RouteDetailActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.reporting.ReportingActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.reporting.confirmation.ReportingConfirmationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.sharing.view.ShareSheetActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.sharing.activity.ActivitySharingActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.sharing.view.PostableClubsListModularActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.sharing.polylinedemo.PolylineDemoActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.CompetitionsIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.competitions.detail.CompetitionDetailActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.create.CreateCompetitionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.settings.CompetitionSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.settings.edit.EditCompetitionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.settings.rules.CompetitionRulesActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.templates.CompetitionTemplateActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.competitions.medialist.CompetitionMediaListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.athletemanagement.AthleteManagementActivity",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.athleteselection.ui.AthleteSelectionActivity",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.featureswitchtools.experiments.OverrideExperimentCohortActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.featureswitchtools.ManageFeatureSwitchActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.yearinsport.ui.YearInSportComposeActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.strava.yearinsport.share.YearInSportShareActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.yearinsport.share.CustomizeActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.picker.MediaPickerActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.categorypicker.GalleryCategoryPickerActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.GalleryPreviewActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.PhotoLightboxEditCaptionActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.fullscreen.FullscreenMediaActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.medialist.AthleteFullscreenMediaActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.photos.medialist.UnpaginatedFullscreenMediaActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.feedback.survey.FeedbackSurveyActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.feedback.FeedbackIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.gear.add.AddGearActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.gear.list.AthleteGearActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.gear.retire.RetiredGearListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.gear.edit.shoes.EditShoesActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.gear.edit.bike.EditBikeActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.invites.ui.InviteActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.modularframeworkui.screen.ModularUiActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.modularframeworkui.sheet.ModularUiBottomSheetActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.modularframeworkui.sheet.ModularSheetIntentCatcherActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.monthlystats.MonthlyStatsActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.monthlystats.share.ShareActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.nettools.NetworkSettingsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.nettools.canaries.ServiceCanaryListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.nettools.canaries.ServiceCanaryConfigurationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.nettools.NetworkLogActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.nettools.NetworkLogDetailActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.nettools.language.OverrideLanguageHeaderActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.search.ui.SearchActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.celebrations.view.CelebrationActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.strengthtraining.musclegroupselection.MuscleGroupSelectionActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.strava.sharinginterface.CopyLinkToClipboardActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.sharinginterface.CopyMediaToClipboardActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.sharinginterface.media.ExportFileActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.sharinginterface.qr.QRActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.modularframework.tools.DebugToolsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.view.dialog.activitylist.ActivityListActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.googlefit.GoogleFitConnectActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.trainingplans.ui.TrainingPlansActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW"
+        ]
+      },
+      {
+        "name": "com.strava.photoutils.cropping.PhotoCropActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.iterable.IterableNotificationsActivity",
+        "exported": null
+      },
+      {
+        "name": "com.strava.facebook.FacebookPermissionsStubActivity",
+        "exported": null
+      },
+      {
+        "name": "io.getstream.chat.android.ui.feature.gallery.AttachmentGalleryActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.ui.feature.gallery.AttachmentMediaActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.ui.feature.gallery.AttachmentActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.ui.feature.channels.ChannelListActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.ui.feature.messages.MessageListActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.compose.ui.attachments.preview.MediaPreviewActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.compose.ui.attachments.preview.MediaGalleryPreviewActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.android.billingclient.api.ProxyBillingActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.android.gms.auth.api.signin.internal.SignInHubActivity",
+        "exported": "false"
+      },
+      {
+        "name": "com.facebook.CustomTabMainActivity",
+        "exported": null
+      },
+      {
+        "name": "com.android.billingclient.api.ProxyBillingActivityV2",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.core.google.shortcuts.TrampolineActivity",
+        "exported": "true",
+        "actions": [
+          "androidx.core.content.pm.SHORTCUT_LISTENER"
+        ]
+      },
+      {
+        "name": "com.google.android.gms.common.api.GoogleApiActivity",
+        "exported": "false"
+      },
+      {
+        "name": "io.getstream.chat.android.ui.common.feature.documents.AttachmentDocumentActivity",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.glance.appwidget.action.ActionTrampolineActivity",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.glance.appwidget.action.InvisibleActionTrampolineActivity",
+        "exported": "false"
+      },
+      {
+        "name": "zendesk.classic.messaging.MessagingActivity",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.compose.ui.tooling.PreviewActivity",
+        "exported": "true"
+      },
+      {
+        "name": "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+        "exported": "false"
+      }
+    ],
+    "activity-alias": [
+      {
+        "name": "com.strava.SplashActivityLocalLegendIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityXomIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityTrophyIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityMedalIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityHikingIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityCyclingIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityRunningIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityKudosIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityStickerIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityPrideIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityRoadIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityGravelIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityTealIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityRedIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.SplashActivityBlackIcon",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.MAIN"
+        ]
+      },
+      {
+        "name": "com.strava.healthconnect.ViewPermissionUsageActivity",
+        "exported": "true",
+        "actions": [
+          "android.intent.action.VIEW_PERMISSION_USAGE"
+        ],
+        "permission": "android.permission.START_VIEW_PERMISSION_USAGE"
+      }
+    ],
+    "service": [
+      {
+        "name": "com.strava.service.LiveTrackingSettingsUpdateService",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.assistant.appactions.widgets.pinappwidget.PinAppWidgetService",
+        "exported": "true",
+        "actions": [
+          "com.google.android.assistant.appactions.widgets.PIN_APP_WIDGET",
+          "com.google.assistant.appactions.widgets.PIN_APP_WIDGET"
+        ]
+      },
+      {
+        "name": "com.strava.WearMessageListener",
+        "exported": "true",
+        "actions": [
+          "com.google.android.gms.wearable.MESSAGE_RECEIVED"
+        ]
+      },
+      {
+        "name": "com.strava.onboarding.service.OnboardingService",
+        "exported": "true",
+        "permission": "android.permission.BIND_JOB_SERVICE"
+      },
+      {
+        "name": "com.strava.recording.StravaActivityService",
+        "exported": null
+      },
+      {
+        "name": "com.strava.recording.RestartRecordingJobService",
+        "exported": "false",
+        "permission": "android.permission.BIND_JOB_SERVICE"
+      },
+      {
+        "name": "com.strava.notificationsgcm.StravaMessagingService",
+        "exported": "false",
+        "actions": [
+          "com.google.firebase.MESSAGING_EVENT"
+        ]
+      },
+      {
+        "name": "com.strava.iterable.IterableNotificationTrackingService",
+        "exported": "true",
+        "permission": "android.permission.BIND_JOB_SERVICE"
+      },
+      {
+        "name": "com.google.android.gms.auth.api.signin.RevocationBoundService",
+        "exported": "true",
+        "permission": "com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+      },
+      {
+        "name": "com.google.firebase.components.ComponentDiscoveryService",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.android.gms.measurement.AppMeasurementService",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.android.gms.measurement.AppMeasurementJobService",
+        "exported": "false",
+        "permission": "android.permission.BIND_JOB_SERVICE"
+      },
+      {
+        "name": "com.google.firebase.messaging.FirebaseMessagingService",
+        "exported": "false",
+        "actions": [
+          "com.google.firebase.MESSAGING_EVENT"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.foreground.SystemForegroundService",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.room.MultiInstanceInvalidationService",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.glance.appwidget.GlanceRemoteViewsService",
+        "exported": "true",
+        "permission": "android.permission.BIND_REMOTEVIEWS"
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.SystemAlarmService",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.work.impl.background.systemjob.SystemJobService",
+        "exported": "true",
+        "permission": "android.permission.BIND_JOB_SERVICE"
+      },
+      {
+        "name": "androidx.health.platform.client.impl.sdkservice.HealthDataSdkService",
+        "exported": "true",
+        "actions": [
+          "androidx.health.platform.client.ACTION_BIND_SDK_SERVICE"
+        ]
+      },
+      {
+        "name": "androidx.core.widget.RemoteViewsCompatService",
+        "exported": null,
+        "permission": "android.permission.BIND_REMOTEVIEWS"
+      },
+      {
+        "name": "com.mapbox.common.LifecycleService",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+        "exported": "false",
+        "permission": "android.permission.BIND_JOB_SERVICE"
+      }
+    ],
+    "receiver": [
+      {
+        "name": "com.strava.recording.RecoverActivityReceiver",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.BOOT_COMPLETED",
+          "android.intent.action.MY_PACKAGE_REPLACED"
+        ]
+      },
+      {
+        "name": "com.google.assistant.appactions.widgets.pinappwidget.PinAppWidgetBroadcastReceiver",
+        "exported": "false",
+        "actions": [
+          "com.google.android.assistant.appactions.widgets.COMPLETE_PIN_APP_WIDGET",
+          "com.google.assistant.appactions.widgets.COMPLETE_PIN_APP_WIDGET"
+        ]
+      },
+      {
+        "name": "com.strava.widget.providers.StravaAppWidgetProvider",
+        "exported": "false",
+        "actions": [
+          "android.appwidget.action.APPWIDGET_UPDATE",
+          "com.strava.recording.recordingStateChangeAction",
+          "com.strava.recording.recordingStatsChangeAction",
+          "com.strava.widget.refresh",
+          "com.strava.widget.startRecording"
+        ]
+      },
+      {
+        "name": "com.strava.widget.glance.receiver.DetailedGoalWidgetReceiver",
+        "exported": "true",
+        "actions": [
+          "android.appwidget.action.APPWIDGET_UPDATE"
+        ]
+      },
+      {
+        "name": "com.strava.widget.glance.receiver.GoalWidgetReceiver",
+        "exported": "true",
+        "actions": [
+          "android.appwidget.action.APPWIDGET_UPDATE"
+        ]
+      },
+      {
+        "name": "com.strava.widget.glance.receiver.StreaksSnapshotWidgetReceiver",
+        "exported": "true",
+        "actions": [
+          "android.appwidget.action.APPWIDGET_UPDATE"
+        ]
+      },
+      {
+        "name": "com.strava.notifications.NotificationSwipedReceiver",
+        "exported": "false",
+        "actions": [
+          "com.strava.notifications.PushNotificationManager.NOTIFICATION_DISMISSED"
+        ]
+      },
+      {
+        "name": "com.strava.androidextensions.web.CopyToClipBoardBroadcastReceiver",
+        "exported": "false"
+      },
+      {
+        "name": "zendesk.support.DeepLinkingBroadcastReceiver",
+        "exported": "false",
+        "actions": [
+          "zendesk.support"
+        ]
+      },
+      {
+        "name": "com.google.android.gms.measurement.AppMeasurementReceiver",
+        "exported": "false"
+      },
+      {
+        "name": "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+        "exported": "true",
+        "actions": [
+          "com.google.android.c2dm.intent.RECEIVE"
+        ],
+        "permission": "com.google.android.c2dm.permission.SEND"
+      },
+      {
+        "name": "io.getstream.chat.android.client.receivers.NotificationMessageReceiver",
+        "exported": "false",
+        "actions": [
+          "io.getstream.chat.android.READ",
+          "io.getstream.chat.android.REPLY"
+        ]
+      },
+      {
+        "name": "androidx.glance.appwidget.action.ActionCallbackBroadcastReceiver",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.glance.appwidget.UnmanagedSessionReceiver",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.glance.appwidget.MyPackageReplacedReceiver",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.MY_PACKAGE_REPLACED"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.utils.ForceStopRunnable.BroadcastReceiver",
+        "exported": "false"
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.ConstraintProxy.BatteryChargingProxy",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.ACTION_POWER_CONNECTED",
+          "android.intent.action.ACTION_POWER_DISCONNECTED"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.ConstraintProxy.BatteryNotLowProxy",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.BATTERY_LOW",
+          "android.intent.action.BATTERY_OKAY"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.ConstraintProxy.StorageNotLowProxy",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.DEVICE_STORAGE_LOW",
+          "android.intent.action.DEVICE_STORAGE_OK"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.ConstraintProxy.NetworkStateProxy",
+        "exported": "false",
+        "actions": [
+          "android.net.conn.CONNECTIVITY_CHANGE"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.RescheduleReceiver",
+        "exported": "false",
+        "actions": [
+          "android.intent.action.BOOT_COMPLETED",
+          "android.intent.action.TIMEZONE_CHANGED",
+          "android.intent.action.TIME_SET"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver",
+        "exported": "false",
+        "actions": [
+          "androidx.work.impl.background.systemalarm.UpdateProxies"
+        ]
+      },
+      {
+        "name": "androidx.work.impl.diagnostics.DiagnosticsReceiver",
+        "exported": "true",
+        "actions": [
+          "androidx.work.diagnostics.REQUEST_DIAGNOSTICS"
+        ],
+        "permission": "android.permission.DUMP"
+      },
+      {
+        "name": "com.facebook.CurrentAccessTokenExpirationBroadcastReceiver",
+        "exported": "false",
+        "actions": [
+          "com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED"
+        ]
+      },
+      {
+        "name": "com.facebook.AuthenticationTokenManager.CurrentAuthenticationTokenChangedBroadcastReceiver",
+        "exported": "false",
+        "actions": [
+          "com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED"
+        ]
+      },
+      {
+        "name": "com.mapbox.common.location.LocationUpdatesReceiver",
+        "exported": "false",
+        "actions": [
+          "com.mapbox.common.location.LocationUpdatesReceiver.ACTION_PROCESS_LOCATION_UPDATES"
+        ]
+      },
+      {
+        "name": "androidx.profileinstaller.ProfileInstallReceiver",
+        "exported": "true",
+        "actions": [
+          "androidx.profileinstaller.action.BENCHMARK_OPERATION",
+          "androidx.profileinstaller.action.INSTALL_PROFILE",
+          "androidx.profileinstaller.action.SAVE_PROFILE",
+          "androidx.profileinstaller.action.SKIP_FILE"
+        ],
+        "permission": "android.permission.DUMP"
+      },
+      {
+        "name": "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+        "exported": "false"
+      }
+    ],
+    "provider": [
+      {
+        "name": "androidx.startup.InitializationProvider",
+        "exported": "false",
+        "authority": "com.strava.androidx-startup"
+      },
+      {
+        "name": "androidx.core.content.FileProvider",
+        "exported": "false",
+        "authority": "@string/export_fileprovider_name"
+      },
+      {
+        "name": "com.strava.profiling.StravaPerfProvider",
+        "exported": "false",
+        "authority": "@string/perf_provider_authority"
+      },
+      {
+        "name": "com.strava.authorization.sharedidentity.StravaIdentityProvider",
+        "exported": "true",
+        "authority": "com.strava.identity"
+      },
+      {
+        "name": "com.strava.sharinginterface.SharingFileProvider",
+        "exported": "false",
+        "authority": "@string/sharing_fileprovider_name"
+      },
+      {
+        "name": "zendesk.support.SupportSdkStartupProvider",
+        "exported": "false",
+        "authority": "com.strava.zendesk.support.SupportSdkStartupProvider"
+      },
+      {
+        "name": "com.google.firebase.provider.FirebaseInitProvider",
+        "exported": "false",
+        "authority": "com.strava.firebaseinitprovider"
+      },
+      {
+        "name": "io.getstream.chat.android.ui.common.StreamFileProvider",
+        "exported": "false",
+        "authority": "com.strava.streamfileprovider"
+      },
+      {
+        "name": "io.getstream.android.push.delegate.AndroidPushDelegateProvider",
+        "exported": "false",
+        "authority": "com.strava.io.getstream.android.push"
+      },
+      {
+        "name": "zendesk.support.guide.GuideSdkStartupProvider",
+        "exported": "false",
+        "authority": "com.strava.zendesk.support.GuideSdkStartupProvider"
+      },
+      {
+        "name": "org.jetbrains.compose.resources.AndroidContextProvider",
+        "exported": "false",
+        "authority": "com.strava.resources.AndroidContextProvider"
+      },
+      {
+        "name": "io.sentry.android.core.SentryInitProvider",
+        "exported": "false",
+        "authority": "com.strava.SentryInitProvider"
+      },
+      {
+        "name": "io.sentry.android.core.SentryPerformanceProvider",
+        "exported": "false",
+        "authority": "com.strava.SentryPerformanceProvider"
+      },
+      {
+        "name": "com.facebook.internal.FacebookInitProvider",
+        "exported": "false",
+        "authority": "com.strava.FacebookInitProvider"
+      },
+      {
+        "name": "zendesk.core.MediaFileProvider",
+        "exported": "false",
+        "authority": "com.strava.zendesk.sdk.user.attachments"
+      },
+      {
+        "name": "com.squareup.picasso.PicassoProvider",
+        "exported": "false",
+        "authority": "com.strava.com.squareup.picasso"
+      }
+    ]
+  }
+}

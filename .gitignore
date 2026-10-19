@@ -1,0 +1,55 @@
+# --- Android / Gradle ---
+.gradle/
+build/
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+*.odex
+*.vdex
+captures/
+.externalNativeBuild/
+.cxx/
+
+# --- Signing material — never commit ---
+*.jks
+*.keystore
+keystore.properties
+google-services.json
+
+# --- IDE ---
+.idea/
+*.iml
+.kotlin/
+*.hprof
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Analysis artifacts that MUST NOT be committed ---
+# These contain Strava's compiled implementation or verbatim Strava files.
+# See PROVENANCE.md section 3.
+*.apk
+*.xapk
+*.apks
+classes*.dex
+lib/*.so
+lib/**/*.so
+resources.arsc
+AndroidManifest.decoded.xml
+evidence-*.json
+decoded-res-xml.txt
+arsc.json
+unpacked/
+extracted/
+decompiled/
+jadx-out/
+smali-out/

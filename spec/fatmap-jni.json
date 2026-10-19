@@ -1,0 +1,1622 @@
+{
+  "com.fatmap.sdk.api.ActivityContent": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x42b5ec"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1displayActivity",
+      "method": "displayActivity",
+      "address": "0x42b6a8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1displayActivityWithPrivacyIcons",
+      "method": "displayActivityWithPrivacyIcons",
+      "address": "0x42b784"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1displayActivityTruncated",
+      "method": "displayActivityTruncated",
+      "address": "0x42b850"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1displayActivity2",
+      "method": "displayActivity2",
+      "address": "0x42b91c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1removeActivity",
+      "method": "removeActivity",
+      "address": "0x42bba8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1removeAllActivities",
+      "method": "removeAllActivities",
+      "address": "0x42bc40"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1applyActivityGradient",
+      "method": "applyActivityGradient",
+      "address": "0x42bc74"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1clearActivityGradient",
+      "method": "clearActivityGradient",
+      "address": "0x42bee4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1applyActivityPolylineHighlights",
+      "method": "applyActivityPolylineHighlights",
+      "address": "0x42bf7c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_ActivityContent_00024CppProxy_native_1clearActivityPolylineHighlights",
+      "method": "clearActivityPolylineHighlights",
+      "address": "0x42c244"
+    }
+  ],
+  "com.fatmap.sdk.api.Camera": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x42e784"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setDynamicExaggerationEnabled",
+      "method": "setDynamicExaggerationEnabled",
+      "address": "0x42e840"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setDynamicExaggerationMultiplier",
+      "method": "setDynamicExaggerationMultiplier",
+      "address": "0x42e87c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1enterFirstPersonView",
+      "method": "enterFirstPersonView",
+      "address": "0x42e8b0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyTo",
+      "method": "flyTo",
+      "address": "0x42e8f8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyToWithZoomLevel",
+      "method": "flyToWithZoomLevel",
+      "address": "0x42eae4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1translateTo",
+      "method": "translateTo",
+      "address": "0x42ecd0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyToBounds",
+      "method": "flyToBounds",
+      "address": "0x42ee28"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setBearing",
+      "method": "setBearing",
+      "address": "0x42f008"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1followUserLocation",
+      "method": "followUserLocation",
+      "address": "0x42f088"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1followUserLocationWithZoomLevel",
+      "method": "followUserLocationWithZoomLevel",
+      "address": "0x42f1d0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyToTarget",
+      "method": "flyToTarget",
+      "address": "0x42f324"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyThrough",
+      "method": "flyThrough",
+      "address": "0x42f488"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyThroughInteractive",
+      "method": "flyThroughInteractive",
+      "address": "0x42f8e4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1flyover",
+      "method": "flyover",
+      "address": "0x42fcb8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getLookAtPoint",
+      "method": "getLookAtPoint",
+      "address": "0x42ffec"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getCustomLookAtPoint",
+      "method": "getCustomLookAtPoint",
+      "address": "0x430058"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setZoomSpeed",
+      "method": "setZoomSpeed",
+      "address": "0x4300c8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setRotationSpeed",
+      "method": "setRotationSpeed",
+      "address": "0x4300fc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setTranslationSpeed",
+      "method": "setTranslationSpeed",
+      "address": "0x430134"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1stop",
+      "method": "stop",
+      "address": "0x43016c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getTarget",
+      "method": "getTarget",
+      "address": "0x4301a0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1setCameraViewType",
+      "method": "setCameraViewType",
+      "address": "0x43020c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getCameraViewType",
+      "method": "getCameraViewType",
+      "address": "0x430254"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1isWorldPointVisible",
+      "method": "isWorldPointVisible",
+      "address": "0x4302c8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getVisibleAreaBounds",
+      "method": "getVisibleAreaBounds",
+      "address": "0x430338"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1addInteractionListener",
+      "method": "addInteractionListener",
+      "address": "0x4303c8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1removeInteractionListener",
+      "method": "removeInteractionListener",
+      "address": "0x4304bc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1addStateListener",
+      "method": "addStateListener",
+      "address": "0x430574"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1removeStateListener",
+      "method": "removeStateListener",
+      "address": "0x43062c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getScreenPosition",
+      "method": "getScreenPosition",
+      "address": "0x4306e4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Camera_00024CppProxy_native_1getScaleMetersPerPixel",
+      "method": "getScaleMetersPerPixel",
+      "address": "0x430764"
+    }
+  ],
+  "com.fatmap.sdk.api.CameraDeltaTimeProvider": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraDeltaTimeProvider_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x432010"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraDeltaTimeProvider_00024CppProxy_native_1getDeltaTime",
+      "method": "getDeltaTime",
+      "address": "0x4320cc"
+    }
+  ],
+  "com.fatmap.sdk.api.CameraFlyThroughControls": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x432120"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1isActive",
+      "method": "isActive",
+      "address": "0x432138"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1stop",
+      "method": "stop",
+      "address": "0x43216c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1isCameraDetached",
+      "method": "isCameraDetached",
+      "address": "0x4321a0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1isRefocusPossible",
+      "method": "isRefocusPossible",
+      "address": "0x4321d4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1refocus",
+      "method": "refocus",
+      "address": "0x432208"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1setTrackProgress",
+      "method": "setTrackProgress",
+      "address": "0x43223c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1getTrackProgress",
+      "method": "getTrackProgress",
+      "address": "0x432270"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1seekToAnimationStart",
+      "method": "seekToAnimationStart",
+      "address": "0x4322b4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1setAnimationSpeedMultiplier",
+      "method": "setAnimationSpeedMultiplier",
+      "address": "0x4322e8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1setTrackSpeedMultiplier",
+      "method": "setTrackSpeedMultiplier",
+      "address": "0x43231c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1setCameraDistanceMultiplier",
+      "method": "setCameraDistanceMultiplier",
+      "address": "0x432350"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1getTrackSpeedMultiplier",
+      "method": "getTrackSpeedMultiplier",
+      "address": "0x432384"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CameraFlyThroughControls_00024CppProxy_native_1getDurationSeconds",
+      "method": "getDurationSeconds",
+      "address": "0x4323c8"
+    }
+  ],
+  "com.fatmap.sdk.api.CommandService": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_CommandService_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x433fc4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_CommandService_00024CppProxy_native_1execute",
+      "method": "execute",
+      "address": "0x434080"
+    }
+  ],
+  "com.fatmap.sdk.api.Content": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x434600"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1addCustomLine",
+      "method": "addCustomLine",
+      "address": "0x4346bc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1addCustomGradientLine",
+      "method": "addCustomGradientLine",
+      "address": "0x43481c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1removeCustomLine",
+      "method": "removeCustomLine",
+      "address": "0x4349a0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1addDroppedPin",
+      "method": "addDroppedPin",
+      "address": "0x4349d8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1removeDroppedPin",
+      "method": "removeDroppedPin",
+      "address": "0x434a7c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1removeAllDroppedPins",
+      "method": "removeAllDroppedPins",
+      "address": "0x434b14"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1addCircleMarker",
+      "method": "addCircleMarker",
+      "address": "0x434b48"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1removeCircleMarker",
+      "method": "removeCircleMarker",
+      "address": "0x434bf8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1getOsmFilter",
+      "method": "getOsmFilter",
+      "address": "0x434c90"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1getStravaPoiFilter",
+      "method": "getStravaPoiFilter",
+      "address": "0x434da8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1getActivityContent",
+      "method": "getActivityContent",
+      "address": "0x434ec0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1getRecordContent",
+      "method": "getRecordContent",
+      "address": "0x435014"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1getRouteContent",
+      "method": "getRouteContent",
+      "address": "0x435168"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Content_00024CppProxy_native_1getSegmentsFilter",
+      "method": "getSegmentsFilter",
+      "address": "0x4352bc"
+    }
+  ],
+  "com.fatmap.sdk.api.ContentSelectionHandle": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_ContentSelectionHandle_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x437798"
+    }
+  ],
+  "com.fatmap.sdk.api.DebugApi": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_DebugApi_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x4381d8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_DebugApi_00024CppProxy_native_1showFpsStatsOverlay",
+      "method": "showFpsStatsOverlay",
+      "address": "0x438294"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_DebugApi_00024CppProxy_native_1hideFpsStatsOverlay",
+      "method": "hideFpsStatsOverlay",
+      "address": "0x43832c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_DebugApi_00024CppProxy_native_1dumpEngineState",
+      "method": "dumpEngineState",
+      "address": "0x438360"
+    }
+  ],
+  "com.fatmap.sdk.api.DeviceOrientationListener": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_DeviceOrientationListener_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x438948"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_DeviceOrientationListener_00024CppProxy_native_1onDeviceOrientationChanged",
+      "method": "onDeviceOrientationChanged",
+      "address": "0x438a04"
+    }
+  ],
+  "com.fatmap.sdk.api.EngineConfiguration": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x4393b4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_createDefault",
+      "method": "createDefault",
+      "address": "0x439470"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1loadFromFile",
+      "method": "loadFromFile",
+      "address": "0x439584"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setCameraTarget",
+      "method": "setCameraTarget",
+      "address": "0x439624"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getCameraTarget",
+      "method": "getCameraTarget",
+      "address": "0x43968c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setClientName",
+      "method": "setClientName",
+      "address": "0x4396f8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getClientName",
+      "method": "getClientName",
+      "address": "0x439790"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setEnableRasterMegaTiles",
+      "method": "setEnableRasterMegaTiles",
+      "address": "0x43982c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getEnableRasterMegaTiles",
+      "method": "getEnableRasterMegaTiles",
+      "address": "0x439868"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setLogLevel",
+      "method": "setLogLevel",
+      "address": "0x43989c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getLogLevel",
+      "method": "getLogLevel",
+      "address": "0x4398e4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setLoggingToStdOut",
+      "method": "setLoggingToStdOut",
+      "address": "0x439958"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getLoggingToStdOut",
+      "method": "getLoggingToStdOut",
+      "address": "0x439994"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setBreadcrumbRecorder",
+      "method": "setBreadcrumbRecorder",
+      "address": "0x4399c8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getBreadcrumbRecorder",
+      "method": "getBreadcrumbRecorder",
+      "address": "0x439a80"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setReindexOnDiskResources",
+      "method": "setReindexOnDiskResources",
+      "address": "0x439b38"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getReindexOnDiskResources",
+      "method": "getReindexOnDiskResources",
+      "address": "0x439b74"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1setUseOnDiskCache",
+      "method": "setUseOnDiskCache",
+      "address": "0x439ba8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_native_1getUseOnDiskCache",
+      "method": "getUseOnDiskCache",
+      "address": "0x439be4"
+    }
+  ],
+  "com.fatmap.sdk.api.GestureRecognizerControl": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_GestureRecognizerControl_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x43a6e0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_GestureRecognizerControl_00024CppProxy_native_1setDoubleTapGesturesEnabled",
+      "method": "setDoubleTapGesturesEnabled",
+      "address": "0x43a79c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_GestureRecognizerControl_00024CppProxy_native_1setAllGesturesEnabled",
+      "method": "setAllGesturesEnabled",
+      "address": "0x43a7d8"
+    }
+  ],
+  "com.fatmap.sdk.api.LuaAnimationHandler": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_LuaAnimationHandler_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x43bfd4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_LuaAnimationHandler_00024CppProxy_native_1shouldAdvanceAnimation",
+      "method": "shouldAdvanceAnimation",
+      "address": "0x43c090"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_LuaAnimationHandler_00024CppProxy_native_1onProgress",
+      "method": "onProgress",
+      "address": "0x43c0c4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_LuaAnimationHandler_00024CppProxy_native_1onError",
+      "method": "onError",
+      "address": "0x43c0f8"
+    }
+  ],
+  "com.fatmap.sdk.api.MREHolder": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_MREHolder_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x43c4e8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_MREHolder_00024CppProxy_create",
+      "method": "create",
+      "address": "0x43c5a4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_MREHolder_00024CppProxy_native_1handleOnAppDidEnterForeground",
+      "method": "handleOnAppDidEnterForeground",
+      "address": "0x43c890"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_MREHolder_00024CppProxy_native_1handleOnAppDidEnterBackground",
+      "method": "handleOnAppDidEnterBackground",
+      "address": "0x43c8c4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_MREHolder_00024CppProxy_native_1handleMemoryWarning",
+      "method": "handleMemoryWarning",
+      "address": "0x43c8f8"
+    }
+  ],
+  "com.fatmap.sdk.api.Offline": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_Offline_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x43da88"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Offline_00024CppProxy_native_1loadBundles",
+      "method": "loadBundles",
+      "address": "0x43db44"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Offline_00024CppProxy_native_1unloadBundles",
+      "method": "unloadBundles",
+      "address": "0x43debc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Offline_00024CppProxy_native_1setNonBundleResourcesAllowed",
+      "method": "setNonBundleResourcesAllowed",
+      "address": "0x43dfb8"
+    }
+  ],
+  "com.fatmap.sdk.api.OsmFilter": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_OsmFilter_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x43fd24"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OsmFilter_00024CppProxy_native_1setShow",
+      "method": "setShow",
+      "address": "0x43fd3c"
+    }
+  ],
+  "com.fatmap.sdk.api.OverriddenFeatureProperties": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x44025c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_create",
+      "method": "create",
+      "address": "0x440318"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1addBooleanProperty",
+      "method": "addBooleanProperty",
+      "address": "0x44042c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1addIntegerProperty",
+      "method": "addIntegerProperty",
+      "address": "0x4404cc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1addDoubleProperty",
+      "method": "addDoubleProperty",
+      "address": "0x440568"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1addStringProperty",
+      "method": "addStringProperty",
+      "address": "0x440608"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1removeProperty",
+      "method": "removeProperty",
+      "address": "0x4406cc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1getBooleanProperty",
+      "method": "getBooleanProperty",
+      "address": "0x440764"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1getIntegerProperty",
+      "method": "getIntegerProperty",
+      "address": "0x44082c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1getDoubleProperty",
+      "method": "getDoubleProperty",
+      "address": "0x4408f4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_native_1getStringProperty",
+      "method": "getStringProperty",
+      "address": "0x4409bc"
+    }
+  ],
+  "com.fatmap.sdk.api.PrivateApi": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x442f58"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1addPerformanceMetricsListener",
+      "method": "addPerformanceMetricsListener",
+      "address": "0x443014"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1removePerformanceMetricsListener",
+      "method": "removePerformanceMetricsListener",
+      "address": "0x4430cc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setOfflineMode",
+      "method": "setOfflineMode",
+      "address": "0x443184"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setPixelRatio",
+      "method": "setPixelRatio",
+      "address": "0x4431c0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1haveVisualContentLoadingWork",
+      "method": "haveVisualContentLoadingWork",
+      "address": "0x4431f4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1haveGivenUpTileDownloads",
+      "method": "haveGivenUpTileDownloads",
+      "address": "0x443230"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1getGivenUpDownloadsInfo",
+      "method": "getGivenUpDownloadsInfo",
+      "address": "0x443264"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1resetTileDownloadHistory",
+      "method": "resetTileDownloadHistory",
+      "address": "0x4432d4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1resetOnlineAvailabilityData",
+      "method": "resetOnlineAvailabilityData",
+      "address": "0x443308"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setTileDownloadEventProcessor",
+      "method": "setTileDownloadEventProcessor",
+      "address": "0x44333c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setDownloadHeightmapsOnly",
+      "method": "setDownloadHeightmapsOnly",
+      "address": "0x443430"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setResourceLoadingFromDiskAllowed",
+      "method": "setResourceLoadingFromDiskAllowed",
+      "address": "0x44346c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startEnteringTestingContext",
+      "method": "startEnteringTestingContext",
+      "address": "0x4434a8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setDiskCacheSize",
+      "method": "setDiskCacheSize",
+      "address": "0x44379c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setSymbolVisibilityStateful",
+      "method": "setSymbolVisibilityStateful",
+      "address": "0x4437d4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setSymbolScreenPaddingEnabled",
+      "method": "setSymbolScreenPaddingEnabled",
+      "address": "0x443810"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setShowSymbolBoundingBoxes",
+      "method": "setShowSymbolBoundingBoxes",
+      "address": "0x44384c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setTestAccountForPersonalHeatmap",
+      "method": "setTestAccountForPersonalHeatmap",
+      "address": "0x443888"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setShaderHotReloadingEnabled",
+      "method": "setShaderHotReloadingEnabled",
+      "address": "0x443974"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startTrackPerfTest",
+      "method": "startTrackPerfTest",
+      "address": "0x4439b0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1getPreparedCommandService",
+      "method": "getPreparedCommandService",
+      "address": "0x443b40"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setStylingZoomLevelOverride",
+      "method": "setStylingZoomLevelOverride",
+      "address": "0x443ca8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startVideoRenderingFirstPass",
+      "method": "startVideoRenderingFirstPass",
+      "address": "0x443d24"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1recordResourcesNeededForSecondVideoRenderingPass",
+      "method": "recordResourcesNeededForSecondVideoRenderingPass",
+      "address": "0x443d58"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startDownloadingResourcesForSecondVideoRenderingPass",
+      "method": "startDownloadingResourcesForSecondVideoRenderingPass",
+      "address": "0x443d8c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startVideoRenderingSecondPass",
+      "method": "startVideoRenderingSecondPass",
+      "address": "0x443dc0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1finishTwoPassVideoRendering",
+      "method": "finishTwoPassVideoRendering",
+      "address": "0x443df4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1getVisibleAreaBoundsExt",
+      "method": "getVisibleAreaBoundsExt",
+      "address": "0x443e28"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1saveWindowScreenshot",
+      "method": "saveWindowScreenshot",
+      "address": "0x443f64"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1runScreenshotTests",
+      "method": "runScreenshotTests",
+      "address": "0x443ffc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1runPerformanceTests",
+      "method": "runPerformanceTests",
+      "address": "0x444178"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_getPerformanceTestsNames",
+      "method": "getPerformanceTestsNames",
+      "address": "0x44432c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setupDefaultMockTiles",
+      "method": "setupDefaultMockTiles",
+      "address": "0x4444bc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startMockTileServer",
+      "method": "startMockTileServer",
+      "address": "0x4444f0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1stopMockTileServer",
+      "method": "stopMockTileServer",
+      "address": "0x444524"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1updateLodCalculationControlParams",
+      "method": "updateLodCalculationControlParams",
+      "address": "0x444558"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLodSubdivisionThresholdEnabled",
+      "method": "setLodSubdivisionThresholdEnabled",
+      "address": "0x4445e4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1reloadTerrain",
+      "method": "reloadTerrain",
+      "address": "0x444620"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1startLuaAnimationScript",
+      "method": "startLuaAnimationScript",
+      "address": "0x444654"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1stopLuaAnimationScript",
+      "method": "stopLuaAnimationScript",
+      "address": "0x444814"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLuaGlobalString",
+      "method": "setLuaGlobalString",
+      "address": "0x444848"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLuaGlobalFloat",
+      "method": "setLuaGlobalFloat",
+      "address": "0x444910"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLuaGlobalInt",
+      "method": "setLuaGlobalInt",
+      "address": "0x4449b0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLuaGlobalLine",
+      "method": "setLuaGlobalLine",
+      "address": "0x444a4c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLuaGlobalImage",
+      "method": "setLuaGlobalImage",
+      "address": "0x444b10"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setLuaGlobalAnimation",
+      "method": "setLuaGlobalAnimation",
+      "address": "0x444bdc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1clearLuaPersistedStore",
+      "method": "clearLuaPersistedStore",
+      "address": "0x444cfc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1refreshScreenInfo",
+      "method": "refreshScreenInfo",
+      "address": "0x444d30"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1isVsyncEnabled",
+      "method": "isVsyncEnabled",
+      "address": "0x444d64"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1setVsyncEnabled",
+      "method": "setVsyncEnabled",
+      "address": "0x444d98"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1switchToCustomStyle",
+      "method": "switchToCustomStyle",
+      "address": "0x444dd4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_native_1getMemoryStats",
+      "method": "getMemoryStats",
+      "address": "0x444eec"
+    }
+  ],
+  "com.fatmap.sdk.api.RecordContent": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_RecordContent_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x4461b8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RecordContent_00024CppProxy_native_1displayRecordingLine",
+      "method": "displayRecordingLine",
+      "address": "0x4461d0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RecordContent_00024CppProxy_native_1showRecordingLineFinishMarker",
+      "method": "showRecordingLineFinishMarker",
+      "address": "0x446260"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RecordContent_00024CppProxy_native_1removeRecordingLine",
+      "method": "removeRecordingLine",
+      "address": "0x44629c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RecordContent_00024CppProxy_native_1displayLiveSegments",
+      "method": "displayLiveSegments",
+      "address": "0x4462d0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RecordContent_00024CppProxy_native_1removeAllLiveSegments",
+      "method": "removeAllLiveSegments",
+      "address": "0x4464cc"
+    }
+  ],
+  "com.fatmap.sdk.api.RouteContent": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x447cfc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1displayRoute",
+      "method": "displayRoute",
+      "address": "0x447d14"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1displayAnimatedRoute",
+      "method": "displayAnimatedRoute",
+      "address": "0x448040"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1fadeInUnselectedRoutes",
+      "method": "fadeInUnselectedRoutes",
+      "address": "0x4482a0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1stopUnselectedRoutesFadeIn",
+      "method": "stopUnselectedRoutesFadeIn",
+      "address": "0x448424"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1addWaypointToRoute",
+      "method": "addWaypointToRoute",
+      "address": "0x448458"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1selectWaypointOnRoute",
+      "method": "selectWaypointOnRoute",
+      "address": "0x448524"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1unselectWaypointOnRoute",
+      "method": "unselectWaypointOnRoute",
+      "address": "0x4485e8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1selectRoute",
+      "method": "selectRoute",
+      "address": "0x4486ac"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1unselectRoute",
+      "method": "unselectRoute",
+      "address": "0x448758"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1removeRoutes",
+      "method": "removeRoutes",
+      "address": "0x4487f0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1removeAllRoutes",
+      "method": "removeAllRoutes",
+      "address": "0x44889c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1displayRouteScrubber",
+      "method": "displayRouteScrubber",
+      "address": "0x4488d0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_RouteContent_00024CppProxy_native_1removeRouteScrubber",
+      "method": "removeRouteScrubber",
+      "address": "0x448914"
+    }
+  ],
+  "com.fatmap.sdk.api.SegmentsFilter": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_SegmentsFilter_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x449e4c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_SegmentsFilter_00024CppProxy_native_1show",
+      "method": "show",
+      "address": "0x449e64"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_SegmentsFilter_00024CppProxy_native_1hide",
+      "method": "hide",
+      "address": "0x449f58"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_SegmentsFilter_00024CppProxy_native_1getVisibleSegments",
+      "method": "getVisibleSegments",
+      "address": "0x449f8c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_SegmentsFilter_00024CppProxy_native_1selectSegment",
+      "method": "selectSegment",
+      "address": "0x44a114"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_SegmentsFilter_00024CppProxy_native_1unselectSegment",
+      "method": "unselectSegment",
+      "address": "0x44a14c"
+    }
+  ],
+  "com.fatmap.sdk.api.StravaPoiFilter": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x44b19c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1setShow",
+      "method": "setShow",
+      "address": "0x44b1b4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1selectPoi",
+      "method": "selectPoi",
+      "address": "0x44b1f0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1unselectPoi",
+      "method": "unselectPoi",
+      "address": "0x44b2fc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1enableStartPoints",
+      "method": "enableStartPoints",
+      "address": "0x44b330"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1disableStartPoints",
+      "method": "disableStartPoints",
+      "address": "0x44b398"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1enableBikeShares",
+      "method": "enableBikeShares",
+      "address": "0x44b3cc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_StravaPoiFilter_00024CppProxy_native_1disableBikeShares",
+      "method": "disableBikeShares",
+      "address": "0x44b400"
+    }
+  ],
+  "com.fatmap.sdk.api.TerrainEngine": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x44b444"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1update",
+      "method": "update",
+      "address": "0x44b45c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setPaused",
+      "method": "setPaused",
+      "address": "0x44b490"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1receivedMemoryWarning",
+      "method": "receivedMemoryWarning",
+      "address": "0x44b4cc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setServerConfig",
+      "method": "setServerConfig",
+      "address": "0x44b500"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setSurfaceIdentifier",
+      "method": "setSurfaceIdentifier",
+      "address": "0x44b610"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setStravaAuthData",
+      "method": "setStravaAuthData",
+      "address": "0x44b6a8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setStravaSourcesExtraHeaders",
+      "method": "setStravaSourcesExtraHeaders",
+      "address": "0x44b8ac"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setImageryOverlay",
+      "method": "setImageryOverlay",
+      "address": "0x44b968"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setMapType",
+      "method": "setMapType",
+      "address": "0x44b9b0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setGlobalHeatmapConfig",
+      "method": "setGlobalHeatmapConfig",
+      "address": "0x44b9f8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setNightlyHeatmapConfig",
+      "method": "setNightlyHeatmapConfig",
+      "address": "0x44bad0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setWeeklyHeatmapConfig",
+      "method": "setWeeklyHeatmapConfig",
+      "address": "0x44bba4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setPersonalHeatmapConfig",
+      "method": "setPersonalHeatmapConfig",
+      "address": "0x44bc7c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setIsTerrain3dEnabled",
+      "method": "setIsTerrain3dEnabled",
+      "address": "0x44bdf8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addOverlayPolygon",
+      "method": "addOverlayPolygon",
+      "address": "0x44be34"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removeAllOverlayPolygons",
+      "method": "removeAllOverlayPolygons",
+      "address": "0x44becc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setOverlayPolygons",
+      "method": "setOverlayPolygons",
+      "address": "0x44bf00"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getCamera",
+      "method": "getCamera",
+      "address": "0x44c184"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getContent",
+      "method": "getContent",
+      "address": "0x44c29c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getOffline",
+      "method": "getOffline",
+      "address": "0x44c3b4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getUtils",
+      "method": "getUtils",
+      "address": "0x44c4cc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getDebugApi",
+      "method": "getDebugApi",
+      "address": "0x44c620"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getPrivateApi",
+      "method": "getPrivateApi",
+      "address": "0x44c774"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addTileLoadingListener",
+      "method": "addTileLoadingListener",
+      "address": "0x44c8f8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removeTileLoadingListener",
+      "method": "removeTileLoadingListener",
+      "address": "0x44c9ec"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addOnTapListener",
+      "method": "addOnTapListener",
+      "address": "0x44caa4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removeOnTapListener",
+      "method": "removeOnTapListener",
+      "address": "0x44cb98"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addOnMouseMoveListener",
+      "method": "addOnMouseMoveListener",
+      "address": "0x44cc50"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removeOnMouseMoveListener",
+      "method": "removeOnMouseMoveListener",
+      "address": "0x44cd44"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addPostUpdateListener",
+      "method": "addPostUpdateListener",
+      "address": "0x44cdfc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removePostUpdateListener",
+      "method": "removePostUpdateListener",
+      "address": "0x44cef0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getElevation",
+      "method": "getElevation",
+      "address": "0x44cfa8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setUnitSystem",
+      "method": "setUnitSystem",
+      "address": "0x44d01c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getGridUnits",
+      "method": "getGridUnits",
+      "address": "0x44d068"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addOnGridChangeListener",
+      "method": "addOnGridChangeListener",
+      "address": "0x44d0d4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removeOnGridChangeListener",
+      "method": "removeOnGridChangeListener",
+      "address": "0x44d1c8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1didEnterForeground",
+      "method": "didEnterForeground",
+      "address": "0x44d280"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1didEnterBackground",
+      "method": "didEnterBackground",
+      "address": "0x44d2b4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setRenderingDisabled",
+      "method": "setRenderingDisabled",
+      "address": "0x44d2e8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1requestRender",
+      "method": "requestRender",
+      "address": "0x44d324"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setAlwaysRender",
+      "method": "setAlwaysRender",
+      "address": "0x44d358"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getFps",
+      "method": "getFps",
+      "address": "0x44d394"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setEnableScreenSymbols",
+      "method": "setEnableScreenSymbols",
+      "address": "0x44d3dc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setScreenSymbolRefreshInterval",
+      "method": "setScreenSymbolRefreshInterval",
+      "address": "0x44d418"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setDesiredLanguage",
+      "method": "setDesiredLanguage",
+      "address": "0x44d450"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1waitToLoadMap",
+      "method": "waitToLoadMap",
+      "address": "0x44d49c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setLogLevel",
+      "method": "setLogLevel",
+      "address": "0x44d5a0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getOverriddenFeatureProperties",
+      "method": "getOverriddenFeatureProperties",
+      "address": "0x44d5ec"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setOverriddenFeatureProperties",
+      "method": "setOverriddenFeatureProperties",
+      "address": "0x44d704"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1addViewUpdateListener",
+      "method": "addViewUpdateListener",
+      "address": "0x44d810"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1removeViewUpdateListener",
+      "method": "removeViewUpdateListener",
+      "address": "0x44d904"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setAuthenticationErrorListener",
+      "method": "setAuthenticationErrorListener",
+      "address": "0x44d9bc"
+    }
+  ],
+  "com.fatmap.sdk.api.TestingContextEventListener": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextEventListener_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x44fbcc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextEventListener_00024CppProxy_native_1onEntered",
+      "method": "onEntered",
+      "address": "0x44fc88"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextEventListener_00024CppProxy_native_1onErrorEntering",
+      "method": "onErrorEntering",
+      "address": "0x44fcbc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextEventListener_00024CppProxy_native_1onLeft",
+      "method": "onLeft",
+      "address": "0x44fd54"
+    }
+  ],
+  "com.fatmap.sdk.api.TestingContextHandle": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextHandle_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x44fd98"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextHandle_00024CppProxy_native_1status",
+      "method": "status",
+      "address": "0x44fdb0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestingContextHandle_00024CppProxy_native_1stopEnteringOrInitiateLeaving",
+      "method": "stopEnteringOrInitiateLeaving",
+      "address": "0x44fe24"
+    }
+  ],
+  "com.fatmap.sdk.api.TestsListener": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestsListener_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x45002c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestsListener_00024CppProxy_native_1onPerformanceTestResult",
+      "method": "onPerformanceTestResult",
+      "address": "0x4500e8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestsListener_00024CppProxy_native_1onTestFinished",
+      "method": "onTestFinished",
+      "address": "0x450184"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TestsListener_00024CppProxy_native_1onFinished",
+      "method": "onFinished",
+      "address": "0x45021c"
+    }
+  ],
+  "com.fatmap.sdk.api.TouchListener": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_TouchListener_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x451d14"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TouchListener_00024CppProxy_native_1onSingleTap",
+      "method": "onSingleTap",
+      "address": "0x451d2c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TouchListener_00024CppProxy_native_1onDoubleTap",
+      "method": "onDoubleTap",
+      "address": "0x451d94"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TouchListener_00024CppProxy_native_1onLongPress",
+      "method": "onLongPress",
+      "address": "0x451dfc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TouchListener_00024CppProxy_native_1onTouches",
+      "method": "onTouches",
+      "address": "0x451e64"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TouchListener_00024CppProxy_native_1onTapAndMove",
+      "method": "onTapAndMove",
+      "address": "0x4520dc"
+    }
+  ],
+  "com.fatmap.sdk.api.TrackPerfTestCompletionListener": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_TrackPerfTestCompletionListener_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x452330"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_TrackPerfTestCompletionListener_00024CppProxy_native_1onPerfTestFinished",
+      "method": "onPerfTestFinished",
+      "address": "0x4523ec"
+    }
+  ],
+  "com.fatmap.sdk.api.Utils": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x452e3c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1setUserMarker",
+      "method": "setUserMarker",
+      "address": "0x452e54"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1setUserMarkerAnimation",
+      "method": "setUserMarkerAnimation",
+      "address": "0x452e98"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1setUserMarkerState",
+      "method": "setUserMarkerState",
+      "address": "0x452ecc"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1setUserMarkerPrecision",
+      "method": "setUserMarkerPrecision",
+      "address": "0x452f08"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1setUserMarkerDirection",
+      "method": "setUserMarkerDirection",
+      "address": "0x452f3c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1removeUserMarker",
+      "method": "removeUserMarker",
+      "address": "0x452f70"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1isUserMarkerOnScreen",
+      "method": "isUserMarkerOnScreen",
+      "address": "0x452fa4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1getUserMarkerLocationAngle",
+      "method": "getUserMarkerLocationAngle",
+      "address": "0x452fd8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1addCustomMarker2",
+      "method": "addCustomMarker2",
+      "address": "0x45301c"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1addCustomMarker3",
+      "method": "addCustomMarker3",
+      "address": "0x453160"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1updateCustomMarkerPosition",
+      "method": "updateCustomMarkerPosition",
+      "address": "0x4532a4"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1removeCustomMarker",
+      "method": "removeCustomMarker",
+      "address": "0x4532ec"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1showTileGrid",
+      "method": "showTileGrid",
+      "address": "0x453324"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1hideTileGrid",
+      "method": "hideTileGrid",
+      "address": "0x4535a8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_Utils_00024CppProxy_native_1setHighlightedTiles",
+      "method": "setHighlightedTiles",
+      "address": "0x4535dc"
+    }
+  ],
+  "com.fatmap.sdk.api.VisibleAreaSamplesSink": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_VisibleAreaSamplesSink_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x453eb0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_VisibleAreaSamplesSink_00024CppProxy_native_1processVisiblePoint",
+      "method": "processVisiblePoint",
+      "address": "0x453f6c"
+    }
+  ],
+  "com.fatmap.sdk.api.WindowLifecycleListener": [
+    {
+      "jni": "Java_com_fatmap_sdk_api_WindowLifecycleListener_00024CppProxy_nativeDestroy",
+      "method": "nativeDestroy",
+      "address": "0x4545c8"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_WindowLifecycleListener_00024CppProxy_native_1onWindowResized",
+      "method": "onWindowResized",
+      "address": "0x4545e0"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_WindowLifecycleListener_00024CppProxy_native_1onWindowStateChanged",
+      "method": "onWindowStateChanged",
+      "address": "0x454618"
+    },
+    {
+      "jni": "Java_com_fatmap_sdk_api_WindowLifecycleListener_00024CppProxy_native_1onDisplayChanged",
+      "method": "onDisplayChanged",
+      "address": "0x454660"
+    }
+  ]
+}
