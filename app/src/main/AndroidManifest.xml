@@ -27,6 +27,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenStride">
 
+        <activity
+            android:name="dev.openstride.ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|keyboardHidden|uiMode"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name="dev.openstride.recording.RecordingService"
             android:exported="false"

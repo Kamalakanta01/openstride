@@ -11,6 +11,12 @@ indent_size = 4
 [*.{yml,yaml,json,md,txt}]
 indent_size = 2
 
+# Compose composable functions are named in PascalCase, which is the
+# convention for anything that returns a value in Compose. The default
+# ktlint rule wants camelCase, so it is switched off for the whole app.
+[app/src/main/kotlin/**/*.kt]
+ktlint_standard_function-naming = disabled
+
 # The Fatmap-compatible API is generated from the extracted interface contract
 # by tools/fatmap_codegen.py. Its shape is dictated by the Java API it mirrors,
 # so the style rules that would fight the generator are switched off here.

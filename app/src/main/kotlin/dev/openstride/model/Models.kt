@@ -88,6 +88,7 @@ data class ActivityStreams(
 }
 
 enum class StreamType {
+    TIME,
     LATITUDE,
     LONGITUDE,
     DISTANCE,

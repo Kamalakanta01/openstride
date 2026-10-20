@@ -29,13 +29,14 @@ import java.time.LocalDate
         RouteEntity::class,
         RoutePointEntity::class,
         SegmentEntity::class,
+        SegmentPointEntity::class,
         SegmentEffortEntity::class,
         GearEntity::class,
         GoalEntity::class,
         PrivacyZoneEntity::class,
         UnsyncedActivityEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -49,6 +50,8 @@ abstract class LocalDatabase : RoomDatabase() {
     abstract fun routeDao(): RouteDao
 
     abstract fun segmentDao(): SegmentDao
+
+    abstract fun segmentPointDao(): SegmentPointDao
 
     abstract fun gearDao(): GearDao
 
@@ -162,6 +165,34 @@ data class SegmentEntity(
     val climbCategory: Int?,
     val localLegend: String?,
 )
+
+/**
+ * The geometry of a local segment.
+ *
+ * The original app's segments live on Strava's servers; these are found in
+ * the athlete's own history, so their shape has to be stored here.
+ */
+@Entity(tableName = "segment_points", primaryKeys = ["segmentId", "index"])
+data class SegmentPointEntity(
+    val segmentId: Long,
+    val index: Int,
+    val latitude: Double,
+    val longitude: Double,
+    val distanceMeters: Double,
+    val elevationMeters: Double,
+)
+
+@Dao
+interface SegmentPointDao {
+    @Query("SELECT * FROM segment_points WHERE segmentId = :segmentId ORDER BY `index`")
+    suspend fun forSegment(segmentId: Long): List<SegmentPointEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(points: List<SegmentPointEntity>)
+
+    @Query("DELETE FROM segment_points WHERE segmentId = :segmentId")
+    suspend fun deleteForSegment(segmentId: Long)
+}
 
 @Entity(tableName = "segment_efforts")
 data class SegmentEffortEntity(
@@ -291,6 +322,9 @@ interface RouteDao {
 interface SegmentDao {
     @Query("SELECT * FROM segments")
     fun observeAll(): Flow<List<SegmentEntity>>
+
+    @Query("SELECT * FROM segments")
+    suspend fun all(): List<SegmentEntity>
 
     @Query("SELECT * FROM segment_efforts WHERE segmentId = :segmentId ORDER BY elapsedSeconds")
     suspend fun efforts(segmentId: Long): List<SegmentEffortEntity>

@@ -5,4 +5,5 @@
     <string name="recording_channel_description">Shown while an activity is being recorded.</string>
     <string name="recording_notification_title">Recording activity</string>
     <string name="recording_notification_body">Tap to return to the recording screen.</string>
+    <string name="recording_notification_live">%1$s · %2$s</string>
 </resources>

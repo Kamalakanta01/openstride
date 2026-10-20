@@ -2,7 +2,11 @@
 
 A clean-room, local-only implementation of a Strava-like fitness app.
 
-**Status: scaffolding.** The data model, the API contract, and the recording service skeleton exist. The UI does not. The build compiles, the unit tests pass, and CI runs it on every push.
+**Status: working.** The app builds, installs, runs on a physical device and
+records activities. The data model, the recording pipeline, the analysis
+engine and the five screens all exist. See
+[../docs/12-app-features.md](../docs/12-app-features.md) for what each screen
+does and how it maps to the original app.
 
 ---
 
@@ -28,14 +32,33 @@ repo root/
         │       ├── com/fatmap/sdk/api/   ← GENERATED: the 1:1 Fatmap-compatible API
         │       └── dev/openstride/
         │           ├── OpenStrideApplication.kt
-        │           ├── map/MapEngineLoader.kt    ← loads libfatmap_jni.so
         │           ├── model/Models.kt            ← the data model
         │           ├── local/LocalDatabase.kt     ← Room entities, DAOs, converters
         │           ├── api/LocalApiContract.kt    ← the contract the UI will talk to
-        │           └── recording/
-        │               ├── RecordingService.kt    ← foreground recording service
-        │               └── RecoverActivityReceiver.kt ← reboot recovery
-        ├── test/kotlin/dev/openstride/local/      ← unit tests
+        │           ├── data/AppRepository.kt      ← the app's own facade over the database
+        │           ├── analysis/                  ← load, fitness, records, segments, heatmap
+        │           │   ├── Fitness.kt
+        │           │   ├── Records.kt
+        │           │   └── Segments.kt
+        │           ├── recording/
+        │           │   ├── RecordingService.kt    ← foreground recording service
+        │           │   ├── RecordingSession.kt    ← the live state, shared with the UI
+        │           │   ├── Track.kt               ← geometry, polyline encoding, formatting
+        │           │   └── RecoverActivityReceiver.kt ← reboot recovery
+        │           ├── map/MapEngineLoader.kt     ← loads libfatmap_jni.so
+        │           └── ui/
+        │               ├── MainActivity.kt        ← the single activity, bottom navigation
+        │               ├── theme/Theme.kt
+        │               ├── components/Charts.kt   ← fitness chart, load bars, calendar
+        │               ├── map/                   ← the MapLibre map, the heatmap
+        │               ├── record/                ← the record screen
+        │               ├── log/                   ← the training log
+        │               ├── fitness/               ← fitness, records, achievements
+        │               ├── activities/            ← the activity list and detail
+        │               ├── you/                   ← the athlete's own corner
+        │               ├── gear/  goals/  segments/  routes/  privacy/  settings/
+        │               └── profile/                ← the profile
+        ├── test/kotlin/dev/openstride/            ← unit tests
         └── androidTest/kotlin/com/fatmap/sdk/api/ ← on-device engine tests
 ```
 

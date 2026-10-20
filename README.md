@@ -122,7 +122,7 @@ cmake -S map-engine -B map-engine/build -G Ninja && cmake --build map-engine/bui
 
 Kotlin, targeting Android 8.0+ (minSdk 26). A scaffold, not a finished app — see [app/README.md](app/README.md) for the roadmap and current status.
 
-**Status:** the build compiles for `arm64-v8a` and `armeabi-v7a`, the unit tests pass, and CI runs it on every push. The UI does not exist yet.
+**Status:** the app builds, installs, runs on a physical device and records activities. It has five screens — map, record, training log, fitness and the athlete's own profile — and the analysis behind them (training load, fitness and freshness, personal records, achievements, local segments, personal heatmap, gear, goals, routes, privacy zones) is computed on the device. See [docs/12-app-features.md](docs/12-app-features.md) for the full feature map.
 
 The app carries the **generated 1:1 Fatmap API** (`com.fatmap.sdk.api`, 130 classes) and loads the native engine from it — `libfatmap_jni.so`, 312 JNI entry points, the same symbol names as Strava's own library. `MapEngineLoader` loads it; `EngineSmokeTest` exercises the whole native boundary on a device.
 
@@ -206,7 +206,7 @@ python3 tools/verify_api_parity.py
 
 | Area | Status |
 |---|---|
-| Static analysis | ✅ Complete for the shipped artifact; 10 documents |
+| Static analysis | ✅ Complete for the shipped artifact; 12 documents |
 | Interface specification | ✅ Machine-readable for manifest, native API, hosts, paths, data model |
 | Local data model | 🟡 Scaffolded (Room entities + DAOs) |
 | Local API server | 🟡 Contract defined; implementation stubbed |
@@ -216,6 +216,9 @@ python3 tools/verify_api_parity.py
 | Build | ✅ Compiles for arm64-v8a and armeabi-v7a; unit tests pass; CI green |
 | Map engine build | ✅ Compiles; 45 host checks pass; ships in the APK with all 312 symbols |
 | On-device tests | ✅ 7 instrumented tests pass on a physical device (Galaxy A30F) |
+| App | ✅ Five screens; records activities, saves them, shows the analysis |
+| Map | ✅ MapLibre with a keyless vector style; the Fatmap engine still renders nothing |
+| Training analysis | ✅ Load, fitness and freshness, records, achievements, local segments, heatmap |
 
 ### Scope note
 
