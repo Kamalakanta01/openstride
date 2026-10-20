@@ -7,16 +7,13 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class Offline internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ Offline ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_loadBundles(items: MutableList<String>, obj: BundleLoadListener): Unit
         external fun native_setNonBundleResourcesAllowed(flag: Boolean): Unit
         external fun native_unloadBundles(items: MutableList<String>, obj: BundleUnloadListener): Unit
-
         external fun nativeDestroy()
     }
 

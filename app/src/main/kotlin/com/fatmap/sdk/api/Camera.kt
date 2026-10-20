@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class Camera internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ Camera ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addInteractionListener(obj: CameraInteractionListener): Unit
         external fun native_addStateListener(obj: CameraStateListener): Unit
         external fun native_enterFirstPersonView(d: Double, d1: Double, f: Float): Unit
@@ -44,7 +42,6 @@ class Camera internal constructor(handle: Long) : AutoCloseable {
         external fun native_setZoomSpeed(f: Float): Unit
         external fun native_stop(): Unit
         external fun native_translateTo(vworldPoint2: WorldPoint2, f: Float, vcameraMargins: CameraMargins, obj: CameraActionCompletionListener): Unit
-
         external fun nativeDestroy()
     }
 

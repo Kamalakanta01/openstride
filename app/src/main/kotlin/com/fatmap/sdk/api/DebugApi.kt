@@ -7,16 +7,13 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class DebugApi internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ DebugApi ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_dumpEngineState(): String
         external fun native_hideFpsStatsOverlay(): Unit
         external fun native_showFpsStatsOverlay(vdebugOverlayCorner: DebugOverlayCorner, vdebugOverlayPadding: DebugOverlayPadding): Unit
-
         external fun nativeDestroy()
     }
 

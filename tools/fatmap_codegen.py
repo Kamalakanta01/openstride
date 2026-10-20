@@ -82,6 +82,36 @@ class Type:
         self.as_field = as_field
         self.as_return = as_return
 
+        if self.java.endswith("[]"):
+            base = self.java[:-2]
+            if base == "byte":
+                self.kind = "bytearray"
+                self.desc = "[B"
+                self.kotlin = "ByteArray"
+                self.cpp = "std::vector<uint8_t>"
+                self.read = "jni::read_byte_array(env, {ARG})"
+                self.write = "jni::write_byte_array(env, {VALUE})"
+                return
+            if base.startswith(PACKAGE + "."):
+                simple = base[len(PACKAGE) + 1 :]
+                self.kind = "array"
+                self.simple = simple
+                self.desc = f"[L{JAVA_PKG_PATH}/{simple};"
+                self.kotlin = f"Array<{simple}>"
+                self.cpp = f"std::vector<{simple}>"
+                element = Type(base, cat)
+                self.read = (
+                    f"jni::read_object_array<{self.cpp}>({{ENV}}, {{ARG}}, "
+                    f"[](JNIEnv* e, jobject o) "
+                    f"{{ return {_subst(element.read, 'e', 'o')}; }})"
+                )
+                self.write = (
+                    f"jni::write_object_array<{self.cpp}>({{ENV}}, {{VALUE}}, "
+                    f"[](JNIEnv* e, const {self.cpp}& v) "
+                    f"{{ return {_subst(element.write, 'e', 'v', 'v')}; }})"
+                )
+                return
+
         if self.java == "void":
             self.kind = "void"
             self.desc, self.kotlin, self.cpp = "V", "Unit", "void"
@@ -131,6 +161,24 @@ class Type:
             )
             self.write = (
                 f"jni::write_list<{self.element.cpp}>({{ENV}}, {{VALUE}}, "
+                f"[](JNIEnv* e, const {self.element.cpp}& v) "
+                f"{{ return {_subst(self.element.write, 'e', 'v', 'v')}; }})"
+            )
+            return
+
+        m = re.match(r"^java\.util\.(HashMap|LinkedHashMap|TreeMap)<(.+?),\s*(.+)>$", self.java)
+        if m:
+            self.kind = "map"
+            self.element = Type(m.group(3), cat)
+            self.desc = "Ljava/util/HashMap;"
+            self.kotlin = f"MutableMap<String, {self.element.kotlin}>"
+            self.cpp = f"std::map<std::string, {self.element.cpp}>"
+            self.read = (
+                f"jni::read_map<{self.element.cpp}>({{ENV}}, {{ARG}}, "
+                f"[](JNIEnv* e, jobject o) {{ return {_subst(self.element.read, 'e', 'o')}; }})"
+            )
+            self.write = (
+                f"jni::write_map<{self.element.cpp}>({{ENV}}, {{VALUE}}, "
                 f"[](JNIEnv* e, const {self.element.cpp}& v) "
                 f"{{ return {_subst(self.element.write, 'e', 'v', 'v')}; }})"
             )
@@ -213,7 +261,29 @@ def _jni_param(t, name: str) -> str:
     """The JNI parameter declaration for one argument."""
     if t.kind == "primitive":
         return f"{SCALARS[t.java][2]} {name}"
+    if t.kind == "bytearray":
+        return f"jbyteArray {name}"
     return f"jobject {name}"
+
+
+def split_parameters(text: str) -> list[str]:
+    """Split a parameter list on commas that are not inside <>."""
+    out = []
+    depth = 0
+    current = ""
+    for ch in text:
+        if ch == "<":
+            depth += 1
+        elif ch == ">":
+            depth -= 1
+        if ch == "," and depth == 0:
+            out.append(current)
+            current = ""
+            continue
+        current += ch
+    if current.strip():
+        out.append(current)
+    return out
 
 
 def parse_signature(sig: str, cat: "Catalog", as_field: bool = False,
@@ -223,7 +293,7 @@ def parse_signature(sig: str, cat: "Catalog", as_field: bool = False,
     if not m:
         return None
     name = m.group(1) or "<init>"
-    raw = [p.strip() for p in m.group(2).split(",") if p.strip()]
+    raw = [p.strip() for p in split_parameters(m.group(2)) if p.strip()]
     return (name, [Type(p, cat, as_field) for p in raw],
             Type(m.group(3), cat, as_field, as_return))
 
@@ -429,22 +499,34 @@ interface {simple} {{
 """
 
 
+def _property_decl(prop: str, java_getter: str, type: "Type") -> str:
+    """One `val` property, with a pinned JVM getter name when Kotlin's
+    convention would not produce the Java one."""
+    if prop.startswith("is") and len(prop) > 2 and prop[2].isupper():
+        kotlin_getter = prop
+    else:
+        kotlin_getter = "get" + prop[0].upper() + prop[1:]
+    annotation = "" if kotlin_getter == java_getter else f'@get:JvmName("{java_getter}") '
+    return f"{annotation}val {prop}: {type.kotlin}"
+
+
 def gen_value(simple: str, fq: str, cat: Catalog) -> str:
     props = cat.value_class(fq)
     order = cat.ctor_order(fq)
-    decl = ",\n        ".join(f"val {p}: {t.kotlin}" for p, t in order)
-    getters = "\n".join(f"    fun {g}(): {rt.kotlin} = {p}" for p, rt, g in props)
+    getter_name = {p: g for p, rt, g in props}
+    decl = ",\n    ".join(
+        _property_decl(p, getter_name.get(p, "get" + p[0].upper() + p[1:]), t)
+        for p, t in order
+    )
     args = ", ".join(f"{p}" for p, _ in order)
     inter = ", ".join(f"{p}=${{{p}}}" for p, _ in order)
     return f"""package {PACKAGE}
 
 /** Generated from the Fatmap SDK interface contract. Do not edit by hand. */
 class {simple}(
-        {decl}
+    {decl}
 ) {{
-{getters}
-
-    override fun toString(): String = "{simple}(" + listOf({inter}) + ")"
+    override fun toString(): String = "{simple}({inter})"
 }}
 """
 
@@ -486,8 +568,21 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
         externals.append(
             f"        external fun {native_name}({psig}): {r}"
         )
-    ext = "\n".join(externals)
+    ext = "\n".join(externals + ["        external fun nativeDestroy()"])
     dele = "\n".join(delegations)
+
+    # Assemble the body so that empty blocks do not leave double blank lines.
+    blocks = [
+        "    private val mProxy = CppProxy(handle)",
+        "    /** The native half of the API. One instance per [ " + simple + " ]. */\n"
+        "    class CppProxy internal constructor(private val mNativeHandle: Long) {\n"
+        + ext + "\n    }",
+    ]
+    if dele:
+        blocks.append(dele)
+    blocks.append("    override fun close() {\n        mProxy.nativeDestroy()\n    }")
+    body = "\n\n".join(blocks)
+
     return f"""package {PACKAGE}
 
 /**
@@ -497,22 +592,7 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
  * functions, so the JNI symbol names match the original library exactly.
  */
 class {simple} internal constructor(handle: Long) : AutoCloseable {{
-
-    private val mProxy = CppProxy(handle)
-
-    /** The native half of the API. One instance per [ {simple} ]. */
-    class CppProxy internal constructor(private val mNativeHandle: Long) {{
-
-{ext}
-
-        external fun nativeDestroy()
-    }}
-
-{dele}
-
-    override fun close() {{
-        mProxy.nativeDestroy()
-    }}
+{body}
 }}
 """
 

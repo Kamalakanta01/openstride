@@ -2,11 +2,8 @@ package com.fatmap.sdk.api
 
 /** Generated from the Fatmap SDK interface contract. Do not edit by hand. */
 class HighlightedTile(
-        val index: QuadIndex,
-        val color: Color
+    val index: QuadIndex,
+    val color: Color
 ) {
-    fun getColor(): Color = color
-    fun getIndex(): QuadIndex = index
-
-    override fun toString(): String = "HighlightedTile(" + listOf(index=${index}, color=${color}) + ")"
+    override fun toString(): String = "HighlightedTile(index=${index}, color=${color})"
 }

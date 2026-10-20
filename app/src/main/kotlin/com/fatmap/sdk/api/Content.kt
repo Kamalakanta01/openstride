@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class Content internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ Content ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addCircleMarker(text: String, d: Double, d1: Double, f: Float): Unit
         external fun native_addCustomGradientLine(vworldLine2: WorldLine2, text: String, text1: String, text2: String, items: MutableList<Color>): Long
         external fun native_addCustomLine(vworldLine2: WorldLine2, text: String, text1: String, flag: Boolean, text2: String): Long
@@ -27,7 +25,6 @@ class Content internal constructor(handle: Long) : AutoCloseable {
         external fun native_removeCircleMarker(text: String): Unit
         external fun native_removeCustomLine(l: Long): Boolean
         external fun native_removeDroppedPin(text: String): Unit
-
         external fun nativeDestroy()
     }
 

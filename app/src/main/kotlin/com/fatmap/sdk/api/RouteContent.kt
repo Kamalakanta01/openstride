@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class RouteContent internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ RouteContent ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addWaypointToRoute(text: String, vrouteWaypoint: RouteWaypoint): Unit
         external fun native_displayAnimatedRoute(text: String, vworldLine2: WorldLine2, items: MutableList<RouteSection>, items1: MutableList<RouteWaypoint>, vrouteSelectionStyle: RouteSelectionStyle, flag: Boolean, f: Float, f1: Float, obj: CompletionCallback): Unit
         external fun native_displayRoute(text: String, vworldLine2: WorldLine2, items: MutableList<RouteSection>, items1: MutableList<RouteWaypoint>, vrouteSelectionStyle: RouteSelectionStyle, flag: Boolean): Unit
@@ -26,7 +24,6 @@ class RouteContent internal constructor(handle: Long) : AutoCloseable {
         external fun native_stopUnselectedRoutesFadeIn(): Unit
         external fun native_unselectRoute(text: String): Unit
         external fun native_unselectWaypointOnRoute(text: String, text1: String): Unit
-
         external fun nativeDestroy()
     }
 

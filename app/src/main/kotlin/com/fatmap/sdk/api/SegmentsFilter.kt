@@ -7,18 +7,15 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class SegmentsFilter internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ SegmentsFilter ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_getVisibleSegments(): MutableList<SegmentFeature>
         external fun native_hide(): Unit
         external fun native_selectSegment(l: Long): Unit
         external fun native_show(vsegmentsFilterOptions: SegmentsFilterOptions): Unit
         external fun native_unselectSegment(): Unit
-
         external fun nativeDestroy()
     }
 

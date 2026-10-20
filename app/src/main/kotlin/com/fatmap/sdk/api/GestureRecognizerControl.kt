@@ -7,15 +7,12 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class GestureRecognizerControl internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ GestureRecognizerControl ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_setAllGesturesEnabled(flag: Boolean): Unit
         external fun native_setDoubleTapGesturesEnabled(flag: Boolean): Unit
-
         external fun nativeDestroy()
     }
 

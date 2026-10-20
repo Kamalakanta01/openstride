@@ -7,16 +7,13 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class WindowLifecycleListener internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ WindowLifecycleListener ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_onDisplayChanged(f: Float): Unit
         external fun native_onWindowResized(i: Int, i1: Int): Unit
         external fun native_onWindowStateChanged(vwindowState: WindowState): Unit
-
         external fun nativeDestroy()
     }
 

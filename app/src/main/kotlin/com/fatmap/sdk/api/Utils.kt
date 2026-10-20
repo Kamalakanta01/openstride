@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class Utils internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ Utils ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addCustomMarker2(d: Double, d1: Double, text: String, text1: String, text2: String): Long
         external fun native_addCustomMarker3(d: Double, d1: Double, text: String, text1: String, text2: String): Long
         external fun native_getUserMarkerLocationAngle(): Float
@@ -28,7 +26,6 @@ class Utils internal constructor(handle: Long) : AutoCloseable {
         external fun native_setUserMarkerState(flag: Boolean): Unit
         external fun native_showTileGrid(a: Byte, items: MutableList<HighlightedTile>): Unit
         external fun native_updateCustomMarkerPosition(l: Long, d: Double, d1: Double): Unit
-
         external fun nativeDestroy()
     }
 

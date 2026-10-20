@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class OverriddenFeatureProperties internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ OverriddenFeatureProperties ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addBooleanProperty(text: String, flag: Boolean): Unit
         external fun native_addDoubleProperty(text: String, d: Double): Unit
         external fun native_addIntegerProperty(text: String, l: Long): Unit
@@ -23,7 +21,6 @@ class OverriddenFeatureProperties internal constructor(handle: Long) : AutoClose
         external fun native_getIntegerProperty(text: String): Long?
         external fun native_getStringProperty(text: String): String
         external fun native_removeProperty(text: String): Unit
-
         external fun nativeDestroy()
     }
 

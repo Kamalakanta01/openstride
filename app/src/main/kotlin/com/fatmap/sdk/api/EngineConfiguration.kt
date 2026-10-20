@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class EngineConfiguration internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ EngineConfiguration ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun createDefault(): EngineConfiguration
         external fun native_getBreadcrumbRecorder(): BreadcrumbRecorder
         external fun native_getCameraTarget(): CameraTarget
@@ -31,7 +29,6 @@ class EngineConfiguration internal constructor(handle: Long) : AutoCloseable {
         external fun native_setLoggingToStdOut(flag: Boolean): Unit
         external fun native_setReindexOnDiskResources(flag: Boolean): Unit
         external fun native_setUseOnDiskCache(flag: Boolean): Unit
-
         external fun nativeDestroy()
     }
 

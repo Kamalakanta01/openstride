@@ -273,7 +273,7 @@ inline jobject write_ContentGroup(JNIEnv* env, ContentGroup value) {
 inline CustomImage read_CustomImage(JNIEnv* env, jobject obj) {
     CustomImage v;
     jclass cls = env->GetObjectClass(obj);
-    v.data = jni::read_opaque(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getData", "()Lbyte[];")));
+    v.data = jni::read_byte_array(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getData", "()[B")));
     v.format = jni::read_ImageFormat(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getFormat", "()Lcom/fatmap/sdk/api/ImageFormat;")));
     v.height = env->CallIntMethod(obj, env->GetMethodID(cls, "getHeight", "()I"));
     v.pixelRatio = env->CallFloatMethod(obj, env->GetMethodID(cls, "getPixelRatio", "()F"));
@@ -284,7 +284,7 @@ inline CustomImage read_CustomImage(JNIEnv* env, jobject obj) {
 
 inline jobject write_CustomImage(JNIEnv* env, const CustomImage& value) {
     jclass cls = env->FindClass("com/fatmap/sdk/api/CustomImage");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Lcom/fatmap/sdk/api/ImageFormat;IIFLbyte[];)V");
+    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Lcom/fatmap/sdk/api/ImageFormat;IIF[B)V");
     return env->NewObject(cls, ctor, value.format, value.height, value.width, value.pixelRatio, value.data);
 }
 

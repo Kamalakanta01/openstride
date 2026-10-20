@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class CameraFlyThroughControls internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ CameraFlyThroughControls ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_getDurationSeconds(): Float
         external fun native_getTrackProgress(): Float
         external fun native_getTrackSpeedMultiplier(): Float
@@ -26,7 +24,6 @@ class CameraFlyThroughControls internal constructor(handle: Long) : AutoCloseabl
         external fun native_setTrackProgress(f: Float): Unit
         external fun native_setTrackSpeedMultiplier(f: Float): Unit
         external fun native_stop(): Unit
-
         external fun nativeDestroy()
     }
 

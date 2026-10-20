@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class ActivityContent internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ ActivityContent ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_applyActivityGradient(text: String, items: MutableList<Color>): Unit
         external fun native_applyActivityPolylineHighlights(text: String, items: MutableList<PolylineHighlightSection>): Unit
         external fun native_clearActivityGradient(text: String): Unit
@@ -23,7 +21,6 @@ class ActivityContent internal constructor(handle: Long) : AutoCloseable {
         external fun native_displayActivityWithPrivacyIcons(text: String, vworldLine2: WorldLine2, vintervalInt: IntervalInt): Unit
         external fun native_removeActivity(text: String): Unit
         external fun native_removeAllActivities(): Unit
-
         external fun nativeDestroy()
     }
 

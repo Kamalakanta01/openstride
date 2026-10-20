@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class StravaPoiFilter internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ StravaPoiFilter ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_disableBikeShares(): Unit
         external fun native_disableStartPoints(): Unit
         external fun native_enableBikeShares(): Unit
@@ -20,7 +18,6 @@ class StravaPoiFilter internal constructor(handle: Long) : AutoCloseable {
         external fun native_selectPoi(obj: ContentSelectionHandle): Unit
         external fun native_setShow(flag: Boolean): Unit
         external fun native_unselectPoi(): Unit
-
         external fun nativeDestroy()
     }
 

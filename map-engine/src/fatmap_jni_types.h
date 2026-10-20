@@ -9,6 +9,7 @@
 #include <jni.h>
 
 #include <cstdint>
+#include <map>
 #include <optional>
 #include <string>
 #include <vector>
@@ -209,6 +210,126 @@ inline Opaque read_opaque(JNIEnv*, jobject obj) {
 
 inline jobject write_opaque(JNIEnv*, Opaque value) {
     return value.get();
+}
+
+// -------------------------------------------------------------- byte arrays
+
+inline std::vector<uint8_t> read_byte_array(JNIEnv* env, jobject object) {
+    std::vector<uint8_t> out;
+    if (object == nullptr) {
+        return out;
+    }
+    auto* array = static_cast<jbyteArray>(object);
+    const jsize length = env->GetArrayLength(array);
+    out.resize(static_cast<size_t>(length));
+    if (length > 0) {
+        env->GetByteArrayRegion(array, 0, length, reinterpret_cast<jbyte*>(out.data()));
+    }
+    return out;
+}
+
+inline jbyteArray write_byte_array(JNIEnv* env, const std::vector<uint8_t>& value) {
+    jbyteArray array = env->NewByteArray(static_cast<jsize>(value.size()));
+    if (array != nullptr && !value.empty()) {
+        env->SetByteArrayRegion(array, 0, static_cast<jsize>(value.size()),
+                                reinterpret_cast<const jbyte*>(value.data()));
+    }
+    return array;
+}
+
+// ----------------------------------------------------------- object arrays
+
+/// Reads a Java array of SDK objects.
+template <typename T, typename ReadFn>
+inline std::vector<T> read_object_array(JNIEnv* env, jobject object, ReadFn read) {
+    std::vector<T> out;
+    if (object == nullptr) {
+        return out;
+    }
+    auto* array = static_cast<jobjectArray>(object);
+    const jsize length = env->GetArrayLength(array);
+    out.reserve(static_cast<size_t>(length));
+    for (jsize i = 0; i < length; ++i) {
+        jobject element = env->GetObjectArrayElement(array, i);
+        out.push_back(read(env, element));
+        if (element != nullptr) {
+            env->DeleteLocalRef(element);
+        }
+    }
+    return out;
+}
+
+/// Writes a Java array of SDK objects.
+template <typename T, typename WriteFn>
+inline jobject write_object_array(JNIEnv* env, const std::vector<T>& values, WriteFn write) {
+    jclass cls = env->FindClass("java/lang/Object");
+    jobjectArray array = env->NewObjectArray(static_cast<jsize>(values.size()), cls, nullptr);
+    for (size_t i = 0; i < values.size(); ++i) {
+        jobject element = write(env, values[i]);
+        env->SetObjectArrayElement(array, static_cast<jsize>(i), element);
+        if (element != nullptr) {
+            env->DeleteLocalRef(element);
+        }
+    }
+    env->DeleteLocalRef(cls);
+    return array;
+}
+
+// -------------------------------------------------------------------- maps
+
+template <typename V, typename ReadFn>
+inline std::map<std::string, V> read_map(JNIEnv* env, jobject map, ReadFn read) {
+    std::map<std::string, V> out;
+    if (map == nullptr) {
+        return out;
+    }
+    jclass cls = env->GetObjectClass(map);
+    jmethodID entrySet = env->GetMethodID(cls, "entrySet", "()Ljava/util/Set;");
+    jobject entries = env->CallObjectMethod(map, entrySet);
+    jclass setCls = env->GetObjectClass(entries);
+    jmethodID iterator = env->GetMethodID(setCls, "iterator", "()Ljava/util/Iterator;");
+    jobject it = env->CallObjectMethod(entries, iterator);
+    jclass itCls = env->GetObjectClass(it);
+    jmethodID hasNext = env->GetMethodID(itCls, "hasNext", "()Z");
+    jmethodID next = env->GetMethodID(itCls, "next", "()Ljava/util/Map$Entry;");
+    jclass entryCls = env->FindClass("java/util/Map$Entry");
+    jmethodID getKey = env->GetMethodID(entryCls, "getKey", "()Ljava/lang/Object;");
+    jmethodID getValue = env->GetMethodID(entryCls, "getValue", "()Ljava/lang/Object;");
+    while (env->CallBooleanMethod(it, hasNext) == JNI_TRUE) {
+        jobject entry = env->CallObjectMethod(it, next);
+        jobject key = env->CallObjectMethod(entry, getKey);
+        jobject value = env->CallObjectMethod(entry, getValue);
+        out[read_string(env, key)] = read(env, value);
+        env->DeleteLocalRef(key);
+        env->DeleteLocalRef(value);
+        env->DeleteLocalRef(entry);
+    }
+    env->DeleteLocalRef(itCls);
+    env->DeleteLocalRef(it);
+    env->DeleteLocalRef(setCls);
+    env->DeleteLocalRef(entries);
+    env->DeleteLocalRef(entryCls);
+    env->DeleteLocalRef(cls);
+    return out;
+}
+
+template <typename V, typename WriteFn>
+inline jobject write_map(JNIEnv* env, const std::map<std::string, V>& values, WriteFn write) {
+    jclass cls = env->FindClass("java/util/HashMap");
+    jobject map = env->NewObject(cls, env->GetMethodID(cls, "<init>", "()V"));
+    jmethodID put = env->GetMethodID(cls, "put",
+                                     "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+    for (const auto& entry : values) {
+        jstring key = env->NewStringUTF(entry.first.c_str());
+        jobject value = write(env, entry.second);
+        env->CallObjectMethod(map, put, key, value);
+        env->DeleteLocalRef(key);
+        if (value != nullptr) {
+            env->DeleteLocalRef(value);
+        }
+    }
+    env->DeleteLocalRef(cls);
+    return map;
 }
 
 // ------------------------------------------------------------------- lists

@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ TerrainEngine ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addOnGridChangeListener(obj: OnGridChangeListener): Unit
         external fun native_addOnMouseMoveListener(obj: OnMouseMoveListener): Unit
         external fun native_addOnTapListener(obj: OnTapListener): Unit
@@ -65,7 +63,6 @@ class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
         external fun native_setWeeklyHeatmapConfig(vweeklyHeatmapConfig: WeeklyHeatmapConfig): Unit
         external fun native_update(): Unit
         external fun native_waitToLoadMap(obj: OnMapLoadListener, flag: Boolean, f: Float): Unit
-
         external fun nativeDestroy()
     }
 

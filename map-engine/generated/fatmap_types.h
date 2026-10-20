@@ -270,7 +270,7 @@ struct Color {
 };
 
 struct CustomImage {
-    jni::Opaque data;
+    std::vector<uint8_t> data;
     ImageFormat format;
     int32_t height;
     float pixelRatio;

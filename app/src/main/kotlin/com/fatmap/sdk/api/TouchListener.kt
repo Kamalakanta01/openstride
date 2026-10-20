@@ -7,18 +7,15 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class TouchListener internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ TouchListener ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_onDoubleTap(vosTouch: OsTouch): Unit
         external fun native_onLongPress(vosTouch: OsTouch): Unit
         external fun native_onSingleTap(vosTouch: OsTouch): Unit
         external fun native_onTapAndMove(vosTouch: OsTouch, vosTouchAction: OsTouchAction): Unit
         external fun native_onTouches(items: MutableList<OsTouch>): Unit
-
         external fun nativeDestroy()
     }
 

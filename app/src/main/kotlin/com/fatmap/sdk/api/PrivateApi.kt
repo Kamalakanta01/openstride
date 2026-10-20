@@ -7,12 +7,10 @@ package com.fatmap.sdk.api
  * functions, so the JNI symbol names match the original library exactly.
  */
 class PrivateApi internal constructor(handle: Long) : AutoCloseable {
-
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ PrivateApi ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-
         external fun native_addPerformanceMetricsListener(obj: PerformanceMetricsListener): Unit
         external fun native_clearLuaPersistedStore(): Unit
         external fun native_finishTwoPassVideoRendering(): Unit
@@ -65,7 +63,6 @@ class PrivateApi internal constructor(handle: Long) : AutoCloseable {
         external fun native_stopMockTileServer(): Unit
         external fun native_switchToCustomStyle(text: String, flag: Boolean, flag1: Boolean, flag2: Boolean, flag3: Boolean, flag4: Boolean, flag5: Boolean, opt: Float?): Unit
         external fun native_updateLodCalculationControlParams(vlodCalculationControlParams: LodCalculationControlParams): LodCalculationControlParams
-
         external fun nativeDestroy()
     }
 
