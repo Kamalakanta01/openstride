@@ -1,0 +1,38 @@
+package com.fatmap.sdk.api
+
+/** Generated from the Fatmap SDK interface contract. Do not edit by hand. */
+enum class RouteWaypointCategory {
+    AID_STATION,
+    ALERT,
+    ART,
+    ATTRACTION,
+    BAR,
+    BEACH,
+    BIKE_SHOP,
+    CAMP_SITE,
+    CHECKPOINT,
+    COFFEE,
+    DISTANCE_MARKER,
+    GAS_STATION,
+    GENERIC,
+    GROCERY,
+    LODGING,
+    MEETING_SPOT,
+    MONUMENT,
+    PARK,
+    PARKING,
+    PEAK,
+    PHARMACY,
+    RESTAURANT,
+    RESTROOM,
+    REST_AREA,
+    ROUTE_PLANNED_FINISH,
+    ROUTE_PLANNED_START,
+    ROUTE_PLANNED_WAYPOINT,
+    SEGMENT_END,
+    SEGMENT_START,
+    TRAILHEAD,
+    TRANSITION_ZONE,
+    VIEWPOINT,
+    WATER_SOURCE
+}

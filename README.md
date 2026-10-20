@@ -47,6 +47,7 @@ openstride/
 ├── tools/           parsers written for this project (AXML, ARSC, DEX refs)
 ├── data/            derived interface facts: classes, hosts, paths, symbols
 ├── spec/            machine-readable interface contract for reimplementation
+├── map-engine/      the clean-room map engine (C++), 1:1 with the Fatmap API
 ├── app/             the Android application module (Kotlin)
 ├── settings.gradle.kts, build.gradle.kts, gradle/   Gradle root
 └── .github/workflows/ci.yml                         build + lint + test on every push
@@ -67,6 +68,7 @@ openstride/
 | [08-security-privacy.md](docs/08-security-privacy.md) | Transport security, 130 exported components, keys, permissions, data flow |
 | [09-NON-TECHNICAL-GUIDE.md](docs/09-NON-TECHNICAL-GUIDE.md) | **Plain-English guide — start here if you're new** |
 | [10-local-only-feasibility.md](docs/10-local-only-feasibility.md) | Running with no backend: what works, what can't, and how |
+| [11-fatmap-engine-deep-dive.md](docs/11-fatmap-engine-deep-dive.md) | **Inside Strava's 3D map engine — architecture, the 312-method API, and the clean-room rebuild** |
 
 ### [`tools/`](tools/) — the parsers
 
@@ -98,6 +100,19 @@ Facts extracted from the artifact, in machine-readable form. These are the input
 | `spec/api-contract.md` | what a local server must implement |
 | `spec/data-model.md` | the on-device data model |
 | `spec/fatmap-native.md` | how to use the native engine without its proprietary bits |
+
+### [`map-engine/`](map-engine/) — the map engine
+
+A clean-room C++ implementation of the Fatmap map API.
+
+**The API surface is 1:1 with Strava's proprietary `libFatmapSdk.so`** — all 312 JNI entry points, with identical symbol names, so the shared object is a drop-in replacement at the JNI boundary. **234 of the 312 methods are implemented**; the rest are the original's test harness and server-dependent features.
+
+The interface was extracted from the artefact with `tools/dex_native_api.py` (a from-scratch DEX reader) and is published as machine-readable JSON, so the whole API layer is *generated* rather than hand-written — see [map-engine/README.md](map-engine/README.md).
+
+```bash
+cmake -S map-engine -B map-engine/build -G Ninja && cmake --build map-engine/build
+./map-engine/build/fatmap_tests
+```
 
 ### [`app/`](app/) — the implementation
 
@@ -166,9 +181,10 @@ CI does exactly this on every push, and uploads the debug APK as a build artifac
 | Local data model | 🟡 Scaffolded (Room entities + DAOs) |
 | Local API server | 🟡 Contract defined; implementation stubbed |
 | Recording service | 🟡 Foreground-service skeleton |
-| Maps / 3D terrain | ⬜ Not started — see `spec/fatmap-native.md` for the open question |
+| Map engine | 🟡 API 1:1 (312/312 symbols); 234/312 methods implemented — see `map-engine/` |
 | Social features | ⬜ Not started — see the scope note below |
 | Build | ✅ Compiles; unit tests pass; CI green |
+| Map engine build | ✅ Compiles; 45 host checks pass |
 
 ### Scope note
 

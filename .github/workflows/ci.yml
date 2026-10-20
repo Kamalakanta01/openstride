@@ -37,6 +37,12 @@ jobs:
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' }}
 
+      - name: Build the map engine
+        run: |
+          cmake -S map-engine -B map-engine/build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+          cmake --build map-engine/build
+          ./map-engine/build/fatmap_tests
+
       - name: Lint
         run: ./gradlew ktlintCheck
 

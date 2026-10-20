@@ -1,0 +1,1682 @@
+{
+ "com.fatmap.sdk.api.ActivityContent$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/util/ArrayList;)V",
+    "name": "native_applyActivityGradient",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/util/ArrayList;)V",
+    "name": "native_applyActivityPolylineHighlights",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_clearActivityGradient",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_clearActivityPolylineHighlights",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;Lcom/fatmap/sdk/api/IntervalInt;)V",
+    "name": "native_displayActivity",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;Ljava/util/ArrayList;)V",
+    "name": "native_displayActivity2",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;Lcom/fatmap/sdk/api/IntervalInt;)V",
+    "name": "native_displayActivityTruncated",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;Lcom/fatmap/sdk/api/IntervalInt;)V",
+    "name": "native_displayActivityWithPrivacyIcons",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_removeActivity",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeAllActivities",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.Camera$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraInteractionListener;)V",
+    "name": "native_addInteractionListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraStateListener;)V",
+    "name": "native_addStateListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JDDF)V",
+    "name": "native_enterFirstPersonView",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;Ljava/lang/String;Ljava/lang/String;Lcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraFlyThroughProgressListener;Lcom/fatmap/sdk/api/CameraTargetPlus;Ljava/util/ArrayList;)V",
+    "name": "native_flyThrough",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;Ljava/lang/String;Ljava/lang/String;Lcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraFlyThroughProgressListener;Lcom/fatmap/sdk/api/CameraTargetPlus;ZLcom/fatmap/sdk/api/CameraDeltaTimeProvider;Ljava/util/ArrayList;)Lcom/fatmap/sdk/api/CameraFlyThroughControls;",
+    "name": "native_flyThroughInteractive",
+    "static": false
+   },
+   {
+    "descriptor": "(JDDFLjava/lang/Float;Ljava/lang/Float;FLcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraActionCompletionListener;)V",
+    "name": "native_flyTo",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldBounds2;Ljava/lang/Float;Ljava/lang/Float;FLcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraActionCompletionListener;)V",
+    "name": "native_flyToBounds",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraTarget;FZLcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraActionCompletionListener;)V",
+    "name": "native_flyToTarget",
+    "static": false
+   },
+   {
+    "descriptor": "(JDDFLjava/lang/Float;Ljava/lang/Float;FLcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraActionCompletionListener;)V",
+    "name": "native_flyToWithZoomLevel",
+    "static": false
+   },
+   {
+    "descriptor": "(JZLjava/util/ArrayList;Lcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraFlyThroughProgressListener;Lcom/fatmap/sdk/api/CameraTargetPlus;Lcom/fatmap/sdk/api/CameraDeltaTimeProvider;Ljava/util/ArrayList;)Lcom/fatmap/sdk/api/CameraFlyThroughControls;",
+    "name": "native_flyover",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/Float;Ljava/lang/Float;Ljava/lang/Float;Lcom/fatmap/sdk/api/FollowMode;Lcom/fatmap/sdk/api/CameraMargins;)V",
+    "name": "native_followUserLocation",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldPoint2;Ljava/lang/Float;Ljava/lang/Float;Ljava/lang/Float;Lcom/fatmap/sdk/api/FollowMode;Lcom/fatmap/sdk/api/CameraMargins;)V",
+    "name": "native_followUserLocationWithZoomLevel",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/CameraViewType;",
+    "name": "native_getCameraViewType",
+    "static": false
+   },
+   {
+    "descriptor": "(JFF)Lcom/fatmap/sdk/api/LookAtPoint;",
+    "name": "native_getCustomLookAtPoint",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/LookAtPoint;",
+    "name": "native_getLookAtPoint",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getScaleMetersPerPixel",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldPoint2;)Lcom/fatmap/sdk/api/PointScreenPosition;",
+    "name": "native_getScreenPosition",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/CameraTarget;",
+    "name": "native_getTarget",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraMargins;F)Lcom/fatmap/sdk/api/VisibleAreaBounds;",
+    "name": "native_getVisibleAreaBounds",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldPoint3;Z)Z",
+    "name": "native_isWorldPointVisible",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraInteractionListener;)V",
+    "name": "native_removeInteractionListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraStateListener;)V",
+    "name": "native_removeStateListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JFFLcom/fatmap/sdk/api/CameraMargins;)V",
+    "name": "native_setBearing",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraViewType;)V",
+    "name": "native_setCameraViewType",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setDynamicExaggerationEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setDynamicExaggerationMultiplier",
+    "static": false
+   },
+   {
+    "descriptor": "(JFF)V",
+    "name": "native_setRotationSpeed",
+    "static": false
+   },
+   {
+    "descriptor": "(JFF)V",
+    "name": "native_setTranslationSpeed",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setZoomSpeed",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_stop",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldPoint2;FLcom/fatmap/sdk/api/CameraMargins;Lcom/fatmap/sdk/api/CameraActionCompletionListener;)V",
+    "name": "native_translateTo",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.CameraDeltaTimeProvider$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getDeltaTime",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.CameraFlyThroughControls$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getDurationSeconds",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getTrackProgress",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getTrackSpeedMultiplier",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_isActive",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_isCameraDetached",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_isRefocusPossible",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_refocus",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_seekToAnimationStart",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setAnimationSpeedMultiplier",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setCameraDistanceMultiplier",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setTrackProgress",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setTrackSpeedMultiplier",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_stop",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.CommandService$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Ljava/lang/String;",
+    "name": "native_execute",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.Content$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;DDF)V",
+    "name": "native_addCircleMarker",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldLine2;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;)J",
+    "name": "native_addCustomGradientLine",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldLine2;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)J",
+    "name": "native_addCustomLine",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldPoint2;)V",
+    "name": "native_addDroppedPin",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/ActivityContent;",
+    "name": "native_getActivityContent",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/OsmFilter;",
+    "name": "native_getOsmFilter",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/RecordContent;",
+    "name": "native_getRecordContent",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/RouteContent;",
+    "name": "native_getRouteContent",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/SegmentsFilter;",
+    "name": "native_getSegmentsFilter",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/StravaPoiFilter;",
+    "name": "native_getStravaPoiFilter",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeAllDroppedPins",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_removeCircleMarker",
+    "static": false
+   },
+   {
+    "descriptor": "(JJ)Z",
+    "name": "native_removeCustomLine",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_removeDroppedPin",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.ContentSelectionHandle$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.DebugApi$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Ljava/lang/String;",
+    "name": "native_dumpEngineState",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_hideFpsStatsOverlay",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/DebugOverlayCorner;Lcom/fatmap/sdk/api/DebugOverlayPadding;)V",
+    "name": "native_showFpsStatsOverlay",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.DeviceOrientationListener$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/DeviceOrientation;)V",
+    "name": "native_onDeviceOrientationChanged",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.EngineConfiguration$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "()Lcom/fatmap/sdk/api/EngineConfiguration;",
+    "name": "createDefault",
+    "static": true
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/BreadcrumbRecorder;",
+    "name": "native_getBreadcrumbRecorder",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/CameraTarget;",
+    "name": "native_getCameraTarget",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Ljava/lang/String;",
+    "name": "native_getClientName",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_getEnableRasterMegaTiles",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/LogLevel;",
+    "name": "native_getLogLevel",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_getLoggingToStdOut",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_getReindexOnDiskResources",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_getUseOnDiskCache",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Z",
+    "name": "native_loadFromFile",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/BreadcrumbRecorder;)V",
+    "name": "native_setBreadcrumbRecorder",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraTarget;)V",
+    "name": "native_setCameraTarget",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_setClientName",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setEnableRasterMegaTiles",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/LogLevel;)V",
+    "name": "native_setLogLevel",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setLoggingToStdOut",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setReindexOnDiskResources",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setUseOnDiskCache",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.GestureRecognizerControl$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setAllGesturesEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setDoubleTapGesturesEnabled",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.LuaAnimationHandler$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/LuaScriptError;)V",
+    "name": "native_onError",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_onProgress",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_shouldAdvanceAnimation",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.MREHolder$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(Lcom/fatmap/sdk/api/RenderSurfaceHolder;Lcom/fatmap/sdk/api/DeviceOrientationService;Ljava/lang/String;Ljava/lang/String;Lcom/fatmap/sdk/api/EngineConfiguration;)Lcom/fatmap/sdk/api/MREHolder;",
+    "name": "create",
+    "static": true
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_handleMemoryWarning",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_handleOnAppDidEnterBackground",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_handleOnAppDidEnterForeground",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.Offline$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;Lcom/fatmap/sdk/api/BundleLoadListener;)V",
+    "name": "native_loadBundles",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setNonBundleResourcesAllowed",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;Lcom/fatmap/sdk/api/BundleUnloadListener;)V",
+    "name": "native_unloadBundles",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.OsmFilter$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setShow",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.OverriddenFeatureProperties$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "()Lcom/fatmap/sdk/api/OverriddenFeatureProperties;",
+    "name": "create",
+    "static": true
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Z)V",
+    "name": "native_addBooleanProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;D)V",
+    "name": "native_addDoubleProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;J)V",
+    "name": "native_addIntegerProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/lang/String;)V",
+    "name": "native_addStringProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Ljava/lang/Boolean;",
+    "name": "native_getBooleanProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Ljava/lang/Double;",
+    "name": "native_getDoubleProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Ljava/lang/Long;",
+    "name": "native_getIntegerProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Ljava/lang/String;",
+    "name": "native_getStringProperty",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_removeProperty",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.PrivateApi$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "()Ljava/util/ArrayList;",
+    "name": "getPerformanceTestsNames",
+    "static": true
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PerformanceMetricsListener;)V",
+    "name": "native_addPerformanceMetricsListener",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_clearLuaPersistedStore",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_finishTwoPassVideoRendering",
+    "static": false
+   },
+   {
+    "descriptor": "(JJ)Lcom/fatmap/sdk/api/GivenUpDownloadsInfo;",
+    "name": "native_getGivenUpDownloadsInfo",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/MemoryStats;",
+    "name": "native_getMemoryStats",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/DataExchangeService;)Lcom/fatmap/sdk/api/CommandService;",
+    "name": "native_getPreparedCommandService",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/CameraMargins;FLcom/fatmap/sdk/api/VisibleAreaSamplesSink;)Lcom/fatmap/sdk/api/VisibleAreaBounds;",
+    "name": "native_getVisibleAreaBoundsExt",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_haveGivenUpTileDownloads",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)Z",
+    "name": "native_haveVisualContentLoadingWork",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_isVsyncEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_recordResourcesNeededForSecondVideoRenderingPass",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_refreshScreenInfo",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_reloadTerrain",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PerformanceMetricsListener;)V",
+    "name": "native_removePerformanceMetricsListener",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_resetOnlineAvailabilityData",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_resetTileDownloadHistory",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;Ljava/lang/String;Lcom/fatmap/sdk/api/TestsListener;)V",
+    "name": "native_runPerformanceTests",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;Ljava/lang/String;Lcom/fatmap/sdk/api/TestsListener;)V",
+    "name": "native_runScreenshotTests",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_saveWindowScreenshot",
+    "static": false
+   },
+   {
+    "descriptor": "(JJ)V",
+    "name": "native_setDiskCacheSize",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setDownloadHeightmapsOnly",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setLodSubdivisionThresholdEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/AnimatedImage;Z)V",
+    "name": "native_setLuaGlobalAnimation",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;F)V",
+    "name": "native_setLuaGlobalFloat",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/CustomImage;Z)V",
+    "name": "native_setLuaGlobalImage",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;I)V",
+    "name": "native_setLuaGlobalInt",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;)V",
+    "name": "native_setLuaGlobalLine",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/lang/String;)V",
+    "name": "native_setLuaGlobalString",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setOfflineMode",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setPixelRatio",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setResourceLoadingFromDiskAllowed",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setShaderHotReloadingEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setShowSymbolBoundingBoxes",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/Float;)V",
+    "name": "native_setStylingZoomLevelOverride",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setSymbolScreenPaddingEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setSymbolVisibilityStateful",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PersonalHeatmapTestAccount;)V",
+    "name": "native_setTestAccountForPersonalHeatmap",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/TileDownloadEventProcessor;)V",
+    "name": "native_setTileDownloadEventProcessor",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setVsyncEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_setupDefaultMockTiles",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_startDownloadingResourcesForSecondVideoRenderingPass",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/Offline;Ljava/lang/String;Ljava/lang/String;Lcom/fatmap/sdk/api/TestingContextEventListener;)Lcom/fatmap/sdk/api/TestingContextHandle;",
+    "name": "native_startEnteringTestingContext",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/lang/Float;Lcom/fatmap/sdk/api/LuaAnimationHandler;)V",
+    "name": "native_startLuaAnimationScript",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_startMockTileServer",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;FJZLcom/fatmap/sdk/api/TrackPerfTestCompletionListener;)V",
+    "name": "native_startTrackPerfTest",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_startVideoRenderingFirstPass",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_startVideoRenderingSecondPass",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_stopLuaAnimationScript",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_stopMockTileServer",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;ZZZZZZLjava/lang/Float;)V",
+    "name": "native_switchToCustomStyle",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/LodCalculationControlParams;)Lcom/fatmap/sdk/api/LodCalculationControlParams;",
+    "name": "native_updateLodCalculationControlParams",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.RecordContent$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;)V",
+    "name": "native_displayLiveSegments",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldLine2;)V",
+    "name": "native_displayRecordingLine",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeAllLiveSegments",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeRecordingLine",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_showRecordingLineFinishMarker",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.RouteContent$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/RouteWaypoint;)V",
+    "name": "native_addWaypointToRoute",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;Ljava/util/ArrayList;Ljava/util/ArrayList;Lcom/fatmap/sdk/api/RouteSelectionStyle;ZFFLcom/fatmap/sdk/api/CompletionCallback;)V",
+    "name": "native_displayAnimatedRoute",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/WorldLine2;Ljava/util/ArrayList;Ljava/util/ArrayList;Lcom/fatmap/sdk/api/RouteSelectionStyle;Z)V",
+    "name": "native_displayRoute",
+    "static": false
+   },
+   {
+    "descriptor": "(JDD)V",
+    "name": "native_displayRouteScrubber",
+    "static": false
+   },
+   {
+    "descriptor": "(JFLjava/lang/Float;Lcom/fatmap/sdk/api/CompletionCallback;)V",
+    "name": "native_fadeInUnselectedRoutes",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeAllRoutes",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeRouteScrubber",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;)V",
+    "name": "native_removeRoutes",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Lcom/fatmap/sdk/api/RouteSelectionStyle;)V",
+    "name": "native_selectRoute",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/lang/String;)V",
+    "name": "native_selectWaypointOnRoute",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_stopUnselectedRoutesFadeIn",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_unselectRoute",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;Ljava/lang/String;)V",
+    "name": "native_unselectWaypointOnRoute",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.SegmentsFilter$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Ljava/util/ArrayList;",
+    "name": "native_getVisibleSegments",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_hide",
+    "static": false
+   },
+   {
+    "descriptor": "(JJ)V",
+    "name": "native_selectSegment",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/SegmentsFilterOptions;)V",
+    "name": "native_show",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_unselectSegment",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.StravaPoiFilter$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_disableBikeShares",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_disableStartPoints",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_enableBikeShares",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/StartPointFilterOptions;)V",
+    "name": "native_enableStartPoints",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/ContentSelectionHandle;)V",
+    "name": "native_selectPoi",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setShow",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_unselectPoi",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.TerrainEngine$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnGridChangeListener;)V",
+    "name": "native_addOnGridChangeListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnMouseMoveListener;)V",
+    "name": "native_addOnMouseMoveListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnTapListener;)V",
+    "name": "native_addOnTapListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OverlayPolygon;)V",
+    "name": "native_addOverlayPolygon",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PostUpdateListener;)V",
+    "name": "native_addPostUpdateListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/TileLoadingListener;)V",
+    "name": "native_addTileLoadingListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/ViewUpdateListener;)V",
+    "name": "native_addViewUpdateListener",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_didEnterBackground",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_didEnterForeground",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/Camera;",
+    "name": "native_getCamera",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/Content;",
+    "name": "native_getContent",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/DebugApi;",
+    "name": "native_getDebugApi",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldPoint2;)D",
+    "name": "native_getElevation",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getFps",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/UnitsInfo;",
+    "name": "native_getGridUnits",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/Offline;",
+    "name": "native_getOffline",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/OverriddenFeatureProperties;",
+    "name": "native_getOverriddenFeatureProperties",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)Lcom/fatmap/sdk/api/PrivateApi;",
+    "name": "native_getPrivateApi",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/Utils;",
+    "name": "native_getUtils",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_receivedMemoryWarning",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeAllOverlayPolygons",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnGridChangeListener;)V",
+    "name": "native_removeOnGridChangeListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnMouseMoveListener;)V",
+    "name": "native_removeOnMouseMoveListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnTapListener;)V",
+    "name": "native_removeOnTapListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PostUpdateListener;)V",
+    "name": "native_removePostUpdateListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/TileLoadingListener;)V",
+    "name": "native_removeTileLoadingListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/ViewUpdateListener;)V",
+    "name": "native_removeViewUpdateListener",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_requestRender",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setAlwaysRender",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/AuthenticationErrorListener;)V",
+    "name": "native_setAuthenticationErrorListener",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/Language;)V",
+    "name": "native_setDesiredLanguage",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setEnableScreenSymbols",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/GlobalHeatmapConfig;)V",
+    "name": "native_setGlobalHeatmapConfig",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/ImageryOverlay;)V",
+    "name": "native_setImageryOverlay",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setIsTerrain3dEnabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/LogLevel;)V",
+    "name": "native_setLogLevel",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/MapType;)V",
+    "name": "native_setMapType",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/NightlyHeatmapConfig;)V",
+    "name": "native_setNightlyHeatmapConfig",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;)V",
+    "name": "native_setOverlayPolygons",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OverriddenFeatureProperties;)V",
+    "name": "native_setOverriddenFeatureProperties",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setPaused",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PersonalHeatmapConfig;)V",
+    "name": "native_setPersonalHeatmapConfig",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setRenderingDisabled",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setScreenSymbolRefreshInterval",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/ServerConfig;Z)V",
+    "name": "native_setServerConfig",
+    "static": false
+   },
+   {
+    "descriptor": "(JJLjava/util/ArrayList;)V",
+    "name": "native_setStravaAuthData",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;)V",
+    "name": "native_setStravaSourcesExtraHeaders",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_setSurfaceIdentifier",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/MeasurementUnitSystem;)V",
+    "name": "native_setUnitSystem",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WeeklyHeatmapConfig;)V",
+    "name": "native_setWeeklyHeatmapConfig",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_update",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OnMapLoadListener;ZF)V",
+    "name": "native_waitToLoadMap",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.TestingContextEventListener$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_onEntered",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_onErrorEntering",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_onLeft",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.TestingContextHandle$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Lcom/fatmap/sdk/api/TestingContextStatus;",
+    "name": "native_status",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_stopEnteringOrInitiateLeaving",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.TestsListener$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_onFinished",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/PerformanceTestResult;)V",
+    "name": "native_onPerformanceTestResult",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/lang/String;)V",
+    "name": "native_onTestFinished",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.TouchListener$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OsTouch;)V",
+    "name": "native_onDoubleTap",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OsTouch;)V",
+    "name": "native_onLongPress",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OsTouch;)V",
+    "name": "native_onSingleTap",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/OsTouch;Lcom/fatmap/sdk/api/OsTouchAction;)V",
+    "name": "native_onTapAndMove",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;)V",
+    "name": "native_onTouches",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.TrackPerfTestCompletionListener$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/TrackPerfTestResults;)V",
+    "name": "native_onPerfTestFinished",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.Utils$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JDDLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)J",
+    "name": "native_addCustomMarker2",
+    "static": false
+   },
+   {
+    "descriptor": "(JDDLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)J",
+    "name": "native_addCustomMarker3",
+    "static": false
+   },
+   {
+    "descriptor": "(J)F",
+    "name": "native_getUserMarkerLocationAngle",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_hideTileGrid",
+    "static": false
+   },
+   {
+    "descriptor": "(J)Z",
+    "name": "native_isUserMarkerOnScreen",
+    "static": false
+   },
+   {
+    "descriptor": "(JJ)V",
+    "name": "native_removeCustomMarker",
+    "static": false
+   },
+   {
+    "descriptor": "(J)V",
+    "name": "native_removeUserMarker",
+    "static": false
+   },
+   {
+    "descriptor": "(JLjava/util/ArrayList;)V",
+    "name": "native_setHighlightedTiles",
+    "static": false
+   },
+   {
+    "descriptor": "(JDD)V",
+    "name": "native_setUserMarker",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setUserMarkerAnimation",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setUserMarkerDirection",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_setUserMarkerPrecision",
+    "static": false
+   },
+   {
+    "descriptor": "(JZ)V",
+    "name": "native_setUserMarkerState",
+    "static": false
+   },
+   {
+    "descriptor": "(JBLjava/util/ArrayList;)V",
+    "name": "native_showTileGrid",
+    "static": false
+   },
+   {
+    "descriptor": "(JJDD)V",
+    "name": "native_updateCustomMarkerPosition",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.VisibleAreaSamplesSink$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WorldPoint2;)V",
+    "name": "native_processVisiblePoint",
+    "static": false
+   }
+  ]
+ },
+ "com.fatmap.sdk.api.WindowLifecycleListener$CppProxy": {
+  "native_methods": [
+   {
+    "descriptor": "(J)V",
+    "name": "nativeDestroy",
+    "static": false
+   },
+   {
+    "descriptor": "(JF)V",
+    "name": "native_onDisplayChanged",
+    "static": false
+   },
+   {
+    "descriptor": "(JII)V",
+    "name": "native_onWindowResized",
+    "static": false
+   },
+   {
+    "descriptor": "(JLcom/fatmap/sdk/api/WindowState;)V",
+    "name": "native_onWindowStateChanged",
+    "static": false
+   }
+  ]
+ }
+}
