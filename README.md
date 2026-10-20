@@ -122,7 +122,9 @@ cmake -S map-engine -B map-engine/build -G Ninja && cmake --build map-engine/bui
 
 Kotlin, targeting Android 8.0+ (minSdk 26). A scaffold, not a finished app — see [app/README.md](app/README.md) for the roadmap and current status.
 
-**Status:** the build compiles, the unit tests pass, and CI runs it on every push. The UI does not exist yet.
+**Status:** the build compiles for `arm64-v8a` and `armeabi-v7a`, the unit tests pass, and CI runs it on every push. The UI does not exist yet.
+
+The app carries the **generated 1:1 Fatmap API** (`com.fatmap.sdk.api`, 130 classes) and loads the native engine from it — `libfatmap_jni.so`, 312 JNI entry points, the same symbol names as Strava's own library. `MapEngineLoader` loads it; `EngineSmokeTest` exercises the whole native boundary on a device.
 
 The Gradle root is the repository root; `app/` is the single application module (`dev.openstride`).
 
@@ -187,8 +189,8 @@ CI does exactly this on every push, and uploads the debug APK as a build artifac
 | Recording service | 🟡 Foreground-service skeleton |
 | Map engine | 🟡 API 1:1 (312/312 symbols); 234/312 methods implemented — see `map-engine/` |
 | Social features | ⬜ Not started — see the scope note below |
-| Build | ✅ Compiles; unit tests pass; CI green |
-| Map engine build | ✅ Compiles; 45 host checks pass |
+| Build | ✅ Compiles for arm64-v8a and armeabi-v7a; unit tests pass; CI green |
+| Map engine build | ✅ Compiles; 45 host checks pass; ships in the APK with all 312 symbols |
 
 ### Scope note
 

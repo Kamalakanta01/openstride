@@ -17,21 +17,42 @@ repo root/
 ├── gradle.properties
 ├── gradle/libs.versions.toml
 ├── gradlew, gradlew.bat, gradle/wrapper/
+├── map-engine/                          ← the native engine (CMake), built by Gradle
 └── app/
-    ├── build.gradle.kts
+    ├── build.gradle.kts                 ← wires the native build
     └── src/
         ├── main/
         │   ├── AndroidManifest.xml
         │   ├── res/{values,drawable}/
-        │   └── kotlin/dev/openstride/
-        │       ├── OpenStrideApplication.kt
-        │       ├── model/Models.kt              ← the data model
-        │       ├── local/LocalDatabase.kt       ← Room entities, DAOs, converters
-        │       ├── api/LocalApiContract.kt      ← the contract the UI will talk to
-        │       └── recording/
-        │           ├── RecordingService.kt      ← foreground recording service
-        │           └── RecoverActivityReceiver.kt ← reboot recovery
-        └── test/kotlin/dev/openstride/local/    ← unit tests
+        │   └── kotlin/
+        │       ├── com/fatmap/sdk/api/   ← GENERATED: the 1:1 Fatmap-compatible API
+        │       └── dev/openstride/
+        │           ├── OpenStrideApplication.kt
+        │           ├── map/MapEngineLoader.kt    ← loads libfatmap_jni.so
+        │           ├── model/Models.kt            ← the data model
+        │           ├── local/LocalDatabase.kt     ← Room entities, DAOs, converters
+        │           ├── api/LocalApiContract.kt    ← the contract the UI will talk to
+        │           └── recording/
+        │               ├── RecordingService.kt    ← foreground recording service
+        │               └── RecoverActivityReceiver.kt ← reboot recovery
+        ├── test/kotlin/dev/openstride/local/      ← unit tests
+        └── androidTest/kotlin/com/fatmap/sdk/api/ ← on-device engine tests
+```
+
+### The native engine
+
+`app/build.gradle.kts` builds `map-engine/` through CMake for `arm64-v8a`
+and `armeabi-v7a`, and packages the result as `libfatmap_jni.so`. The Kotlin
+API in `com.fatmap.sdk.api` is generated from the extracted contract and binds
+to it unchanged.
+
+```bash
+./gradlew :app:assembleDebug
+unzip -l app/build/outputs/apk/debug/app-debug.apk | grep '\.so'
+```
+
+```bash
+./gradlew :app:connectedDebugAndroidTest   # needs a device
 ```
 
 There is one module. Split into `:core`, `:feature-recording`, `:feature-map`, `:feature-insights` only when there are two or more consumers — not before.

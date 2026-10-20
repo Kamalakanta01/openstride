@@ -10,6 +10,8 @@
 #include "fatmap_types.h"
 #include "fatmap_jni_types.h"
 #include "fatmap_proxy.h"
+#include "fatmap_statics.h"
+#include "fatmap_handles.h"
 
 namespace fatmap {
 

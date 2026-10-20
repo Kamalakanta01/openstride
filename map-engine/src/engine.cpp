@@ -8,6 +8,8 @@
 #include <cmath>
 #include <sstream>
 
+#include "fatmap_handles.h"
+#include "fatmap_statics.h"
 #include "geo.h"
 #include "sha256.h"
 
@@ -254,23 +256,61 @@ Engine& standaloneEngine() {
 
 }  // namespace
 
-EngineConfigurationImpl* static_EngineConfiguration_createDefault() {
+EngineConfigurationImpl* static_EngineConfiguration_createDefault(JNIEnv*) {
     auto* configuration = new EngineConfigurationImpl(standaloneEngine());
     configuration->owned = true;
     return configuration;
 }
 
-OverriddenFeatureProperties static_OverriddenFeatureProperties_create() {
+OverriddenFeatureProperties static_OverriddenFeatureProperties_create(JNIEnv*) {
     return OverriddenFeatureProperties{};
 }
 
-MREHolderImpl* static_MREHolder_create() {
-    auto* holder = new MREHolderImpl(standaloneEngine());
+MREHolderImpl* static_MREHolder_create(JNIEnv* env, jni::Opaque surfaceHolder,
+                                       jni::Opaque orientationService, std::string clientName,
+                                       std::string userAgent, jni::Opaque configuration) {
+    (void)orientationService;
+
+    Engine& engine = standaloneEngine();
+
+    // The configuration is a Java object carrying its own handle; adopt its
+    // client name so the round trip is observable.
+    if (configuration.get() != nullptr) {
+        const jlong handle = handle_of_EngineConfiguration(env, configuration.get());
+        auto* config = resolve<EngineConfigurationImpl>(env, handle);
+        if (config != nullptr) {
+            config->native_setClientName(clientName);
+        }
+    }
+
+    auto* holder = new MREHolderImpl(engine);
     holder->owned = true;
+
+    // The bridge the application implements: hand it the engine, then tell it
+    // the engine is ready. This is how the original app obtains its
+    // TerrainEngine.
+    if (surfaceHolder.get() != nullptr) {
+        jobject terrainEngine =
+            jni::wrap_proxy(env, &engine.terrainEngine(), "com/fatmap/sdk/api/TerrainEngine");
+        jclass holderClass = env->GetObjectClass(surfaceHolder.get());
+        jmethodID setEngine = env->GetMethodID(
+            holderClass, "setTerrainEngine", "(Lcom/fatmap/sdk/api/TerrainEngine;)V");
+        if (setEngine != nullptr) {
+            env->CallVoidMethod(surfaceHolder.get(), setEngine, terrainEngine);
+        }
+        jmethodID notifyReady = env->GetMethodID(holderClass, "notifyTerrainEngineReady", "()V");
+        if (notifyReady != nullptr) {
+            env->CallVoidMethod(surfaceHolder.get(), notifyReady);
+        }
+        env->DeleteLocalRef(holderClass);
+        env->DeleteLocalRef(terrainEngine);
+    }
+    (void)userAgent;
+
     return holder;
 }
 
-std::vector<std::string> static_PrivateApi_getPerformanceTestsNames() {
+std::vector<std::string> static_PrivateApi_getPerformanceTestsNames(JNIEnv*) {
     // The original engine exposes its built-in performance suites here.
     return {"tile_download_throughput", "camera_flight_frame_time", "content_render_time"};
 }

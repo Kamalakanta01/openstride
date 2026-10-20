@@ -28,12 +28,15 @@ class OverriddenFeatureProperties internal constructor(handle: Long) : AutoClose
     fun addDoubleProperty(text: String, d: Double): Unit = mProxy.native_addDoubleProperty(text, d)
     fun addIntegerProperty(text: String, l: Long): Unit = mProxy.native_addIntegerProperty(text, l)
     fun addStringProperty(text: String, text1: String): Unit = mProxy.native_addStringProperty(text, text1)
-    fun create(): OverriddenFeatureProperties = mProxy.create()
     fun getBooleanProperty(text: String): Boolean? = mProxy.native_getBooleanProperty(text)
     fun getDoubleProperty(text: String): Double? = mProxy.native_getDoubleProperty(text)
     fun getIntegerProperty(text: String): Long? = mProxy.native_getIntegerProperty(text)
     fun getStringProperty(text: String): String = mProxy.native_getStringProperty(text)
     fun removeProperty(text: String): Unit = mProxy.native_removeProperty(text)
+
+    companion object {
+        fun create(): OverriddenFeatureProperties = CppProxy(0L).create()
+    }
 
     override fun close() {
         mProxy.nativeDestroy()

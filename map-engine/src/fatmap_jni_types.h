@@ -411,6 +411,38 @@ inline jobject write_enumset(JNIEnv* env, const std::set<T>& values, WriteFn wri
 }
 
 /**
+ * Reads the native handle out of a Java proxy object.
+ *
+ * A proxy instance holds its CppProxy in `mProxy`, and the CppProxy holds the
+ * `long` handle. Both fields are private, but JNI ignores access checks.
+ */
+inline jlong read_handle(JNIEnv* env, jobject obj, const char* proxyType) {
+    if (obj == nullptr) {
+        return 0;
+    }
+    jclass cls = env->GetObjectClass(obj);
+    if (cls == nullptr) {
+        return 0;
+    }
+    jfieldID proxyField = env->GetFieldID(cls, "mProxy", proxyType);
+    jlong handle = 0;
+    if (proxyField != nullptr) {
+        jobject proxy = env->GetObjectField(obj, proxyField);
+        if (proxy != nullptr) {
+            jclass proxyClass = env->GetObjectClass(proxy);
+            jfieldID handleField = env->GetFieldID(proxyClass, "mNativeHandle", "J");
+            if (handleField != nullptr) {
+                handle = env->GetLongField(proxy, handleField);
+            }
+            env->DeleteLocalRef(proxyClass);
+            env->DeleteLocalRef(proxy);
+        }
+    }
+    env->DeleteLocalRef(cls);
+    return handle;
+}
+
+/**
  * Wraps a native implementation object in a Java proxy instance.
  *
  * The Java class is generated with an `internal constructor(handle: Long)`,

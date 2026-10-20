@@ -63,18 +63,26 @@ def declared_native_symbols() -> set[str]:
 
 
 def public_methods_of(simple: str) -> set[str]:
-    """The public methods of a compiled class, read from its bytecode."""
+    """The public methods of a compiled class, read from its bytecode.
+
+    The static factories live on the companion object, so that is checked too.
+    """
     if not (CLASSES / "com" / "fatmap" / "sdk" / "api" / f"{simple}.class").exists():
         return set()
-    out = subprocess.run(
-        ["javap", "-cp", str(CLASSES), f"com.fatmap.sdk.api.{simple}"],
-        capture_output=True,
-        text=True,
-    ).stdout
     pattern = (
         r"\s+(?:public|protected)\s+(?:static\s+)?(?:final\s+)?(.+?)\s+(\w+)\((.*?)\);"
     )
-    return {m.group(2) for m in (re.match(pattern, line) for line in out.splitlines()) if m}
+    methods: set[str] = set()
+    for name in (simple, f"{simple}$Companion"):
+        out = subprocess.run(
+            ["javap", "-cp", str(CLASSES), f"com.fatmap.sdk.api.{name}"],
+            capture_output=True,
+            text=True,
+        ).stdout
+        methods |= {
+            m.group(2) for m in (re.match(pattern, line) for line in out.splitlines()) if m
+        }
+    return methods
 
 
 def main() -> int:

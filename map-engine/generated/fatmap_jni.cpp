@@ -1166,7 +1166,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_DeviceOrientationListe
 extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_EngineConfiguration_00024CppProxy_createDefault(
     JNIEnv* env,
     jobject thiz) {
-    auto* result = fatmap::static_EngineConfiguration_createDefault();
+    auto* result = fatmap::static_EngineConfiguration_createDefault(env);
     if (result == nullptr) {
         return nullptr;
     }
@@ -1472,7 +1472,12 @@ extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_MREHolder_00024CppP
     jobject a2,
     jobject a3,
     jobject a4) {
-    auto* result = fatmap::static_MREHolder_create();
+    const auto p0 = jni::read_opaque(env, a0);
+    const auto p1 = jni::read_opaque(env, a1);
+    const auto p2 = jni::read_string(env, a2);
+    const auto p3 = jni::read_string(env, a3);
+    const auto p4 = jni::read_opaque(env, a4);
+    auto* result = fatmap::static_MREHolder_create(env, p0, p1, p2, p3, p4);
     if (result == nullptr) {
         return nullptr;
     }
@@ -1599,7 +1604,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_OsmFilter_00024CppProx
 extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_create(
     JNIEnv* env,
     jobject thiz) {
-    const auto result = fatmap::static_OverriddenFeatureProperties_create();
+    const auto result = fatmap::static_OverriddenFeatureProperties_create(env);
     return jni::write_OverriddenFeatureProperties(env, result);
 }
 extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_nativeDestroy(
@@ -1737,7 +1742,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_OverriddenFeaturePrope
 extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_getPerformanceTestsNames(
     JNIEnv* env,
     jobject thiz) {
-    const auto result = fatmap::static_PrivateApi_getPerformanceTestsNames();
+    const auto result = fatmap::static_PrivateApi_getPerformanceTestsNames(env);
     return jni::write_list<std::string>(env, result, [](JNIEnv* e, const std::string& v) { return jni::write_string(e, v); });
 }
 extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_PrivateApi_00024CppProxy_nativeDestroy(

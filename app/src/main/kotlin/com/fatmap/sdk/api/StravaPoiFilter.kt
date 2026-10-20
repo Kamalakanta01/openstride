@@ -15,7 +15,7 @@ class StravaPoiFilter internal constructor(handle: Long) : AutoCloseable {
         external fun native_disableStartPoints(): Unit
         external fun native_enableBikeShares(): Unit
         external fun native_enableStartPoints(vstartPointFilterOptions: StartPointFilterOptions): Unit
-        external fun native_selectPoi(obj: ContentSelectionHandle): Unit
+        external fun native_selectPoi(obj: ContentSelectionHandle?): Unit
         external fun native_setShow(flag: Boolean): Unit
         external fun native_unselectPoi(): Unit
         external fun nativeDestroy()
@@ -25,7 +25,7 @@ class StravaPoiFilter internal constructor(handle: Long) : AutoCloseable {
     fun disableStartPoints(): Unit = mProxy.native_disableStartPoints()
     fun enableBikeShares(): Unit = mProxy.native_enableBikeShares()
     fun enableStartPoints(vstartPointFilterOptions: StartPointFilterOptions): Unit = mProxy.native_enableStartPoints(vstartPointFilterOptions)
-    fun selectPoi(obj: ContentSelectionHandle): Unit = mProxy.native_selectPoi(obj)
+    fun selectPoi(obj: ContentSelectionHandle?): Unit = mProxy.native_selectPoi(obj)
     fun setShow(flag: Boolean): Unit = mProxy.native_setShow(flag)
     fun unselectPoi(): Unit = mProxy.native_unselectPoi()
 

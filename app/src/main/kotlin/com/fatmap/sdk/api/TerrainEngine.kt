@@ -11,13 +11,13 @@ class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
 
     /** The native half of the API. One instance per [ TerrainEngine ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-        external fun native_addOnGridChangeListener(obj: OnGridChangeListener): Unit
-        external fun native_addOnMouseMoveListener(obj: OnMouseMoveListener): Unit
-        external fun native_addOnTapListener(obj: OnTapListener): Unit
+        external fun native_addOnGridChangeListener(obj: OnGridChangeListener?): Unit
+        external fun native_addOnMouseMoveListener(obj: OnMouseMoveListener?): Unit
+        external fun native_addOnTapListener(obj: OnTapListener?): Unit
         external fun native_addOverlayPolygon(voverlayPolygon: OverlayPolygon): Unit
-        external fun native_addPostUpdateListener(obj: PostUpdateListener): Unit
-        external fun native_addTileLoadingListener(obj: TileLoadingListener): Unit
-        external fun native_addViewUpdateListener(obj: ViewUpdateListener): Unit
+        external fun native_addPostUpdateListener(obj: PostUpdateListener?): Unit
+        external fun native_addTileLoadingListener(obj: TileLoadingListener?): Unit
+        external fun native_addViewUpdateListener(obj: ViewUpdateListener?): Unit
         external fun native_didEnterBackground(): Unit
         external fun native_didEnterForeground(): Unit
         external fun native_getCamera(): Camera
@@ -32,15 +32,15 @@ class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
         external fun native_getUtils(): Utils
         external fun native_receivedMemoryWarning(): Unit
         external fun native_removeAllOverlayPolygons(): Unit
-        external fun native_removeOnGridChangeListener(obj: OnGridChangeListener): Unit
-        external fun native_removeOnMouseMoveListener(obj: OnMouseMoveListener): Unit
-        external fun native_removeOnTapListener(obj: OnTapListener): Unit
-        external fun native_removePostUpdateListener(obj: PostUpdateListener): Unit
-        external fun native_removeTileLoadingListener(obj: TileLoadingListener): Unit
-        external fun native_removeViewUpdateListener(obj: ViewUpdateListener): Unit
+        external fun native_removeOnGridChangeListener(obj: OnGridChangeListener?): Unit
+        external fun native_removeOnMouseMoveListener(obj: OnMouseMoveListener?): Unit
+        external fun native_removeOnTapListener(obj: OnTapListener?): Unit
+        external fun native_removePostUpdateListener(obj: PostUpdateListener?): Unit
+        external fun native_removeTileLoadingListener(obj: TileLoadingListener?): Unit
+        external fun native_removeViewUpdateListener(obj: ViewUpdateListener?): Unit
         external fun native_requestRender(): Unit
         external fun native_setAlwaysRender(flag: Boolean): Unit
-        external fun native_setAuthenticationErrorListener(obj: AuthenticationErrorListener): Unit
+        external fun native_setAuthenticationErrorListener(obj: AuthenticationErrorListener?): Unit
         external fun native_setDesiredLanguage(vlanguage: Language): Unit
         external fun native_setEnableScreenSymbols(flag: Boolean): Unit
         external fun native_setGlobalHeatmapConfig(vglobalHeatmapConfig: GlobalHeatmapConfig): Unit
@@ -62,17 +62,17 @@ class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
         external fun native_setUnitSystem(vmeasurementUnitSystem: MeasurementUnitSystem): Unit
         external fun native_setWeeklyHeatmapConfig(vweeklyHeatmapConfig: WeeklyHeatmapConfig): Unit
         external fun native_update(): Unit
-        external fun native_waitToLoadMap(obj: OnMapLoadListener, flag: Boolean, f: Float): Unit
+        external fun native_waitToLoadMap(obj: OnMapLoadListener?, flag: Boolean, f: Float): Unit
         external fun nativeDestroy()
     }
 
-    fun addOnGridChangeListener(obj: OnGridChangeListener): Unit = mProxy.native_addOnGridChangeListener(obj)
-    fun addOnMouseMoveListener(obj: OnMouseMoveListener): Unit = mProxy.native_addOnMouseMoveListener(obj)
-    fun addOnTapListener(obj: OnTapListener): Unit = mProxy.native_addOnTapListener(obj)
+    fun addOnGridChangeListener(obj: OnGridChangeListener?): Unit = mProxy.native_addOnGridChangeListener(obj)
+    fun addOnMouseMoveListener(obj: OnMouseMoveListener?): Unit = mProxy.native_addOnMouseMoveListener(obj)
+    fun addOnTapListener(obj: OnTapListener?): Unit = mProxy.native_addOnTapListener(obj)
     fun addOverlayPolygon(voverlayPolygon: OverlayPolygon): Unit = mProxy.native_addOverlayPolygon(voverlayPolygon)
-    fun addPostUpdateListener(obj: PostUpdateListener): Unit = mProxy.native_addPostUpdateListener(obj)
-    fun addTileLoadingListener(obj: TileLoadingListener): Unit = mProxy.native_addTileLoadingListener(obj)
-    fun addViewUpdateListener(obj: ViewUpdateListener): Unit = mProxy.native_addViewUpdateListener(obj)
+    fun addPostUpdateListener(obj: PostUpdateListener?): Unit = mProxy.native_addPostUpdateListener(obj)
+    fun addTileLoadingListener(obj: TileLoadingListener?): Unit = mProxy.native_addTileLoadingListener(obj)
+    fun addViewUpdateListener(obj: ViewUpdateListener?): Unit = mProxy.native_addViewUpdateListener(obj)
     fun didEnterBackground(): Unit = mProxy.native_didEnterBackground()
     fun didEnterForeground(): Unit = mProxy.native_didEnterForeground()
     fun getCamera(): Camera = mProxy.native_getCamera()
@@ -87,15 +87,15 @@ class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
     fun getUtils(): Utils = mProxy.native_getUtils()
     fun receivedMemoryWarning(): Unit = mProxy.native_receivedMemoryWarning()
     fun removeAllOverlayPolygons(): Unit = mProxy.native_removeAllOverlayPolygons()
-    fun removeOnGridChangeListener(obj: OnGridChangeListener): Unit = mProxy.native_removeOnGridChangeListener(obj)
-    fun removeOnMouseMoveListener(obj: OnMouseMoveListener): Unit = mProxy.native_removeOnMouseMoveListener(obj)
-    fun removeOnTapListener(obj: OnTapListener): Unit = mProxy.native_removeOnTapListener(obj)
-    fun removePostUpdateListener(obj: PostUpdateListener): Unit = mProxy.native_removePostUpdateListener(obj)
-    fun removeTileLoadingListener(obj: TileLoadingListener): Unit = mProxy.native_removeTileLoadingListener(obj)
-    fun removeViewUpdateListener(obj: ViewUpdateListener): Unit = mProxy.native_removeViewUpdateListener(obj)
+    fun removeOnGridChangeListener(obj: OnGridChangeListener?): Unit = mProxy.native_removeOnGridChangeListener(obj)
+    fun removeOnMouseMoveListener(obj: OnMouseMoveListener?): Unit = mProxy.native_removeOnMouseMoveListener(obj)
+    fun removeOnTapListener(obj: OnTapListener?): Unit = mProxy.native_removeOnTapListener(obj)
+    fun removePostUpdateListener(obj: PostUpdateListener?): Unit = mProxy.native_removePostUpdateListener(obj)
+    fun removeTileLoadingListener(obj: TileLoadingListener?): Unit = mProxy.native_removeTileLoadingListener(obj)
+    fun removeViewUpdateListener(obj: ViewUpdateListener?): Unit = mProxy.native_removeViewUpdateListener(obj)
     fun requestRender(): Unit = mProxy.native_requestRender()
     fun setAlwaysRender(flag: Boolean): Unit = mProxy.native_setAlwaysRender(flag)
-    fun setAuthenticationErrorListener(obj: AuthenticationErrorListener): Unit = mProxy.native_setAuthenticationErrorListener(obj)
+    fun setAuthenticationErrorListener(obj: AuthenticationErrorListener?): Unit = mProxy.native_setAuthenticationErrorListener(obj)
     fun setDesiredLanguage(vlanguage: Language): Unit = mProxy.native_setDesiredLanguage(vlanguage)
     fun setEnableScreenSymbols(flag: Boolean): Unit = mProxy.native_setEnableScreenSymbols(flag)
     fun setGlobalHeatmapConfig(vglobalHeatmapConfig: GlobalHeatmapConfig): Unit = mProxy.native_setGlobalHeatmapConfig(vglobalHeatmapConfig)
@@ -117,7 +117,7 @@ class TerrainEngine internal constructor(handle: Long) : AutoCloseable {
     fun setUnitSystem(vmeasurementUnitSystem: MeasurementUnitSystem): Unit = mProxy.native_setUnitSystem(vmeasurementUnitSystem)
     fun setWeeklyHeatmapConfig(vweeklyHeatmapConfig: WeeklyHeatmapConfig): Unit = mProxy.native_setWeeklyHeatmapConfig(vweeklyHeatmapConfig)
     fun update(): Unit = mProxy.native_update()
-    fun waitToLoadMap(obj: OnMapLoadListener, flag: Boolean, f: Float): Unit = mProxy.native_waitToLoadMap(obj, flag, f)
+    fun waitToLoadMap(obj: OnMapLoadListener?, flag: Boolean, f: Float): Unit = mProxy.native_waitToLoadMap(obj, flag, f)
 
     override fun close() {
         mProxy.nativeDestroy()

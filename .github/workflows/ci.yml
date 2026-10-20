@@ -23,6 +23,15 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+      - name: Cache the Android NDK and CMake
+        # The NDK is 2.2 GB; without this every run would download it again.
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Android/Sdk/ndk
+            ~/Android/Sdk/cmake
+          key: android-sdk-ndk-28.2.13676358-${{ runner.os }}
+
       - name: Install Android SDK packages
         # android-actions/setup-android@v3 fails on current runner images: it
         # tries to install the long-removed "tools" package. The runner image
@@ -31,13 +40,14 @@ jobs:
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
           [ -x "$SDKMANAGER" ] || SDKMANAGER="$(command -v sdkmanager)"
           yes | "$SDKMANAGER" --licenses > /dev/null || true
-          "$SDKMANAGER" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          "$SDKMANAGER" "platform-tools" "platforms;android-35" "build-tools;35.0.0" \
+                       "ndk;28.2.13676358" "cmake;3.22.1"
 
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.event_name == 'pull_request' }}
 
-      - name: Build the map engine
+      - name: Build and test the map engine (host)
         run: |
           cmake -S map-engine -B map-engine/build -G Ninja -DCMAKE_BUILD_TYPE=Debug
           cmake --build map-engine/build
@@ -50,7 +60,11 @@ jobs:
         run: ./gradlew test
 
       - name: Assemble
+        # Builds the app and the native map engine for arm64-v8a and armeabi-v7a.
         run: ./gradlew :app:assembleDebug
+
+      - name: Verify the API is 1:1 with the original
+        run: python3 tools/verify_api_parity.py
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4

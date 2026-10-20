@@ -351,6 +351,10 @@ class Catalog:
         self.proxy_names = {
             fq.split("$")[0].rsplit(".", 1)[-1] for fq in nat
         }
+        # Interfaces the application implements rather than constructs.
+        self.interface_names = {
+            self.simple[fq] for fq in pub if self.kind[fq] == "interface"
+        }
 
     @staticmethod
     def _classify(entry) -> str:
@@ -486,8 +490,8 @@ def gen_interface(simple: str, entry, cat: Catalog) -> str:
         if name in ("toString", "hashCode", "equals", "getClass"):
             continue
         names = unique_names(params)
-        p = ", ".join(f"{n}: {t.kotlin}" for n, t in zip(names, params))
-        r = "Unit" if ret.java == "void" else ret.kotlin
+        p = ", ".join(f"{n}: {kotlin_for(t, cat)}" for n, t in zip(names, params))
+        r = "Unit" if ret.java == "void" else kotlin_for(ret, cat, "param")
         lines.append(f"    fun {name}({p}): {r}")
     body = "\n".join(lines)
     return f"""package {PACKAGE}
@@ -497,6 +501,31 @@ interface {simple} {{
 {body}
 }}
 """
+
+
+def kotlin_for(t: "Type", cat: "Catalog", position: str = "param") -> str:
+    """The Kotlin type, nullable when the application cannot supply it.
+
+    A parameter of a type the application cannot construct may be null: the
+    original SDK treats its listeners as optional. A *return* value from the
+    engine is never null, except for an interface the application itself
+    implements.
+    """
+    if t.kind in ("value", "enum", "primitive", "string", "boxed", "list", "enumset"):
+        return t.kotlin
+    simple = getattr(t, "simple", "")
+    # A proxy class wins over the "interface" classification: some classes are
+    # both (EngineConfiguration has no fields, so it classifies as an interface,
+    # but the engine provides it).
+    if simple in cat.proxy_names:
+        # The engine provides these. An application-implemented interface may
+        # not be able to supply one, so those stay nullable.
+        if position == "proxy_return":
+            return t.kotlin
+        return t.kotlin + "?"
+    if simple in cat.interface_names:
+        return t.kotlin + "?"
+    return t.kotlin
 
 
 def _property_decl(prop: str, java_getter: str, type: "Type") -> str:
@@ -548,6 +577,7 @@ def match_native(public_name, public_desc, natives):
 def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
     delegations = []
     externals = []
+    statics = []
     for m in cat.pub[fq].get("m", []):
         parsed = parse_signature(m, cat)
         if not parsed:
@@ -560,16 +590,23 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
             continue
         native_name = nm["name"]
         names = unique_names(params)
-        psig = ", ".join(f"{n}: {t.kotlin}" for n, t in zip(names, params))
-        r = "Unit" if ret.java == "void" else ret.kotlin
-        delegations.append(
-            f"    fun {name}({psig}): {r} = mProxy.{native_name}({', '.join(names)})"
-        )
+        psig = ", ".join(f"{n}: {kotlin_for(t, cat)}" for n, t in zip(names, params))
+        r = "Unit" if ret.java == "void" else kotlin_for(ret, cat, "proxy_return")
+        # A native with no handle is static: it belongs to the companion.
+        if nm["descriptor"].startswith("(J"):
+            delegations.append(
+                f"    fun {name}({psig}): {r} = mProxy.{native_name}({', '.join(names)})"
+            )
+        else:
+            statics.append(
+                f"        fun {name}({psig}): {r} = CppProxy(0L).{native_name}({', '.join(names)})"
+            )
         externals.append(
             f"        external fun {native_name}({psig}): {r}"
         )
     ext = "\n".join(externals + ["        external fun nativeDestroy()"])
     dele = "\n".join(delegations)
+    static_block = "\n".join(statics)
 
     # Assemble the body so that empty blocks do not leave double blank lines.
     blocks = [
@@ -580,6 +617,10 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
     ]
     if dele:
         blocks.append(dele)
+    if static_block:
+        blocks.append(
+            "    companion object {\n" + static_block + "\n    }"
+        )
     blocks.append("    override fun close() {\n        mProxy.nativeDestroy()\n    }")
     body = "\n\n".join(blocks)
 
@@ -711,6 +752,8 @@ def gen_cpp_api(cat: Catalog) -> str:
         '#include "fatmap_types.h"',
         '#include "fatmap_jni_types.h"',
         '#include "fatmap_proxy.h"',
+        '#include "fatmap_statics.h"',
+        '#include "fatmap_handles.h"',
         "",
         "namespace fatmap {",
         "",
@@ -825,9 +868,14 @@ def gen_jni_function(cat: Catalog, simple: str, nm: dict, symbol: str) -> str:
     body = []
     if not has_handle:
         # A static factory: it creates a fresh implementation object and
-        # hands it to the Java layer.
+        # hands it to the Java layer. Its parameters still have to be
+        # marshalled - MREHolder.create takes the surface holder, the
+        # orientation service and the configuration.
+        for i, tp in enumerate(params):
+            body.append(f"    const auto p{i} = {subst(tp.read, 'env', f'a{i}')};")
+        call_args = ", ".join(["env"] + [f"p{i}" for i in range(len(params))])
         if ret.kind == "proxy":
-            body.append(f"    auto* result = fatmap::static_{simple}_{name}();")
+            body.append(f"    auto* result = fatmap::static_{simple}_{name}({call_args});")
             body.append("    if (result == nullptr) {")
             body.append("        return nullptr;")
             body.append("    }")
@@ -835,7 +883,7 @@ def gen_jni_function(cat: Catalog, simple: str, nm: dict, symbol: str) -> str:
                 f'    return jni::wrap_proxy(env, result, "{JAVA_PKG_PATH}/{ret.simple}");'
             )
         else:
-            body.append(f"    const auto result = fatmap::static_{simple}_{name}();")
+            body.append(f"    const auto result = fatmap::static_{simple}_{name}({call_args});")
             body.append(f"    return {subst(ret.write, 'env', 'arg', 'result')};")
         return (
             "extern \"C\" JNIEXPORT " + _jni_ret(ret) + " JNICALL " + symbol + "(\n    "
@@ -914,14 +962,14 @@ def gen_cpp_values_header(cat: Catalog) -> str:
     for fq in sorted(cat.pub):
         simple = cat.simple[fq]
         if cat.kind[fq] == "value":
-            out.append(f"inline fatmap::{simple} read_{simple}(JNIEnv* env, jobject obj);")
+            out.append(f"fatmap::{simple} read_{simple}(JNIEnv* env, jobject obj);")
             out.append(
-                f"inline jobject write_{simple}(JNIEnv* env, const fatmap::{simple}& value);"
+                f"jobject write_{simple}(JNIEnv* env, const fatmap::{simple}& value);"
             )
         elif cat.kind[fq] == "enum":
-            out.append(f"inline fatmap::{simple} read_{simple}(JNIEnv* env, jobject obj);")
+            out.append(f"fatmap::{simple} read_{simple}(JNIEnv* env, jobject obj);")
             out.append(
-                f"inline jobject write_{simple}(JNIEnv* env, fatmap::{simple} value);"
+                f"jobject write_{simple}(JNIEnv* env, fatmap::{simple} value);"
             )
     out.append("")
     out.append("}  // namespace jni")
@@ -951,8 +999,23 @@ def gen_cpp_values(cat: Catalog) -> str:
             props = cat.value_class(fq)
             order = cat.ctor_order(fq)
             if not props:
+                # A class whose fields are all constants: it has a no-argument
+                # constructor and nothing to read back.
+                lines = [f"{simple} read_{simple}(JNIEnv* env, jobject obj) {{",
+                         f"    (void)env;",
+                         f"    (void)obj;",
+                         f"    return {simple}{{}};",
+                         "}",
+                         "",
+                         f"jobject write_{simple}(JNIEnv* env, const {simple}& value) {{",
+                         f'    jclass cls = env->FindClass("{JAVA_PKG_PATH}/{simple}");',
+                         '    jmethodID ctor = env->GetMethodID(cls, "<init>", "()V");',
+                         "    return env->NewObject(cls, ctor);",
+                         "}",
+                         ""]
+                out.extend(lines)
                 continue
-            lines = [f"inline {simple} read_{simple}(JNIEnv* env, jobject obj) {{",
+            lines = [f"{simple} read_{simple}(JNIEnv* env, jobject obj) {{",
                      f"    {simple} v;",
                      "    jclass cls = env->GetObjectClass(obj);"]
             for p, rt, g in props:
@@ -967,12 +1030,24 @@ def gen_cpp_values(cat: Catalog) -> str:
             lines.append("    return v;")
             lines.append("}")
             lines.append("")
-            lines.append(f"inline jobject write_{simple}(JNIEnv* env, const {simple}& value) {{")
+            lines.append(f"jobject write_{simple}(JNIEnv* env, const {simple}& value) {{")
             lines.append(f'    jclass cls = env->FindClass("{JAVA_PKG_PATH}/{simple}");')
             ctor_desc = "(" + "".join(t.desc for _, t in order) + ")V"
             lines.append(f'    jmethodID ctor = env->GetMethodID(cls, "<init>", "{ctor_desc}");')
-            args = ", ".join(f"value.{p}" for p, _ in order)
-            lines.append(f"    return env->NewObject(cls, ctor{', ' if args else ''}{args});")
+            # NewObject is variadic, so only JNI scalars and jobjects may be
+            # passed through it. Anything else has to be marshalled first.
+            args = []
+            for index, (prop, tp) in enumerate(order):
+                if tp.kind == "primitive":
+                    if tp.java == "boolean":
+                        args.append(f"static_cast<jboolean>(value.{prop} ? JNI_TRUE : JNI_FALSE)")
+                    else:
+                        args.append(f"static_cast<{SCALARS[tp.java][2]}>(value.{prop})")
+                else:
+                    lines.append(f"    const jobject a{index} = {subst(tp.write, 'env', 'arg', f'value.{prop}')};")
+                    args.append(f"a{index}")
+            call = ", ".join(args)
+            lines.append(f"    return env->NewObject(cls, ctor{', ' if call else ''}{call});")
             lines.append("}")
             lines.append("")
             out.extend(lines)
@@ -982,7 +1057,7 @@ def gen_cpp_values(cat: Catalog) -> str:
                 for f in cat.pub[fq].get("f", [])
                 if f.split(":", 1)[0] != "$VALUES"
             ]
-            lines = [f"inline {simple} read_{simple}(JNIEnv* env, jobject obj) {{",
+            lines = [f"{simple} read_{simple}(JNIEnv* env, jobject obj) {{",
                      "    if (obj == nullptr) {",
                      f"        return static_cast<{simple}>(0);",
                      "    }",
@@ -992,7 +1067,7 @@ def gen_cpp_values(cat: Catalog) -> str:
                      f"    return static_cast<{simple}>(value);",
                      "}",
                      ""]
-            lines.append(f"inline jobject write_{simple}(JNIEnv* env, {simple} value) {{")
+            lines.append(f"jobject write_{simple}(JNIEnv* env, {simple} value) {{")
             lines.append(f'    jclass cls = env->FindClass("{JAVA_PKG_PATH}/{simple}");')
             lines.append("    const char* names[] = {" + ", ".join(f'"{c}"' for c in consts) + "};")
             lines.append("    const int index = static_cast<int>(value);")
@@ -1005,6 +1080,71 @@ def gen_cpp_values(cat: Catalog) -> str:
             lines.append("")
             out.extend(lines)
     out.append("}  // namespace jni")
+    out.append("")
+    return "\n".join(out)
+
+
+def gen_cpp_handles(cat: Catalog) -> str:
+    """Per-class helpers that read a proxy object's native handle."""
+    out = [
+        "// Generated from the Fatmap SDK interface contract. Do not edit by hand.",
+        "#pragma once",
+        "",
+        "#include <jni.h>",
+        "",
+        '#include "fatmap_jni_types.h"',
+        "",
+        "namespace fatmap {",
+        "",
+    ]
+    for fq in sorted(cat.nat):
+        simple = fq.split("$")[0].rsplit(".", 1)[-1]
+        sig = f"L{JAVA_PKG_PATH}/{simple}$CppProxy;"
+        out.append(f"inline jlong handle_of_{simple}(JNIEnv* env, jobject obj) {{")
+        out.append(f'    return jni::read_handle(env, obj, "{sig}");')
+        out.append("}")
+        out.append("")
+    out.append("}  // namespace fatmap")
+    out.append("")
+    return "\n".join(out)
+
+
+def gen_cpp_statics(cat: Catalog) -> str:
+    """Declarations for the static entry points the JNI layer calls."""
+    out = [
+        "// Generated from the Fatmap SDK interface contract. Do not edit by hand.",
+        "#pragma once",
+        "",
+        "#include <jni.h>",
+        "",
+        "#include <string>",
+        "#include <vector>",
+        "",
+        '#include "fatmap_api.h"',
+        '#include "fatmap_jni_types.h"',
+        "",
+        "namespace fatmap {",
+        "",
+    ]
+    for fq in sorted(cat.nat):
+        simple = fq.split("$")[0].rsplit(".", 1)[-1]
+        for nm in cat.nat[fq]["native_methods"]:
+            desc = nm["descriptor"]
+            close = desc.index(")")
+            if desc[1:close].startswith("J"):
+                continue  # not static
+            typed = None
+            for sig in api_signatures(cat, fq):
+                if sig[0] == nm["name"]:
+                    typed = sig
+                    break
+            params = typed[1] if typed else []
+            ret = typed[2] if typed else Type("void", cat)
+            ps = ", ".join(["JNIEnv* env"] + [f"{tp.cpp} p{i}" for i, tp in enumerate(params)])
+            r = "void" if ret.java == "void" else ret.cpp
+            out.append(f"{r} static_{simple}_{nm['name']}({ps});")
+    out.append("")
+    out.append("}  // namespace fatmap")
     out.append("")
     return "\n".join(out)
 
@@ -1137,6 +1277,8 @@ def main() -> int:
     write(os.path.join(args.cpp_out, "fatmap_types.h"), gen_cpp_types(cat))
     write(os.path.join(args.cpp_out, "fatmap_api.h"), gen_cpp_api(cat))
     write(os.path.join(args.cpp_out, "fatmap_proxy.h"), gen_cpp_proxy(cat))
+    write(os.path.join(args.cpp_out, "fatmap_statics.h"), gen_cpp_statics(cat))
+    write(os.path.join(args.cpp_out, "fatmap_handles.h"), gen_cpp_handles(cat))
     write(os.path.join(args.cpp_out, "fatmap_jni_values.h"), gen_cpp_values_header(cat))
     write(os.path.join(args.cpp_out, "fatmap_jni_values.cpp"), gen_cpp_values(cat))
     write(os.path.join(args.cpp_out, "fatmap_jni.cpp"), gen_cpp_jni(cat))
