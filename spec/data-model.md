@@ -69,7 +69,7 @@ calories         Int?
 commute          Boolean
 trainer          Boolean
 manual           Boolean
-privacy          Visibility       PUBLIC, FOLLOWERS, ONLY_ME
+privacy          Visibility       PUBLIC, PRIVATE  (see note)
 gearId           Long?
 workoutType      WorkoutType?     for strength workouts
 routeId          Long?
@@ -80,7 +80,9 @@ streams          ActivityStreams?  time-series, stored separately
 createdAt        Instant
 ```
 
-`ActivityType` and `Visibility` are the two enums that matter most. `Visibility` drives the privacy model and must be honoured by any sharing surface.
+`ActivityType` and `Visibility` are the two enums that matter most.
+
+**Note on `Visibility`.** The original app distinguishes `PUBLIC`, `FOLLOWERS` and `ONLY_ME`, because it has followers. A single-user local app has no followers, so this project collapses the enum to `PUBLIC` / `PRIVATE`. `PRIVATE` means the activity is excluded from heatmap rendering and from any export by default — the same place the original enforces it server-side.
 
 ### ActivityStreams
 

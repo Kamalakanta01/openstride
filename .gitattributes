@@ -17,3 +17,6 @@
 *.arsc    binary
 *.png     binary
 *.webp    binary
+
+# Windows launcher needs CRLF.
+gradlew.bat text eol=crlf

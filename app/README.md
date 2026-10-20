@@ -2,30 +2,36 @@
 
 A clean-room, local-only implementation of a Strava-like fitness app.
 
-**Status: scaffolding.** The data model, the API contract, and the recording service skeleton exist. The UI does not. The build has not been verified — this project does not bundle an Android SDK.
+**Status: scaffolding.** The data model, the API contract, and the recording service skeleton exist. The UI does not. The build compiles, the unit tests pass, and CI runs it on every push.
 
 ---
 
 ## Module layout
 
+The Gradle root is the **repository root**; `app/` is the single application module (`dev.openstride`, minSdk 26, targetSdk 35).
+
 ```
-app/
+repo root/
 ├── settings.gradle.kts
 ├── build.gradle.kts
+├── gradle.properties
 ├── gradle/libs.versions.toml
-└── core/
+├── gradlew, gradlew.bat, gradle/wrapper/
+└── app/
     ├── build.gradle.kts
-    └── src/main/
-        ├── AndroidManifest.xml
-        ├── res/values/{strings,themes}.xml
-        └── kotlin/dev/stravaoss/core/
-            ├── StravaOssApplication.kt
-            ├── model/Models.kt              ← the data model
-            ├── local/LocalDatabase.kt       ← Room entities, DAOs, converters
-            ├── api/LocalApiContract.kt      ← the contract the UI will talk to
-            └── recording/
-                ├── RecordingService.kt      ← foreground recording service
-                └── RecoverActivityReceiver.kt ← reboot recovery
+    └── src/
+        ├── main/
+        │   ├── AndroidManifest.xml
+        │   ├── res/{values,drawable}/
+        │   └── kotlin/dev/openstride/
+        │       ├── OpenStrideApplication.kt
+        │       ├── model/Models.kt              ← the data model
+        │       ├── local/LocalDatabase.kt       ← Room entities, DAOs, converters
+        │       ├── api/LocalApiContract.kt      ← the contract the UI will talk to
+        │       └── recording/
+        │           ├── RecordingService.kt      ← foreground recording service
+        │           └── RecoverActivityReceiver.kt ← reboot recovery
+        └── test/kotlin/dev/openstride/local/    ← unit tests
 ```
 
 There is one module. Split into `:core`, `:feature-recording`, `:feature-map`, `:feature-insights` only when there are two or more consumers — not before.
@@ -91,17 +97,21 @@ GPX/FIT import, and GPX/TCX/JSON export. **Export must apply privacy zones** —
 
 ## Build
 
-Requires **JDK 17+** and the **Android SDK** (compileSdk 35, build-tools 34+). The Gradle wrapper is not committed yet — use a local Gradle 8.13+ or run `gradle wrapper` once.
+Requires **JDK 17+** (21 recommended) and the **Android SDK** (compileSdk 35, build-tools 35). The Gradle wrapper is committed, so no local Gradle install is needed.
 
-```bash
-cd app
-gradle wrapper            # once
-./gradlew :core:assembleDebug
-./gradlew ktlintCheck
-./gradlew :core:test
+Point the build at your SDK with a `local.properties` in the **repository root**:
+
+```properties
+sdk.dir=/path/to/Android/Sdk
 ```
 
-**The build has not been run.** There is no Android SDK in the authoring environment, so the Gradle configuration is unverified. Expect to fix the version catalogue on first run.
+```bash
+./gradlew :app:assembleDebug     # APK -> app/build/outputs/apk/debug/
+./gradlew ktlintCheck
+./gradlew test
+```
+
+**The build is verified.** It compiles, the unit tests pass, and CI runs the same three commands on every push.
 
 ---
 

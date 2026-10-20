@@ -1,4 +1,4 @@
-# Strava OSS
+# OpenStride
 
 **A clean-room, open-source reimplementation of the Strava Android app — plus the static-analysis toolkit and interface specification that made it possible.**
 
@@ -42,12 +42,14 @@ Why this matters, concretely:
 ## Repository layout
 
 ```
-strava-oss/
+openstride/
 ├── docs/            10-document static analysis of Strava Android v456.10
 ├── tools/           parsers written for this project (AXML, ARSC, DEX refs)
 ├── data/            derived interface facts: classes, hosts, paths, symbols
 ├── spec/            machine-readable interface contract for reimplementation
-└── app/             the clean-room implementation (Kotlin / Compose)
+├── app/             the Android application module (Kotlin)
+├── settings.gradle.kts, build.gradle.kts, gradle/   Gradle root
+└── .github/workflows/ci.yml                         build + lint + test on every push
 ```
 
 ### [`docs/`](docs/) — the analysis
@@ -99,9 +101,11 @@ Facts extracted from the artifact, in machine-readable form. These are the input
 
 ### [`app/`](app/) — the implementation
 
-Kotlin + Jetpack Compose. A scaffold, not a finished app — see [app/README.md](app/README.md) for the roadmap and current status.
+Kotlin, targeting Android 8.0+ (minSdk 26). A scaffold, not a finished app — see [app/README.md](app/README.md) for the roadmap and current status.
 
-**Status:** scaffolding only. The build is not verified — it needs an Android SDK, which this project does not bundle.
+**Status:** the build compiles, the unit tests pass, and CI runs it on every push. The UI does not exist yet.
+
+The Gradle root is the repository root; `app/` is the single application module (`dev.openstride`).
 
 ---
 
@@ -110,8 +114,8 @@ Kotlin + Jetpack Compose. A scaffold, not a finished app — see [app/README.md]
 ### Read the analysis
 
 ```bash
-git clone https://github.com/Kamalakanta01/strava-oss.git
-cd strava-oss
+git clone https://github.com/Kamalakanta01/openstride.git
+cd openstride
 less docs/09-NON-TECHNICAL-GUIDE.md      # plain-English overview
 less docs/10-local-only-feasibility.md    # running without a backend
 ```
@@ -133,12 +137,23 @@ You need the APK yourself. This project deliberately does not host it.
 
 ### Build the app
 
-Requires JDK 17+ and the Android SDK (build-tools 34+).
+Requires **JDK 17+** (21 recommended) and the **Android SDK** (compileSdk 35, build-tools 35). Point the build at your SDK with a `local.properties` in the repository root:
+
+```properties
+sdk.dir=/path/to/Android/Sdk
+```
+
+Then:
 
 ```bash
-cd app
-./gradlew :core:assembleDebug
+./gradlew :app:assembleDebug     # APK -> app/build/outputs/apk/debug/
+./gradlew ktlintCheck             # style
+./gradlew test                    # unit tests
 ```
+
+The Gradle wrapper is committed, so no local Gradle install is needed.
+
+CI does exactly this on every push, and uploads the debug APK as a build artifact.
 
 ---
 
@@ -153,13 +168,26 @@ cd app
 | Recording service | 🟡 Foreground-service skeleton |
 | Maps / 3D terrain | ⬜ Not started — see `spec/fatmap-native.md` for the open question |
 | Social features | ⬜ Not started — see the scope note below |
-| Build verification | ⬜ Not verified (no Android SDK in the authoring environment) |
+| Build | ✅ Compiles; unit tests pass; CI green |
 
 ### Scope note
 
 This project targets the **solo-athlete** half of the app: recording, maps, routes, segments, training load, insights, power curves, gear, goals, photos, and privacy controls.
 
 Features that inherently require a shared server — a global feed, clubs, challenges, competitions, kudos, comments, global leaderboards, and server-computed heatmaps — are **out of scope**, because a single-user local app has no other users to show you. Where the original app would call a server, this app computes locally or does not offer the feature. See [docs/10-local-only-feasibility.md](docs/10-local-only-feasibility.md) for the full boundary.
+
+### Design decisions
+
+These were settled before the first line of app code, and they constrain everything after them.
+
+| Decision | Choice | Consequence |
+|---|---|---|
+| **Data source** | Starts empty | No import of existing history. The app is useful only from the first new recording onward. A GPX/FIT importer is a later, self-contained addition — the seam is left in `spec/data-model.md`. |
+| **Interface** | Deliberately Strava-like — same information architecture, same screens, same interactions | Familiar to anyone who has used a fitness app. We do **not** copy Strava's icons, illustrations, logo, or written copy; those are their assets. Structure and behaviour are not theirs to own. |
+| **Maps** | Undecided, pending a decision on the native engine | See `spec/fatmap-native.md`. The `MapEngine` facade exists so either answer works without rework. |
+| **Backend** | None, ever | No account, no sync, no telemetry, no analytics, no crash reporting. The local database is the source of truth. |
+| **Privacy enforcement** | Local, at the point geometry becomes pixels or bytes | The original enforces privacy zones server-side, which a modified client can ask to widen. Here it cannot be bypassed. |
+| **Naming** | `OpenStride` / `dev.openstride` | Strava's trademarks are not used as the project's identity. |
 
 ---
 

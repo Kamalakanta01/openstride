@@ -2,7 +2,7 @@
 
 ## This work
 
-Strava OSS — a clean-room, open-source reimplementation of the Strava Android app, together with a static-analysis toolkit and interface specification.
+OpenStride — a clean-room, open-source reimplementation of the Strava Android app, together with a static-analysis toolkit and interface specification.
 
 Copyright the contributors to this repository.
 
