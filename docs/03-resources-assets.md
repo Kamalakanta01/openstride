@@ -177,7 +177,7 @@ The archive's own `README.md` states the provenance:
 
 | Path | Files | Contents |
 |---|---:|---|
-| `Shared/Configs/` | 811 | Map style + icon bundle: 776 `.png` POI/medal/badge markers, 16 `.json` |
+| `Shared/Configs/` | 793 files | Map style + icon bundle: 776 `.png` (**388** icons, each at 1x and 2x), 15 map styles, 2 other |
 | ├ `Shared/Configs/StravaTopo/style.json` | | 310,827 B — **Mapbox-GL style** (`version`, `name`, `center`, `zoom`, `sources`, `sprite`, `glyphs`, `layers`, `created`) |
 | ├ `Shared/Configs/StravaTopoDark/style.json` | | 309,887 B — dark map style |
 | ├ `Shared/Configs/StravaTopoWinter/style.json` | | 353,456 B — winter map style |
@@ -595,3 +595,7 @@ marker that lets Play know the split set must be re-derived when the base change
 - Rive (`.riv`) animation contents were not parsed beyond file names and sizes.
 - `assets.zip` was listed to one level of recursion per the task; `Shared/Configs` was sampled
   (776 PNG + 16 JSON) rather than individually enumerated.
+  **Resolved:** the bundle is now enumerated in full by `tools/inventory_assets.py`,
+  published as `data/fatmap-assets.txt` (962 entries, grouped) and
+  `spec/fatmap-styles.json` (the 15 map styles, with their sources, fonts and sprites).
+  The 776 PNG are **388** icons at 1x and 2x, and there are **15** styles, not 16.

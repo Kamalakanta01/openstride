@@ -374,7 +374,7 @@ verifies the digest before accepting the bundle.
 | Route and activity overlays | ✅ | Pure geometry |
 | Personal heatmap | ✅ | Computed from your own tracks |
 | **Global / weekly / nightly heatmaps** | ❌ | Strava computes these on its servers from every athlete's tracks |
-| **Strava's POI set** (776 icons) | ❌ | Proprietary assets |
+| **Strava's POI set** (388 icons, at 1x and 2x) | ❌ | Proprietary assets |
 | **3D terrain** (`mapbox-terrain-v2`) | ❌ | Mapbox commercial dataset |
 | **Strava's map styles** | ⚠️ editable | They reference Strava-specific layers; they need editing for OSM data |
 
