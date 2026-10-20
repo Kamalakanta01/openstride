@@ -10,11 +10,14 @@
 
 #pragma once
 
+#include "fatmap_jni_types.h"
+
 #include <cstdint>
 #include <map>
 #include <optional>
 #include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include "fatmap_api.h"
@@ -591,8 +594,8 @@ public:
     void native_setDesiredLanguage(Language language) override;
     void native_waitToLoadMap(jni::Opaque callback, bool blocking, float timeout) override;
     void native_setLogLevel(LogLevel level) override;
-    void native_setOverriddenFeatureProperties(OverriddenFeatureProperties properties) override;
-    OverriddenFeatureProperties native_getOverriddenFeatureProperties() override;
+    void native_setOverriddenFeatureProperties(jni::Opaque properties) override;
+    OverriddenFeaturePropertiesImpl* native_getOverriddenFeatureProperties() override;
     double native_getElevation(WorldPoint2 point) override;
     UnitsInfo native_getGridUnits() override;
     CameraImpl* native_getCamera() override;
@@ -933,7 +936,6 @@ public:
     NightlyHeatmapConfig mNightlyHeatmapConfig;
     WeeklyHeatmapConfig mWeeklyHeatmapConfig;
     PersonalHeatmapConfig mPersonalHeatmapConfig;
-    OverriddenFeatureProperties mOverriddenFeatureProperties;
     float mScreenSymbolRefreshInterval = 1.0f;
     bool mRenderRequested = false;
     int8_t mTileGridMode = 0;
@@ -944,22 +946,32 @@ public:
 /**
  * Resolves a Java handle back to its implementation object.
  *
- * The handle is the address of the object. The dynamic cast checks that the
- * caller passed the right kind of proxy, so a handle from one class cannot be
- * used as another.
+ * The handle is the address of the implementation object, handed to Java by
+ * wrap_proxy() and passed back with every native call. The registry records
+ * what was handed out so resolve() is a lookup rather than a dynamic cast: a
+ * dynamic cast against hidden cross-translation-unit RTTI silently fails on
+ * Android, which made every native call return null.
  */
 template <typename T>
 inline T* resolve(JNIEnv*, jlong handle) {
     if (handle == 0) {
         return nullptr;
     }
-    auto* base = reinterpret_cast<ProxyBase*>(handle);
-    return dynamic_cast<T*>(base);
+    const auto& seen = fatmap::comfort_handles();
+    auto it = seen.find(handle);
+    if (it == seen.end()) {
+        return nullptr;
+    }
+    return reinterpret_cast<T*>(it->second);
 }
+
+
+/// Interpolates the camera along its transition.
+void applyTransition(Engine& engine, const CameraTransition& transition, double t);
 
 /// The static entry points the generated JNI layer calls.
 EngineConfigurationImpl* static_EngineConfiguration_createDefault();
-OverriddenFeatureProperties static_OverriddenFeatureProperties_create();
+OverriddenFeaturePropertiesImpl* static_OverriddenFeatureProperties_create();
 MREHolderImpl* static_MREHolder_create();
 std::vector<std::string> static_PrivateApi_getPerformanceTestsNames();
 

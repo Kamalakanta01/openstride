@@ -6,18 +6,18 @@ package com.fatmap.sdk.api
  * The nested [CppProxy] carries the native handle and declares the `external`
  * functions, so the JNI symbol names match the original library exactly.
  */
-class VisibleAreaSamplesSink internal constructor(handle: Long) : AutoCloseable {
+class VisibleAreaSamplesSink internal constructor(private val handle: Long) : AutoCloseable {
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ VisibleAreaSamplesSink ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-        external fun native_processVisiblePoint(vworldPoint2: WorldPoint2): Unit
-        external fun nativeDestroy()
+        external fun native_processVisiblePoint(handle: Long, vworldPoint2: WorldPoint2): Unit
+        external fun nativeDestroy(handle: Long)
     }
 
-    fun processVisiblePoint(vworldPoint2: WorldPoint2): Unit = mProxy.native_processVisiblePoint(vworldPoint2)
+    fun processVisiblePoint(vworldPoint2: WorldPoint2): Unit = mProxy.native_processVisiblePoint(handle, vworldPoint2)
 
     override fun close() {
-        mProxy.nativeDestroy()
+        mProxy.nativeDestroy(handle)
     }
 }

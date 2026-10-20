@@ -56,6 +56,13 @@ void beginFlight(Engine& engine, double latitude, double longitude, double zoom,
     transition.toZoom = zoom;
     transition.toBearing = bearing.value_or(static_cast<float>(engine.cameraBearing()));
     transition.toPitch = pitch.value_or(static_cast<float>(engine.cameraPitch()));
+
+    // A zero-duration flight is a teleport: commit it now rather than on the
+    // next render frame, which also keeps the engine consistent headless.
+    if (transition.duration <= 0.0) {
+        applyTransition(engine, transition, 1.0);
+        transition.active = false;
+    }
 }
 
 ContentLine toContentLine(const WorldLine2& line, const std::string& identifier) {
@@ -1341,13 +1348,12 @@ void TerrainEngineImpl::native_setLogLevel(LogLevel level) {
     mEngine.mLogLevel = static_cast<int>(level);
 }
 
-void TerrainEngineImpl::native_setOverriddenFeatureProperties(
-    OverriddenFeatureProperties properties) {
-    mEngine.mOverriddenFeatureProperties = properties;
+void TerrainEngineImpl::native_setOverriddenFeatureProperties(jni::Opaque properties) {
+    (void)properties;
 }
 
-OverriddenFeatureProperties TerrainEngineImpl::native_getOverriddenFeatureProperties() {
-    return mEngine.mOverriddenFeatureProperties;
+OverriddenFeaturePropertiesImpl* TerrainEngineImpl::native_getOverriddenFeatureProperties() {
+    return &mEngine.featureProperties();
 }
 
 double TerrainEngineImpl::native_getElevation(WorldPoint2 point) {

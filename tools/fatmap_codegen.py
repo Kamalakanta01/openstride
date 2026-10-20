@@ -151,7 +151,10 @@ class Type:
         if m:
             self.kind = "list"
             self.element = Type(m.group(1), cat)
-            self.desc = "Ljava/util/ArrayList;"
+            # A Kotlin MutableList<X> property erases to java.util.List, and
+            # every Java side here is our own compiled class, so the field
+            # descriptor must say List, not ArrayList.
+            self.desc = "Ljava/util/List;"
             self.kotlin = f"MutableList<{self.element.kotlin}>"
             self.cpp = f"std::vector<{self.element.cpp}>"
             self.read = (
@@ -207,7 +210,7 @@ class Type:
             simple = self.java[len(PACKAGE) + 1 :]
             self.desc = f"L{JAVA_PKG_PATH}/{simple};"
             self.simple = simple
-            if simple in cat.value_names:
+            if simple in cat.value_names and simple not in cat.proxy_names:
                 self.kind = "value"
                 self.kotlin = simple
                 self.cpp = simple
@@ -343,14 +346,19 @@ class Catalog:
         self.pub = pub
         self.nat = nat
         self.simple = {fq: fq.rsplit(".", 1)[-1] for fq in pub}
-        self.kind: dict[str, str] = {}
-        for fq, entry in pub.items():
-            self.kind[fq] = self._classify(entry)
-        self.value_names = {self.simple[fq] for fq in pub if self.kind[fq] == "value"}
-        self.enum_names = {self.simple[fq] for fq in pub if self.kind[fq] == "enum"}
         self.proxy_names = {
             fq.split("$")[0].rsplit(".", 1)[-1] for fq in nat
         }
+        self.kind: dict[str, str] = {}
+        for fq, entry in pub.items():
+            # A class with a CppProxy is a proxy, whatever else it declares:
+            # the engine owns the object and hands out a handle.
+            kind = self._classify(entry)
+            if self.simple[fq] in self.proxy_names:
+                kind = "proxy"
+            self.kind[fq] = kind
+        self.value_names = {self.simple[fq] for fq in pub if self.kind[fq] == "value"}
+        self.enum_names = {self.simple[fq] for fq in pub if self.kind[fq] == "enum"}
         # Interfaces the application implements rather than constructs.
         self.interface_names = {
             self.simple[fq] for fq in pub if self.kind[fq] == "interface"
@@ -376,6 +384,7 @@ class Catalog:
         if entry.get("f"):
             return "value"
         return "interface"
+        return "interface"
 
     def value_class(self, fq: str) -> dict:
         """The properties of a value class, in declaration order."""
@@ -392,6 +401,21 @@ class Catalog:
             if g in getters:
                 props.append((property_of(fname), getters[g], g))
         return props
+
+    def static_fields(self, fq: str) -> list[tuple[str, str, str]]:
+        """The public static constants of a class: name, Java type, value.
+
+        The contract records the constant's value; every one of them is a
+        String.
+        """
+        entry = self.pub[fq]
+        simple = self.simple[fq]
+        if simple not in self.proxy_names:
+            return []
+        return [
+            (name, "java.lang.String", value)
+            for name, value in entry.get("sf", {}).items()
+        ]
 
     def ctor_order(self, fq: str):
         """Constructor parameters, matched to properties by type then order."""
@@ -561,16 +585,31 @@ class {simple}(
 
 
 def match_native(public_name, public_desc, natives):
-    """Find the native method backing a public method."""
-    for nm in natives:
+    """Find the native method backing a public method.
+
+    Candidates are name-matched first; when several contract natives carry the
+    same name they are distinguished by arity. Descriptors are not compared,
+    because the contract's descriptor comes from the original library while
+    caller_call sites marshal our own compiled classes, whose erased types (a
+    Kotlin MutableList is java.util.List) may differ from the original's.
+    """
+    close = public_desc.index(")")
+    arity = public_desc[1:close].count(";") + sum(c in "JDFZBCSI" for c in public_desc[1:close])
+    candidates = [
+        nm
+        for nm in natives
+        for cand in ("native_" + public_name, public_name)
+        if nm["name"] == cand
+    ]
+    if len(candidates) == 1:
+        return candidates[0]
+    for nm in candidates:
         d = nm["descriptor"]
-        close = d.index(")")
-        stripped = ("(" + d[2:close] + ")" + d[close + 1 :]) if d[1] == "J" else d
-        if stripped != public_desc:
-            continue
-        for cand in ("native_" + public_name, public_name):
-            if nm["name"] == cand:
-                return nm
+        c = d.index(")")
+        nats = d[1:c]
+        narity = sum(nats.count(ch) for ch in "JDFZBCSI") + nats.count("L")
+        if narity == arity:
+            return nm
     return None
 
 
@@ -592,21 +631,33 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
         names = unique_names(params)
         psig = ", ".join(f"{n}: {kotlin_for(t, cat)}" for n, t in zip(names, params))
         r = "Unit" if ret.java == "void" else kotlin_for(ret, cat, "proxy_return")
-        # A native with no handle is static: it belongs to the companion.
+        # The DEX descriptor tells the truth about the native signature: a
+        # leading J is the handle the JVM passes as the first argument. The
+        # C++ entry points take it, so the external declarations must too.
         if nm["descriptor"].startswith("(J"):
+            esig = ("handle: Long, " + psig) if psig else "handle: Long"
+            eargs = ("handle, " + ", ".join(names)) if names else "handle"
             delegations.append(
-                f"    fun {name}({psig}): {r} = mProxy.{native_name}({', '.join(names)})"
+                f"    fun {name}({psig}): {r} = mProxy.{native_name}({eargs})"
+            )
+            externals.append(
+                f"        external fun {native_name}({esig}): {r}"
             )
         else:
             statics.append(
                 f"        fun {name}({psig}): {r} = CppProxy(0L).{native_name}({', '.join(names)})"
             )
-        externals.append(
-            f"        external fun {native_name}({psig}): {r}"
-        )
-    ext = "\n".join(externals + ["        external fun nativeDestroy()"])
+            externals.append(
+                f"        external fun {native_name}({psig}): {r}"
+            )
+    ext = "\n".join(externals + ["        external fun nativeDestroy(handle: Long)"])
     dele = "\n".join(delegations)
     static_block = "\n".join(statics)
+    # The class's public constants are static in the original, so they live in
+    # the companion.
+    for name, java, value in cat.static_fields(fq):
+        kind = Type(java, cat)
+        static_block += f"\n        const val {name}: {kind.kotlin} = \"{value}\""
 
     # Assemble the body so that empty blocks do not leave double blank lines.
     blocks = [
@@ -621,7 +672,7 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
         blocks.append(
             "    companion object {\n" + static_block + "\n    }"
         )
-    blocks.append("    override fun close() {\n        mProxy.nativeDestroy()\n    }")
+    blocks.append("    override fun close() {\n        mProxy.nativeDestroy(handle)\n    }")
     body = "\n\n".join(blocks)
 
     return f"""package {PACKAGE}
@@ -632,7 +683,7 @@ def gen_proxy(simple: str, fq: str, cat: Catalog, natives) -> str:
  * The nested [CppProxy] carries the native handle and declares the `external`
  * functions, so the JNI symbol names match the original library exactly.
  */
-class {simple} internal constructor(handle: Long) : AutoCloseable {{
+class {simple} internal constructor(private val handle: Long) : AutoCloseable {{
 {body}
 }}
 """
@@ -1074,7 +1125,7 @@ def gen_cpp_values(cat: Catalog) -> str:
             lines.append("    if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {")
             lines.append("        return nullptr;")
             lines.append("    }")
-            lines.append(f'    jfieldID field = env->GetStaticFieldID(cls, names[index], "{JAVA_PKG_PATH}/{simple};");')
+            lines.append(f'    jfieldID field = env->GetStaticFieldID(cls, names[index], "L{JAVA_PKG_PATH}/{simple};");')
             lines.append("    return env->GetStaticObjectField(cls, field);")
             lines.append("}")
             lines.append("")

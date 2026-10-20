@@ -207,6 +207,136 @@ def main() -> int:
     else:
         report("4. Engine implementation coverage", True, "no engine source", skipped=True)
 
+    # ---- 5. the generated Kotlin externals match the declared native signatures
+    # The JVM links a native call by name AND signature of the declaring class,
+    # so a parameter count mismatch passes every name-based check and then
+    # crashes on a device with the C++ reading a garbage argument.
+    KNOWN = REPO / "app" / "src" / "main" / "kotlin" / "com" / "fatmap" / "sdk" / "api"
+
+    def jni_arg_count(descriptor: str) -> int:
+        count = 0
+        i = 0
+        while i < len(descriptor):
+            char = descriptor[i]
+            if char == "[":
+                i += 1
+                continue
+            if char == "L":
+                i = descriptor.index(";", i) + 1
+                count += 1
+                continue
+            count += 1
+            i += 1
+        return count
+
+    if KNOWN.exists():
+        checked = 0
+        mismatched = []
+        for proxy, entry in native.items():
+            simple = proxy.split("$")[0].rsplit(".", 1)[-1]
+            source = (KNOWN / f"{simple}.kt").read_text(encoding="utf-8")
+            declared_sigs = dict(
+                re.findall(r"external fun (\w+)\(([^)]*)\)", source)
+            )
+            for method in entry["native_methods"]:
+                checked += 1
+                params = declared_sigs.get(method["name"])
+                if params is None:
+                    mismatched.append(f"{simple}.{method['name']} not declared")
+                    continue
+                got = 0 if not params.strip() else len([p for p in params.split(", ") if p])
+                want = jni_arg_count(
+                    method["descriptor"][1 : method["descriptor"].index(")")]
+                )
+                if got != want:
+                    mismatched.append(
+                        f"{simple}.{method['name']}: {got} params, contract {want}"
+                    )
+        report(
+            "5. Kotlin externals match native signatures",
+            not mismatched,
+            f"{checked} natives checked, {len(mismatched)} mismatched",
+        )
+        for name in mismatched[:5]:
+            print(f"        mismatched: {name}")
+    else:
+        report(
+            "5. Kotlin externals match native signatures",
+            True,
+            "generated Kotlin missing",
+            skipped=True,
+        )
+
+    # ---- 6. the C++ marshalling references methods our compiled classes have
+    # JNI marshalling for value classes calls getters and constructors by
+    # name AND descriptor; if the two sides disagree the call aborts on a
+    # device. The compiled bytecode is the arbiter of what our classes
+    # actually declare.
+    VALUES_CPP = REPO / "map-engine" / "generated" / "fatmap_jni_values.cpp"
+    if VALUES_CPP.exists() and CLASSES.exists():
+        source = VALUES_CPP.read_text(encoding="utf-8")
+
+        def expected_calls(simple: str) -> set[tuple[str, str]]:
+            start = source.find(f"read_{simple}(JNIEnv* env, jobject obj) {{")
+            pairs = set()
+            if start >= 0:
+                body = source[start : source.find("\n}\n", start)]
+                pairs.update(
+                    re.findall(r'GetMethodID\(cls, "(\w+)", "([^"]+)"\)', body)
+                )
+            start = source.find(f"write_{simple}(JNIEnv* env, const {simple}& value) {{")
+            if start >= 0:
+                body = source[start : source.find("\n}\n", start)]
+                ctor = re.search(r'"<init>", "(\([^)]*\)V)"', body)
+                if ctor:
+                    pairs.add(("<init>", ctor.group(1)))
+            return pairs
+
+        def declared_methods(simple: str) -> set[tuple[str, str]]:
+            out = subprocess.run(
+                ["javap", "-s", "-cp", str(CLASSES), f"com.fatmap.sdk.api.{simple}"],
+                capture_output=True,
+                text=True,
+            ).stdout
+            pairs = set()
+            for caller, desc in re.findall(
+                r"^\s+.*?\s+(\S+)\(.*?\);\s*descriptor: (\S+)", out, re.M
+            ):
+                name = caller.rsplit(".", 1)[-1]
+                name = "<init>" if name == simple else name
+                pairs.add((name, desc))
+            return pairs
+
+        bad = []
+        checked_cls = 0
+        for kt in sorted(KNOWN.glob("*.kt")):
+            head = kt.read_text(encoding="utf-8")
+            if re.search(r"^(interface|enum class) ", head, re.M):
+                continue
+            simple = kt.stem
+            want = expected_calls(simple)
+            if not want:
+                continue
+            checked_cls += 1
+            have = declared_methods(simple)
+            for name, desc in sorted(want):
+                if (name, desc) not in have:
+                    bad.append(f"{simple}.{name}{desc}")
+        report(
+            "6. C++ marshalling matches compiled classes",
+            not bad,
+            f"{checked_cls} classes checked, {len(bad)} stray references",
+        )
+        for name in bad[:5]:
+            print(f"        stray: {name}")
+    else:
+        report(
+            "6. C++ marshalling matches compiled classes",
+            True,
+            "not built",
+            skipped=True,
+        )
+
     for note in notes:
         print(f"  note: {note}")
 

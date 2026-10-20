@@ -6,22 +6,22 @@ package com.fatmap.sdk.api
  * The nested [CppProxy] carries the native handle and declares the `external`
  * functions, so the JNI symbol names match the original library exactly.
  */
-class TestingContextEventListener internal constructor(handle: Long) : AutoCloseable {
+class TestingContextEventListener internal constructor(private val handle: Long) : AutoCloseable {
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ TestingContextEventListener ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-        external fun native_onEntered(): Unit
-        external fun native_onErrorEntering(text: String): Unit
-        external fun native_onLeft(): Unit
-        external fun nativeDestroy()
+        external fun native_onEntered(handle: Long): Unit
+        external fun native_onErrorEntering(handle: Long, text: String): Unit
+        external fun native_onLeft(handle: Long): Unit
+        external fun nativeDestroy(handle: Long)
     }
 
-    fun onEntered(): Unit = mProxy.native_onEntered()
-    fun onErrorEntering(text: String): Unit = mProxy.native_onErrorEntering(text)
-    fun onLeft(): Unit = mProxy.native_onLeft()
+    fun onEntered(): Unit = mProxy.native_onEntered(handle)
+    fun onErrorEntering(text: String): Unit = mProxy.native_onErrorEntering(handle, text)
+    fun onLeft(): Unit = mProxy.native_onLeft(handle)
 
     override fun close() {
-        mProxy.nativeDestroy()
+        mProxy.nativeDestroy(handle)
     }
 }

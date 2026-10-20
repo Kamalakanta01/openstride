@@ -234,7 +234,7 @@ public:
     virtual void native_addDoubleProperty(std::string a0, double a1) {}
     virtual void native_addIntegerProperty(std::string a0, int64_t a1) {}
     virtual void native_addStringProperty(std::string a0, std::string a1) {}
-    virtual OverriddenFeatureProperties create() { return {}; }
+    virtual OverriddenFeaturePropertiesImpl* create() { return {}; }
     virtual std::optional<bool> native_getBooleanProperty(std::string a0) { return {}; }
     virtual std::optional<double> native_getDoubleProperty(std::string a0) { return {}; }
     virtual std::optional<int64_t> native_getIntegerProperty(std::string a0) { return {}; }
@@ -380,7 +380,7 @@ public:
     virtual float native_getFps() { return {}; }
     virtual UnitsInfo native_getGridUnits() { return {}; }
     virtual OfflineImpl* native_getOffline() { return {}; }
-    virtual OverriddenFeatureProperties native_getOverriddenFeatureProperties() { return {}; }
+    virtual OverriddenFeaturePropertiesImpl* native_getOverriddenFeatureProperties() { return {}; }
     virtual PrivateApiImpl* native_getPrivateApi(std::string a0) { return {}; }
     virtual UtilsImpl* native_getUtils() { return {}; }
     virtual void native_receivedMemoryWarning() {}
@@ -403,7 +403,7 @@ public:
     virtual void native_setMapType(MapType a0) {}
     virtual void native_setNightlyHeatmapConfig(NightlyHeatmapConfig a0) {}
     virtual void native_setOverlayPolygons(std::vector<OverlayPolygon> a0) {}
-    virtual void native_setOverriddenFeatureProperties(OverriddenFeatureProperties a0) {}
+    virtual void native_setOverriddenFeatureProperties(jni::Opaque a0) {}
     virtual void native_setPaused(bool a0) {}
     virtual void native_setPersonalHeatmapConfig(PersonalHeatmapConfig a0) {}
     virtual void native_setRenderingDisabled(bool a0) {}

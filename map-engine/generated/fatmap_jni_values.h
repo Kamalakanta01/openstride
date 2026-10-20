@@ -99,8 +99,6 @@ fatmap::OsTouchPosition read_OsTouchPosition(JNIEnv* env, jobject obj);
 jobject write_OsTouchPosition(JNIEnv* env, const fatmap::OsTouchPosition& value);
 fatmap::OverlayPolygon read_OverlayPolygon(JNIEnv* env, jobject obj);
 jobject write_OverlayPolygon(JNIEnv* env, const fatmap::OverlayPolygon& value);
-fatmap::OverriddenFeatureProperties read_OverriddenFeatureProperties(JNIEnv* env, jobject obj);
-jobject write_OverriddenFeatureProperties(JNIEnv* env, const fatmap::OverriddenFeatureProperties& value);
 fatmap::PerformanceMetrics read_PerformanceMetrics(JNIEnv* env, jobject obj);
 jobject write_PerformanceMetrics(JNIEnv* env, const fatmap::PerformanceMetrics& value);
 fatmap::PerformanceTestResult read_PerformanceTestResult(JNIEnv* env, jobject obj);

@@ -27,6 +27,8 @@ double tanHalfFov() {
     return std::tan(kHalfFov);
 }
 
+
+}  // namespace
 /// Interpolates the camera along its transition.
 void applyTransition(Engine& engine, const CameraTransition& transition, double t) {
     const double eased = geo::easeInOut(t);
@@ -42,7 +44,6 @@ void applyTransition(Engine& engine, const CameraTransition& transition, double 
     engine.mCameraZoom = geo::lerp(transition.fromZoom, transition.toZoom, eased);
 }
 
-}  // namespace
 
 // ------------------------------------------------------------ TileSource
 
@@ -262,8 +263,8 @@ EngineConfigurationImpl* static_EngineConfiguration_createDefault(JNIEnv*) {
     return configuration;
 }
 
-OverriddenFeatureProperties static_OverriddenFeatureProperties_create(JNIEnv*) {
-    return OverriddenFeatureProperties{};
+OverriddenFeaturePropertiesImpl* static_OverriddenFeatureProperties_create(JNIEnv*) {
+    return &standaloneEngine().featureProperties();
 }
 
 MREHolderImpl* static_MREHolder_create(JNIEnv* env, jni::Opaque surfaceHolder,

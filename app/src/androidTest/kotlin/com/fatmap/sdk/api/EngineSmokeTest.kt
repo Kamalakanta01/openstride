@@ -156,6 +156,27 @@ class EngineSmokeTest {
     }
 
     @Test
+    fun theFeaturePropertiesRoundTrip() {
+        val properties = OverriddenFeatureProperties.create()
+        assertNotNull(properties)
+
+        properties.addStringProperty("colour", "red")
+        assertEquals("red", properties.getStringProperty("colour"))
+
+        properties.addBooleanProperty("show-lanes", true)
+        assertEquals(true, properties.getBooleanProperty("show-lanes"))
+
+        properties.addDoubleProperty("scale", 1.5)
+        assertEquals(1.5, properties.getDoubleProperty("scale")!!, 1e-9)
+
+        properties.addIntegerProperty("width", 7)
+        assertEquals(7L, properties.getIntegerProperty("width"))
+
+        properties.removeProperty("colour")
+        assertEquals("", properties.getStringProperty("colour"))
+    }
+
+    @Test
     fun contentCanBeAddedAndRemoved() {
         var engine: TerrainEngine? = null
         val holder =

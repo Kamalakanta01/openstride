@@ -335,12 +335,6 @@ struct OsTouchPosition {
     float normalizedY;
 };
 
-struct OverriddenFeatureProperties {
-    std::string STRAVA_BIKE_LANES_DISABLED_PROPERTY;
-    std::string STRAVA_BIKE_MAP_ENABLED_PROPERTY;
-    std::string STRAVA_HIKE_MAP_ENABLED_PROPERTY;
-};
-
 struct PerformanceMetrics {
     int64_t frameCountFromStart;
     float frameTime;

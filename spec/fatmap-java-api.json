@@ -1,2144 +1,2149 @@
 {
- "com.fatmap.sdk.api.ActivityContent": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "applyActivityGradient(java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.Color>): void",
-   "applyActivityPolylineHighlights(java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.PolylineHighlightSection>): void",
-   "clearActivityGradient(java.lang.String): void",
-   "clearActivityPolylineHighlights(java.lang.String): void",
-   "displayActivity(java.lang.String, com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalInt): void",
-   "displayActivity2(java.lang.String, com.fatmap.sdk.api.WorldLine2, java.util.ArrayList<com.fatmap.sdk.api.ActivitySection>): void",
-   "displayActivityTruncated(java.lang.String, com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalInt): void",
-   "displayActivityWithPrivacyIcons(java.lang.String, com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalInt): void",
-   "removeActivity(java.lang.String): void",
-   "removeAllActivities(): void"
-  ]
- },
- "com.fatmap.sdk.api.ActivitySection": {
-  "f": [
-   "mNumPolylineEdges:long",
-   "mPrivateSection:boolean",
-   "mSurfaceType:com.fatmap.sdk.api.RoadSurfaceType"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, com.fatmap.sdk.api.RoadSurfaceType, boolean): void",
-   "getNumPolylineEdges(): long",
-   "getPrivateSection(): boolean",
-   "getSurfaceType(): com.fatmap.sdk.api.RoadSurfaceType",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.AnimatedImage": {
-  "f": [
-   "mFps:float",
-   "mFrames:java.util.ArrayList<com.fatmap.sdk.api.CustomImage>",
-   "mShouldLoop:boolean"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.util.ArrayList<com.fatmap.sdk.api.CustomImage>, float, boolean): void",
-   "getFps(): float",
-   "getFrames(): java.util.ArrayList<com.fatmap.sdk.api.CustomImage>",
-   "getShouldLoop(): boolean",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.AuthenticationErrorListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onAuthenticationError(java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.HttpHeader>, java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.BreadcrumbRecorder": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "recordBreadcrumb(java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.BundleLoadListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onFinishedLoading(): void"
-  ]
- },
- "com.fatmap.sdk.api.BundleUnloadListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onUnloaded(java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.Camera": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addInteractionListener(com.fatmap.sdk.api.CameraInteractionListener): void",
-   "addStateListener(com.fatmap.sdk.api.CameraStateListener): void",
-   "enterFirstPersonView(double, double, float): void",
-   "flyThrough(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, java.lang.String, java.lang.String, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraFlyThroughProgressListener, com.fatmap.sdk.api.CameraTargetPlus, java.util.ArrayList<java.lang.Float>): void",
-   "flyThroughInteractive(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, java.lang.String, java.lang.String, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraFlyThroughProgressListener, com.fatmap.sdk.api.CameraTargetPlus, boolean, com.fatmap.sdk.api.CameraDeltaTimeProvider, java.util.ArrayList<java.lang.Float>): com.fatmap.sdk.api.CameraFlyThroughControls",
-   "flyTo(double, double, float, java.lang.Float, java.lang.Float, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
-   "flyToBounds(com.fatmap.sdk.api.WorldBounds2, java.lang.Float, java.lang.Float, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
-   "flyToTarget(com.fatmap.sdk.api.CameraTarget, float, boolean, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
-   "flyToWithZoomLevel(double, double, float, java.lang.Float, java.lang.Float, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
-   "flyover(boolean, java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraFlyThroughProgressListener, com.fatmap.sdk.api.CameraTargetPlus, com.fatmap.sdk.api.CameraDeltaTimeProvider, java.util.ArrayList<java.lang.Float>): com.fatmap.sdk.api.CameraFlyThroughControls",
-   "followUserLocation(java.lang.Float, java.lang.Float, java.lang.Float, com.fatmap.sdk.api.FollowMode, com.fatmap.sdk.api.CameraMargins): void",
-   "followUserLocationWithZoomLevel(com.fatmap.sdk.api.WorldPoint2, java.lang.Float, java.lang.Float, java.lang.Float, com.fatmap.sdk.api.FollowMode, com.fatmap.sdk.api.CameraMargins): void",
-   "getCameraViewType(): com.fatmap.sdk.api.CameraViewType",
-   "getCustomLookAtPoint(float, float): com.fatmap.sdk.api.LookAtPoint",
-   "getLookAtPoint(): com.fatmap.sdk.api.LookAtPoint",
-   "getScaleMetersPerPixel(): float",
-   "getScreenPosition(com.fatmap.sdk.api.WorldPoint2): com.fatmap.sdk.api.PointScreenPosition",
-   "getTarget(): com.fatmap.sdk.api.CameraTarget",
-   "getVisibleAreaBounds(com.fatmap.sdk.api.CameraMargins, float): com.fatmap.sdk.api.VisibleAreaBounds",
-   "isWorldPointVisible(com.fatmap.sdk.api.WorldPoint3, boolean): boolean",
-   "removeInteractionListener(com.fatmap.sdk.api.CameraInteractionListener): void",
-   "removeStateListener(com.fatmap.sdk.api.CameraStateListener): void",
-   "setBearing(float, float, com.fatmap.sdk.api.CameraMargins): void",
-   "setCameraViewType(com.fatmap.sdk.api.CameraViewType): void",
-   "setDynamicExaggerationEnabled(boolean): void",
-   "setDynamicExaggerationMultiplier(float): void",
-   "setRotationSpeed(float, float): void",
-   "setTranslationSpeed(float, float): void",
-   "setZoomSpeed(float): void",
-   "stop(): void",
-   "translateTo(com.fatmap.sdk.api.WorldPoint2, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void"
-  ]
- },
- "com.fatmap.sdk.api.CameraActionCompletionListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onActionComplete(boolean): void"
-  ]
- },
- "com.fatmap.sdk.api.CameraDeltaTimeProvider": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "getDeltaTime(): float"
-  ]
- },
- "com.fatmap.sdk.api.CameraFlyThroughControls": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "getDurationSeconds(): float",
-   "getTrackProgress(): float",
-   "getTrackSpeedMultiplier(): float",
-   "isActive(): boolean",
-   "isCameraDetached(): boolean",
-   "isRefocusPossible(): boolean",
-   "refocus(): void",
-   "seekToAnimationStart(): void",
-   "setAnimationSpeedMultiplier(float): void",
-   "setCameraDistanceMultiplier(float): void",
-   "setTrackProgress(float): void",
-   "setTrackSpeedMultiplier(float): void",
-   "stop(): void"
-  ]
- },
- "com.fatmap.sdk.api.CameraFlyThroughProgressListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onFlyThroughProgress(float, float, long, float): void",
-   "onInterrupted(): void"
-  ]
- },
- "com.fatmap.sdk.api.CameraInteractionListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onInteractionEnd(): void",
-   "onInteractionStart(): void",
-   "onTiltInteractionPrevented(): void"
-  ]
- },
- "com.fatmap.sdk.api.CameraMargins": {
-  "f": [
-   "mBottom:float",
-   "mLeft:float",
-   "mRight:float",
-   "mTop:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, float, float, float): void",
-   "getBottom(): float",
-   "getLeft(): float",
-   "getRight(): float",
-   "getTop(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.CameraStateFlags": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.CameraStateFlags[]",
-   "TARGET:com.fatmap.sdk.api.CameraStateFlags",
-   "VIEW_TYPE:com.fatmap.sdk.api.CameraStateFlags",
-   "ZOOM_LEVEL:com.fatmap.sdk.api.CameraStateFlags"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.CameraStateFlags[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.CameraStateFlags",
-   "values(): com.fatmap.sdk.api.CameraStateFlags[]"
-  ]
- },
- "com.fatmap.sdk.api.CameraStateListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onTargetChanged(com.fatmap.sdk.api.CameraTarget): void",
-   "onViewTypeChanged(com.fatmap.sdk.api.CameraViewType): void",
-   "onZoomLevelChanged(float): void",
-   "stateToObserve(): java.util.EnumSet<com.fatmap.sdk.api.CameraStateFlags>"
-  ]
- },
- "com.fatmap.sdk.api.CameraTarget": {
-  "f": [
-   "mBearing:float",
-   "mDistance:float",
-   "mLookAtPoint:com.fatmap.sdk.api.WorldPoint3",
-   "mPitch:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.WorldPoint3, float, float, float): void",
-   "getBearing(): float",
-   "getDistance(): float",
-   "getLookAtPoint(): com.fatmap.sdk.api.WorldPoint3",
-   "getPitch(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.CameraTargetPlus": {
-  "f": [
-   "mAvoidMountains:boolean",
-   "mCameraTarget:com.fatmap.sdk.api.CameraTarget"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.CameraTarget, boolean): void",
-   "getAvoidMountains(): boolean",
-   "getCameraTarget(): com.fatmap.sdk.api.CameraTarget",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.CameraViewType": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.CameraViewType[]",
-   "CAMERA2D:com.fatmap.sdk.api.CameraViewType",
-   "CAMERA3D:com.fatmap.sdk.api.CameraViewType"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.CameraViewType[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.CameraViewType",
-   "values(): com.fatmap.sdk.api.CameraViewType[]"
-  ]
- },
- "com.fatmap.sdk.api.CandidateSegment": {
-  "f": [
-   "mIdentifier:java.lang.String",
-   "mIsStarred:boolean",
-   "mLine:com.fatmap.sdk.api.WorldLine2",
-   "mTitle:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, com.fatmap.sdk.api.WorldLine2, boolean, java.lang.String): void",
-   "getIdentifier(): java.lang.String",
-   "getIsStarred(): boolean",
-   "getLine(): com.fatmap.sdk.api.WorldLine2",
-   "getTitle(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.ClickEventType": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.ClickEventType[]",
-   "CONTENT:com.fatmap.sdk.api.ClickEventType",
-   "MAP:com.fatmap.sdk.api.ClickEventType",
-   "USERMARKER:com.fatmap.sdk.api.ClickEventType"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.ClickEventType[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.ClickEventType",
-   "values(): com.fatmap.sdk.api.ClickEventType[]"
-  ]
- },
- "com.fatmap.sdk.api.ClickSourceType": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.ClickSourceType[]",
-   "MOUSE:com.fatmap.sdk.api.ClickSourceType",
-   "TOUCH:com.fatmap.sdk.api.ClickSourceType"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.ClickSourceType[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.ClickSourceType",
-   "values(): com.fatmap.sdk.api.ClickSourceType[]"
-  ]
- },
- "com.fatmap.sdk.api.Color": {
-  "f": [
-   "f70443mA:double",
-   "f70444mB:double",
-   "f70445mG:double",
-   "mR:double"
-  ],
-  "i": [],
-  "m": [
-   "<init>(double, double, double, double): void",
-   "getA(): double",
-   "getB(): double",
-   "getG(): double",
-   "getR(): double",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.CommandService": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "execute(java.lang.String): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.CompletionCallback": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onCompleted(): void"
-  ]
- },
- "com.fatmap.sdk.api.Content": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addCircleMarker(java.lang.String, double, double, float): void",
-   "addCustomGradientLine(com.fatmap.sdk.api.WorldLine2, java.lang.String, java.lang.String, java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.Color>): long",
-   "addCustomLine(com.fatmap.sdk.api.WorldLine2, java.lang.String, java.lang.String, boolean, java.lang.String): long",
-   "addDroppedPin(java.lang.String, com.fatmap.sdk.api.WorldPoint2): void",
-   "getActivityContent(): com.fatmap.sdk.api.ActivityContent",
-   "getOsmFilter(): com.fatmap.sdk.api.OsmFilter",
-   "getRecordContent(): com.fatmap.sdk.api.RecordContent",
-   "getRouteContent(): com.fatmap.sdk.api.RouteContent",
-   "getSegmentsFilter(): com.fatmap.sdk.api.SegmentsFilter",
-   "getStravaPoiFilter(): com.fatmap.sdk.api.StravaPoiFilter",
-   "removeAllDroppedPins(): void",
-   "removeCircleMarker(java.lang.String): void",
-   "removeCustomLine(long): boolean",
-   "removeDroppedPin(java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.ContentClickEvent": {
-  "f": [
-   "mButton:com.fatmap.sdk.api.MouseButtonCode",
-   "mObjects:java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
-   "mSource:com.fatmap.sdk.api.ClickSourceType",
-   "mType:com.fatmap.sdk.api.ClickEventType",
-   "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.ClickEventType, java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>, com.fatmap.sdk.api.ClickSourceType, com.fatmap.sdk.api.MouseButtonCode, com.fatmap.sdk.api.WorldPoint3): void",
-   "getButton(): com.fatmap.sdk.api.MouseButtonCode",
-   "getObjects(): java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
-   "getSource(): com.fatmap.sdk.api.ClickSourceType",
-   "getType(): com.fatmap.sdk.api.ClickEventType",
-   "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.ContentClickEventObject": {
-  "f": [
-   "mContentGroup:com.fatmap.sdk.api.ContentGroup",
-   "mContentSelectionHandle:com.fatmap.sdk.api.ContentSelectionHandle",
-   "mCustomTapId:java.lang.String",
-   "mFeatureCategory:java.lang.String",
-   "mId:long",
-   "mLayerName:java.lang.String",
-   "mName:java.lang.String",
-   "mPosition:java.lang.String",
-   "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.ContentGroup, long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.fatmap.sdk.api.WorldPoint3, com.fatmap.sdk.api.ContentSelectionHandle): void",
-   "getContentGroup(): com.fatmap.sdk.api.ContentGroup",
-   "getContentSelectionHandle(): com.fatmap.sdk.api.ContentSelectionHandle",
-   "getCustomTapId(): java.lang.String",
-   "getFeatureCategory(): java.lang.String",
-   "getId(): long",
-   "getLayerName(): java.lang.String",
-   "getName(): java.lang.String",
-   "getPosition(): java.lang.String",
-   "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.ContentGroup": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.ContentGroup[]",
-   "ACTIVITIES:com.fatmap.sdk.api.ContentGroup",
-   "CUSTOMLINE:com.fatmap.sdk.api.ContentGroup",
-   "CUSTOMMARKER:com.fatmap.sdk.api.ContentGroup",
-   "OSM:com.fatmap.sdk.api.ContentGroup",
-   "RECORD:com.fatmap.sdk.api.ContentGroup",
-   "ROUTES:com.fatmap.sdk.api.ContentGroup",
-   "SEGMENTS:com.fatmap.sdk.api.ContentGroup",
-   "STRAVAPOI:com.fatmap.sdk.api.ContentGroup"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.ContentGroup[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.ContentGroup",
-   "values(): com.fatmap.sdk.api.ContentGroup[]"
-  ]
- },
- "com.fatmap.sdk.api.ContentSelectionHandle": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void"
-  ]
- },
- "com.fatmap.sdk.api.CustomImage": {
-  "f": [
-   "mData:byte[]",
-   "mFormat:com.fatmap.sdk.api.ImageFormat",
-   "mHeight:int",
-   "mPixelRatio:float",
-   "mWidth:int"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.ImageFormat, int, int, float, byte[]): void",
-   "getData(): byte[]",
-   "getFormat(): com.fatmap.sdk.api.ImageFormat",
-   "getHeight(): int",
-   "getPixelRatio(): float",
-   "getWidth(): int",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.DataExchangeService": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "getString(): java.lang.String",
-   "setString(java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.DebugApi": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "dumpEngineState(): java.lang.String",
-   "hideFpsStatsOverlay(): void",
-   "showFpsStatsOverlay(com.fatmap.sdk.api.DebugOverlayCorner, com.fatmap.sdk.api.DebugOverlayPadding): void"
-  ]
- },
- "com.fatmap.sdk.api.DebugOverlayCorner": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.DebugOverlayCorner[]",
-   "LOWERLEFT:com.fatmap.sdk.api.DebugOverlayCorner",
-   "LOWERRIGHT:com.fatmap.sdk.api.DebugOverlayCorner",
-   "UPPERLEFT:com.fatmap.sdk.api.DebugOverlayCorner",
-   "UPPERRIGHT:com.fatmap.sdk.api.DebugOverlayCorner"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.DebugOverlayCorner[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.DebugOverlayCorner",
-   "values(): com.fatmap.sdk.api.DebugOverlayCorner[]"
-  ]
- },
- "com.fatmap.sdk.api.DebugOverlayPadding": {
-  "f": [
-   "mHorizontal:float",
-   "mVertical:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, float): void",
-   "getHorizontal(): float",
-   "getVertical(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.DeviceOrientation": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.DeviceOrientation[]",
-   "LANDSCAPE_LEFT:com.fatmap.sdk.api.DeviceOrientation",
-   "LANDSCAPE_RIGHT:com.fatmap.sdk.api.DeviceOrientation",
-   "PORTRAIT:com.fatmap.sdk.api.DeviceOrientation",
-   "PORTRAIT_UPSIDE_DOWN:com.fatmap.sdk.api.DeviceOrientation"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.DeviceOrientation[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.DeviceOrientation",
-   "values(): com.fatmap.sdk.api.DeviceOrientation[]"
-  ]
- },
- "com.fatmap.sdk.api.DeviceOrientationListener": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onDeviceOrientationChanged(com.fatmap.sdk.api.DeviceOrientation): void"
-  ]
- },
- "com.fatmap.sdk.api.DeviceOrientationService": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "setDeviceOrientationListener(com.fatmap.sdk.api.DeviceOrientationListener): void",
-   "start(): void",
-   "stop(): void"
-  ]
- },
- "com.fatmap.sdk.api.EngineConfiguration": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "createDefault(): com.fatmap.sdk.api.EngineConfiguration",
-   "getBreadcrumbRecorder(): com.fatmap.sdk.api.BreadcrumbRecorder",
-   "getCameraTarget(): com.fatmap.sdk.api.CameraTarget",
-   "getClientName(): java.lang.String",
-   "getEnableRasterMegaTiles(): boolean",
-   "getLogLevel(): com.fatmap.sdk.api.LogLevel",
-   "getLoggingToStdOut(): boolean",
-   "getReindexOnDiskResources(): boolean",
-   "getUseOnDiskCache(): boolean",
-   "loadFromFile(java.lang.String): boolean",
-   "setBreadcrumbRecorder(com.fatmap.sdk.api.BreadcrumbRecorder): void",
-   "setCameraTarget(com.fatmap.sdk.api.CameraTarget): void",
-   "setClientName(java.lang.String): void",
-   "setEnableRasterMegaTiles(boolean): void",
-   "setLogLevel(com.fatmap.sdk.api.LogLevel): void",
-   "setLoggingToStdOut(boolean): void",
-   "setReindexOnDiskResources(boolean): void",
-   "setUseOnDiskCache(boolean): void"
-  ]
- },
- "com.fatmap.sdk.api.FollowMode": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.FollowMode[]",
-   "HEADING:com.fatmap.sdk.api.FollowMode",
-   "POSITION:com.fatmap.sdk.api.FollowMode"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.FollowMode[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.FollowMode",
-   "values(): com.fatmap.sdk.api.FollowMode[]"
-  ]
- },
- "com.fatmap.sdk.api.GestureRecognizerControl": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "setAllGesturesEnabled(boolean): void",
-   "setDoubleTapGesturesEnabled(boolean): void"
-  ]
- },
- "com.fatmap.sdk.api.GivenUpDownloadsInfo": {
-  "f": [
-   "mCurrentSequenceNumber:long",
-   "mHaveGivenUpDownloads:boolean",
-   "mNewGivenUpDownloads:long"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, long, boolean): void",
-   "getCurrentSequenceNumber(): long",
-   "getHaveGivenUpDownloads(): boolean",
-   "getNewGivenUpDownloads(): long",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.GlobalHeatmapConfig": {
-  "f": [
-   "mActivityType:java.lang.String",
-   "mColorScheme:com.fatmap.sdk.api.HeatmapColorScheme",
-   "mOpacityMultiplier:java.lang.Float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, com.fatmap.sdk.api.HeatmapColorScheme, java.lang.Float): void",
-   "getActivityType(): java.lang.String",
-   "getColorScheme(): com.fatmap.sdk.api.HeatmapColorScheme",
-   "getOpacityMultiplier(): java.lang.Float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.HeatmapColorScheme": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.HeatmapColorScheme[]",
-   "BLUE:com.fatmap.sdk.api.HeatmapColorScheme",
-   "BLUE_RED:com.fatmap.sdk.api.HeatmapColorScheme",
-   "ORANGE:com.fatmap.sdk.api.HeatmapColorScheme",
-   "PINK:com.fatmap.sdk.api.HeatmapColorScheme",
-   "PURPLE:com.fatmap.sdk.api.HeatmapColorScheme",
-   "SUNSET:com.fatmap.sdk.api.HeatmapColorScheme",
-   "WEEKLY_RAINBOW:com.fatmap.sdk.api.HeatmapColorScheme"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.HeatmapColorScheme[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.HeatmapColorScheme",
-   "values(): com.fatmap.sdk.api.HeatmapColorScheme[]"
-  ]
- },
- "com.fatmap.sdk.api.HighlightedTile": {
-  "f": [
-   "mColor:com.fatmap.sdk.api.Color",
-   "mIndex:com.fatmap.sdk.api.QuadIndex"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.QuadIndex, com.fatmap.sdk.api.Color): void",
-   "getColor(): com.fatmap.sdk.api.Color",
-   "getIndex(): com.fatmap.sdk.api.QuadIndex",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.HttpHeader": {
-  "f": [
-   "mName:java.lang.String",
-   "mValue:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String): void",
-   "getName(): java.lang.String",
-   "getValue(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.ImageFormat": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.ImageFormat[]",
-   "JPG:com.fatmap.sdk.api.ImageFormat",
-   "PNG:com.fatmap.sdk.api.ImageFormat",
-   "RGB:com.fatmap.sdk.api.ImageFormat",
-   "RGBA:com.fatmap.sdk.api.ImageFormat"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.ImageFormat[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.ImageFormat",
-   "values(): com.fatmap.sdk.api.ImageFormat[]"
-  ]
- },
- "com.fatmap.sdk.api.ImageryOverlay": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.ImageryOverlay[]",
-   "ASPECT:com.fatmap.sdk.api.ImageryOverlay",
-   "AVALANCHE:com.fatmap.sdk.api.ImageryOverlay",
-   "GRADIENT:com.fatmap.sdk.api.ImageryOverlay",
-   "GRID:com.fatmap.sdk.api.ImageryOverlay",
-   "NONE:com.fatmap.sdk.api.ImageryOverlay"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.ImageryOverlay[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.ImageryOverlay",
-   "values(): com.fatmap.sdk.api.ImageryOverlay[]"
-  ]
- },
- "com.fatmap.sdk.api.IntervalFloat": {
-  "f": [
-   "mFrom:float",
-   "mTo:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, float): void",
-   "getFrom(): float",
-   "getTo(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.IntervalInt": {
-  "f": [
-   "mFrom:long",
-   "mTo:long"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, long): void",
-   "getFrom(): long",
-   "getTo(): long",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.Language": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.Language[]",
-   "ES:com.fatmap.sdk.api.Language",
-   "FR:com.fatmap.sdk.api.Language",
-   "IT:com.fatmap.sdk.api.Language",
-   "LOCAL:com.fatmap.sdk.api.Language",
-   "PT:com.fatmap.sdk.api.Language",
-   "RU:com.fatmap.sdk.api.Language",
-   "ZH_HANS:com.fatmap.sdk.api.Language",
-   "ZH_HANT:com.fatmap.sdk.api.Language",
-   "f70446DE:com.fatmap.sdk.api.Language",
-   "f70447EN:com.fatmap.sdk.api.Language",
-   "f70448JA:com.fatmap.sdk.api.Language"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.Language[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.Language",
-   "values(): com.fatmap.sdk.api.Language[]"
-  ]
- },
- "com.fatmap.sdk.api.LodCalculationControlParams": {
-  "f": [
-   "mMaxLodDifferenceForOffset:int",
-   "mTileSplitThresholdOffset:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, int): void",
-   "getMaxLodDifferenceForOffset(): int",
-   "getTileSplitThresholdOffset(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.LogLevel": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.LogLevel[]",
-   "DEBUG:com.fatmap.sdk.api.LogLevel",
-   "DISABLED:com.fatmap.sdk.api.LogLevel",
-   "ERROR:com.fatmap.sdk.api.LogLevel",
-   "INFO:com.fatmap.sdk.api.LogLevel",
-   "WARNING:com.fatmap.sdk.api.LogLevel"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.LogLevel[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.LogLevel",
-   "values(): com.fatmap.sdk.api.LogLevel[]"
-  ]
- },
- "com.fatmap.sdk.api.LookAtPoint": {
-  "f": [
-   "mIsPointingAtMap:boolean",
-   "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.WorldPoint3, boolean): void",
-   "getIsPointingAtMap(): boolean",
-   "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.LuaAnimationHandler": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onError(com.fatmap.sdk.api.LuaScriptError): void",
-   "onProgress(float): void",
-   "shouldAdvanceAnimation(): boolean"
-  ]
- },
- "com.fatmap.sdk.api.LuaScriptError": {
-  "f": [
-   "mWhat:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String): void",
-   "getWhat(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.MREHolder": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "create(com.fatmap.sdk.api.RenderSurfaceHolder, com.fatmap.sdk.api.DeviceOrientationService, java.lang.String, java.lang.String, com.fatmap.sdk.api.EngineConfiguration): com.fatmap.sdk.api.MREHolder",
-   "handleMemoryWarning(): void",
-   "handleOnAppDidEnterBackground(): void",
-   "handleOnAppDidEnterForeground(): void"
-  ]
- },
- "com.fatmap.sdk.api.MapClickEvent": {
-  "f": [
-   "mButton:com.fatmap.sdk.api.MouseButtonCode",
-   "mSource:com.fatmap.sdk.api.ClickSourceType",
-   "mType:com.fatmap.sdk.api.ClickEventType",
-   "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.ClickEventType, com.fatmap.sdk.api.WorldPoint3, com.fatmap.sdk.api.ClickSourceType, com.fatmap.sdk.api.MouseButtonCode): void",
-   "getButton(): com.fatmap.sdk.api.MouseButtonCode",
-   "getSource(): com.fatmap.sdk.api.ClickSourceType",
-   "getType(): com.fatmap.sdk.api.ClickEventType",
-   "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.MapType": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.MapType[]",
-   "STRAVA_HYBRID:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_HYBRID:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_HYBRID_EXPERIMENT:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_SATELLITE_SUMMER:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_SATELLITE_SUMMER_EXPERIMENT:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_DARK:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_DARK_EXPERIMENT:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_LIGHT:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_LIGHT_EXPERIMENT:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_WINTER:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_WINTER_EXPERIMENT:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_WINTER_HYBRID:com.fatmap.sdk.api.MapType",
-   "STRAVA_PLANET_TOPO_WINTER_HYBRID_EXPERIMENT:com.fatmap.sdk.api.MapType",
-   "STRAVA_SATELLITE_SUMMER:com.fatmap.sdk.api.MapType",
-   "STRAVA_SATELLITE_WINTER:com.fatmap.sdk.api.MapType",
-   "STRAVA_TOPO_DARK:com.fatmap.sdk.api.MapType",
-   "STRAVA_TOPO_LIGHT:com.fatmap.sdk.api.MapType",
-   "STRAVA_TOPO_WINTER:com.fatmap.sdk.api.MapType",
-   "STRAVA_TOPO_WINTER_HYBRID:com.fatmap.sdk.api.MapType"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.MapType[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.MapType",
-   "values(): com.fatmap.sdk.api.MapType[]"
-  ]
- },
- "com.fatmap.sdk.api.MeasurementUnit": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.MeasurementUnit[]",
-   "FEET:com.fatmap.sdk.api.MeasurementUnit",
-   "KILOMETER:com.fatmap.sdk.api.MeasurementUnit",
-   "METER:com.fatmap.sdk.api.MeasurementUnit",
-   "MILE:com.fatmap.sdk.api.MeasurementUnit"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.MeasurementUnit[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.MeasurementUnit",
-   "values(): com.fatmap.sdk.api.MeasurementUnit[]"
-  ]
- },
- "com.fatmap.sdk.api.MeasurementUnitSystem": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.MeasurementUnitSystem[]",
-   "IMPERIAL:com.fatmap.sdk.api.MeasurementUnitSystem",
-   "METRIC:com.fatmap.sdk.api.MeasurementUnitSystem"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.MeasurementUnitSystem[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.MeasurementUnitSystem",
-   "values(): com.fatmap.sdk.api.MeasurementUnitSystem[]"
-  ]
- },
- "com.fatmap.sdk.api.MemoryStats": {
-  "f": [
-   "mCurrentAllocatedMb:double",
-   "mCurrentAllocationCount:long",
-   "mTotalAllocatedMb:double",
-   "mTotalAllocationCount:long"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, double, long, double): void",
-   "getCurrentAllocatedMb(): double",
-   "getCurrentAllocationCount(): long",
-   "getTotalAllocatedMb(): double",
-   "getTotalAllocationCount(): long",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.MouseButtonCode": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.MouseButtonCode[]",
-   "LEFT:com.fatmap.sdk.api.MouseButtonCode",
-   "MIDDLE:com.fatmap.sdk.api.MouseButtonCode",
-   "RIGHT:com.fatmap.sdk.api.MouseButtonCode"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.MouseButtonCode[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.MouseButtonCode",
-   "values(): com.fatmap.sdk.api.MouseButtonCode[]"
-  ]
- },
- "com.fatmap.sdk.api.MouseMoveEvent": {
-  "f": [
-   "mObjects:java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
-   "mX:float",
-   "mY:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, float, java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>): void",
-   "getObjects(): java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
-   "getX(): float",
-   "getY(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.NightlyHeatmapConfig": {
-  "f": [
-   "mActivityType:java.lang.String",
-   "mOpacityMultiplier:java.lang.Float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.Float): void",
-   "getActivityType(): java.lang.String",
-   "getOpacityMultiplier(): java.lang.Float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.Offline": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "loadBundles(java.util.ArrayList<java.lang.String>, com.fatmap.sdk.api.BundleLoadListener): void",
-   "setNonBundleResourcesAllowed(boolean): void",
-   "unloadBundles(java.util.ArrayList<java.lang.String>, com.fatmap.sdk.api.BundleUnloadListener): void"
-  ]
- },
- "com.fatmap.sdk.api.OnGridChangeListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onGridSizeChange(com.fatmap.sdk.api.UnitsInfo): void"
-  ]
- },
- "com.fatmap.sdk.api.OnMREReadyCallback": {
-  "f": [],
-  "i": [],
-  "m": [
-   "onMapReady(com.fatmap.sdk.api.TerrainEngine): void"
-  ]
- },
- "com.fatmap.sdk.api.OnMapLoadListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onMapLoad(): void"
-  ]
- },
- "com.fatmap.sdk.api.OnMouseMoveListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onMouseMove(com.fatmap.sdk.api.MouseMoveEvent): void"
-  ]
- },
- "com.fatmap.sdk.api.OnTapListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onContentTap(com.fatmap.sdk.api.ContentClickEvent): void",
-   "onLongContentTap(com.fatmap.sdk.api.ContentClickEvent): void",
-   "onLongMapTap(com.fatmap.sdk.api.MapClickEvent): void",
-   "onLongUserMarkerTap(com.fatmap.sdk.api.UserMarkerClickEvent): void",
-   "onMapTap(com.fatmap.sdk.api.MapClickEvent): void",
-   "onUserMarkerTap(com.fatmap.sdk.api.UserMarkerClickEvent): void"
-  ]
- },
- "com.fatmap.sdk.api.OsTouch": {
-  "f": [
-   "mCurrentInfo:com.fatmap.sdk.api.OsTouchInfo",
-   "mId:long"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, com.fatmap.sdk.api.OsTouchInfo): void",
-   "getCurrentInfo(): com.fatmap.sdk.api.OsTouchInfo",
-   "getId(): long",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.OsTouchAction": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.OsTouchAction[]",
-   "CANCEL:com.fatmap.sdk.api.OsTouchAction",
-   "END:com.fatmap.sdk.api.OsTouchAction",
-   "MOVE:com.fatmap.sdk.api.OsTouchAction",
-   "START:com.fatmap.sdk.api.OsTouchAction"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.OsTouchAction[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.OsTouchAction",
-   "values(): com.fatmap.sdk.api.OsTouchAction[]"
-  ]
- },
- "com.fatmap.sdk.api.OsTouchInfo": {
-  "f": [
-   "mPosition:com.fatmap.sdk.api.OsTouchPosition",
-   "mTimestamp:double"
-  ],
-  "i": [],
-  "m": [
-   "<init>(double, com.fatmap.sdk.api.OsTouchPosition): void",
-   "getPosition(): com.fatmap.sdk.api.OsTouchPosition",
-   "getTimestamp(): double",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.OsTouchPosition": {
-  "f": [
-   "mNormalizedX:float",
-   "mNormalizedY:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, float): void",
-   "getNormalizedX(): float",
-   "getNormalizedY(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.OsmFilter": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "setShow(boolean): void"
-  ]
- },
- "com.fatmap.sdk.api.OverlayPolygon": {
-  "f": [
-   "mAspect:java.util.ArrayList<com.fatmap.sdk.api.IntervalFloat>",
-   "mBoundary:com.fatmap.sdk.api.WorldLine2",
-   "mFillColor:com.fatmap.sdk.api.Color",
-   "mGradientRange:com.fatmap.sdk.api.IntervalFloat",
-   "mHeightRange:com.fatmap.sdk.api.IntervalFloat"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalFloat, com.fatmap.sdk.api.IntervalFloat, java.util.ArrayList<com.fatmap.sdk.api.IntervalFloat>, com.fatmap.sdk.api.Color): void",
-   "getAspect(): java.util.ArrayList<com.fatmap.sdk.api.IntervalFloat>",
-   "getBoundary(): com.fatmap.sdk.api.WorldLine2",
-   "getFillColor(): com.fatmap.sdk.api.Color",
-   "getGradientRange(): com.fatmap.sdk.api.IntervalFloat",
-   "getHeightRange(): com.fatmap.sdk.api.IntervalFloat",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.OverriddenFeatureProperties": {
-  "f": [
-   "STRAVA_BIKE_LANES_DISABLED_PROPERTY:java.lang.String",
-   "STRAVA_BIKE_MAP_ENABLED_PROPERTY:java.lang.String",
-   "STRAVA_HIKE_MAP_ENABLED_PROPERTY:java.lang.String"
-  ],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addBooleanProperty(java.lang.String, boolean): void",
-   "addDoubleProperty(java.lang.String, double): void",
-   "addIntegerProperty(java.lang.String, long): void",
-   "addStringProperty(java.lang.String, java.lang.String): void",
-   "create(): com.fatmap.sdk.api.OverriddenFeatureProperties",
-   "getBooleanProperty(java.lang.String): java.lang.Boolean",
-   "getDoubleProperty(java.lang.String): java.lang.Double",
-   "getIntegerProperty(java.lang.String): java.lang.Long",
-   "getStringProperty(java.lang.String): java.lang.String",
-   "removeProperty(java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.PerformanceMetrics": {
-  "f": [
-   "mFrameCountFromStart:long",
-   "mFrameTime:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, long): void",
-   "getFrameCountFromStart(): long",
-   "getFrameTime(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.PerformanceMetricsListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onPerformanceMetrics(com.fatmap.sdk.api.PerformanceMetrics): void"
-  ]
- },
- "com.fatmap.sdk.api.PerformanceTestResult": {
-  "f": [
-   "mName:java.lang.String",
-   "mUnit:java.lang.String",
-   "mValue:double"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String, double): void",
-   "getName(): java.lang.String",
-   "getUnit(): java.lang.String",
-   "getValue(): double",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.PersonalHeatmapConfig": {
-  "f": [
-   "mColorScheme:com.fatmap.sdk.api.HeatmapColorScheme",
-   "mFilterEnd:java.lang.String",
-   "mFilterStart:java.lang.String",
-   "mFilterType:java.lang.String",
-   "mIncludeActivitiesVisibleOnlyToMe:boolean",
-   "mIncludeActivitiesVisibleToEveryone:boolean",
-   "mIncludeActivitiesVisibleToFollowersOnly:boolean",
-   "mIncludeCommutes:boolean",
-   "mOpacityMultiplier:java.lang.Float",
-   "mRespectPrivacyZones:boolean"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String, java.lang.String, com.fatmap.sdk.api.HeatmapColorScheme, java.lang.Float, boolean, boolean, boolean, boolean, boolean): void",
-   "getColorScheme(): com.fatmap.sdk.api.HeatmapColorScheme",
-   "getFilterEnd(): java.lang.String",
-   "getFilterStart(): java.lang.String",
-   "getFilterType(): java.lang.String",
-   "getIncludeActivitiesVisibleOnlyToMe(): boolean",
-   "getIncludeActivitiesVisibleToEveryone(): boolean",
-   "getIncludeActivitiesVisibleToFollowersOnly(): boolean",
-   "getIncludeCommutes(): boolean",
-   "getOpacityMultiplier(): java.lang.Float",
-   "getRespectPrivacyZones(): boolean",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.PersonalHeatmapTestAccount": {
-  "f": [
-   "mAccessToken:java.lang.String",
-   "mStravaAthleteId:java.lang.String",
-   "mTileEndpointHostName:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String, java.lang.String): void",
-   "getAccessToken(): java.lang.String",
-   "getStravaAthleteId(): java.lang.String",
-   "getTileEndpointHostName(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.PointScreenPosition": {
-  "f": [
-   "mIsOccluded:boolean",
-   "mX:float",
-   "mY:float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(float, float, boolean): void",
-   "getIsOccluded(): boolean",
-   "getX(): float",
-   "getY(): float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.PolylineHighlightSection": {
-  "f": [
-   "mEndIndex:long",
-   "mIcon:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "mIconText:java.lang.String",
-   "mIdentifier:java.lang.String",
-   "mStartIndex:long",
-   "mType:com.fatmap.sdk.api.PolylineHighlightSectionType"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, long, long, com.fatmap.sdk.api.PolylineHighlightSectionType, com.fatmap.sdk.api.PolylineHighlightSectionIcon, java.lang.String): void",
-   "getEndIndex(): long",
-   "getIcon(): com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "getIconText(): java.lang.String",
-   "getIdentifier(): java.lang.String",
-   "getStartIndex(): long",
-   "getType(): com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.PolylineHighlightSectionIcon": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.PolylineHighlightSectionIcon[]",
-   "BEST_EFFORT_CLIMB:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "BEST_EFFORT_PACE:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "BEST_EFFORT_POWER:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "BRONZE_PR:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "GOLD_PR:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "LOCAL_LEGEND:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "SILVER_PR:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_1:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_10:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_2:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_3:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_4:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_5:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_6:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_7:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_8:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "TOP10_9:com.fatmap.sdk.api.PolylineHighlightSectionIcon"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.PolylineHighlightSectionIcon[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.PolylineHighlightSectionIcon",
-   "values(): com.fatmap.sdk.api.PolylineHighlightSectionIcon[]"
-  ]
- },
- "com.fatmap.sdk.api.PolylineHighlightSectionType": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.PolylineHighlightSectionType[]",
-   "BLUE:com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "BRONZE:com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "GOLD:com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "PURPLE:com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "SILVER:com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "TEAL:com.fatmap.sdk.api.PolylineHighlightSectionType"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.PolylineHighlightSectionType[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.PolylineHighlightSectionType",
-   "values(): com.fatmap.sdk.api.PolylineHighlightSectionType[]"
-  ]
- },
- "com.fatmap.sdk.api.PostUpdateListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "postUpdate(): void"
-  ]
- },
- "com.fatmap.sdk.api.PrivateApi": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addPerformanceMetricsListener(com.fatmap.sdk.api.PerformanceMetricsListener): void",
-   "clearLuaPersistedStore(): void",
-   "finishTwoPassVideoRendering(): void",
-   "getGivenUpDownloadsInfo(long): com.fatmap.sdk.api.GivenUpDownloadsInfo",
-   "getMemoryStats(): com.fatmap.sdk.api.MemoryStats",
-   "getPerformanceTestsNames(): java.util.ArrayList<java.lang.String>",
-   "getPreparedCommandService(com.fatmap.sdk.api.DataExchangeService): com.fatmap.sdk.api.CommandService",
-   "getVisibleAreaBoundsExt(com.fatmap.sdk.api.CameraMargins, float, com.fatmap.sdk.api.VisibleAreaSamplesSink): com.fatmap.sdk.api.VisibleAreaBounds",
-   "haveGivenUpTileDownloads(): boolean",
-   "haveVisualContentLoadingWork(boolean): boolean",
-   "isVsyncEnabled(): boolean",
-   "recordResourcesNeededForSecondVideoRenderingPass(): void",
-   "refreshScreenInfo(): void",
-   "reloadTerrain(): void",
-   "removePerformanceMetricsListener(com.fatmap.sdk.api.PerformanceMetricsListener): void",
-   "resetOnlineAvailabilityData(): void",
-   "resetTileDownloadHistory(): void",
-   "runPerformanceTests(java.util.ArrayList<java.lang.String>, java.lang.String, com.fatmap.sdk.api.TestsListener): void",
-   "runScreenshotTests(java.util.ArrayList<java.lang.String>, java.lang.String, com.fatmap.sdk.api.TestsListener): void",
-   "saveWindowScreenshot(java.lang.String): void",
-   "setDiskCacheSize(long): void",
-   "setDownloadHeightmapsOnly(boolean): void",
-   "setLodSubdivisionThresholdEnabled(boolean): void",
-   "setLuaGlobalAnimation(java.lang.String, com.fatmap.sdk.api.AnimatedImage, boolean): void",
-   "setLuaGlobalFloat(java.lang.String, float): void",
-   "setLuaGlobalImage(java.lang.String, com.fatmap.sdk.api.CustomImage, boolean): void",
-   "setLuaGlobalInt(java.lang.String, int): void",
-   "setLuaGlobalLine(java.lang.String, com.fatmap.sdk.api.WorldLine2): void",
-   "setLuaGlobalString(java.lang.String, java.lang.String): void",
-   "setOfflineMode(boolean): void",
-   "setPixelRatio(float): void",
-   "setResourceLoadingFromDiskAllowed(boolean): void",
-   "setShaderHotReloadingEnabled(boolean): void",
-   "setShowSymbolBoundingBoxes(boolean): void",
-   "setStylingZoomLevelOverride(java.lang.Float): void",
-   "setSymbolScreenPaddingEnabled(boolean): void",
-   "setSymbolVisibilityStateful(boolean): void",
-   "setTestAccountForPersonalHeatmap(com.fatmap.sdk.api.PersonalHeatmapTestAccount): void",
-   "setTileDownloadEventProcessor(com.fatmap.sdk.api.TileDownloadEventProcessor): void",
-   "setVsyncEnabled(boolean): void",
-   "setupDefaultMockTiles(): void",
-   "startDownloadingResourcesForSecondVideoRenderingPass(): void",
-   "startEnteringTestingContext(com.fatmap.sdk.api.Offline, java.lang.String, java.lang.String, com.fatmap.sdk.api.TestingContextEventListener): com.fatmap.sdk.api.TestingContextHandle",
-   "startLuaAnimationScript(java.lang.String, java.lang.Float, com.fatmap.sdk.api.LuaAnimationHandler): void",
-   "startMockTileServer(): void",
-   "startTrackPerfTest(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, float, long, boolean, com.fatmap.sdk.api.TrackPerfTestCompletionListener): void",
-   "startVideoRenderingFirstPass(): void",
-   "startVideoRenderingSecondPass(): void",
-   "stopLuaAnimationScript(): void",
-   "stopMockTileServer(): void",
-   "switchToCustomStyle(java.lang.String, boolean, boolean, boolean, boolean, boolean, boolean, java.lang.Float): void",
-   "updateLodCalculationControlParams(com.fatmap.sdk.api.LodCalculationControlParams): com.fatmap.sdk.api.LodCalculationControlParams"
-  ]
- },
- "com.fatmap.sdk.api.QuadIndex": {
-  "f": [
-   "mX:int",
-   "mY:int",
-   "mZ:byte"
-  ],
-  "i": [],
-  "m": [
-   "<init>(byte, int, int): void",
-   "getX(): int",
-   "getY(): int",
-   "getZ(): byte",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.RecordContent": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "displayLiveSegments(java.util.ArrayList<com.fatmap.sdk.api.CandidateSegment>): void",
-   "displayRecordingLine(com.fatmap.sdk.api.WorldLine2): void",
-   "removeAllLiveSegments(): void",
-   "removeRecordingLine(): void",
-   "showRecordingLineFinishMarker(boolean): void"
-  ]
- },
- "com.fatmap.sdk.api.RenderSurfaceHolder": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "getGestureRecognizerControl(): com.fatmap.sdk.api.GestureRecognizerControl",
-   "getRenderSurfaceWindow(): com.fatmap.sdk.api.Window",
-   "isRenderSurfaceCreated(): boolean",
-   "notifyTerrainEngineReady(): void",
-   "setTerrainEngine(com.fatmap.sdk.api.TerrainEngine): void",
-   "setTouchListener(com.fatmap.sdk.api.TouchListener): void",
-   "setWindowLifecycleListener(com.fatmap.sdk.api.WindowLifecycleListener): void"
-  ]
- },
- "com.fatmap.sdk.api.RoadSurfaceType": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.RoadSurfaceType[]",
-   "PAVED:com.fatmap.sdk.api.RoadSurfaceType",
-   "UNPAVED:com.fatmap.sdk.api.RoadSurfaceType",
-   "UNSPECIFIED:com.fatmap.sdk.api.RoadSurfaceType"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.RoadSurfaceType[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.RoadSurfaceType",
-   "values(): com.fatmap.sdk.api.RoadSurfaceType[]"
-  ]
- },
- "com.fatmap.sdk.api.RouteContent": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addWaypointToRoute(java.lang.String, com.fatmap.sdk.api.RouteWaypoint): void",
-   "displayAnimatedRoute(java.lang.String, com.fatmap.sdk.api.WorldLine2, java.util.ArrayList<com.fatmap.sdk.api.RouteSection>, java.util.ArrayList<com.fatmap.sdk.api.RouteWaypoint>, com.fatmap.sdk.api.RouteSelectionStyle, boolean, float, float, com.fatmap.sdk.api.CompletionCallback): void",
-   "displayRoute(java.lang.String, com.fatmap.sdk.api.WorldLine2, java.util.ArrayList<com.fatmap.sdk.api.RouteSection>, java.util.ArrayList<com.fatmap.sdk.api.RouteWaypoint>, com.fatmap.sdk.api.RouteSelectionStyle, boolean): void",
-   "displayRouteScrubber(double, double): void",
-   "fadeInUnselectedRoutes(float, java.lang.Float, com.fatmap.sdk.api.CompletionCallback): void",
-   "removeAllRoutes(): void",
-   "removeRouteScrubber(): void",
-   "removeRoutes(java.util.ArrayList<java.lang.String>): void",
-   "selectRoute(java.lang.String, com.fatmap.sdk.api.RouteSelectionStyle): void",
-   "selectWaypointOnRoute(java.lang.String, java.lang.String): void",
-   "stopUnselectedRoutesFadeIn(): void",
-   "unselectRoute(java.lang.String): void",
-   "unselectWaypointOnRoute(java.lang.String, java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.RouteSection": {
-  "f": [
-   "mNumPolylineEdges:long",
-   "mSurfaceType:com.fatmap.sdk.api.RoadSurfaceType"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, com.fatmap.sdk.api.RoadSurfaceType): void",
-   "getNumPolylineEdges(): long",
-   "getSurfaceType(): com.fatmap.sdk.api.RoadSurfaceType",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.RouteSelectionStyle": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.RouteSelectionStyle[]",
-   "CANONICAL:com.fatmap.sdk.api.RouteSelectionStyle",
-   "GRADIENT:com.fatmap.sdk.api.RouteSelectionStyle"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.RouteSelectionStyle[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.RouteSelectionStyle",
-   "values(): com.fatmap.sdk.api.RouteSelectionStyle[]"
-  ]
- },
- "com.fatmap.sdk.api.RouteWaypoint": {
-  "f": [
-   "mCategory:com.fatmap.sdk.api.RouteWaypointCategory",
-   "mIdentifier:java.lang.String",
-   "mPoint:com.fatmap.sdk.api.WorldPoint2",
-   "mTitle:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, com.fatmap.sdk.api.WorldPoint2, java.lang.String, com.fatmap.sdk.api.RouteWaypointCategory): void",
-   "getCategory(): com.fatmap.sdk.api.RouteWaypointCategory",
-   "getIdentifier(): java.lang.String",
-   "getPoint(): com.fatmap.sdk.api.WorldPoint2",
-   "getTitle(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.RouteWaypointCategory": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.RouteWaypointCategory[]",
-   "AID_STATION:com.fatmap.sdk.api.RouteWaypointCategory",
-   "ALERT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "ART:com.fatmap.sdk.api.RouteWaypointCategory",
-   "ATTRACTION:com.fatmap.sdk.api.RouteWaypointCategory",
-   "BAR:com.fatmap.sdk.api.RouteWaypointCategory",
-   "BEACH:com.fatmap.sdk.api.RouteWaypointCategory",
-   "BIKE_SHOP:com.fatmap.sdk.api.RouteWaypointCategory",
-   "CAMP_SITE:com.fatmap.sdk.api.RouteWaypointCategory",
-   "CHECKPOINT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "COFFEE:com.fatmap.sdk.api.RouteWaypointCategory",
-   "DISTANCE_MARKER:com.fatmap.sdk.api.RouteWaypointCategory",
-   "GAS_STATION:com.fatmap.sdk.api.RouteWaypointCategory",
-   "GENERIC:com.fatmap.sdk.api.RouteWaypointCategory",
-   "GROCERY:com.fatmap.sdk.api.RouteWaypointCategory",
-   "LODGING:com.fatmap.sdk.api.RouteWaypointCategory",
-   "MEETING_SPOT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "MONUMENT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "PARK:com.fatmap.sdk.api.RouteWaypointCategory",
-   "PARKING:com.fatmap.sdk.api.RouteWaypointCategory",
-   "PEAK:com.fatmap.sdk.api.RouteWaypointCategory",
-   "PHARMACY:com.fatmap.sdk.api.RouteWaypointCategory",
-   "RESTAURANT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "RESTROOM:com.fatmap.sdk.api.RouteWaypointCategory",
-   "REST_AREA:com.fatmap.sdk.api.RouteWaypointCategory",
-   "ROUTE_PLANNED_FINISH:com.fatmap.sdk.api.RouteWaypointCategory",
-   "ROUTE_PLANNED_START:com.fatmap.sdk.api.RouteWaypointCategory",
-   "ROUTE_PLANNED_WAYPOINT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "SEGMENT_END:com.fatmap.sdk.api.RouteWaypointCategory",
-   "SEGMENT_START:com.fatmap.sdk.api.RouteWaypointCategory",
-   "TRAILHEAD:com.fatmap.sdk.api.RouteWaypointCategory",
-   "TRANSITION_ZONE:com.fatmap.sdk.api.RouteWaypointCategory",
-   "VIEWPOINT:com.fatmap.sdk.api.RouteWaypointCategory",
-   "WATER_SOURCE:com.fatmap.sdk.api.RouteWaypointCategory"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.RouteWaypointCategory[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.RouteWaypointCategory",
-   "values(): com.fatmap.sdk.api.RouteWaypointCategory[]"
-  ]
- },
- "com.fatmap.sdk.api.SegmentFeature": {
-  "f": [
-   "mActivityType:long",
-   "mAthletesAllTime:java.lang.Long",
-   "mAttemptsAllTime:java.lang.Long",
-   "mAverageGrade:java.lang.Float",
-   "mDarkSparklineUrl:java.lang.String",
-   "mDarkThumbnailUrl:java.lang.String",
-   "mDistance:java.lang.Double",
-   "mId:long",
-   "mName:java.lang.String",
-   "mScore:double",
-   "mSparklineUrl:java.lang.String",
-   "mStartXYLat:java.lang.Float",
-   "mStartXYLng:java.lang.Float",
-   "mThumbnailUrl:java.lang.String",
-   "mVerifiedStatus:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, java.lang.String, double, long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Float, java.lang.Double, java.lang.Long, java.lang.Long, java.lang.Float, java.lang.Float): void",
-   "getActivityType(): long",
-   "getAthletesAllTime(): java.lang.Long",
-   "getAttemptsAllTime(): java.lang.Long",
-   "getAverageGrade(): java.lang.Float",
-   "getDarkSparklineUrl(): java.lang.String",
-   "getDarkThumbnailUrl(): java.lang.String",
-   "getDistance(): java.lang.Double",
-   "getId(): long",
-   "getName(): java.lang.String",
-   "getScore(): double",
-   "getSparklineUrl(): java.lang.String",
-   "getStartXYLat(): java.lang.Float",
-   "getStartXYLng(): java.lang.Float",
-   "getThumbnailUrl(): java.lang.String",
-   "getVerifiedStatus(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.SegmentsFilter": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "getVisibleSegments(): java.util.ArrayList<com.fatmap.sdk.api.SegmentFeature>",
-   "hide(): void",
-   "selectSegment(long): void",
-   "show(com.fatmap.sdk.api.SegmentsFilterOptions): void",
-   "unselectSegment(): void"
-  ]
- },
- "com.fatmap.sdk.api.SegmentsFilterOptions": {
-  "f": [
-   "mActivityTypes:java.lang.String",
-   "mCreator:java.lang.Boolean",
-   "mDistanceMax:java.lang.String",
-   "mDistanceMin:java.lang.String",
-   "mElevationFilter:java.lang.String",
-   "mOverall:java.lang.Boolean",
-   "mStarred:java.lang.Boolean",
-   "mSurfaceTypes:java.lang.String",
-   "mTop10:java.lang.Boolean",
-   "mVerified:java.lang.Boolean"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean): void",
-   "getActivityTypes(): java.lang.String",
-   "getCreator(): java.lang.Boolean",
-   "getDistanceMax(): java.lang.String",
-   "getDistanceMin(): java.lang.String",
-   "getElevationFilter(): java.lang.String",
-   "getOverall(): java.lang.Boolean",
-   "getStarred(): java.lang.Boolean",
-   "getSurfaceTypes(): java.lang.String",
-   "getTop10(): java.lang.Boolean",
-   "getVerified(): java.lang.Boolean",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.ServerConfig": {
-  "f": [
-   "mMapboxServerSecret:java.lang.String",
-   "mMapboxServerURL:java.lang.String",
-   "mSegmentsServerURL:java.lang.String",
-   "mStravaPoiServerURL:java.lang.String",
-   "mStravaTileServerURL:java.lang.String",
-   "mTileSourceConfig:com.fatmap.sdk.api.TileSourceConfig"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.fatmap.sdk.api.TileSourceConfig): void",
-   "getMapboxServerSecret(): java.lang.String",
-   "getMapboxServerURL(): java.lang.String",
-   "getSegmentsServerURL(): java.lang.String",
-   "getStravaPoiServerURL(): java.lang.String",
-   "getStravaTileServerURL(): java.lang.String",
-   "getTileSourceConfig(): com.fatmap.sdk.api.TileSourceConfig",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.StartPointFilterOptions": {
-  "f": [
-   "mDifficulty:long",
-   "mDistance:long",
-   "mElevation:float",
-   "mRouteType:long",
-   "mSurfaceType:long"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, long, float, long, long): void",
-   "getDifficulty(): long",
-   "getDistance(): long",
-   "getElevation(): float",
-   "getRouteType(): long",
-   "getSurfaceType(): long",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.StravaPoiFilter": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "disableBikeShares(): void",
-   "disableStartPoints(): void",
-   "enableBikeShares(): void",
-   "enableStartPoints(com.fatmap.sdk.api.StartPointFilterOptions): void",
-   "selectPoi(com.fatmap.sdk.api.ContentSelectionHandle): void",
-   "setShow(boolean): void",
-   "unselectPoi(): void"
-  ]
- },
- "com.fatmap.sdk.api.TerrainEngine": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addOnGridChangeListener(com.fatmap.sdk.api.OnGridChangeListener): void",
-   "addOnMouseMoveListener(com.fatmap.sdk.api.OnMouseMoveListener): void",
-   "addOnTapListener(com.fatmap.sdk.api.OnTapListener): void",
-   "addOverlayPolygon(com.fatmap.sdk.api.OverlayPolygon): void",
-   "addPostUpdateListener(com.fatmap.sdk.api.PostUpdateListener): void",
-   "addTileLoadingListener(com.fatmap.sdk.api.TileLoadingListener): void",
-   "addViewUpdateListener(com.fatmap.sdk.api.ViewUpdateListener): void",
-   "didEnterBackground(): void",
-   "didEnterForeground(): void",
-   "getCamera(): com.fatmap.sdk.api.Camera",
-   "getContent(): com.fatmap.sdk.api.Content",
-   "getDebugApi(): com.fatmap.sdk.api.DebugApi",
-   "getElevation(com.fatmap.sdk.api.WorldPoint2): double",
-   "getFps(): float",
-   "getGridUnits(): com.fatmap.sdk.api.UnitsInfo",
-   "getOffline(): com.fatmap.sdk.api.Offline",
-   "getOverriddenFeatureProperties(): com.fatmap.sdk.api.OverriddenFeatureProperties",
-   "getPrivateApi(java.lang.String): com.fatmap.sdk.api.PrivateApi",
-   "getUtils(): com.fatmap.sdk.api.Utils",
-   "receivedMemoryWarning(): void",
-   "removeAllOverlayPolygons(): void",
-   "removeOnGridChangeListener(com.fatmap.sdk.api.OnGridChangeListener): void",
-   "removeOnMouseMoveListener(com.fatmap.sdk.api.OnMouseMoveListener): void",
-   "removeOnTapListener(com.fatmap.sdk.api.OnTapListener): void",
-   "removePostUpdateListener(com.fatmap.sdk.api.PostUpdateListener): void",
-   "removeTileLoadingListener(com.fatmap.sdk.api.TileLoadingListener): void",
-   "removeViewUpdateListener(com.fatmap.sdk.api.ViewUpdateListener): void",
-   "requestRender(): void",
-   "setAlwaysRender(boolean): void",
-   "setAuthenticationErrorListener(com.fatmap.sdk.api.AuthenticationErrorListener): void",
-   "setDesiredLanguage(com.fatmap.sdk.api.Language): void",
-   "setEnableScreenSymbols(boolean): void",
-   "setGlobalHeatmapConfig(com.fatmap.sdk.api.GlobalHeatmapConfig): void",
-   "setImageryOverlay(com.fatmap.sdk.api.ImageryOverlay): void",
-   "setIsTerrain3dEnabled(boolean): void",
-   "setLogLevel(com.fatmap.sdk.api.LogLevel): void",
-   "setMapType(com.fatmap.sdk.api.MapType): void",
-   "setNightlyHeatmapConfig(com.fatmap.sdk.api.NightlyHeatmapConfig): void",
-   "setOverlayPolygons(java.util.ArrayList<com.fatmap.sdk.api.OverlayPolygon>): void",
-   "setOverriddenFeatureProperties(com.fatmap.sdk.api.OverriddenFeatureProperties): void",
-   "setPaused(boolean): void",
-   "setPersonalHeatmapConfig(com.fatmap.sdk.api.PersonalHeatmapConfig): void",
-   "setRenderingDisabled(boolean): void",
-   "setScreenSymbolRefreshInterval(float): void",
-   "setServerConfig(com.fatmap.sdk.api.ServerConfig, boolean): void",
-   "setStravaAuthData(long, java.util.ArrayList<com.fatmap.sdk.api.HttpHeader>): void",
-   "setStravaSourcesExtraHeaders(java.util.ArrayList<com.fatmap.sdk.api.HttpHeader>): void",
-   "setSurfaceIdentifier(java.lang.String): void",
-   "setUnitSystem(com.fatmap.sdk.api.MeasurementUnitSystem): void",
-   "setWeeklyHeatmapConfig(com.fatmap.sdk.api.WeeklyHeatmapConfig): void",
-   "update(): void",
-   "waitToLoadMap(com.fatmap.sdk.api.OnMapLoadListener, boolean, float): void"
-  ]
- },
- "com.fatmap.sdk.api.TestingContextEventListener": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onEntered(): void",
-   "onErrorEntering(java.lang.String): void",
-   "onLeft(): void"
-  ]
- },
- "com.fatmap.sdk.api.TestingContextHandle": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "status(): com.fatmap.sdk.api.TestingContextStatus",
-   "stopEnteringOrInitiateLeaving(): void"
-  ]
- },
- "com.fatmap.sdk.api.TestingContextStatus": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.TestingContextStatus[]",
-   "ENTERED:com.fatmap.sdk.api.TestingContextStatus",
-   "ENTERING:com.fatmap.sdk.api.TestingContextStatus",
-   "ENTERINGFAILED:com.fatmap.sdk.api.TestingContextStatus",
-   "LEAVING:com.fatmap.sdk.api.TestingContextStatus",
-   "NOCONTEXT:com.fatmap.sdk.api.TestingContextStatus"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.TestingContextStatus[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.TestingContextStatus",
-   "values(): com.fatmap.sdk.api.TestingContextStatus[]"
-  ]
- },
- "com.fatmap.sdk.api.TestsListener": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onFinished(): void",
-   "onPerformanceTestResult(com.fatmap.sdk.api.PerformanceTestResult): void",
-   "onTestFinished(java.lang.String): void"
-  ]
- },
- "com.fatmap.sdk.api.TileDownloadEventProcessor": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "processDownloadCancelled(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
-   "processDownloadFailed(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>, boolean, java.lang.Integer): void",
-   "processDownloadStarted(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
-   "processResourceNotAvailable(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
-   "processResourceRetrieved(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
-   "processResourceRevalidatedWithoutDownloading(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void"
-  ]
- },
- "com.fatmap.sdk.api.TileLoadingListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onTilesLoaded(): void",
-   "onTilesLoadingStarted(): void"
-  ]
- },
- "com.fatmap.sdk.api.TileSourceConfig": {
-  "f": [
-   "mGlobalHeatmapURLTemplate:java.lang.String",
-   "mGradientURLTemplate:java.lang.String",
-   "mHeightmapURLTemplate:java.lang.String",
-   "mMapboxStreetsTerrainURLTemplate:java.lang.String",
-   "mMapboxStreetsURLTemplate:java.lang.String",
-   "mNightlyHeatmapURLTemplate:java.lang.String",
-   "mPersonalHeatmapURLTemplate:java.lang.String",
-   "mSegmentsTemplate:java.lang.String",
-   "mStravaContoursURLTemplate:java.lang.String",
-   "mStravaPlanetSportURLTemplate:java.lang.String",
-   "mStravaPlanetURLTemplate:java.lang.String",
-   "mStravaPoiURLTemplate:java.lang.String",
-   "mSummerImageryURLTemplate:java.lang.String",
-   "mWeeklyHeatmapURLTemplate:java.lang.String",
-   "mWinterImageryURLTemplate:java.lang.String",
-   "mWinterOverlayImageryURLTemplate:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String): void",
-   "getGlobalHeatmapURLTemplate(): java.lang.String",
-   "getGradientURLTemplate(): java.lang.String",
-   "getHeightmapURLTemplate(): java.lang.String",
-   "getMapboxStreetsTerrainURLTemplate(): java.lang.String",
-   "getMapboxStreetsURLTemplate(): java.lang.String",
-   "getNightlyHeatmapURLTemplate(): java.lang.String",
-   "getPersonalHeatmapURLTemplate(): java.lang.String",
-   "getSegmentsTemplate(): java.lang.String",
-   "getStravaContoursURLTemplate(): java.lang.String",
-   "getStravaPlanetSportURLTemplate(): java.lang.String",
-   "getStravaPlanetURLTemplate(): java.lang.String",
-   "getStravaPoiURLTemplate(): java.lang.String",
-   "getSummerImageryURLTemplate(): java.lang.String",
-   "getWeeklyHeatmapURLTemplate(): java.lang.String",
-   "getWinterImageryURLTemplate(): java.lang.String",
-   "getWinterOverlayImageryURLTemplate(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.TouchListener": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onDoubleTap(com.fatmap.sdk.api.OsTouch): void",
-   "onLongPress(com.fatmap.sdk.api.OsTouch): void",
-   "onSingleTap(com.fatmap.sdk.api.OsTouch): void",
-   "onTapAndMove(com.fatmap.sdk.api.OsTouch, com.fatmap.sdk.api.OsTouchAction): void",
-   "onTouches(java.util.ArrayList<com.fatmap.sdk.api.OsTouch>): void"
-  ]
- },
- "com.fatmap.sdk.api.TrackPerfTestCompletionListener": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onPerfTestFinished(com.fatmap.sdk.api.TrackPerfTestResults): void"
-  ]
- },
- "com.fatmap.sdk.api.TrackPerfTestResults": {
-  "f": [
-   "mAvgFrameTimeMs:long",
-   "mMaxFrameTimeMs:long",
-   "mMinFrameTimeMs:long"
-  ],
-  "i": [],
-  "m": [
-   "<init>(long, long, long): void",
-   "getAvgFrameTimeMs(): long",
-   "getMaxFrameTimeMs(): long",
-   "getMinFrameTimeMs(): long",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.UnitsInfo": {
-  "f": [
-   "mMeters:double",
-   "mSize:double",
-   "mUnit:com.fatmap.sdk.api.MeasurementUnit"
-  ],
-  "i": [],
-  "m": [
-   "<init>(double, double, com.fatmap.sdk.api.MeasurementUnit): void",
-   "getMeters(): double",
-   "getSize(): double",
-   "getUnit(): com.fatmap.sdk.api.MeasurementUnit",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.UserMarkerClickEvent": {
-  "f": [
-   "mButton:com.fatmap.sdk.api.MouseButtonCode",
-   "mSource:com.fatmap.sdk.api.ClickSourceType",
-   "mType:com.fatmap.sdk.api.ClickEventType"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.ClickEventType, com.fatmap.sdk.api.ClickSourceType, com.fatmap.sdk.api.MouseButtonCode): void",
-   "getButton(): com.fatmap.sdk.api.MouseButtonCode",
-   "getSource(): com.fatmap.sdk.api.ClickSourceType",
-   "getType(): com.fatmap.sdk.api.ClickEventType",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.Utils": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "addCustomMarker2(double, double, java.lang.String, java.lang.String, java.lang.String): long",
-   "addCustomMarker3(double, double, java.lang.String, java.lang.String, java.lang.String): long",
-   "getUserMarkerLocationAngle(): float",
-   "hideTileGrid(): void",
-   "isUserMarkerOnScreen(): boolean",
-   "removeCustomMarker(long): void",
-   "removeUserMarker(): void",
-   "setHighlightedTiles(java.util.ArrayList<com.fatmap.sdk.api.HighlightedTile>): void",
-   "setUserMarker(double, double): void",
-   "setUserMarkerAnimation(float): void",
-   "setUserMarkerDirection(float): void",
-   "setUserMarkerPrecision(float): void",
-   "setUserMarkerState(boolean): void",
-   "showTileGrid(byte, java.util.ArrayList<com.fatmap.sdk.api.HighlightedTile>): void",
-   "updateCustomMarkerPosition(long, double, double): void"
-  ]
- },
- "com.fatmap.sdk.api.VersionInfo": {
-  "f": [
-   "mBranchName:java.lang.String",
-   "mBuildDate:java.lang.String",
-   "mBuildHash:java.lang.String",
-   "mBuildId:java.lang.String",
-   "mBuildVersion:int",
-   "mEnvironment:byte",
-   "mMajorVersion:short",
-   "mMinorVersion:short",
-   "mPatchVersion:short",
-   "mVersionString:java.lang.String"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, short, short, short, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, byte): void",
-   "getBranchName(): java.lang.String",
-   "getBuildDate(): java.lang.String",
-   "getBuildHash(): java.lang.String",
-   "getBuildId(): java.lang.String",
-   "getBuildVersion(): int",
-   "getEnvironment(): byte",
-   "getMajorVersion(): short",
-   "getMinorVersion(): short",
-   "getPatchVersion(): short",
-   "getVersionString(): java.lang.String",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.ViewUpdateListener": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "onViewUpdated(): void"
-  ]
- },
- "com.fatmap.sdk.api.VisibleAreaBounds": {
-  "f": [
-   "mBottomLeftCorner:com.fatmap.sdk.api.WorldPoint2",
-   "mBottomRightCorner:com.fatmap.sdk.api.WorldPoint2",
-   "mTopLeftCorner:com.fatmap.sdk.api.WorldPoint2",
-   "mTopRightCorner:com.fatmap.sdk.api.WorldPoint2"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2): void",
-   "getBottomLeftCorner(): com.fatmap.sdk.api.WorldPoint2",
-   "getBottomRightCorner(): com.fatmap.sdk.api.WorldPoint2",
-   "getTopLeftCorner(): com.fatmap.sdk.api.WorldPoint2",
-   "getTopRightCorner(): com.fatmap.sdk.api.WorldPoint2",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.VisibleAreaSamplesSink": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "processVisiblePoint(com.fatmap.sdk.api.WorldPoint2): void"
-  ]
- },
- "com.fatmap.sdk.api.WeeklyHeatmapConfig": {
-  "f": [
-   "mActivityType:java.lang.String",
-   "mColorScheme:com.fatmap.sdk.api.HeatmapColorScheme",
-   "mOpacityMultiplier:java.lang.Float"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.lang.String, com.fatmap.sdk.api.HeatmapColorScheme, java.lang.Float): void",
-   "getActivityType(): java.lang.String",
-   "getColorScheme(): com.fatmap.sdk.api.HeatmapColorScheme",
-   "getOpacityMultiplier(): java.lang.Float",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.Window": {
-  "f": [],
-  "i": [],
-  "m": [
-   "<init>(): void",
-   "getPixelRatio(): float",
-   "getRenderSurface(): android.view.Surface"
-  ]
- },
- "com.fatmap.sdk.api.WindowLifecycleListener": {
-  "f": [],
-  "i": [
-   null
-  ],
-  "m": [
-   "<init>(): void",
-   "onDisplayChanged(float): void",
-   "onWindowResized(int, int): void",
-   "onWindowStateChanged(com.fatmap.sdk.api.WindowState): void"
-  ]
- },
- "com.fatmap.sdk.api.WindowState": {
-  "f": [
-   "$VALUES:com.fatmap.sdk.api.WindowState[]",
-   "ACTIVE:com.fatmap.sdk.api.WindowState",
-   "CREATED:com.fatmap.sdk.api.WindowState",
-   "DESTROYED:com.fatmap.sdk.api.WindowState",
-   "INACTIVE:com.fatmap.sdk.api.WindowState",
-   "NONE:com.fatmap.sdk.api.WindowState"
-  ],
-  "i": [],
-  "m": [
-   "$values(): com.fatmap.sdk.api.WindowState[]",
-   "<clinit>(): void",
-   "<init>(java.lang.String, int): void",
-   "valueOf(java.lang.String): com.fatmap.sdk.api.WindowState",
-   "values(): com.fatmap.sdk.api.WindowState[]"
-  ]
- },
- "com.fatmap.sdk.api.WorldBounds2": {
-  "f": [
-   "mNorthEastCorner:com.fatmap.sdk.api.WorldPoint2",
-   "mSouthWestCorner:com.fatmap.sdk.api.WorldPoint2"
-  ],
-  "i": [],
-  "m": [
-   "<init>(com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2): void",
-   "getNorthEastCorner(): com.fatmap.sdk.api.WorldPoint2",
-   "getSouthWestCorner(): com.fatmap.sdk.api.WorldPoint2",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.WorldLine2": {
-  "f": [
-   "mPoints:java.util.ArrayList<com.fatmap.sdk.api.WorldPoint2>"
-  ],
-  "i": [],
-  "m": [
-   "<init>(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint2>): void",
-   "getPoints(): java.util.ArrayList<com.fatmap.sdk.api.WorldPoint2>",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.WorldPoint2": {
-  "f": [
-   "mLatitude:double",
-   "mLongitude:double"
-  ],
-  "i": [],
-  "m": [
-   "<init>(double, double): void",
-   "getLatitude(): double",
-   "getLongitude(): double",
-   "toString(): java.lang.String"
-  ]
- },
- "com.fatmap.sdk.api.WorldPoint3": {
-  "f": [
-   "mElevation:float",
-   "mLatitude:double",
-   "mLongitude:double"
-  ],
-  "i": [],
-  "m": [
-   "<init>(double, double, float): void",
-   "getElevation(): float",
-   "getLatitude(): double",
-   "getLongitude(): double",
-   "toString(): java.lang.String"
-  ]
- }
+  "com.fatmap.sdk.api.ActivityContent": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "applyActivityGradient(java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.Color>): void",
+      "applyActivityPolylineHighlights(java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.PolylineHighlightSection>): void",
+      "clearActivityGradient(java.lang.String): void",
+      "clearActivityPolylineHighlights(java.lang.String): void",
+      "displayActivity(java.lang.String, com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalInt): void",
+      "displayActivity2(java.lang.String, com.fatmap.sdk.api.WorldLine2, java.util.ArrayList<com.fatmap.sdk.api.ActivitySection>): void",
+      "displayActivityTruncated(java.lang.String, com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalInt): void",
+      "displayActivityWithPrivacyIcons(java.lang.String, com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalInt): void",
+      "removeActivity(java.lang.String): void",
+      "removeAllActivities(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.ActivitySection": {
+    "f": [
+      "mNumPolylineEdges:long",
+      "mPrivateSection:boolean",
+      "mSurfaceType:com.fatmap.sdk.api.RoadSurfaceType"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, com.fatmap.sdk.api.RoadSurfaceType, boolean): void",
+      "getNumPolylineEdges(): long",
+      "getPrivateSection(): boolean",
+      "getSurfaceType(): com.fatmap.sdk.api.RoadSurfaceType",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.AnimatedImage": {
+    "f": [
+      "mFps:float",
+      "mFrames:java.util.ArrayList<com.fatmap.sdk.api.CustomImage>",
+      "mShouldLoop:boolean"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.util.ArrayList<com.fatmap.sdk.api.CustomImage>, float, boolean): void",
+      "getFps(): float",
+      "getFrames(): java.util.ArrayList<com.fatmap.sdk.api.CustomImage>",
+      "getShouldLoop(): boolean",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.AuthenticationErrorListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onAuthenticationError(java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.HttpHeader>, java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.BreadcrumbRecorder": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "recordBreadcrumb(java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.BundleLoadListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onFinishedLoading(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.BundleUnloadListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onUnloaded(java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.Camera": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addInteractionListener(com.fatmap.sdk.api.CameraInteractionListener): void",
+      "addStateListener(com.fatmap.sdk.api.CameraStateListener): void",
+      "enterFirstPersonView(double, double, float): void",
+      "flyThrough(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, java.lang.String, java.lang.String, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraFlyThroughProgressListener, com.fatmap.sdk.api.CameraTargetPlus, java.util.ArrayList<java.lang.Float>): void",
+      "flyThroughInteractive(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, java.lang.String, java.lang.String, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraFlyThroughProgressListener, com.fatmap.sdk.api.CameraTargetPlus, boolean, com.fatmap.sdk.api.CameraDeltaTimeProvider, java.util.ArrayList<java.lang.Float>): com.fatmap.sdk.api.CameraFlyThroughControls",
+      "flyTo(double, double, float, java.lang.Float, java.lang.Float, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
+      "flyToBounds(com.fatmap.sdk.api.WorldBounds2, java.lang.Float, java.lang.Float, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
+      "flyToTarget(com.fatmap.sdk.api.CameraTarget, float, boolean, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
+      "flyToWithZoomLevel(double, double, float, java.lang.Float, java.lang.Float, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void",
+      "flyover(boolean, java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraFlyThroughProgressListener, com.fatmap.sdk.api.CameraTargetPlus, com.fatmap.sdk.api.CameraDeltaTimeProvider, java.util.ArrayList<java.lang.Float>): com.fatmap.sdk.api.CameraFlyThroughControls",
+      "followUserLocation(java.lang.Float, java.lang.Float, java.lang.Float, com.fatmap.sdk.api.FollowMode, com.fatmap.sdk.api.CameraMargins): void",
+      "followUserLocationWithZoomLevel(com.fatmap.sdk.api.WorldPoint2, java.lang.Float, java.lang.Float, java.lang.Float, com.fatmap.sdk.api.FollowMode, com.fatmap.sdk.api.CameraMargins): void",
+      "getCameraViewType(): com.fatmap.sdk.api.CameraViewType",
+      "getCustomLookAtPoint(float, float): com.fatmap.sdk.api.LookAtPoint",
+      "getLookAtPoint(): com.fatmap.sdk.api.LookAtPoint",
+      "getScaleMetersPerPixel(): float",
+      "getScreenPosition(com.fatmap.sdk.api.WorldPoint2): com.fatmap.sdk.api.PointScreenPosition",
+      "getTarget(): com.fatmap.sdk.api.CameraTarget",
+      "getVisibleAreaBounds(com.fatmap.sdk.api.CameraMargins, float): com.fatmap.sdk.api.VisibleAreaBounds",
+      "isWorldPointVisible(com.fatmap.sdk.api.WorldPoint3, boolean): boolean",
+      "removeInteractionListener(com.fatmap.sdk.api.CameraInteractionListener): void",
+      "removeStateListener(com.fatmap.sdk.api.CameraStateListener): void",
+      "setBearing(float, float, com.fatmap.sdk.api.CameraMargins): void",
+      "setCameraViewType(com.fatmap.sdk.api.CameraViewType): void",
+      "setDynamicExaggerationEnabled(boolean): void",
+      "setDynamicExaggerationMultiplier(float): void",
+      "setRotationSpeed(float, float): void",
+      "setTranslationSpeed(float, float): void",
+      "setZoomSpeed(float): void",
+      "stop(): void",
+      "translateTo(com.fatmap.sdk.api.WorldPoint2, float, com.fatmap.sdk.api.CameraMargins, com.fatmap.sdk.api.CameraActionCompletionListener): void"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraActionCompletionListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onActionComplete(boolean): void"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraDeltaTimeProvider": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "getDeltaTime(): float"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraFlyThroughControls": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "getDurationSeconds(): float",
+      "getTrackProgress(): float",
+      "getTrackSpeedMultiplier(): float",
+      "isActive(): boolean",
+      "isCameraDetached(): boolean",
+      "isRefocusPossible(): boolean",
+      "refocus(): void",
+      "seekToAnimationStart(): void",
+      "setAnimationSpeedMultiplier(float): void",
+      "setCameraDistanceMultiplier(float): void",
+      "setTrackProgress(float): void",
+      "setTrackSpeedMultiplier(float): void",
+      "stop(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraFlyThroughProgressListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onFlyThroughProgress(float, float, long, float): void",
+      "onInterrupted(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraInteractionListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onInteractionEnd(): void",
+      "onInteractionStart(): void",
+      "onTiltInteractionPrevented(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraMargins": {
+    "f": [
+      "mBottom:float",
+      "mLeft:float",
+      "mRight:float",
+      "mTop:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, float, float, float): void",
+      "getBottom(): float",
+      "getLeft(): float",
+      "getRight(): float",
+      "getTop(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraStateFlags": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.CameraStateFlags[]",
+      "TARGET:com.fatmap.sdk.api.CameraStateFlags",
+      "VIEW_TYPE:com.fatmap.sdk.api.CameraStateFlags",
+      "ZOOM_LEVEL:com.fatmap.sdk.api.CameraStateFlags"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.CameraStateFlags[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.CameraStateFlags",
+      "values(): com.fatmap.sdk.api.CameraStateFlags[]"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraStateListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onTargetChanged(com.fatmap.sdk.api.CameraTarget): void",
+      "onViewTypeChanged(com.fatmap.sdk.api.CameraViewType): void",
+      "onZoomLevelChanged(float): void",
+      "stateToObserve(): java.util.EnumSet<com.fatmap.sdk.api.CameraStateFlags>"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraTarget": {
+    "f": [
+      "mBearing:float",
+      "mDistance:float",
+      "mLookAtPoint:com.fatmap.sdk.api.WorldPoint3",
+      "mPitch:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.WorldPoint3, float, float, float): void",
+      "getBearing(): float",
+      "getDistance(): float",
+      "getLookAtPoint(): com.fatmap.sdk.api.WorldPoint3",
+      "getPitch(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraTargetPlus": {
+    "f": [
+      "mAvoidMountains:boolean",
+      "mCameraTarget:com.fatmap.sdk.api.CameraTarget"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.CameraTarget, boolean): void",
+      "getAvoidMountains(): boolean",
+      "getCameraTarget(): com.fatmap.sdk.api.CameraTarget",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.CameraViewType": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.CameraViewType[]",
+      "CAMERA2D:com.fatmap.sdk.api.CameraViewType",
+      "CAMERA3D:com.fatmap.sdk.api.CameraViewType"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.CameraViewType[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.CameraViewType",
+      "values(): com.fatmap.sdk.api.CameraViewType[]"
+    ]
+  },
+  "com.fatmap.sdk.api.CandidateSegment": {
+    "f": [
+      "mIdentifier:java.lang.String",
+      "mIsStarred:boolean",
+      "mLine:com.fatmap.sdk.api.WorldLine2",
+      "mTitle:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, com.fatmap.sdk.api.WorldLine2, boolean, java.lang.String): void",
+      "getIdentifier(): java.lang.String",
+      "getIsStarred(): boolean",
+      "getLine(): com.fatmap.sdk.api.WorldLine2",
+      "getTitle(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.ClickEventType": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.ClickEventType[]",
+      "CONTENT:com.fatmap.sdk.api.ClickEventType",
+      "MAP:com.fatmap.sdk.api.ClickEventType",
+      "USERMARKER:com.fatmap.sdk.api.ClickEventType"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.ClickEventType[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.ClickEventType",
+      "values(): com.fatmap.sdk.api.ClickEventType[]"
+    ]
+  },
+  "com.fatmap.sdk.api.ClickSourceType": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.ClickSourceType[]",
+      "MOUSE:com.fatmap.sdk.api.ClickSourceType",
+      "TOUCH:com.fatmap.sdk.api.ClickSourceType"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.ClickSourceType[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.ClickSourceType",
+      "values(): com.fatmap.sdk.api.ClickSourceType[]"
+    ]
+  },
+  "com.fatmap.sdk.api.Color": {
+    "f": [
+      "f70443mA:double",
+      "f70444mB:double",
+      "f70445mG:double",
+      "mR:double"
+    ],
+    "i": [],
+    "m": [
+      "<init>(double, double, double, double): void",
+      "getA(): double",
+      "getB(): double",
+      "getG(): double",
+      "getR(): double",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.CommandService": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "execute(java.lang.String): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.CompletionCallback": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onCompleted(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.Content": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addCircleMarker(java.lang.String, double, double, float): void",
+      "addCustomGradientLine(com.fatmap.sdk.api.WorldLine2, java.lang.String, java.lang.String, java.lang.String, java.util.ArrayList<com.fatmap.sdk.api.Color>): long",
+      "addCustomLine(com.fatmap.sdk.api.WorldLine2, java.lang.String, java.lang.String, boolean, java.lang.String): long",
+      "addDroppedPin(java.lang.String, com.fatmap.sdk.api.WorldPoint2): void",
+      "getActivityContent(): com.fatmap.sdk.api.ActivityContent",
+      "getOsmFilter(): com.fatmap.sdk.api.OsmFilter",
+      "getRecordContent(): com.fatmap.sdk.api.RecordContent",
+      "getRouteContent(): com.fatmap.sdk.api.RouteContent",
+      "getSegmentsFilter(): com.fatmap.sdk.api.SegmentsFilter",
+      "getStravaPoiFilter(): com.fatmap.sdk.api.StravaPoiFilter",
+      "removeAllDroppedPins(): void",
+      "removeCircleMarker(java.lang.String): void",
+      "removeCustomLine(long): boolean",
+      "removeDroppedPin(java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.ContentClickEvent": {
+    "f": [
+      "mButton:com.fatmap.sdk.api.MouseButtonCode",
+      "mObjects:java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
+      "mSource:com.fatmap.sdk.api.ClickSourceType",
+      "mType:com.fatmap.sdk.api.ClickEventType",
+      "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.ClickEventType, java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>, com.fatmap.sdk.api.ClickSourceType, com.fatmap.sdk.api.MouseButtonCode, com.fatmap.sdk.api.WorldPoint3): void",
+      "getButton(): com.fatmap.sdk.api.MouseButtonCode",
+      "getObjects(): java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
+      "getSource(): com.fatmap.sdk.api.ClickSourceType",
+      "getType(): com.fatmap.sdk.api.ClickEventType",
+      "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.ContentClickEventObject": {
+    "f": [
+      "mContentGroup:com.fatmap.sdk.api.ContentGroup",
+      "mContentSelectionHandle:com.fatmap.sdk.api.ContentSelectionHandle",
+      "mCustomTapId:java.lang.String",
+      "mFeatureCategory:java.lang.String",
+      "mId:long",
+      "mLayerName:java.lang.String",
+      "mName:java.lang.String",
+      "mPosition:java.lang.String",
+      "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.ContentGroup, long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.fatmap.sdk.api.WorldPoint3, com.fatmap.sdk.api.ContentSelectionHandle): void",
+      "getContentGroup(): com.fatmap.sdk.api.ContentGroup",
+      "getContentSelectionHandle(): com.fatmap.sdk.api.ContentSelectionHandle",
+      "getCustomTapId(): java.lang.String",
+      "getFeatureCategory(): java.lang.String",
+      "getId(): long",
+      "getLayerName(): java.lang.String",
+      "getName(): java.lang.String",
+      "getPosition(): java.lang.String",
+      "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.ContentGroup": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.ContentGroup[]",
+      "ACTIVITIES:com.fatmap.sdk.api.ContentGroup",
+      "CUSTOMLINE:com.fatmap.sdk.api.ContentGroup",
+      "CUSTOMMARKER:com.fatmap.sdk.api.ContentGroup",
+      "OSM:com.fatmap.sdk.api.ContentGroup",
+      "RECORD:com.fatmap.sdk.api.ContentGroup",
+      "ROUTES:com.fatmap.sdk.api.ContentGroup",
+      "SEGMENTS:com.fatmap.sdk.api.ContentGroup",
+      "STRAVAPOI:com.fatmap.sdk.api.ContentGroup"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.ContentGroup[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.ContentGroup",
+      "values(): com.fatmap.sdk.api.ContentGroup[]"
+    ]
+  },
+  "com.fatmap.sdk.api.ContentSelectionHandle": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.CustomImage": {
+    "f": [
+      "mData:byte[]",
+      "mFormat:com.fatmap.sdk.api.ImageFormat",
+      "mHeight:int",
+      "mPixelRatio:float",
+      "mWidth:int"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.ImageFormat, int, int, float, byte[]): void",
+      "getData(): byte[]",
+      "getFormat(): com.fatmap.sdk.api.ImageFormat",
+      "getHeight(): int",
+      "getPixelRatio(): float",
+      "getWidth(): int",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.DataExchangeService": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "getString(): java.lang.String",
+      "setString(java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.DebugApi": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "dumpEngineState(): java.lang.String",
+      "hideFpsStatsOverlay(): void",
+      "showFpsStatsOverlay(com.fatmap.sdk.api.DebugOverlayCorner, com.fatmap.sdk.api.DebugOverlayPadding): void"
+    ]
+  },
+  "com.fatmap.sdk.api.DebugOverlayCorner": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.DebugOverlayCorner[]",
+      "LOWERLEFT:com.fatmap.sdk.api.DebugOverlayCorner",
+      "LOWERRIGHT:com.fatmap.sdk.api.DebugOverlayCorner",
+      "UPPERLEFT:com.fatmap.sdk.api.DebugOverlayCorner",
+      "UPPERRIGHT:com.fatmap.sdk.api.DebugOverlayCorner"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.DebugOverlayCorner[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.DebugOverlayCorner",
+      "values(): com.fatmap.sdk.api.DebugOverlayCorner[]"
+    ]
+  },
+  "com.fatmap.sdk.api.DebugOverlayPadding": {
+    "f": [
+      "mHorizontal:float",
+      "mVertical:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, float): void",
+      "getHorizontal(): float",
+      "getVertical(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.DeviceOrientation": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.DeviceOrientation[]",
+      "LANDSCAPE_LEFT:com.fatmap.sdk.api.DeviceOrientation",
+      "LANDSCAPE_RIGHT:com.fatmap.sdk.api.DeviceOrientation",
+      "PORTRAIT:com.fatmap.sdk.api.DeviceOrientation",
+      "PORTRAIT_UPSIDE_DOWN:com.fatmap.sdk.api.DeviceOrientation"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.DeviceOrientation[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.DeviceOrientation",
+      "values(): com.fatmap.sdk.api.DeviceOrientation[]"
+    ]
+  },
+  "com.fatmap.sdk.api.DeviceOrientationListener": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onDeviceOrientationChanged(com.fatmap.sdk.api.DeviceOrientation): void"
+    ]
+  },
+  "com.fatmap.sdk.api.DeviceOrientationService": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "setDeviceOrientationListener(com.fatmap.sdk.api.DeviceOrientationListener): void",
+      "start(): void",
+      "stop(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.EngineConfiguration": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "createDefault(): com.fatmap.sdk.api.EngineConfiguration",
+      "getBreadcrumbRecorder(): com.fatmap.sdk.api.BreadcrumbRecorder",
+      "getCameraTarget(): com.fatmap.sdk.api.CameraTarget",
+      "getClientName(): java.lang.String",
+      "getEnableRasterMegaTiles(): boolean",
+      "getLogLevel(): com.fatmap.sdk.api.LogLevel",
+      "getLoggingToStdOut(): boolean",
+      "getReindexOnDiskResources(): boolean",
+      "getUseOnDiskCache(): boolean",
+      "loadFromFile(java.lang.String): boolean",
+      "setBreadcrumbRecorder(com.fatmap.sdk.api.BreadcrumbRecorder): void",
+      "setCameraTarget(com.fatmap.sdk.api.CameraTarget): void",
+      "setClientName(java.lang.String): void",
+      "setEnableRasterMegaTiles(boolean): void",
+      "setLogLevel(com.fatmap.sdk.api.LogLevel): void",
+      "setLoggingToStdOut(boolean): void",
+      "setReindexOnDiskResources(boolean): void",
+      "setUseOnDiskCache(boolean): void"
+    ]
+  },
+  "com.fatmap.sdk.api.FollowMode": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.FollowMode[]",
+      "HEADING:com.fatmap.sdk.api.FollowMode",
+      "POSITION:com.fatmap.sdk.api.FollowMode"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.FollowMode[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.FollowMode",
+      "values(): com.fatmap.sdk.api.FollowMode[]"
+    ]
+  },
+  "com.fatmap.sdk.api.GestureRecognizerControl": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "setAllGesturesEnabled(boolean): void",
+      "setDoubleTapGesturesEnabled(boolean): void"
+    ]
+  },
+  "com.fatmap.sdk.api.GivenUpDownloadsInfo": {
+    "f": [
+      "mCurrentSequenceNumber:long",
+      "mHaveGivenUpDownloads:boolean",
+      "mNewGivenUpDownloads:long"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, long, boolean): void",
+      "getCurrentSequenceNumber(): long",
+      "getHaveGivenUpDownloads(): boolean",
+      "getNewGivenUpDownloads(): long",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.GlobalHeatmapConfig": {
+    "f": [
+      "mActivityType:java.lang.String",
+      "mColorScheme:com.fatmap.sdk.api.HeatmapColorScheme",
+      "mOpacityMultiplier:java.lang.Float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, com.fatmap.sdk.api.HeatmapColorScheme, java.lang.Float): void",
+      "getActivityType(): java.lang.String",
+      "getColorScheme(): com.fatmap.sdk.api.HeatmapColorScheme",
+      "getOpacityMultiplier(): java.lang.Float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.HeatmapColorScheme": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.HeatmapColorScheme[]",
+      "BLUE:com.fatmap.sdk.api.HeatmapColorScheme",
+      "BLUE_RED:com.fatmap.sdk.api.HeatmapColorScheme",
+      "ORANGE:com.fatmap.sdk.api.HeatmapColorScheme",
+      "PINK:com.fatmap.sdk.api.HeatmapColorScheme",
+      "PURPLE:com.fatmap.sdk.api.HeatmapColorScheme",
+      "SUNSET:com.fatmap.sdk.api.HeatmapColorScheme",
+      "WEEKLY_RAINBOW:com.fatmap.sdk.api.HeatmapColorScheme"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.HeatmapColorScheme[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.HeatmapColorScheme",
+      "values(): com.fatmap.sdk.api.HeatmapColorScheme[]"
+    ]
+  },
+  "com.fatmap.sdk.api.HighlightedTile": {
+    "f": [
+      "mColor:com.fatmap.sdk.api.Color",
+      "mIndex:com.fatmap.sdk.api.QuadIndex"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.QuadIndex, com.fatmap.sdk.api.Color): void",
+      "getColor(): com.fatmap.sdk.api.Color",
+      "getIndex(): com.fatmap.sdk.api.QuadIndex",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.HttpHeader": {
+    "f": [
+      "mName:java.lang.String",
+      "mValue:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String): void",
+      "getName(): java.lang.String",
+      "getValue(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.ImageFormat": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.ImageFormat[]",
+      "JPG:com.fatmap.sdk.api.ImageFormat",
+      "PNG:com.fatmap.sdk.api.ImageFormat",
+      "RGB:com.fatmap.sdk.api.ImageFormat",
+      "RGBA:com.fatmap.sdk.api.ImageFormat"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.ImageFormat[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.ImageFormat",
+      "values(): com.fatmap.sdk.api.ImageFormat[]"
+    ]
+  },
+  "com.fatmap.sdk.api.ImageryOverlay": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.ImageryOverlay[]",
+      "ASPECT:com.fatmap.sdk.api.ImageryOverlay",
+      "AVALANCHE:com.fatmap.sdk.api.ImageryOverlay",
+      "GRADIENT:com.fatmap.sdk.api.ImageryOverlay",
+      "GRID:com.fatmap.sdk.api.ImageryOverlay",
+      "NONE:com.fatmap.sdk.api.ImageryOverlay"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.ImageryOverlay[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.ImageryOverlay",
+      "values(): com.fatmap.sdk.api.ImageryOverlay[]"
+    ]
+  },
+  "com.fatmap.sdk.api.IntervalFloat": {
+    "f": [
+      "mFrom:float",
+      "mTo:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, float): void",
+      "getFrom(): float",
+      "getTo(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.IntervalInt": {
+    "f": [
+      "mFrom:long",
+      "mTo:long"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, long): void",
+      "getFrom(): long",
+      "getTo(): long",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.Language": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.Language[]",
+      "ES:com.fatmap.sdk.api.Language",
+      "FR:com.fatmap.sdk.api.Language",
+      "IT:com.fatmap.sdk.api.Language",
+      "LOCAL:com.fatmap.sdk.api.Language",
+      "PT:com.fatmap.sdk.api.Language",
+      "RU:com.fatmap.sdk.api.Language",
+      "ZH_HANS:com.fatmap.sdk.api.Language",
+      "ZH_HANT:com.fatmap.sdk.api.Language",
+      "f70446DE:com.fatmap.sdk.api.Language",
+      "f70447EN:com.fatmap.sdk.api.Language",
+      "f70448JA:com.fatmap.sdk.api.Language"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.Language[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.Language",
+      "values(): com.fatmap.sdk.api.Language[]"
+    ]
+  },
+  "com.fatmap.sdk.api.LodCalculationControlParams": {
+    "f": [
+      "mMaxLodDifferenceForOffset:int",
+      "mTileSplitThresholdOffset:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, int): void",
+      "getMaxLodDifferenceForOffset(): int",
+      "getTileSplitThresholdOffset(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.LogLevel": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.LogLevel[]",
+      "DEBUG:com.fatmap.sdk.api.LogLevel",
+      "DISABLED:com.fatmap.sdk.api.LogLevel",
+      "ERROR:com.fatmap.sdk.api.LogLevel",
+      "INFO:com.fatmap.sdk.api.LogLevel",
+      "WARNING:com.fatmap.sdk.api.LogLevel"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.LogLevel[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.LogLevel",
+      "values(): com.fatmap.sdk.api.LogLevel[]"
+    ]
+  },
+  "com.fatmap.sdk.api.LookAtPoint": {
+    "f": [
+      "mIsPointingAtMap:boolean",
+      "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.WorldPoint3, boolean): void",
+      "getIsPointingAtMap(): boolean",
+      "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.LuaAnimationHandler": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onError(com.fatmap.sdk.api.LuaScriptError): void",
+      "onProgress(float): void",
+      "shouldAdvanceAnimation(): boolean"
+    ]
+  },
+  "com.fatmap.sdk.api.LuaScriptError": {
+    "f": [
+      "mWhat:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String): void",
+      "getWhat(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.MREHolder": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "create(com.fatmap.sdk.api.RenderSurfaceHolder, com.fatmap.sdk.api.DeviceOrientationService, java.lang.String, java.lang.String, com.fatmap.sdk.api.EngineConfiguration): com.fatmap.sdk.api.MREHolder",
+      "handleMemoryWarning(): void",
+      "handleOnAppDidEnterBackground(): void",
+      "handleOnAppDidEnterForeground(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.MapClickEvent": {
+    "f": [
+      "mButton:com.fatmap.sdk.api.MouseButtonCode",
+      "mSource:com.fatmap.sdk.api.ClickSourceType",
+      "mType:com.fatmap.sdk.api.ClickEventType",
+      "mWorldPoint:com.fatmap.sdk.api.WorldPoint3"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.ClickEventType, com.fatmap.sdk.api.WorldPoint3, com.fatmap.sdk.api.ClickSourceType, com.fatmap.sdk.api.MouseButtonCode): void",
+      "getButton(): com.fatmap.sdk.api.MouseButtonCode",
+      "getSource(): com.fatmap.sdk.api.ClickSourceType",
+      "getType(): com.fatmap.sdk.api.ClickEventType",
+      "getWorldPoint(): com.fatmap.sdk.api.WorldPoint3",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.MapType": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.MapType[]",
+      "STRAVA_HYBRID:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_HYBRID:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_HYBRID_EXPERIMENT:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_SATELLITE_SUMMER:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_SATELLITE_SUMMER_EXPERIMENT:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_DARK:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_DARK_EXPERIMENT:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_LIGHT:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_LIGHT_EXPERIMENT:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_WINTER:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_WINTER_EXPERIMENT:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_WINTER_HYBRID:com.fatmap.sdk.api.MapType",
+      "STRAVA_PLANET_TOPO_WINTER_HYBRID_EXPERIMENT:com.fatmap.sdk.api.MapType",
+      "STRAVA_SATELLITE_SUMMER:com.fatmap.sdk.api.MapType",
+      "STRAVA_SATELLITE_WINTER:com.fatmap.sdk.api.MapType",
+      "STRAVA_TOPO_DARK:com.fatmap.sdk.api.MapType",
+      "STRAVA_TOPO_LIGHT:com.fatmap.sdk.api.MapType",
+      "STRAVA_TOPO_WINTER:com.fatmap.sdk.api.MapType",
+      "STRAVA_TOPO_WINTER_HYBRID:com.fatmap.sdk.api.MapType"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.MapType[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.MapType",
+      "values(): com.fatmap.sdk.api.MapType[]"
+    ]
+  },
+  "com.fatmap.sdk.api.MeasurementUnit": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.MeasurementUnit[]",
+      "FEET:com.fatmap.sdk.api.MeasurementUnit",
+      "KILOMETER:com.fatmap.sdk.api.MeasurementUnit",
+      "METER:com.fatmap.sdk.api.MeasurementUnit",
+      "MILE:com.fatmap.sdk.api.MeasurementUnit"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.MeasurementUnit[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.MeasurementUnit",
+      "values(): com.fatmap.sdk.api.MeasurementUnit[]"
+    ]
+  },
+  "com.fatmap.sdk.api.MeasurementUnitSystem": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.MeasurementUnitSystem[]",
+      "IMPERIAL:com.fatmap.sdk.api.MeasurementUnitSystem",
+      "METRIC:com.fatmap.sdk.api.MeasurementUnitSystem"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.MeasurementUnitSystem[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.MeasurementUnitSystem",
+      "values(): com.fatmap.sdk.api.MeasurementUnitSystem[]"
+    ]
+  },
+  "com.fatmap.sdk.api.MemoryStats": {
+    "f": [
+      "mCurrentAllocatedMb:double",
+      "mCurrentAllocationCount:long",
+      "mTotalAllocatedMb:double",
+      "mTotalAllocationCount:long"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, double, long, double): void",
+      "getCurrentAllocatedMb(): double",
+      "getCurrentAllocationCount(): long",
+      "getTotalAllocatedMb(): double",
+      "getTotalAllocationCount(): long",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.MouseButtonCode": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.MouseButtonCode[]",
+      "LEFT:com.fatmap.sdk.api.MouseButtonCode",
+      "MIDDLE:com.fatmap.sdk.api.MouseButtonCode",
+      "RIGHT:com.fatmap.sdk.api.MouseButtonCode"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.MouseButtonCode[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.MouseButtonCode",
+      "values(): com.fatmap.sdk.api.MouseButtonCode[]"
+    ]
+  },
+  "com.fatmap.sdk.api.MouseMoveEvent": {
+    "f": [
+      "mObjects:java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
+      "mX:float",
+      "mY:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, float, java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>): void",
+      "getObjects(): java.util.ArrayList<com.fatmap.sdk.api.ContentClickEventObject>",
+      "getX(): float",
+      "getY(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.NightlyHeatmapConfig": {
+    "f": [
+      "mActivityType:java.lang.String",
+      "mOpacityMultiplier:java.lang.Float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.Float): void",
+      "getActivityType(): java.lang.String",
+      "getOpacityMultiplier(): java.lang.Float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.Offline": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "loadBundles(java.util.ArrayList<java.lang.String>, com.fatmap.sdk.api.BundleLoadListener): void",
+      "setNonBundleResourcesAllowed(boolean): void",
+      "unloadBundles(java.util.ArrayList<java.lang.String>, com.fatmap.sdk.api.BundleUnloadListener): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OnGridChangeListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onGridSizeChange(com.fatmap.sdk.api.UnitsInfo): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OnMREReadyCallback": {
+    "f": [],
+    "i": [],
+    "m": [
+      "onMapReady(com.fatmap.sdk.api.TerrainEngine): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OnMapLoadListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onMapLoad(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OnMouseMoveListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onMouseMove(com.fatmap.sdk.api.MouseMoveEvent): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OnTapListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onContentTap(com.fatmap.sdk.api.ContentClickEvent): void",
+      "onLongContentTap(com.fatmap.sdk.api.ContentClickEvent): void",
+      "onLongMapTap(com.fatmap.sdk.api.MapClickEvent): void",
+      "onLongUserMarkerTap(com.fatmap.sdk.api.UserMarkerClickEvent): void",
+      "onMapTap(com.fatmap.sdk.api.MapClickEvent): void",
+      "onUserMarkerTap(com.fatmap.sdk.api.UserMarkerClickEvent): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OsTouch": {
+    "f": [
+      "mCurrentInfo:com.fatmap.sdk.api.OsTouchInfo",
+      "mId:long"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, com.fatmap.sdk.api.OsTouchInfo): void",
+      "getCurrentInfo(): com.fatmap.sdk.api.OsTouchInfo",
+      "getId(): long",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.OsTouchAction": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.OsTouchAction[]",
+      "CANCEL:com.fatmap.sdk.api.OsTouchAction",
+      "END:com.fatmap.sdk.api.OsTouchAction",
+      "MOVE:com.fatmap.sdk.api.OsTouchAction",
+      "START:com.fatmap.sdk.api.OsTouchAction"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.OsTouchAction[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.OsTouchAction",
+      "values(): com.fatmap.sdk.api.OsTouchAction[]"
+    ]
+  },
+  "com.fatmap.sdk.api.OsTouchInfo": {
+    "f": [
+      "mPosition:com.fatmap.sdk.api.OsTouchPosition",
+      "mTimestamp:double"
+    ],
+    "i": [],
+    "m": [
+      "<init>(double, com.fatmap.sdk.api.OsTouchPosition): void",
+      "getPosition(): com.fatmap.sdk.api.OsTouchPosition",
+      "getTimestamp(): double",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.OsTouchPosition": {
+    "f": [
+      "mNormalizedX:float",
+      "mNormalizedY:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, float): void",
+      "getNormalizedX(): float",
+      "getNormalizedY(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.OsmFilter": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "setShow(boolean): void"
+    ]
+  },
+  "com.fatmap.sdk.api.OverlayPolygon": {
+    "f": [
+      "mAspect:java.util.ArrayList<com.fatmap.sdk.api.IntervalFloat>",
+      "mBoundary:com.fatmap.sdk.api.WorldLine2",
+      "mFillColor:com.fatmap.sdk.api.Color",
+      "mGradientRange:com.fatmap.sdk.api.IntervalFloat",
+      "mHeightRange:com.fatmap.sdk.api.IntervalFloat"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.WorldLine2, com.fatmap.sdk.api.IntervalFloat, com.fatmap.sdk.api.IntervalFloat, java.util.ArrayList<com.fatmap.sdk.api.IntervalFloat>, com.fatmap.sdk.api.Color): void",
+      "getAspect(): java.util.ArrayList<com.fatmap.sdk.api.IntervalFloat>",
+      "getBoundary(): com.fatmap.sdk.api.WorldLine2",
+      "getFillColor(): com.fatmap.sdk.api.Color",
+      "getGradientRange(): com.fatmap.sdk.api.IntervalFloat",
+      "getHeightRange(): com.fatmap.sdk.api.IntervalFloat",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.OverriddenFeatureProperties": {
+    "f": [
+      "STRAVA_BIKE_LANES_DISABLED_PROPERTY:java.lang.String",
+      "STRAVA_BIKE_MAP_ENABLED_PROPERTY:java.lang.String",
+      "STRAVA_HIKE_MAP_ENABLED_PROPERTY:java.lang.String"
+    ],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addBooleanProperty(java.lang.String, boolean): void",
+      "addDoubleProperty(java.lang.String, double): void",
+      "addIntegerProperty(java.lang.String, long): void",
+      "addStringProperty(java.lang.String, java.lang.String): void",
+      "create(): com.fatmap.sdk.api.OverriddenFeatureProperties",
+      "getBooleanProperty(java.lang.String): java.lang.Boolean",
+      "getDoubleProperty(java.lang.String): java.lang.Double",
+      "getIntegerProperty(java.lang.String): java.lang.Long",
+      "getStringProperty(java.lang.String): java.lang.String",
+      "removeProperty(java.lang.String): void"
+    ],
+    "sf": {
+      "STRAVA_BIKE_LANES_DISABLED_PROPERTY": "strava_bike_lanes_disabled",
+      "STRAVA_BIKE_MAP_ENABLED_PROPERTY": "strava_bike_map_enabled",
+      "STRAVA_HIKE_MAP_ENABLED_PROPERTY": "strava_hike_map_enabled"
+    }
+  },
+  "com.fatmap.sdk.api.PerformanceMetrics": {
+    "f": [
+      "mFrameCountFromStart:long",
+      "mFrameTime:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, long): void",
+      "getFrameCountFromStart(): long",
+      "getFrameTime(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.PerformanceMetricsListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onPerformanceMetrics(com.fatmap.sdk.api.PerformanceMetrics): void"
+    ]
+  },
+  "com.fatmap.sdk.api.PerformanceTestResult": {
+    "f": [
+      "mName:java.lang.String",
+      "mUnit:java.lang.String",
+      "mValue:double"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String, double): void",
+      "getName(): java.lang.String",
+      "getUnit(): java.lang.String",
+      "getValue(): double",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.PersonalHeatmapConfig": {
+    "f": [
+      "mColorScheme:com.fatmap.sdk.api.HeatmapColorScheme",
+      "mFilterEnd:java.lang.String",
+      "mFilterStart:java.lang.String",
+      "mFilterType:java.lang.String",
+      "mIncludeActivitiesVisibleOnlyToMe:boolean",
+      "mIncludeActivitiesVisibleToEveryone:boolean",
+      "mIncludeActivitiesVisibleToFollowersOnly:boolean",
+      "mIncludeCommutes:boolean",
+      "mOpacityMultiplier:java.lang.Float",
+      "mRespectPrivacyZones:boolean"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String, java.lang.String, com.fatmap.sdk.api.HeatmapColorScheme, java.lang.Float, boolean, boolean, boolean, boolean, boolean): void",
+      "getColorScheme(): com.fatmap.sdk.api.HeatmapColorScheme",
+      "getFilterEnd(): java.lang.String",
+      "getFilterStart(): java.lang.String",
+      "getFilterType(): java.lang.String",
+      "getIncludeActivitiesVisibleOnlyToMe(): boolean",
+      "getIncludeActivitiesVisibleToEveryone(): boolean",
+      "getIncludeActivitiesVisibleToFollowersOnly(): boolean",
+      "getIncludeCommutes(): boolean",
+      "getOpacityMultiplier(): java.lang.Float",
+      "getRespectPrivacyZones(): boolean",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.PersonalHeatmapTestAccount": {
+    "f": [
+      "mAccessToken:java.lang.String",
+      "mStravaAthleteId:java.lang.String",
+      "mTileEndpointHostName:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String, java.lang.String): void",
+      "getAccessToken(): java.lang.String",
+      "getStravaAthleteId(): java.lang.String",
+      "getTileEndpointHostName(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.PointScreenPosition": {
+    "f": [
+      "mIsOccluded:boolean",
+      "mX:float",
+      "mY:float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(float, float, boolean): void",
+      "getIsOccluded(): boolean",
+      "getX(): float",
+      "getY(): float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.PolylineHighlightSection": {
+    "f": [
+      "mEndIndex:long",
+      "mIcon:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "mIconText:java.lang.String",
+      "mIdentifier:java.lang.String",
+      "mStartIndex:long",
+      "mType:com.fatmap.sdk.api.PolylineHighlightSectionType"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, long, long, com.fatmap.sdk.api.PolylineHighlightSectionType, com.fatmap.sdk.api.PolylineHighlightSectionIcon, java.lang.String): void",
+      "getEndIndex(): long",
+      "getIcon(): com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "getIconText(): java.lang.String",
+      "getIdentifier(): java.lang.String",
+      "getStartIndex(): long",
+      "getType(): com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.PolylineHighlightSectionIcon": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.PolylineHighlightSectionIcon[]",
+      "BEST_EFFORT_CLIMB:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "BEST_EFFORT_PACE:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "BEST_EFFORT_POWER:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "BRONZE_PR:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "GOLD_PR:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "LOCAL_LEGEND:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "SILVER_PR:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_1:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_10:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_2:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_3:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_4:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_5:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_6:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_7:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_8:com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "TOP10_9:com.fatmap.sdk.api.PolylineHighlightSectionIcon"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.PolylineHighlightSectionIcon[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.PolylineHighlightSectionIcon",
+      "values(): com.fatmap.sdk.api.PolylineHighlightSectionIcon[]"
+    ]
+  },
+  "com.fatmap.sdk.api.PolylineHighlightSectionType": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.PolylineHighlightSectionType[]",
+      "BLUE:com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "BRONZE:com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "GOLD:com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "PURPLE:com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "SILVER:com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "TEAL:com.fatmap.sdk.api.PolylineHighlightSectionType"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.PolylineHighlightSectionType[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.PolylineHighlightSectionType",
+      "values(): com.fatmap.sdk.api.PolylineHighlightSectionType[]"
+    ]
+  },
+  "com.fatmap.sdk.api.PostUpdateListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "postUpdate(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.PrivateApi": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addPerformanceMetricsListener(com.fatmap.sdk.api.PerformanceMetricsListener): void",
+      "clearLuaPersistedStore(): void",
+      "finishTwoPassVideoRendering(): void",
+      "getGivenUpDownloadsInfo(long): com.fatmap.sdk.api.GivenUpDownloadsInfo",
+      "getMemoryStats(): com.fatmap.sdk.api.MemoryStats",
+      "getPerformanceTestsNames(): java.util.ArrayList<java.lang.String>",
+      "getPreparedCommandService(com.fatmap.sdk.api.DataExchangeService): com.fatmap.sdk.api.CommandService",
+      "getVisibleAreaBoundsExt(com.fatmap.sdk.api.CameraMargins, float, com.fatmap.sdk.api.VisibleAreaSamplesSink): com.fatmap.sdk.api.VisibleAreaBounds",
+      "haveGivenUpTileDownloads(): boolean",
+      "haveVisualContentLoadingWork(boolean): boolean",
+      "isVsyncEnabled(): boolean",
+      "recordResourcesNeededForSecondVideoRenderingPass(): void",
+      "refreshScreenInfo(): void",
+      "reloadTerrain(): void",
+      "removePerformanceMetricsListener(com.fatmap.sdk.api.PerformanceMetricsListener): void",
+      "resetOnlineAvailabilityData(): void",
+      "resetTileDownloadHistory(): void",
+      "runPerformanceTests(java.util.ArrayList<java.lang.String>, java.lang.String, com.fatmap.sdk.api.TestsListener): void",
+      "runScreenshotTests(java.util.ArrayList<java.lang.String>, java.lang.String, com.fatmap.sdk.api.TestsListener): void",
+      "saveWindowScreenshot(java.lang.String): void",
+      "setDiskCacheSize(long): void",
+      "setDownloadHeightmapsOnly(boolean): void",
+      "setLodSubdivisionThresholdEnabled(boolean): void",
+      "setLuaGlobalAnimation(java.lang.String, com.fatmap.sdk.api.AnimatedImage, boolean): void",
+      "setLuaGlobalFloat(java.lang.String, float): void",
+      "setLuaGlobalImage(java.lang.String, com.fatmap.sdk.api.CustomImage, boolean): void",
+      "setLuaGlobalInt(java.lang.String, int): void",
+      "setLuaGlobalLine(java.lang.String, com.fatmap.sdk.api.WorldLine2): void",
+      "setLuaGlobalString(java.lang.String, java.lang.String): void",
+      "setOfflineMode(boolean): void",
+      "setPixelRatio(float): void",
+      "setResourceLoadingFromDiskAllowed(boolean): void",
+      "setShaderHotReloadingEnabled(boolean): void",
+      "setShowSymbolBoundingBoxes(boolean): void",
+      "setStylingZoomLevelOverride(java.lang.Float): void",
+      "setSymbolScreenPaddingEnabled(boolean): void",
+      "setSymbolVisibilityStateful(boolean): void",
+      "setTestAccountForPersonalHeatmap(com.fatmap.sdk.api.PersonalHeatmapTestAccount): void",
+      "setTileDownloadEventProcessor(com.fatmap.sdk.api.TileDownloadEventProcessor): void",
+      "setVsyncEnabled(boolean): void",
+      "setupDefaultMockTiles(): void",
+      "startDownloadingResourcesForSecondVideoRenderingPass(): void",
+      "startEnteringTestingContext(com.fatmap.sdk.api.Offline, java.lang.String, java.lang.String, com.fatmap.sdk.api.TestingContextEventListener): com.fatmap.sdk.api.TestingContextHandle",
+      "startLuaAnimationScript(java.lang.String, java.lang.Float, com.fatmap.sdk.api.LuaAnimationHandler): void",
+      "startMockTileServer(): void",
+      "startTrackPerfTest(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint3>, float, long, boolean, com.fatmap.sdk.api.TrackPerfTestCompletionListener): void",
+      "startVideoRenderingFirstPass(): void",
+      "startVideoRenderingSecondPass(): void",
+      "stopLuaAnimationScript(): void",
+      "stopMockTileServer(): void",
+      "switchToCustomStyle(java.lang.String, boolean, boolean, boolean, boolean, boolean, boolean, java.lang.Float): void",
+      "updateLodCalculationControlParams(com.fatmap.sdk.api.LodCalculationControlParams): com.fatmap.sdk.api.LodCalculationControlParams"
+    ]
+  },
+  "com.fatmap.sdk.api.QuadIndex": {
+    "f": [
+      "mX:int",
+      "mY:int",
+      "mZ:byte"
+    ],
+    "i": [],
+    "m": [
+      "<init>(byte, int, int): void",
+      "getX(): int",
+      "getY(): int",
+      "getZ(): byte",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.RecordContent": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "displayLiveSegments(java.util.ArrayList<com.fatmap.sdk.api.CandidateSegment>): void",
+      "displayRecordingLine(com.fatmap.sdk.api.WorldLine2): void",
+      "removeAllLiveSegments(): void",
+      "removeRecordingLine(): void",
+      "showRecordingLineFinishMarker(boolean): void"
+    ]
+  },
+  "com.fatmap.sdk.api.RenderSurfaceHolder": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "getGestureRecognizerControl(): com.fatmap.sdk.api.GestureRecognizerControl",
+      "getRenderSurfaceWindow(): com.fatmap.sdk.api.Window",
+      "isRenderSurfaceCreated(): boolean",
+      "notifyTerrainEngineReady(): void",
+      "setTerrainEngine(com.fatmap.sdk.api.TerrainEngine): void",
+      "setTouchListener(com.fatmap.sdk.api.TouchListener): void",
+      "setWindowLifecycleListener(com.fatmap.sdk.api.WindowLifecycleListener): void"
+    ]
+  },
+  "com.fatmap.sdk.api.RoadSurfaceType": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.RoadSurfaceType[]",
+      "PAVED:com.fatmap.sdk.api.RoadSurfaceType",
+      "UNPAVED:com.fatmap.sdk.api.RoadSurfaceType",
+      "UNSPECIFIED:com.fatmap.sdk.api.RoadSurfaceType"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.RoadSurfaceType[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.RoadSurfaceType",
+      "values(): com.fatmap.sdk.api.RoadSurfaceType[]"
+    ]
+  },
+  "com.fatmap.sdk.api.RouteContent": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addWaypointToRoute(java.lang.String, com.fatmap.sdk.api.RouteWaypoint): void",
+      "displayAnimatedRoute(java.lang.String, com.fatmap.sdk.api.WorldLine2, java.util.ArrayList<com.fatmap.sdk.api.RouteSection>, java.util.ArrayList<com.fatmap.sdk.api.RouteWaypoint>, com.fatmap.sdk.api.RouteSelectionStyle, boolean, float, float, com.fatmap.sdk.api.CompletionCallback): void",
+      "displayRoute(java.lang.String, com.fatmap.sdk.api.WorldLine2, java.util.ArrayList<com.fatmap.sdk.api.RouteSection>, java.util.ArrayList<com.fatmap.sdk.api.RouteWaypoint>, com.fatmap.sdk.api.RouteSelectionStyle, boolean): void",
+      "displayRouteScrubber(double, double): void",
+      "fadeInUnselectedRoutes(float, java.lang.Float, com.fatmap.sdk.api.CompletionCallback): void",
+      "removeAllRoutes(): void",
+      "removeRouteScrubber(): void",
+      "removeRoutes(java.util.ArrayList<java.lang.String>): void",
+      "selectRoute(java.lang.String, com.fatmap.sdk.api.RouteSelectionStyle): void",
+      "selectWaypointOnRoute(java.lang.String, java.lang.String): void",
+      "stopUnselectedRoutesFadeIn(): void",
+      "unselectRoute(java.lang.String): void",
+      "unselectWaypointOnRoute(java.lang.String, java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.RouteSection": {
+    "f": [
+      "mNumPolylineEdges:long",
+      "mSurfaceType:com.fatmap.sdk.api.RoadSurfaceType"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, com.fatmap.sdk.api.RoadSurfaceType): void",
+      "getNumPolylineEdges(): long",
+      "getSurfaceType(): com.fatmap.sdk.api.RoadSurfaceType",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.RouteSelectionStyle": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.RouteSelectionStyle[]",
+      "CANONICAL:com.fatmap.sdk.api.RouteSelectionStyle",
+      "GRADIENT:com.fatmap.sdk.api.RouteSelectionStyle"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.RouteSelectionStyle[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.RouteSelectionStyle",
+      "values(): com.fatmap.sdk.api.RouteSelectionStyle[]"
+    ]
+  },
+  "com.fatmap.sdk.api.RouteWaypoint": {
+    "f": [
+      "mCategory:com.fatmap.sdk.api.RouteWaypointCategory",
+      "mIdentifier:java.lang.String",
+      "mPoint:com.fatmap.sdk.api.WorldPoint2",
+      "mTitle:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, com.fatmap.sdk.api.WorldPoint2, java.lang.String, com.fatmap.sdk.api.RouteWaypointCategory): void",
+      "getCategory(): com.fatmap.sdk.api.RouteWaypointCategory",
+      "getIdentifier(): java.lang.String",
+      "getPoint(): com.fatmap.sdk.api.WorldPoint2",
+      "getTitle(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.RouteWaypointCategory": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.RouteWaypointCategory[]",
+      "AID_STATION:com.fatmap.sdk.api.RouteWaypointCategory",
+      "ALERT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "ART:com.fatmap.sdk.api.RouteWaypointCategory",
+      "ATTRACTION:com.fatmap.sdk.api.RouteWaypointCategory",
+      "BAR:com.fatmap.sdk.api.RouteWaypointCategory",
+      "BEACH:com.fatmap.sdk.api.RouteWaypointCategory",
+      "BIKE_SHOP:com.fatmap.sdk.api.RouteWaypointCategory",
+      "CAMP_SITE:com.fatmap.sdk.api.RouteWaypointCategory",
+      "CHECKPOINT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "COFFEE:com.fatmap.sdk.api.RouteWaypointCategory",
+      "DISTANCE_MARKER:com.fatmap.sdk.api.RouteWaypointCategory",
+      "GAS_STATION:com.fatmap.sdk.api.RouteWaypointCategory",
+      "GENERIC:com.fatmap.sdk.api.RouteWaypointCategory",
+      "GROCERY:com.fatmap.sdk.api.RouteWaypointCategory",
+      "LODGING:com.fatmap.sdk.api.RouteWaypointCategory",
+      "MEETING_SPOT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "MONUMENT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "PARK:com.fatmap.sdk.api.RouteWaypointCategory",
+      "PARKING:com.fatmap.sdk.api.RouteWaypointCategory",
+      "PEAK:com.fatmap.sdk.api.RouteWaypointCategory",
+      "PHARMACY:com.fatmap.sdk.api.RouteWaypointCategory",
+      "RESTAURANT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "RESTROOM:com.fatmap.sdk.api.RouteWaypointCategory",
+      "REST_AREA:com.fatmap.sdk.api.RouteWaypointCategory",
+      "ROUTE_PLANNED_FINISH:com.fatmap.sdk.api.RouteWaypointCategory",
+      "ROUTE_PLANNED_START:com.fatmap.sdk.api.RouteWaypointCategory",
+      "ROUTE_PLANNED_WAYPOINT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "SEGMENT_END:com.fatmap.sdk.api.RouteWaypointCategory",
+      "SEGMENT_START:com.fatmap.sdk.api.RouteWaypointCategory",
+      "TRAILHEAD:com.fatmap.sdk.api.RouteWaypointCategory",
+      "TRANSITION_ZONE:com.fatmap.sdk.api.RouteWaypointCategory",
+      "VIEWPOINT:com.fatmap.sdk.api.RouteWaypointCategory",
+      "WATER_SOURCE:com.fatmap.sdk.api.RouteWaypointCategory"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.RouteWaypointCategory[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.RouteWaypointCategory",
+      "values(): com.fatmap.sdk.api.RouteWaypointCategory[]"
+    ]
+  },
+  "com.fatmap.sdk.api.SegmentFeature": {
+    "f": [
+      "mActivityType:long",
+      "mAthletesAllTime:java.lang.Long",
+      "mAttemptsAllTime:java.lang.Long",
+      "mAverageGrade:java.lang.Float",
+      "mDarkSparklineUrl:java.lang.String",
+      "mDarkThumbnailUrl:java.lang.String",
+      "mDistance:java.lang.Double",
+      "mId:long",
+      "mName:java.lang.String",
+      "mScore:double",
+      "mSparklineUrl:java.lang.String",
+      "mStartXYLat:java.lang.Float",
+      "mStartXYLng:java.lang.Float",
+      "mThumbnailUrl:java.lang.String",
+      "mVerifiedStatus:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, java.lang.String, double, long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Float, java.lang.Double, java.lang.Long, java.lang.Long, java.lang.Float, java.lang.Float): void",
+      "getActivityType(): long",
+      "getAthletesAllTime(): java.lang.Long",
+      "getAttemptsAllTime(): java.lang.Long",
+      "getAverageGrade(): java.lang.Float",
+      "getDarkSparklineUrl(): java.lang.String",
+      "getDarkThumbnailUrl(): java.lang.String",
+      "getDistance(): java.lang.Double",
+      "getId(): long",
+      "getName(): java.lang.String",
+      "getScore(): double",
+      "getSparklineUrl(): java.lang.String",
+      "getStartXYLat(): java.lang.Float",
+      "getStartXYLng(): java.lang.Float",
+      "getThumbnailUrl(): java.lang.String",
+      "getVerifiedStatus(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.SegmentsFilter": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "getVisibleSegments(): java.util.ArrayList<com.fatmap.sdk.api.SegmentFeature>",
+      "hide(): void",
+      "selectSegment(long): void",
+      "show(com.fatmap.sdk.api.SegmentsFilterOptions): void",
+      "unselectSegment(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.SegmentsFilterOptions": {
+    "f": [
+      "mActivityTypes:java.lang.String",
+      "mCreator:java.lang.Boolean",
+      "mDistanceMax:java.lang.String",
+      "mDistanceMin:java.lang.String",
+      "mElevationFilter:java.lang.String",
+      "mOverall:java.lang.Boolean",
+      "mStarred:java.lang.Boolean",
+      "mSurfaceTypes:java.lang.String",
+      "mTop10:java.lang.Boolean",
+      "mVerified:java.lang.Boolean"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean): void",
+      "getActivityTypes(): java.lang.String",
+      "getCreator(): java.lang.Boolean",
+      "getDistanceMax(): java.lang.String",
+      "getDistanceMin(): java.lang.String",
+      "getElevationFilter(): java.lang.String",
+      "getOverall(): java.lang.Boolean",
+      "getStarred(): java.lang.Boolean",
+      "getSurfaceTypes(): java.lang.String",
+      "getTop10(): java.lang.Boolean",
+      "getVerified(): java.lang.Boolean",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.ServerConfig": {
+    "f": [
+      "mMapboxServerSecret:java.lang.String",
+      "mMapboxServerURL:java.lang.String",
+      "mSegmentsServerURL:java.lang.String",
+      "mStravaPoiServerURL:java.lang.String",
+      "mStravaTileServerURL:java.lang.String",
+      "mTileSourceConfig:com.fatmap.sdk.api.TileSourceConfig"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.fatmap.sdk.api.TileSourceConfig): void",
+      "getMapboxServerSecret(): java.lang.String",
+      "getMapboxServerURL(): java.lang.String",
+      "getSegmentsServerURL(): java.lang.String",
+      "getStravaPoiServerURL(): java.lang.String",
+      "getStravaTileServerURL(): java.lang.String",
+      "getTileSourceConfig(): com.fatmap.sdk.api.TileSourceConfig",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.StartPointFilterOptions": {
+    "f": [
+      "mDifficulty:long",
+      "mDistance:long",
+      "mElevation:float",
+      "mRouteType:long",
+      "mSurfaceType:long"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, long, float, long, long): void",
+      "getDifficulty(): long",
+      "getDistance(): long",
+      "getElevation(): float",
+      "getRouteType(): long",
+      "getSurfaceType(): long",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.StravaPoiFilter": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "disableBikeShares(): void",
+      "disableStartPoints(): void",
+      "enableBikeShares(): void",
+      "enableStartPoints(com.fatmap.sdk.api.StartPointFilterOptions): void",
+      "selectPoi(com.fatmap.sdk.api.ContentSelectionHandle): void",
+      "setShow(boolean): void",
+      "unselectPoi(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TerrainEngine": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addOnGridChangeListener(com.fatmap.sdk.api.OnGridChangeListener): void",
+      "addOnMouseMoveListener(com.fatmap.sdk.api.OnMouseMoveListener): void",
+      "addOnTapListener(com.fatmap.sdk.api.OnTapListener): void",
+      "addOverlayPolygon(com.fatmap.sdk.api.OverlayPolygon): void",
+      "addPostUpdateListener(com.fatmap.sdk.api.PostUpdateListener): void",
+      "addTileLoadingListener(com.fatmap.sdk.api.TileLoadingListener): void",
+      "addViewUpdateListener(com.fatmap.sdk.api.ViewUpdateListener): void",
+      "didEnterBackground(): void",
+      "didEnterForeground(): void",
+      "getCamera(): com.fatmap.sdk.api.Camera",
+      "getContent(): com.fatmap.sdk.api.Content",
+      "getDebugApi(): com.fatmap.sdk.api.DebugApi",
+      "getElevation(com.fatmap.sdk.api.WorldPoint2): double",
+      "getFps(): float",
+      "getGridUnits(): com.fatmap.sdk.api.UnitsInfo",
+      "getOffline(): com.fatmap.sdk.api.Offline",
+      "getOverriddenFeatureProperties(): com.fatmap.sdk.api.OverriddenFeatureProperties",
+      "getPrivateApi(java.lang.String): com.fatmap.sdk.api.PrivateApi",
+      "getUtils(): com.fatmap.sdk.api.Utils",
+      "receivedMemoryWarning(): void",
+      "removeAllOverlayPolygons(): void",
+      "removeOnGridChangeListener(com.fatmap.sdk.api.OnGridChangeListener): void",
+      "removeOnMouseMoveListener(com.fatmap.sdk.api.OnMouseMoveListener): void",
+      "removeOnTapListener(com.fatmap.sdk.api.OnTapListener): void",
+      "removePostUpdateListener(com.fatmap.sdk.api.PostUpdateListener): void",
+      "removeTileLoadingListener(com.fatmap.sdk.api.TileLoadingListener): void",
+      "removeViewUpdateListener(com.fatmap.sdk.api.ViewUpdateListener): void",
+      "requestRender(): void",
+      "setAlwaysRender(boolean): void",
+      "setAuthenticationErrorListener(com.fatmap.sdk.api.AuthenticationErrorListener): void",
+      "setDesiredLanguage(com.fatmap.sdk.api.Language): void",
+      "setEnableScreenSymbols(boolean): void",
+      "setGlobalHeatmapConfig(com.fatmap.sdk.api.GlobalHeatmapConfig): void",
+      "setImageryOverlay(com.fatmap.sdk.api.ImageryOverlay): void",
+      "setIsTerrain3dEnabled(boolean): void",
+      "setLogLevel(com.fatmap.sdk.api.LogLevel): void",
+      "setMapType(com.fatmap.sdk.api.MapType): void",
+      "setNightlyHeatmapConfig(com.fatmap.sdk.api.NightlyHeatmapConfig): void",
+      "setOverlayPolygons(java.util.ArrayList<com.fatmap.sdk.api.OverlayPolygon>): void",
+      "setOverriddenFeatureProperties(com.fatmap.sdk.api.OverriddenFeatureProperties): void",
+      "setPaused(boolean): void",
+      "setPersonalHeatmapConfig(com.fatmap.sdk.api.PersonalHeatmapConfig): void",
+      "setRenderingDisabled(boolean): void",
+      "setScreenSymbolRefreshInterval(float): void",
+      "setServerConfig(com.fatmap.sdk.api.ServerConfig, boolean): void",
+      "setStravaAuthData(long, java.util.ArrayList<com.fatmap.sdk.api.HttpHeader>): void",
+      "setStravaSourcesExtraHeaders(java.util.ArrayList<com.fatmap.sdk.api.HttpHeader>): void",
+      "setSurfaceIdentifier(java.lang.String): void",
+      "setUnitSystem(com.fatmap.sdk.api.MeasurementUnitSystem): void",
+      "setWeeklyHeatmapConfig(com.fatmap.sdk.api.WeeklyHeatmapConfig): void",
+      "update(): void",
+      "waitToLoadMap(com.fatmap.sdk.api.OnMapLoadListener, boolean, float): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TestingContextEventListener": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onEntered(): void",
+      "onErrorEntering(java.lang.String): void",
+      "onLeft(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TestingContextHandle": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "status(): com.fatmap.sdk.api.TestingContextStatus",
+      "stopEnteringOrInitiateLeaving(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TestingContextStatus": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.TestingContextStatus[]",
+      "ENTERED:com.fatmap.sdk.api.TestingContextStatus",
+      "ENTERING:com.fatmap.sdk.api.TestingContextStatus",
+      "ENTERINGFAILED:com.fatmap.sdk.api.TestingContextStatus",
+      "LEAVING:com.fatmap.sdk.api.TestingContextStatus",
+      "NOCONTEXT:com.fatmap.sdk.api.TestingContextStatus"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.TestingContextStatus[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.TestingContextStatus",
+      "values(): com.fatmap.sdk.api.TestingContextStatus[]"
+    ]
+  },
+  "com.fatmap.sdk.api.TestsListener": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onFinished(): void",
+      "onPerformanceTestResult(com.fatmap.sdk.api.PerformanceTestResult): void",
+      "onTestFinished(java.lang.String): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TileDownloadEventProcessor": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "processDownloadCancelled(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
+      "processDownloadFailed(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>, boolean, java.lang.Integer): void",
+      "processDownloadStarted(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
+      "processResourceNotAvailable(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
+      "processResourceRetrieved(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void",
+      "processResourceRevalidatedWithoutDownloading(com.fatmap.sdk.api.QuadIndex, java.lang.String, java.util.HashMap<java.lang.String, java.lang.String>): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TileLoadingListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onTilesLoaded(): void",
+      "onTilesLoadingStarted(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TileSourceConfig": {
+    "f": [
+      "mGlobalHeatmapURLTemplate:java.lang.String",
+      "mGradientURLTemplate:java.lang.String",
+      "mHeightmapURLTemplate:java.lang.String",
+      "mMapboxStreetsTerrainURLTemplate:java.lang.String",
+      "mMapboxStreetsURLTemplate:java.lang.String",
+      "mNightlyHeatmapURLTemplate:java.lang.String",
+      "mPersonalHeatmapURLTemplate:java.lang.String",
+      "mSegmentsTemplate:java.lang.String",
+      "mStravaContoursURLTemplate:java.lang.String",
+      "mStravaPlanetSportURLTemplate:java.lang.String",
+      "mStravaPlanetURLTemplate:java.lang.String",
+      "mStravaPoiURLTemplate:java.lang.String",
+      "mSummerImageryURLTemplate:java.lang.String",
+      "mWeeklyHeatmapURLTemplate:java.lang.String",
+      "mWinterImageryURLTemplate:java.lang.String",
+      "mWinterOverlayImageryURLTemplate:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String): void",
+      "getGlobalHeatmapURLTemplate(): java.lang.String",
+      "getGradientURLTemplate(): java.lang.String",
+      "getHeightmapURLTemplate(): java.lang.String",
+      "getMapboxStreetsTerrainURLTemplate(): java.lang.String",
+      "getMapboxStreetsURLTemplate(): java.lang.String",
+      "getNightlyHeatmapURLTemplate(): java.lang.String",
+      "getPersonalHeatmapURLTemplate(): java.lang.String",
+      "getSegmentsTemplate(): java.lang.String",
+      "getStravaContoursURLTemplate(): java.lang.String",
+      "getStravaPlanetSportURLTemplate(): java.lang.String",
+      "getStravaPlanetURLTemplate(): java.lang.String",
+      "getStravaPoiURLTemplate(): java.lang.String",
+      "getSummerImageryURLTemplate(): java.lang.String",
+      "getWeeklyHeatmapURLTemplate(): java.lang.String",
+      "getWinterImageryURLTemplate(): java.lang.String",
+      "getWinterOverlayImageryURLTemplate(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.TouchListener": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onDoubleTap(com.fatmap.sdk.api.OsTouch): void",
+      "onLongPress(com.fatmap.sdk.api.OsTouch): void",
+      "onSingleTap(com.fatmap.sdk.api.OsTouch): void",
+      "onTapAndMove(com.fatmap.sdk.api.OsTouch, com.fatmap.sdk.api.OsTouchAction): void",
+      "onTouches(java.util.ArrayList<com.fatmap.sdk.api.OsTouch>): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TrackPerfTestCompletionListener": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onPerfTestFinished(com.fatmap.sdk.api.TrackPerfTestResults): void"
+    ]
+  },
+  "com.fatmap.sdk.api.TrackPerfTestResults": {
+    "f": [
+      "mAvgFrameTimeMs:long",
+      "mMaxFrameTimeMs:long",
+      "mMinFrameTimeMs:long"
+    ],
+    "i": [],
+    "m": [
+      "<init>(long, long, long): void",
+      "getAvgFrameTimeMs(): long",
+      "getMaxFrameTimeMs(): long",
+      "getMinFrameTimeMs(): long",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.UnitsInfo": {
+    "f": [
+      "mMeters:double",
+      "mSize:double",
+      "mUnit:com.fatmap.sdk.api.MeasurementUnit"
+    ],
+    "i": [],
+    "m": [
+      "<init>(double, double, com.fatmap.sdk.api.MeasurementUnit): void",
+      "getMeters(): double",
+      "getSize(): double",
+      "getUnit(): com.fatmap.sdk.api.MeasurementUnit",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.UserMarkerClickEvent": {
+    "f": [
+      "mButton:com.fatmap.sdk.api.MouseButtonCode",
+      "mSource:com.fatmap.sdk.api.ClickSourceType",
+      "mType:com.fatmap.sdk.api.ClickEventType"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.ClickEventType, com.fatmap.sdk.api.ClickSourceType, com.fatmap.sdk.api.MouseButtonCode): void",
+      "getButton(): com.fatmap.sdk.api.MouseButtonCode",
+      "getSource(): com.fatmap.sdk.api.ClickSourceType",
+      "getType(): com.fatmap.sdk.api.ClickEventType",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.Utils": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "addCustomMarker2(double, double, java.lang.String, java.lang.String, java.lang.String): long",
+      "addCustomMarker3(double, double, java.lang.String, java.lang.String, java.lang.String): long",
+      "getUserMarkerLocationAngle(): float",
+      "hideTileGrid(): void",
+      "isUserMarkerOnScreen(): boolean",
+      "removeCustomMarker(long): void",
+      "removeUserMarker(): void",
+      "setHighlightedTiles(java.util.ArrayList<com.fatmap.sdk.api.HighlightedTile>): void",
+      "setUserMarker(double, double): void",
+      "setUserMarkerAnimation(float): void",
+      "setUserMarkerDirection(float): void",
+      "setUserMarkerPrecision(float): void",
+      "setUserMarkerState(boolean): void",
+      "showTileGrid(byte, java.util.ArrayList<com.fatmap.sdk.api.HighlightedTile>): void",
+      "updateCustomMarkerPosition(long, double, double): void"
+    ]
+  },
+  "com.fatmap.sdk.api.VersionInfo": {
+    "f": [
+      "mBranchName:java.lang.String",
+      "mBuildDate:java.lang.String",
+      "mBuildHash:java.lang.String",
+      "mBuildId:java.lang.String",
+      "mBuildVersion:int",
+      "mEnvironment:byte",
+      "mMajorVersion:short",
+      "mMinorVersion:short",
+      "mPatchVersion:short",
+      "mVersionString:java.lang.String"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, short, short, short, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, byte): void",
+      "getBranchName(): java.lang.String",
+      "getBuildDate(): java.lang.String",
+      "getBuildHash(): java.lang.String",
+      "getBuildId(): java.lang.String",
+      "getBuildVersion(): int",
+      "getEnvironment(): byte",
+      "getMajorVersion(): short",
+      "getMinorVersion(): short",
+      "getPatchVersion(): short",
+      "getVersionString(): java.lang.String",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.ViewUpdateListener": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "onViewUpdated(): void"
+    ]
+  },
+  "com.fatmap.sdk.api.VisibleAreaBounds": {
+    "f": [
+      "mBottomLeftCorner:com.fatmap.sdk.api.WorldPoint2",
+      "mBottomRightCorner:com.fatmap.sdk.api.WorldPoint2",
+      "mTopLeftCorner:com.fatmap.sdk.api.WorldPoint2",
+      "mTopRightCorner:com.fatmap.sdk.api.WorldPoint2"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2): void",
+      "getBottomLeftCorner(): com.fatmap.sdk.api.WorldPoint2",
+      "getBottomRightCorner(): com.fatmap.sdk.api.WorldPoint2",
+      "getTopLeftCorner(): com.fatmap.sdk.api.WorldPoint2",
+      "getTopRightCorner(): com.fatmap.sdk.api.WorldPoint2",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.VisibleAreaSamplesSink": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "processVisiblePoint(com.fatmap.sdk.api.WorldPoint2): void"
+    ]
+  },
+  "com.fatmap.sdk.api.WeeklyHeatmapConfig": {
+    "f": [
+      "mActivityType:java.lang.String",
+      "mColorScheme:com.fatmap.sdk.api.HeatmapColorScheme",
+      "mOpacityMultiplier:java.lang.Float"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.lang.String, com.fatmap.sdk.api.HeatmapColorScheme, java.lang.Float): void",
+      "getActivityType(): java.lang.String",
+      "getColorScheme(): com.fatmap.sdk.api.HeatmapColorScheme",
+      "getOpacityMultiplier(): java.lang.Float",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.Window": {
+    "f": [],
+    "i": [],
+    "m": [
+      "<init>(): void",
+      "getPixelRatio(): float",
+      "getRenderSurface(): android.view.Surface"
+    ]
+  },
+  "com.fatmap.sdk.api.WindowLifecycleListener": {
+    "f": [],
+    "i": [
+      null
+    ],
+    "m": [
+      "<init>(): void",
+      "onDisplayChanged(float): void",
+      "onWindowResized(int, int): void",
+      "onWindowStateChanged(com.fatmap.sdk.api.WindowState): void"
+    ]
+  },
+  "com.fatmap.sdk.api.WindowState": {
+    "f": [
+      "$VALUES:com.fatmap.sdk.api.WindowState[]",
+      "ACTIVE:com.fatmap.sdk.api.WindowState",
+      "CREATED:com.fatmap.sdk.api.WindowState",
+      "DESTROYED:com.fatmap.sdk.api.WindowState",
+      "INACTIVE:com.fatmap.sdk.api.WindowState",
+      "NONE:com.fatmap.sdk.api.WindowState"
+    ],
+    "i": [],
+    "m": [
+      "$values(): com.fatmap.sdk.api.WindowState[]",
+      "<clinit>(): void",
+      "<init>(java.lang.String, int): void",
+      "valueOf(java.lang.String): com.fatmap.sdk.api.WindowState",
+      "values(): com.fatmap.sdk.api.WindowState[]"
+    ]
+  },
+  "com.fatmap.sdk.api.WorldBounds2": {
+    "f": [
+      "mNorthEastCorner:com.fatmap.sdk.api.WorldPoint2",
+      "mSouthWestCorner:com.fatmap.sdk.api.WorldPoint2"
+    ],
+    "i": [],
+    "m": [
+      "<init>(com.fatmap.sdk.api.WorldPoint2, com.fatmap.sdk.api.WorldPoint2): void",
+      "getNorthEastCorner(): com.fatmap.sdk.api.WorldPoint2",
+      "getSouthWestCorner(): com.fatmap.sdk.api.WorldPoint2",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.WorldLine2": {
+    "f": [
+      "mPoints:java.util.ArrayList<com.fatmap.sdk.api.WorldPoint2>"
+    ],
+    "i": [],
+    "m": [
+      "<init>(java.util.ArrayList<com.fatmap.sdk.api.WorldPoint2>): void",
+      "getPoints(): java.util.ArrayList<com.fatmap.sdk.api.WorldPoint2>",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.WorldPoint2": {
+    "f": [
+      "mLatitude:double",
+      "mLongitude:double"
+    ],
+    "i": [],
+    "m": [
+      "<init>(double, double): void",
+      "getLatitude(): double",
+      "getLongitude(): double",
+      "toString(): java.lang.String"
+    ]
+  },
+  "com.fatmap.sdk.api.WorldPoint3": {
+    "f": [
+      "mElevation:float",
+      "mLatitude:double",
+      "mLongitude:double"
+    ],
+    "i": [],
+    "m": [
+      "<init>(double, double, float): void",
+      "getElevation(): float",
+      "getLatitude(): double",
+      "getLongitude(): double",
+      "toString(): java.lang.String"
+    ]
+  }
 }

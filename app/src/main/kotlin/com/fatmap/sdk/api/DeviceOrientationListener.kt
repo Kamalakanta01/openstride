@@ -6,18 +6,18 @@ package com.fatmap.sdk.api
  * The nested [CppProxy] carries the native handle and declares the `external`
  * functions, so the JNI symbol names match the original library exactly.
  */
-class DeviceOrientationListener internal constructor(handle: Long) : AutoCloseable {
+class DeviceOrientationListener internal constructor(private val handle: Long) : AutoCloseable {
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ DeviceOrientationListener ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-        external fun native_onDeviceOrientationChanged(vdeviceOrientation: DeviceOrientation): Unit
-        external fun nativeDestroy()
+        external fun native_onDeviceOrientationChanged(handle: Long, vdeviceOrientation: DeviceOrientation): Unit
+        external fun nativeDestroy(handle: Long)
     }
 
-    fun onDeviceOrientationChanged(vdeviceOrientation: DeviceOrientation): Unit = mProxy.native_onDeviceOrientationChanged(vdeviceOrientation)
+    fun onDeviceOrientationChanged(vdeviceOrientation: DeviceOrientation): Unit = mProxy.native_onDeviceOrientationChanged(handle, vdeviceOrientation)
 
     override fun close() {
-        mProxy.nativeDestroy()
+        mProxy.nativeDestroy(handle)
     }
 }

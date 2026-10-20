@@ -170,11 +170,35 @@ Then:
 ./gradlew :app:assembleDebug     # APK -> app/build/outputs/apk/debug/
 ./gradlew ktlintCheck             # style
 ./gradlew test                    # unit tests
+./gradlew :app:connectedDebugAndroidTest   # on-device engine tests
 ```
 
 The Gradle wrapper is committed, so no local Gradle install is needed.
 
 CI does exactly this on every push, and uploads the debug APK as a build artifact.
+
+### Verifying the API is 1:1 with the original
+
+The map engine's Java surface is generated from a contract extracted from the
+original library. `tools/verify_api_parity.py` checks that the generated
+layer still matches, in six independent ways:
+
+| Check | What it proves |
+|---|---|
+| 1. JNI symbol parity | Our `.so` exports exactly the original's 312 symbols |
+| 2. DEX declarations resolve | Every native the contract declares exists in our `.so` |
+| 3. Public Java API parity | The compiled Kotlin exposes every public method |
+| 4. Implementation coverage | How much of the engine is actually implemented |
+| 5. Native signatures | The Kotlin `external` declarations match the contract's arity |
+| 6. Marshalling | Every getter and constructor the C++ calls exists on our compiled classes |
+
+Checks 5 and 6 exist because the JVM links a native call by name **and**
+signature: a parameter count or descriptor mismatch passes every name-based
+check and then crashes on a device, where the C++ reads a garbage argument.
+
+```bash
+python3 tools/verify_api_parity.py
+```
 
 ---
 
@@ -191,6 +215,7 @@ CI does exactly this on every push, and uploads the debug APK as a build artifac
 | Social features | ⬜ Not started — see the scope note below |
 | Build | ✅ Compiles for arm64-v8a and armeabi-v7a; unit tests pass; CI green |
 | Map engine build | ✅ Compiles; 45 host checks pass; ships in the APK with all 312 symbols |
+| On-device tests | ✅ 7 instrumented tests pass on a physical device (Galaxy A30F) |
 
 ### Scope note
 

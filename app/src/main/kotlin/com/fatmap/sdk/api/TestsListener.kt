@@ -6,22 +6,22 @@ package com.fatmap.sdk.api
  * The nested [CppProxy] carries the native handle and declares the `external`
  * functions, so the JNI symbol names match the original library exactly.
  */
-class TestsListener internal constructor(handle: Long) : AutoCloseable {
+class TestsListener internal constructor(private val handle: Long) : AutoCloseable {
     private val mProxy = CppProxy(handle)
 
     /** The native half of the API. One instance per [ TestsListener ]. */
     class CppProxy internal constructor(private val mNativeHandle: Long) {
-        external fun native_onFinished(): Unit
-        external fun native_onPerformanceTestResult(vperformanceTestResult: PerformanceTestResult): Unit
-        external fun native_onTestFinished(text: String): Unit
-        external fun nativeDestroy()
+        external fun native_onFinished(handle: Long): Unit
+        external fun native_onPerformanceTestResult(handle: Long, vperformanceTestResult: PerformanceTestResult): Unit
+        external fun native_onTestFinished(handle: Long, text: String): Unit
+        external fun nativeDestroy(handle: Long)
     }
 
-    fun onFinished(): Unit = mProxy.native_onFinished()
-    fun onPerformanceTestResult(vperformanceTestResult: PerformanceTestResult): Unit = mProxy.native_onPerformanceTestResult(vperformanceTestResult)
-    fun onTestFinished(text: String): Unit = mProxy.native_onTestFinished(text)
+    fun onFinished(): Unit = mProxy.native_onFinished(handle)
+    fun onPerformanceTestResult(vperformanceTestResult: PerformanceTestResult): Unit = mProxy.native_onPerformanceTestResult(handle, vperformanceTestResult)
+    fun onTestFinished(text: String): Unit = mProxy.native_onTestFinished(handle, text)
 
     override fun close() {
-        mProxy.nativeDestroy()
+        mProxy.nativeDestroy(handle)
     }
 }

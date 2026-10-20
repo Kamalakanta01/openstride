@@ -1604,8 +1604,11 @@ extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_OsmFilter_00024CppProx
 extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_create(
     JNIEnv* env,
     jobject thiz) {
-    const auto result = fatmap::static_OverriddenFeatureProperties_create(env);
-    return jni::write_OverriddenFeatureProperties(env, result);
+    auto* result = fatmap::static_OverriddenFeatureProperties_create(env);
+    if (result == nullptr) {
+        return nullptr;
+    }
+    return jni::wrap_proxy(env, result, "com/fatmap/sdk/api/OverriddenFeatureProperties");
 }
 extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_OverriddenFeatureProperties_00024CppProxy_nativeDestroy(
     JNIEnv* env,
@@ -3031,7 +3034,7 @@ extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_TerrainEngine_00024
         return nullptr;
     }
     const auto result = proxy->native_getOverriddenFeatureProperties();
-    return jni::write_OverriddenFeatureProperties(env, result);
+    return jni::wrap_proxy(env, result, "com/fatmap/sdk/api/OverriddenFeatureProperties");
 }
 extern "C" JNIEXPORT jobject JNICALL Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1getPrivateApi(
     JNIEnv* env,
@@ -3300,7 +3303,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_TerrainEngine_00024Cpp
     if (proxy == nullptr) {
         return;
     }
-    const auto p0 = jni::read_OverriddenFeatureProperties(env, a0);
+    const auto p0 = jni::read_opaque(env, a0);
     proxy->native_setOverriddenFeatureProperties(p0);
 }
 extern "C" JNIEXPORT void JNICALL Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setPaused(

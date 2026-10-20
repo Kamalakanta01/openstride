@@ -31,7 +31,7 @@ AnimatedImage read_AnimatedImage(JNIEnv* env, jobject obj) {
     AnimatedImage v;
     jclass cls = env->GetObjectClass(obj);
     v.fps = env->CallFloatMethod(obj, env->GetMethodID(cls, "getFps", "()F"));
-    v.frames = jni::read_list<CustomImage>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getFrames", "()Ljava/util/ArrayList;")), [](JNIEnv* e, jobject o) { return jni::read_CustomImage(e, o); });
+    v.frames = jni::read_list<CustomImage>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getFrames", "()Ljava/util/List;")), [](JNIEnv* e, jobject o) { return jni::read_CustomImage(e, o); });
     v.shouldLoop = env->CallBooleanMethod(obj, env->GetMethodID(cls, "getShouldLoop", "()Z"));
     env->DeleteLocalRef(cls);
     return v;
@@ -39,7 +39,7 @@ AnimatedImage read_AnimatedImage(JNIEnv* env, jobject obj) {
 
 jobject write_AnimatedImage(JNIEnv* env, const AnimatedImage& value) {
     jclass cls = env->FindClass("com/fatmap/sdk/api/AnimatedImage");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Ljava/util/ArrayList;FZ)V");
+    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Ljava/util/List;FZ)V");
     const jobject a0 = jni::write_list<CustomImage>(env, value.frames, [](JNIEnv* e, const CustomImage& v) { return jni::write_CustomImage(e, v); });
     return env->NewObject(cls, ctor, a0, static_cast<float>(value.fps), static_cast<jboolean>(value.shouldLoop ? JNI_TRUE : JNI_FALSE));
 }
@@ -78,7 +78,7 @@ jobject write_CameraStateFlags(JNIEnv* env, CameraStateFlags value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/CameraStateFlags;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/CameraStateFlags;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -133,7 +133,7 @@ jobject write_CameraViewType(JNIEnv* env, CameraViewType value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/CameraViewType;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/CameraViewType;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -174,7 +174,7 @@ jobject write_ClickEventType(JNIEnv* env, ClickEventType value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/ClickEventType;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/ClickEventType;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -195,7 +195,7 @@ jobject write_ClickSourceType(JNIEnv* env, ClickSourceType value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/ClickSourceType;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/ClickSourceType;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -220,7 +220,7 @@ ContentClickEvent read_ContentClickEvent(JNIEnv* env, jobject obj) {
     ContentClickEvent v;
     jclass cls = env->GetObjectClass(obj);
     v.button = jni::read_MouseButtonCode(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getButton", "()Lcom/fatmap/sdk/api/MouseButtonCode;")));
-    v.objects = jni::read_list<ContentClickEventObject>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getObjects", "()Ljava/util/ArrayList;")), [](JNIEnv* e, jobject o) { return jni::read_ContentClickEventObject(e, o); });
+    v.objects = jni::read_list<ContentClickEventObject>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getObjects", "()Ljava/util/List;")), [](JNIEnv* e, jobject o) { return jni::read_ContentClickEventObject(e, o); });
     v.source = jni::read_ClickSourceType(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getSource", "()Lcom/fatmap/sdk/api/ClickSourceType;")));
     v.type = jni::read_ClickEventType(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getType", "()Lcom/fatmap/sdk/api/ClickEventType;")));
     v.worldPoint = jni::read_WorldPoint3(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getWorldPoint", "()Lcom/fatmap/sdk/api/WorldPoint3;")));
@@ -230,7 +230,7 @@ ContentClickEvent read_ContentClickEvent(JNIEnv* env, jobject obj) {
 
 jobject write_ContentClickEvent(JNIEnv* env, const ContentClickEvent& value) {
     jclass cls = env->FindClass("com/fatmap/sdk/api/ContentClickEvent");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Lcom/fatmap/sdk/api/ClickEventType;Ljava/util/ArrayList;Lcom/fatmap/sdk/api/ClickSourceType;Lcom/fatmap/sdk/api/MouseButtonCode;Lcom/fatmap/sdk/api/WorldPoint3;)V");
+    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Lcom/fatmap/sdk/api/ClickEventType;Ljava/util/List;Lcom/fatmap/sdk/api/ClickSourceType;Lcom/fatmap/sdk/api/MouseButtonCode;Lcom/fatmap/sdk/api/WorldPoint3;)V");
     const jobject a0 = jni::write_ClickEventType(env, value.type);
     const jobject a1 = jni::write_list<ContentClickEventObject>(env, value.objects, [](JNIEnv* e, const ContentClickEventObject& v) { return jni::write_ContentClickEventObject(e, v); });
     const jobject a2 = jni::write_ClickSourceType(env, value.source);
@@ -286,7 +286,7 @@ jobject write_ContentGroup(JNIEnv* env, ContentGroup value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/ContentGroup;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/ContentGroup;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -327,7 +327,7 @@ jobject write_DebugOverlayCorner(JNIEnv* env, DebugOverlayCorner value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/DebugOverlayCorner;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/DebugOverlayCorner;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -363,7 +363,7 @@ jobject write_DeviceOrientation(JNIEnv* env, DeviceOrientation value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/DeviceOrientation;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/DeviceOrientation;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -384,7 +384,7 @@ jobject write_FollowMode(JNIEnv* env, FollowMode value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/FollowMode;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/FollowMode;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -440,7 +440,7 @@ jobject write_HeatmapColorScheme(JNIEnv* env, HeatmapColorScheme value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/HeatmapColorScheme;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/HeatmapColorScheme;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -495,7 +495,7 @@ jobject write_ImageFormat(JNIEnv* env, ImageFormat value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/ImageFormat;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/ImageFormat;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -516,7 +516,7 @@ jobject write_ImageryOverlay(JNIEnv* env, ImageryOverlay value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/ImageryOverlay;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/ImageryOverlay;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -567,7 +567,7 @@ jobject write_Language(JNIEnv* env, Language value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/Language;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/Language;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -603,7 +603,7 @@ jobject write_LogLevel(JNIEnv* env, LogLevel value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/LogLevel;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/LogLevel;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -676,7 +676,7 @@ jobject write_MapType(JNIEnv* env, MapType value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/MapType;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/MapType;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -697,7 +697,7 @@ jobject write_MeasurementUnit(JNIEnv* env, MeasurementUnit value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/MeasurementUnit;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/MeasurementUnit;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -718,7 +718,7 @@ jobject write_MeasurementUnitSystem(JNIEnv* env, MeasurementUnitSystem value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/MeasurementUnitSystem;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/MeasurementUnitSystem;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -756,14 +756,14 @@ jobject write_MouseButtonCode(JNIEnv* env, MouseButtonCode value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/MouseButtonCode;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/MouseButtonCode;");
     return env->GetStaticObjectField(cls, field);
 }
 
 MouseMoveEvent read_MouseMoveEvent(JNIEnv* env, jobject obj) {
     MouseMoveEvent v;
     jclass cls = env->GetObjectClass(obj);
-    v.objects = jni::read_list<ContentClickEventObject>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getObjects", "()Ljava/util/ArrayList;")), [](JNIEnv* e, jobject o) { return jni::read_ContentClickEventObject(e, o); });
+    v.objects = jni::read_list<ContentClickEventObject>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getObjects", "()Ljava/util/List;")), [](JNIEnv* e, jobject o) { return jni::read_ContentClickEventObject(e, o); });
     v.x = env->CallFloatMethod(obj, env->GetMethodID(cls, "getX", "()F"));
     v.y = env->CallFloatMethod(obj, env->GetMethodID(cls, "getY", "()F"));
     env->DeleteLocalRef(cls);
@@ -772,7 +772,7 @@ MouseMoveEvent read_MouseMoveEvent(JNIEnv* env, jobject obj) {
 
 jobject write_MouseMoveEvent(JNIEnv* env, const MouseMoveEvent& value) {
     jclass cls = env->FindClass("com/fatmap/sdk/api/MouseMoveEvent");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "(FFLjava/util/ArrayList;)V");
+    jmethodID ctor = env->GetMethodID(cls, "<init>", "(FFLjava/util/List;)V");
     const jobject a2 = jni::write_list<ContentClickEventObject>(env, value.objects, [](JNIEnv* e, const ContentClickEventObject& v) { return jni::write_ContentClickEventObject(e, v); });
     return env->NewObject(cls, ctor, static_cast<float>(value.x), static_cast<float>(value.y), a2);
 }
@@ -827,7 +827,7 @@ jobject write_OsTouchAction(JNIEnv* env, OsTouchAction value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/OsTouchAction;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/OsTouchAction;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -865,7 +865,7 @@ jobject write_OsTouchPosition(JNIEnv* env, const OsTouchPosition& value) {
 OverlayPolygon read_OverlayPolygon(JNIEnv* env, jobject obj) {
     OverlayPolygon v;
     jclass cls = env->GetObjectClass(obj);
-    v.aspect = jni::read_list<IntervalFloat>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getAspect", "()Ljava/util/ArrayList;")), [](JNIEnv* e, jobject o) { return jni::read_IntervalFloat(e, o); });
+    v.aspect = jni::read_list<IntervalFloat>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getAspect", "()Ljava/util/List;")), [](JNIEnv* e, jobject o) { return jni::read_IntervalFloat(e, o); });
     v.boundary = jni::read_WorldLine2(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getBoundary", "()Lcom/fatmap/sdk/api/WorldLine2;")));
     v.fillColor = jni::read_Color(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getFillColor", "()Lcom/fatmap/sdk/api/Color;")));
     v.gradientRange = jni::read_IntervalFloat(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getGradientRange", "()Lcom/fatmap/sdk/api/IntervalFloat;")));
@@ -876,25 +876,13 @@ OverlayPolygon read_OverlayPolygon(JNIEnv* env, jobject obj) {
 
 jobject write_OverlayPolygon(JNIEnv* env, const OverlayPolygon& value) {
     jclass cls = env->FindClass("com/fatmap/sdk/api/OverlayPolygon");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Lcom/fatmap/sdk/api/WorldLine2;Lcom/fatmap/sdk/api/IntervalFloat;Lcom/fatmap/sdk/api/IntervalFloat;Ljava/util/ArrayList;Lcom/fatmap/sdk/api/Color;)V");
+    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Lcom/fatmap/sdk/api/WorldLine2;Lcom/fatmap/sdk/api/IntervalFloat;Lcom/fatmap/sdk/api/IntervalFloat;Ljava/util/List;Lcom/fatmap/sdk/api/Color;)V");
     const jobject a0 = jni::write_WorldLine2(env, value.boundary);
     const jobject a1 = jni::write_IntervalFloat(env, value.gradientRange);
     const jobject a2 = jni::write_IntervalFloat(env, value.heightRange);
     const jobject a3 = jni::write_list<IntervalFloat>(env, value.aspect, [](JNIEnv* e, const IntervalFloat& v) { return jni::write_IntervalFloat(e, v); });
     const jobject a4 = jni::write_Color(env, value.fillColor);
     return env->NewObject(cls, ctor, a0, a1, a2, a3, a4);
-}
-
-OverriddenFeatureProperties read_OverriddenFeatureProperties(JNIEnv* env, jobject obj) {
-    (void)env;
-    (void)obj;
-    return OverriddenFeatureProperties{};
-}
-
-jobject write_OverriddenFeatureProperties(JNIEnv* env, const OverriddenFeatureProperties& value) {
-    jclass cls = env->FindClass("com/fatmap/sdk/api/OverriddenFeatureProperties");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "()V");
-    return env->NewObject(cls, ctor);
 }
 
 PerformanceMetrics read_PerformanceMetrics(JNIEnv* env, jobject obj) {
@@ -1033,7 +1021,7 @@ jobject write_PolylineHighlightSectionIcon(JNIEnv* env, PolylineHighlightSection
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/PolylineHighlightSectionIcon;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/PolylineHighlightSectionIcon;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1054,7 +1042,7 @@ jobject write_PolylineHighlightSectionType(JNIEnv* env, PolylineHighlightSection
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/PolylineHighlightSectionType;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/PolylineHighlightSectionType;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1091,7 +1079,7 @@ jobject write_RoadSurfaceType(JNIEnv* env, RoadSurfaceType value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/RoadSurfaceType;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/RoadSurfaceType;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1128,7 +1116,7 @@ jobject write_RouteSelectionStyle(JNIEnv* env, RouteSelectionStyle value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/RouteSelectionStyle;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/RouteSelectionStyle;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1170,7 +1158,7 @@ jobject write_RouteWaypointCategory(JNIEnv* env, RouteWaypointCategory value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/RouteWaypointCategory;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/RouteWaypointCategory;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1307,7 +1295,7 @@ jobject write_TestingContextStatus(JNIEnv* env, TestingContextStatus value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/TestingContextStatus;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/TestingContextStatus;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1493,7 +1481,7 @@ jobject write_WindowState(JNIEnv* env, WindowState value) {
     if (index < 0 || index >= static_cast<int>(sizeof(names) / sizeof(names[0]))) {
         return nullptr;
     }
-    jfieldID field = env->GetStaticFieldID(cls, names[index], "com/fatmap/sdk/api/WindowState;");
+    jfieldID field = env->GetStaticFieldID(cls, names[index], "Lcom/fatmap/sdk/api/WindowState;");
     return env->GetStaticObjectField(cls, field);
 }
 
@@ -1517,14 +1505,14 @@ jobject write_WorldBounds2(JNIEnv* env, const WorldBounds2& value) {
 WorldLine2 read_WorldLine2(JNIEnv* env, jobject obj) {
     WorldLine2 v;
     jclass cls = env->GetObjectClass(obj);
-    v.points = jni::read_list<WorldPoint2>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getPoints", "()Ljava/util/ArrayList;")), [](JNIEnv* e, jobject o) { return jni::read_WorldPoint2(e, o); });
+    v.points = jni::read_list<WorldPoint2>(env, env->CallObjectMethod(obj, env->GetMethodID(cls, "getPoints", "()Ljava/util/List;")), [](JNIEnv* e, jobject o) { return jni::read_WorldPoint2(e, o); });
     env->DeleteLocalRef(cls);
     return v;
 }
 
 jobject write_WorldLine2(JNIEnv* env, const WorldLine2& value) {
     jclass cls = env->FindClass("com/fatmap/sdk/api/WorldLine2");
-    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Ljava/util/ArrayList;)V");
+    jmethodID ctor = env->GetMethodID(cls, "<init>", "(Ljava/util/List;)V");
     const jobject a0 = jni::write_list<WorldPoint2>(env, value.points, [](JNIEnv* e, const WorldPoint2& v) { return jni::write_WorldPoint2(e, v); });
     return env->NewObject(cls, ctor, a0);
 }

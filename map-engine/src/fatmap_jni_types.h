@@ -7,12 +7,30 @@
 #pragma once
 
 #include <jni.h>
+#ifdef __ANDROID__
+#include <android/log.h>
+#endif
 
 #include <cstdint>
 #include <map>
 #include <optional>
+#include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
+
+namespace fatmap {
+/**
+ * The handles Java may pass back, recorded by address at wrap time.
+ *
+ * resolve() looks handles up here instead of dynamic-casting them: a dynamic
+ * cast against hidden cross-translation-unit RTTI silently fails on Android.
+ */
+inline std::unordered_map<jlong, void*>& comfort_handles() {
+    static std::unordered_map<jlong, void*> handles;
+    return handles;
+}
+}  // namespace fatmap
 
 namespace jni {
 
@@ -456,11 +474,21 @@ inline jobject wrap_proxy(JNIEnv* env, T* impl, const char* className) {
     }
     jclass cls = env->FindClass(className);
     if (cls == nullptr) {
+#ifdef __ANDROID__
+        __android_log_print(ANDROID_LOG_ERROR, "fatmap-jni", "FindClass failed: %s", className);
+#endif
         return nullptr;
     }
     jmethodID ctor = env->GetMethodID(cls, "<init>", "(J)V");
     jobject result = env->NewObject(cls, ctor, reinterpret_cast<jlong>(impl));
     env->DeleteLocalRef(cls);
+    if (result != nullptr) {
+        fatmap::comfort_handles()[(reinterpret_cast<jlong>(impl))] = impl;
+#ifdef __ANDROID__
+    } else {
+        __android_log_print(ANDROID_LOG_ERROR, "fatmap-jni", "NewObject failed: %s", className);
+#endif
+    }
     return result;
 }
 
