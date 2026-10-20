@@ -206,7 +206,7 @@ The engine fetches Mapbox vector tiles with a server secret:
 
 Options:
 - **Bundle a region as MBTiles** (OpenMapTiles / OSM-derived) and serve it from your local server, rewriting the URL template via `setServerConfig`.
-- **Convert the bundled Strava styles to a local style spec** — `assets/assets.zip` contains 3 Mapbox-GL styles (StravaTopo, StravaDark, StravaWinter) and 48 GLSL shaders, so the *styling* is already local; only the *tiles* aren't.
+- **Convert the bundled Strava styles to a local style spec** — `assets/assets.zip` contains 15 Mapbox Style Spec v8 styles and 48 of Strava's own shaders, so the *styling* is already local; only the *tiles* aren't.
 - Use `OverriddenFeatureProperties` to restyle vector tiles from a free source.
 
 The 3D terrain (Fatmap's `mapbox-terrain-v2` + `GlobalAltitudeRange/9.gart`) and Strava's own POI set are **not** in the bundle, so a fully faithful 3D map is not reproducible without server data.

@@ -56,6 +56,7 @@
 | `events.mapbox.com` | `https://events.mapbox.com` | DEX `classes3.dex` | Mapbox telemetry |
 | `api.maptiler.com` | `https://api.maptiler.com/tiles/…/tiles.json?key={key}`, `…/fonts/{fontstack}/{range}.pbf?key={key}`, `…/maps/{id}/sprite` | `assets/assets.zip` → `Shared/Configs/StravaPlanet*/style.json` | MapTiler (Fatmap map styles) |
 | `cloud.maptiler.com` | `https://cloud.maptiler.com/api/v1/sprites/{id}/content` | `assets/assets.zip` | MapTiler |
+| `strava-map-tiles-planet-tilejson-public.s3.us-east-1.amazonaws.com` | `https://strava-map-tiles-planet-tilejson-public.s3.us-east-1.amazonaws.com/planet/tilejson.json` | `assets/assets.zip` → `Shared/Configs/StravaPlanet*/style.json` | **Public** AWS S3 bucket — the Strava Planet tile source. No credentials in the URL |
 | `o352714.ingest.sentry.io` | `https://<SENTRY_PUBLIC_KEY>@o352714.ingest.sentry.io/<SENTRY_PROJECT_ID>` | `AndroidManifest.xml` `io.sentry.dsn` | Sentry |
 | `data.emb-api.com` | `data.emb-api.com`, `.data.emb-api.com`, `.config.emb-api.com` | DEX `classes6.dex` | Embrace |
 | `api.iterable.com` | `https://api.iterable.com/` | DEX `classes4.dex` | Iterable (push/marketing) |
@@ -88,7 +89,7 @@
 
 `developer.android.com`, `cs.android.com`, `tools.android.com`, `issuetracker.google.com`, `support.google.com`, `docs.google.com`, `goo.gl`, `goo.gle`, `g.co`, `google.com`, `www.google.com`, `github.com`, `youtrack.jetbrains.com`, `ktor.io`, `www.slf4j.org`, `xmlpull.org`, `www.w3.org`, `schemas.android.com`, `ns.adobe.com`, `aomedia.org`, `developer.apple.com`, `www.topografix.com`, `docs.mapbox.com`, `www.mapbox.com`, `labs.mapbox.com`, `publicobject.com`, `example.com`, `www.example.com`, `picsum.photos`, `dgalywyr863hv.cloudfront.net`, `ca.slack-edge.com`, `vignette.wikia.nocookie.net`, `creativecommons.org`, `www.earthenv.org`, `www.maxar.com`, `www.openstreetmap.org`, `maps.google.com`, `localhost`, `localhost:8969`, `10.0.2.2:8969`, `android.googlesource.com`, `curl.se`, `www.bundysoft.com`, `blog.mouaif.org`, `google.github.io`.
 
-Also present: `api.maptiler.com` and `cloud.maptiler.com` are reached only from `assets/assets.zip` map-style JSON, **not** from DEX.
+Also present: `api.maptiler.com`, `cloud.maptiler.com` and `strava-map-tiles-planet-tilejson-public.s3.us-east-1.amazonaws.com` are reached only from `assets/assets.zip` map-style JSON, **not** from DEX. The S3 bucket is a *public* bucket — its name says so — and carries no credentials, so the Strava Planet tile set is fetchable without an account.
 
 ---
 

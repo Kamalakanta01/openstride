@@ -241,9 +241,17 @@ void Java_com_fatmap_sdk_api_TerrainEngine_00024CppProxy_native_1setStravaAuthDa
 
 `assets/assets.zip` (20.4 MB, 962 entries) is the Fatmap runtime bundle:
 
-- 3 Mapbox-GL styles — `StravaTopo`, `StravaDark`, `StravaWinter`
-- 776 POI icons (PNG)
-- 48 GLSL shaders
+- **15 Mapbox Style Spec v8 styles**, in two families:
+  - *Strava classic* — `StravaTopo`, `StravaTopoDark`, `StravaTopoWinter`,
+    `StravaHybrid`, `StravaSatellite` (409–522 layers each). Their sources are
+    `mapbox://` URLs pointing at Mapbox Studio style IDs under the `cerilewis`
+    account, plus `mapbox://mapbox.mapbox-streets-v8`.
+  - *Strava Planet* — the `StravaPlanet*` family (212–548 layers each). Their
+    sources are **MapTiler** (`api.maptiler.com`) plus a **public AWS S3
+    bucket**, `strava-map-tiles-planet-tilejson-public.s3.us-east-1.amazonaws.com`.
+- 388 generated icons (PNG), each shipped at 1x and 2x — 776 files in total
+- 48 of Strava's own shaders (`.fs`/`.vs`) and 14 of OGRE's GLSL files
+- 13 heatmap colour ramps, 5 terrain overlay textures, 8 SDFonts, 10 TTFs
 - OGRE 3D resources: `Main` + `RTShaderLib`
 - SDFonts
 - a skybox

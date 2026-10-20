@@ -194,6 +194,138 @@ current state).
 
 ---
 
+## 2b. The asset bundle, in full
+
+`assets/assets.zip` is 20,367,814 bytes and 962 entries. Its own `README.md`
+gives the provenance:
+
+> * **Main, RTShaderLib** — copied from Ogre (Ogre3D `Media/` directory)
+> * **Shared** — formerly a submodule pointing at the `FatmapSDKSharedAssets` repository
+> * **shaders, textures** — FatmapMobileSDK assets not shared with the web version
+
+The OGRE attribution is therefore stated *by the artefact itself*, not inferred.
+
+| Group | Count | What it is |
+|---|---:|---|
+| `Shared/Configs/GeneratedIcons/X1`, `/X2` | 388 + 388 | Generated POI, medal and badge icons, each at 1x and 2x |
+| `Shared/Configs/Strava*/style.json` | 15 | Mapbox Style Spec v8 styles |
+| `Shared/Shaders/Terrain`, `/Content`, `/` | 48 | Strava's own shaders, in `.fs`/`.vs` form |
+| `RTShaderLib/GLSL/` | 14 | OGRE's own shader library (`FFPLib_*`, `SGXLib_*`) |
+| `Main/` | 14 | OGRE's default resources, including `DefaultShaders.metal` |
+| `Shared/Textures/Heatmap` | 13 | Heatmap colour ramps |
+| `Shared/Textures/Terrain` | 5 | Terrain overlay textures |
+| `Shared/SDFonts` | 8 | Signed-distance-field fonts (`.pbfont`, protobuf) |
+| `Shared/VectorFonts` | 10 | TrueType fonts (Noto Sans, Boathouse) |
+| `Shared/Skybox` | 3 | `Skybox.obj` plus high and low-resolution textures |
+| `Data/Packages/GlobalAltitudeRange/9.gart` | 1 | 1,048,596 bytes — the global altitude range, zoom level 9 |
+| `lua/` | 3 | The Lua runtime's standard library plus two scripts |
+| `myrootcert.pem` | 1 | **A bundled Mozilla CA bundle** |
+
+Two details in that table are worth more than the rest.
+
+### The heatmap ramps and terrain textures match the API exactly
+
+13 heatmap ramps, and the `HeatmapColorScheme` enum has 7 values — BLUE,
+BLUE_RED, ORANGE, PINK, PURPLE, SUNSET, WEEKLY_RAINBOW. Six schemes have a
+`_dark` and a `_light` variant (12 files) plus one `weekly_rainbow.png` = 13.
+The 5 terrain textures are `TerrainAspect`, `TerrainAvalanche`,
+`TerrainGradient`, `TerrainAltitude` and `TerrainFlats`, matching the
+`ImageryOverlay` enum (ASPECT, AVALANCHE, GRADIENT, GRID, NONE) and the
+`OverlayPolygon` gradient/aspect ranges.
+
+The API and the asset bundle are two views of the same design.
+
+### The engine carries its own TLS trust store
+
+`myrootcert.pem` is the **complete Mozilla CA bundle — 144 root certificates,
+dated 2025-12-02** — not a pinning bundle. Cross-checking against the host's
+own CA store shows the bundle carries 24 roots the host's current set does not
+have (Entrust, QuoVadis, SwissSign, COMODO, certSIGN, GLOBALTRUST, Certigna
+and others).
+
+This means **the engine's TLS trust is independent of the operating system's.**
+The engine does its own HTTPS with its own root set, so a root that the OS has
+retired may still be trusted by the engine, and a root the OS trusts but this
+bundle omits would be rejected by it. For anyone reimplementing the engine,
+this file is the trust configuration to reproduce — and it is a supply-chain
+surface worth reviewing.
+
+### The Lua scripts
+
+- `lua/protoc.lua` — 38 KB. Lua has no native Protocol Buffers, so the engine
+  ships a **pure-Lua protobuf runtime**. This is what makes `VectorTile`
+  decoding possible in the scripting layer.
+- `lua/AnimatedImagePlayer.lua` — 3 KB. A module (`--- @module MRE`) that
+  drives animated map markers, matching the `AnimatedImage`, `CustomImage` and
+  `setLuaGlobalAnimation` API.
+
+So Lua is used for two things: protobuf encoding, and the MRE animation
+framework.
+
+---
+
+## 2c. The tile pipeline's actual sources
+
+The 15 styles split into two families, and they fetch from completely
+different places.
+
+**Strava classic** — `StravaTopo`, `StravaTopoDark`, `StravaTopoWinter`,
+`StravaHybrid`, `StravaSatellite` (409–522 layers each). Their sources are
+`mapbox://` URLs naming **Mapbox Studio style IDs** under the `cerilewis`
+account — Mapbox's account for Strava — plus
+`mapbox://mapbox.mapbox-streets-v8`. Glyphs come from
+`mapbox://fonts/cerilewis/{fontstack}/{range}.pbf` and the sprite from a
+`mapbox://sprites/cerilewis/...` URL.
+
+**Strava Planet** — the `StravaPlanet*` family (212–548 layers each). These
+fetch from **MapTiler** (`api.maptiler.com`, `cloud.maptiler.com`) with a
+runtime-injected `?key={key}`, **and from a public AWS S3 bucket**:
+
+```
+https://strava-map-tiles-planet-tilejson-public.s3.us-east-1.amazonaws.com/planet/tilejson.json
+```
+
+That bucket name says what it is: a *public* bucket, no credentials in the URL.
+The Strava Planet tile set is therefore fetchable without a Strava account —
+which is directly useful for a local-only build, and is the one part of the
+map stack that is genuinely public.
+
+**Five of the shipped styles are named `[Staging] ...`** — `[Staging]
+[Topo Dark]`, `[Staging] [Topo Light]`, `[Staging] [Hybrid]`,
+`[Staging] [Satellite]`, `[Staging] [Winter Hybrid]`. Staging
+configurations are shipped in the production APK. Their `*Experiment`
+siblings are named `Hiking Dash ...`.
+
+---
+
+## 2d. Both native map stacks are loaded
+
+The DEX loads **nine** native libraries, and both map engines among them:
+
+| Library | Size | |
+|---|---:|---|
+| `fatmap` | 10.8 MB | Strava's 3D engine |
+| `mapbox-maps` | 5.7 MB | Mapbox Maps SDK v11 |
+| `mapbox-common` | 3.5 MB | Mapbox Common SDK |
+| `rive-android` | 3.8 MB | Rive animation |
+| `embrace-native` | 1.1 MB | Embrace SDK |
+| `sentry` | 441 KB | Sentry |
+| `sentry-android` | 12 KB | Sentry |
+| `litr-jni` | 128 KB | LITR log transport |
+| `datastore_shared_counter` | 4.4 KB | AndroidX DataStore |
+
+Mapbox is **not** vestigial: the application loads it alongside Fatmap. The
+Fatmap engine renders the 2D/3D map; the Mapbox SDK is present for the
+components that use it. `assets/sdk_versions/` records
+`com.mapbox.common.core = 24.7.0` and `com.mapbox.maps.core = 11.7.0`.
+
+The `com.fatmap.sdk` Java package contains **only** `com.fatmap.sdk.api.*` —
+160 classes. The `Sdk` class seen in the native RTTI is a C++ class, not a
+Java one, so the entire Java-visible surface of the engine is the API package
+this project has captured in full.
+
+---
+
 ## 3. The tile pipeline
 
 The engine compiles in these URL shapes:
@@ -337,8 +469,9 @@ supposed to be designed.
 **What was not established:**
 
 - The internal behaviour of the renderer. The OGRE integration is inferred
-  from the RTTI, the bundled `assets.zip` (3 styles, 776 POI icons, 48 GLSL
-  shaders, `Main`/`RTShaderLib`), and the class names.
+  from the RTTI, the bundled `assets.zip` (15 styles, 388 icons at 1x and 2x,
+  48 Strava shaders, 14 OGRE GLSL files, `Main`/`RTShaderLib`), and the class
+  names.
 - The exact tile-LOD algorithm. `LodCalculationControlParams`
   (`getTileSplitThresholdOffset`, `getMaxLodDifferenceForOffset`) exposes two
   tunables, but their effect was not measured.

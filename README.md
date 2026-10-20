@@ -97,6 +97,10 @@ Facts extracted from the artifact, in machine-readable form. These are the input
 | `data/local-databases.txt` | the app's on-device database names |
 | `spec/manifest-summary.json` | package identity, permissions, every component, machine-readable |
 | `spec/fatmap-jni.json` | the complete Fatmap native API, by class and method |
+| `spec/fatmap-java-api.json` | the complete public Java API: 130 classes, 823 methods |
+| `spec/fatmap-native-api.json` | the native API: 30 proxy classes, 312 methods with exact JNI descriptors |
+| `spec/fatmap-styles.json` | the 15 bundled map styles: layers, sources, fonts, sprites |
+| `data/fatmap-assets.txt` | every entry in the Fatmap asset bundle, grouped |
 | `spec/api-contract.md` | what a local server must implement |
 | `spec/data-model.md` | the on-device data model |
 | `spec/fatmap-native.md` | how to use the native engine without its proprietary bits |

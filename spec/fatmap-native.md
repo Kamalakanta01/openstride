@@ -93,9 +93,21 @@ Note the heatmap visibility parameters. In the original app those are **enforced
 
 ---
 
-## 3. The open question
+## 3. The open question — now answered
 
-Two viable routes. **Neither is decided yet**, and the choice drives most of the map work.
+> **Resolved.** The interface contract has been extracted in full
+> (`spec/fatmap-java-api.json`, `spec/fatmap-native-api.json`) and a
+> clean-room engine implementing it now exists in `map-engine/`. Its API
+> surface is 1:1 with the original library: all 312 JNI entry points, with
+> identical symbol names, verified by `tools/verify_api_parity.py`.
+> The reimplementation lives behind the `MapEngine` facade, so the renderer
+> remains swappable.
+>
+> The two routes below are still the choice for the *renderer*. Route A has
+> been taken for the first cut; Route B remains the fidelity path.
+
+Two viable routes for the renderer. **Route A has been chosen for the first
+cut**; the choice drives most of the map work.
 
 ### Route A — a different renderer, not a reimplementation
 
@@ -114,6 +126,26 @@ Rebuild the engine against the documented API using OGRE-Next (MIT) or a modern 
 
 **Pros:** full fidelity to the contract; Flyover, terrain and the compositor are achievable.
 **Cons:** very large. The original is 27,535 procedures of C++ and was built by a team over years. A faithful reimplementation is a multi-year project.
+
+### What the asset bundle settles
+
+The 15 bundled Mapbox Style Spec v8 styles show where the tiles come from
+(`spec/fatmap-styles.json`):
+
+- The **Strava Planet** family fetches from MapTiler *and* from
+  `strava-map-tiles-planet-tilejson-public.s3.us-east-1.amazonaws.com` — a
+  **public** bucket with no credentials in the URL. The planet tile set is
+  genuinely public.
+- The **Strava classic** family fetches from Mapbox Studio style IDs under
+  Mapbox's `cerilewis` account, which needs a Mapbox token.
+
+So the "replace the tile source" part of Route A is easier than expected for
+the Planet styles and needs a Mapbox token for the classic ones.
+
+The engine also ships its **own Mozilla CA bundle** (144 roots, 2025-12-02) in
+`assets/assets.zip` as `myrootcert.pem`. The engine's TLS trust is
+independent of the operating system's, and that file is the trust
+configuration to reproduce.
 
 ### What is not reproducible either way
 
