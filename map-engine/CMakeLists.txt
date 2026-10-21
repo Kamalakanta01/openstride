@@ -24,12 +24,21 @@ if(ANDROID)
         src/engine_api.cpp
         src/geo.cpp
         src/sha256.cpp
+        src/gl/gl_context.cpp
+        src/jni_bridge.cpp
+        src/mvt/decoder.cpp
+        src/render/map_host.cpp
+        src/render/polygon.cpp
+        src/render/renderer.cpp
+        src/tiles/tile_cache.cpp
+        src/tiles/tile_transport.cpp
     )
     target_include_directories(fatmap_jni PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/generated
     )
-    target_link_libraries(fatmap_jni PRIVATE log)
+    # The engine draws with OpenGL ES, and logs to the system log.
+    target_link_libraries(fatmap_jni PRIVATE log GLESv2 EGL android)
 else()
     find_package(JNI REQUIRED)
     find_package(Threads REQUIRED)
@@ -42,6 +51,10 @@ else()
         ${SRC_DIR}/sha256.cpp
         ${SRC_DIR}/engine.cpp
         ${SRC_DIR}/engine_api.cpp
+        ${SRC_DIR}/mvt/decoder.cpp
+        ${SRC_DIR}/render/polygon.cpp
+        ${SRC_DIR}/render/renderer.cpp
+        ${SRC_DIR}/tiles/tile_cache.cpp
     )
     target_include_directories(fatmap_core PUBLIC
         ${SRC_DIR}
@@ -62,6 +75,17 @@ else()
         enable_testing()
         add_executable(fatmap_tests ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_engine.cpp)
         target_link_libraries(fatmap_tests PRIVATE fatmap_core)
+
+        # The tile decoder is checked against a real tile, so the engine's
+        # reading of what the map server sends is covered without a network.
+        add_executable(fatmap_tile_tests
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_tiles.cpp
+        )
+        target_link_libraries(fatmap_tile_tests PRIVATE fatmap_core)
+        add_test(NAME fatmap_tile_tests
+            COMMAND fatmap_tile_tests
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        )
         add_test(NAME fatmap_tests COMMAND fatmap_tests)
     endif()
 endif()

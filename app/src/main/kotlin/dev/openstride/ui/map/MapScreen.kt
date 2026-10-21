@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
 import dev.openstride.location.DeviceLocation
+import dev.openstride.map.FatmapMap
 import dev.openstride.recording.RecordingSession
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
@@ -43,14 +45,38 @@ fun MapScreen() {
     val activities by repository.observeActivities().collectAsState(initial = emptyList())
     var map by remember { mutableStateOf<MapLibreMap?>(null) }
     var heatmapOn by remember { mutableStateOf(false) }
+    // The engine's own map, and the one the app falls back on. The engine
+    // is the 1:1 reimplementation of the original's; the fallback is here
+    // until the engine draws every layer.
+    var useEngine by remember { mutableStateOf(true) }
+    var engineReady by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        OpenStrideMap(
-            modifier = Modifier.fillMaxSize(),
-            track = state.points,
-            followTrack = state.isRecording,
-            onMapReady = { ready -> map = ready },
-        )
+        if (useEngine) {
+            FatmapMap(
+                modifier = Modifier.fillMaxSize(),
+                latitude = state.currentLatitude ?: 22.9564,
+                longitude = state.currentLongitude ?: 72.6236,
+                zoom = 13.0,
+                onEngineReady = { engineReady = true },
+            )
+        } else {
+            OpenStrideMap(
+                modifier = Modifier.fillMaxSize(),
+                track = state.points,
+                followTrack = state.isRecording,
+                onMapReady = { ready -> map = ready },
+            )
+        }
+
+        // The switch between the engine's map and the fallback.
+        FilledTonalButton(
+            onClick = { useEngine = !useEngine },
+            modifier =
+                Modifier
+                    .align(Alignment.TopStart)
+                    .padding(12.dp),
+        ) { Text(if (useEngine) "Our engine" else "MapLibre") }
 
         if (state.isRecording) {
             Card(

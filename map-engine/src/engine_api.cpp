@@ -9,6 +9,10 @@
 #include <sstream>
 
 #include "fatmap_engine.h"
+
+#if defined(__ANDROID__)
+#include <android/log.h>
+#endif
 #include "geo.h"
 #include "sha256.h"
 
@@ -151,6 +155,9 @@ void CameraImpl::native_flyTo(double latitude, double longitude, float zoom,
                               float duration, CameraMargins margins, jni::Opaque listener) {
     (void)margins;
     (void)listener;
+#if defined(__ANDROID__)
+    __android_log_print(ANDROID_LOG_INFO, "fatmap", "flyTo %.4f,%.4f zoom %.1f", latitude, longitude, zoom);
+#endif
     beginFlight(mEngine, latitude, longitude, zoom, bearing, pitch, duration);
 }
 

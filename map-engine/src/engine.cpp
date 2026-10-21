@@ -4,6 +4,10 @@
 
 #include "fatmap_engine.h"
 
+#include "jni_bridge.h"
+#include "render/map_host.h"
+#include "tiles/tile_transport.h"
+
 #include <algorithm>
 #include <cmath>
 #include <sstream>
@@ -286,6 +290,34 @@ MREHolderImpl* static_MREHolder_create(JNIEnv* env, jni::Opaque surfaceHolder,
 
     auto* holder = new MREHolderImpl(engine);
     holder->owned = true;
+
+#if defined(__ANDROID__)
+    // The surface the application draws on. The holder gives a window, and
+    // the window gives the surface; the engine renders into it.
+    if (surfaceHolder.get() != nullptr) {
+        void* window = native_window_of(env, surfaceHolder.get());
+        if (window != nullptr) {
+            auto host = std::make_shared<render::MapHost>();
+            host->setFetcher(tiles::applicationFetcher(java_vm_of(env)));
+            host->setCamera(
+                engine.cameraTarget().latitude,
+                engine.cameraTarget().longitude,
+                engine.cameraZoom(),
+                engine.cameraBearing());
+            host->setCameraProvider([&engine] {
+                return render::Camera{
+                    engine.cameraTarget().latitude,
+                    engine.cameraTarget().longitude,
+                    engine.cameraZoom(),
+                    engine.cameraBearing(),
+                };
+            });
+            host->setAdvance([&engine](double seconds) { engine.advance(seconds); });
+            holder->mapHost = host;
+            host->start(window, 1080, 1920);
+        }
+    }
+#endif  // __ANDROID__
 
     // The bridge the application implements: hand it the engine, then tell it
     // the engine is ready. This is how the original app obtains its

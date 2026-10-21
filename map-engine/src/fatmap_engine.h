@@ -16,6 +16,7 @@
 #include <map>
 #include <optional>
 #include <set>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -24,6 +25,10 @@
 #include "fatmap_types.h"
 
 namespace fatmap {
+
+namespace render {
+class MapHost;
+}  // namespace render
 
 /// Which proxy class a handle refers to.
 enum class ProxyKind {
@@ -422,6 +427,9 @@ public:
     void native_handleOnAppDidEnterForeground() override;
     void native_handleOnAppDidEnterBackground() override;
     void native_handleMemoryWarning() override;
+
+    /// The rendering, when the application gave the engine a surface.
+    std::shared_ptr<render::MapHost> mapHost;
 
 protected:
     Engine& mEngine;
