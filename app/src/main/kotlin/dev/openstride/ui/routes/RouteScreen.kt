@@ -46,7 +46,10 @@ import dev.openstride.ui.map.OpenStrideMap
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RouteScreen(onBack: () -> Unit) {
+fun RouteScreen(
+    onBack: () -> Unit,
+    onNew: () -> Unit = {},
+) {
     val context = LocalContext.current
     val repository = (context.applicationContext as OpenStrideApplication).repository
 
@@ -91,12 +94,16 @@ fun RouteScreen(onBack: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             item {
+                androidx.compose.material3.Button(onClick = onNew, modifier = Modifier.fillMaxWidth()) {
+                    Text("Draw a new route")
+                }
                 Text(
                     text =
-                        "Save a route from an activity you have recorded, and it stays here " +
-                            "for the next time you want to ride or run it.",
+                        "Save a route from an activity you have recorded, or draw a new one " +
+                            "by tapping the points it goes through.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 8.dp),
                 )
             }
 

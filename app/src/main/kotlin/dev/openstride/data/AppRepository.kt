@@ -51,6 +51,27 @@ class AppRepository(
 
     suspend fun deleteActivity(id: Long) = database.activityDao().delete(id)
 
+    /** The photographs attached to an activity. */
+    fun observePhotos(activityId: Long) = database.photoDao().forActivity(activityId)
+
+    /** Attaches a photograph to an activity. */
+    suspend fun addPhoto(
+        activityId: Long,
+        uri: String,
+        caption: String? = null,
+    ): Long =
+        database.photoDao().upsert(
+            dev.openstride.local.ActivityPhotoEntity(
+                activityId = activityId,
+                uri = uri,
+                caption = caption,
+                takenAt = java.time.Instant.now(),
+            ),
+        )
+
+    /** Removes a photograph. */
+    suspend fun deletePhoto(id: Long) = database.photoDao().delete(id)
+
     suspend fun saveActivity(activity: ActivityEntity): Long = database.activityDao().upsert(activity)
 
     /**
@@ -158,6 +179,9 @@ class AppRepository(
         database.segmentPointDao().forSegment(segmentId).map {
             TrackPoint(it.latitude, it.longitude, it.elevationMeters, 0L)
         }
+
+    /** Renames a segment and sets whether it is starred. */
+    suspend fun updateSegment(segment: dev.openstride.local.SegmentEntity): Long = database.segmentDao().upsert(segment)
 
     /** The efforts on a segment. */
     suspend fun segmentEfforts(segmentId: Long): List<SegmentEffortEntity> = database.segmentDao().efforts(segmentId)

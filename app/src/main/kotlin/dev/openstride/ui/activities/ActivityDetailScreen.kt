@@ -1,9 +1,12 @@
 package dev.openstride.ui.activities
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +22,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
@@ -39,12 +44,19 @@ import dev.openstride.recording.formatSpeed
 import dev.openstride.recording.haversineMeters
 import dev.openstride.ui.components.Stat
 import dev.openstride.ui.map.OpenStrideMap
+import kotlinx.coroutines.launch
+import java.io.File
 import java.time.ZoneId
 
 /** One recorded activity, with its map, its numbers and its elevation profile. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun ActivityDetailScreen(activityId: Long) {
+fun ActivityDetailScreen(
+    activityId: Long,
+    onEdit: () -> Unit = {},
+) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val repository = (context.applicationContext as OpenStrideApplication).repository
     val database = (context.applicationContext as OpenStrideApplication).database
 
@@ -53,6 +65,21 @@ fun ActivityDetailScreen(activityId: Long) {
     var splits by remember { mutableStateOf(emptyList<dev.openstride.analysis.Splits.Split>()) }
     var track by remember { mutableStateOf(emptyList<dev.openstride.recording.TrackPoint>()) }
     var startHidden by remember { mutableStateOf(false) }
+    var exporting by remember { mutableStateOf(false) }
+    var exported by remember { mutableStateOf<String?>(null) }
+    var photos by remember { mutableStateOf(emptyList<dev.openstride.local.ActivityPhotoEntity>()) }
+    // The system photo picker needs no permission: the app only ever gets
+    // back the one picture the athlete chose.
+    val photoPickerLauncher =
+        rememberLauncherForActivityResult(
+            ActivityResultContracts.PickVisualMedia(),
+        ) { uri ->
+            val chosen = uri ?: return@rememberLauncherForActivityResult
+            scope.launch {
+                repository.addPhoto(activityId, chosen.toString())
+                photos = database.photoDao().listForActivity(activityId)
+            }
+        }
 
     LaunchedEffect(activityId) {
         activity = database.activityDao().byId(activityId)
@@ -60,6 +87,7 @@ fun ActivityDetailScreen(activityId: Long) {
         // athlete has hidden are not shown.
         track = repository.visibleTrack(activityId)
         startHidden = repository.startHidden(activityId)
+        photos = database.photoDao().listForActivity(activityId)
         val streams = database.streamDao().forActivity(activityId)
         altitudes = streams.firstOrNull { it.type == "ALTITUDE" }?.let { decodeDoubles(it.data) } ?: emptyList()
 
@@ -117,7 +145,18 @@ fun ActivityDetailScreen(activityId: Long) {
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Text(text = current.name, style = MaterialTheme.typography.headlineSmall)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = current.name,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.weight(1f),
+                )
+                androidx.compose.material3.TextButton(onClick = onEdit) { Text("Edit") }
+                androidx.compose.material3.TextButton(onClick = { exporting = true }) { Text("Export") }
+            }
 
             Text(
                 text =
@@ -164,6 +203,119 @@ fun ActivityDetailScreen(activityId: Long) {
                     Stat("Avg HR", "${current.averageHeartRate} bpm")
                     Stat("Max HR", "${current.maxHeartRate ?: 0} bpm")
                     Stat("Points", "${track.size}")
+                }
+            }
+
+            androidx.compose.material3.OutlinedButton(
+                onClick = {
+                    photoPickerLauncher.launch(
+                        androidx.activity.result.PickVisualMediaRequest(
+                            ActivityResultContracts.PickVisualMedia.ImageOnly,
+                        ),
+                    )
+                },
+                modifier = Modifier.fillMaxWidth(),
+            ) { Text("Attach a photograph") }
+
+            if (photos.isNotEmpty()) {
+                Text(
+                    text = "Photographs",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                )
+                photos.forEach { photo ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = photo.caption ?: "Photograph",
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.weight(1f),
+                        )
+                        androidx.compose.material3.TextButton(
+                            onClick = {
+                                scope.launch {
+                                    repository.deletePhoto(photo.id)
+                                    photos = database.photoDao().listForActivity(activityId)
+                                }
+                            },
+                        ) { Text("Remove") }
+                    }
+                }
+            }
+
+            if (exporting) {
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Column(modifier = Modifier.padding(14.dp)) {
+                        Text(
+                            text = "Export",
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.SemiBold,
+                        )
+                        Text(
+                            text =
+                                "The file is written to the app's own folder, so it can be " +
+                                    "shared with anything on the phone.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        androidx.compose.foundation.layout.FlowRow(
+                            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            androidx.compose.material3.OutlinedButton(
+                                onClick = {
+                                    scope.launch {
+                                        val file =
+                                            File(
+                                                context.getExternalFilesDir(null),
+                                                dev.openstride.io.Export.fileName(
+                                                    current,
+                                                    dev.openstride.io.Export.Format.GPX,
+                                                ),
+                                            )
+                                        dev.openstride.io.Export.write(
+                                            file,
+                                            current,
+                                            track,
+                                            dev.openstride.io.Export.Format.GPX,
+                                        )
+                                        exported = file.absolutePath
+                                    }
+                                },
+                            ) { Text("GPX") }
+                            androidx.compose.material3.OutlinedButton(
+                                onClick = {
+                                    scope.launch {
+                                        val file =
+                                            File(
+                                                context.getExternalFilesDir(null),
+                                                dev.openstride.io.Export.fileName(
+                                                    current,
+                                                    dev.openstride.io.Export.Format.JSON,
+                                                ),
+                                            )
+                                        dev.openstride.io.Export.write(
+                                            file,
+                                            current,
+                                            track,
+                                            dev.openstride.io.Export.Format.JSON,
+                                        )
+                                        exported = file.absolutePath
+                                    }
+                                },
+                            ) { Text("JSON") }
+                        }
+                        if (exported != null) {
+                            Text(
+                                text = "Written to $exported",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(top = 8.dp),
+                            )
+                        }
+                    }
                 }
             }
 

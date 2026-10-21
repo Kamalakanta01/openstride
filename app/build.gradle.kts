@@ -24,8 +24,9 @@ android {
 
         ndk {
             // The original library ships armeabi-v7a only; the device that
-            // runs it is arm64. Both are built here.
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+            // runs it is arm64. Both are built here, and x86_64 so the
+            // engine also runs on an emulator.
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
         }
 
         externalNativeBuild {

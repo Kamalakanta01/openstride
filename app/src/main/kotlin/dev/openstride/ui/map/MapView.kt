@@ -46,6 +46,7 @@ fun OpenStrideMap(
     modifier: Modifier = Modifier,
     track: List<TrackPoint> = emptyList(),
     followTrack: Boolean = false,
+    onTap: ((TrackPoint) -> Unit)? = null,
     onMapReady: (MapLibreMap) -> Unit = {},
 ) {
     val context = LocalContext.current
@@ -75,6 +76,25 @@ fun OpenStrideMap(
     DisposableEffect(mapView) {
         onDispose {
             mapView.onDestroy()
+        }
+    }
+
+    // Tapping the map reports the point that was tapped, which is how the
+    // route planner is drawn.
+    val tapHandler = onTap
+    LaunchedEffect(map, tapHandler) {
+        val ready = map ?: return@LaunchedEffect
+        val handler = tapHandler ?: return@LaunchedEffect
+        ready.addOnMapClickListener { latLng ->
+            handler(
+                TrackPoint(
+                    latitude = latLng.latitude,
+                    longitude = latLng.longitude,
+                    altitudeMeters = 0.0,
+                    timeMillis = 0L,
+                ),
+            )
+            true
         }
     }
 

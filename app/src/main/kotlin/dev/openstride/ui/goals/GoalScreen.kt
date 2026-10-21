@@ -52,6 +52,7 @@ import java.time.LocalDate
 fun GoalScreen(onBack: () -> Unit) {
     val context = LocalContext.current
     val repository = (context.applicationContext as OpenStrideApplication).repository
+    val database = (context.applicationContext as OpenStrideApplication).database
     val scope = rememberCoroutineScope()
 
     val activities by repository.observeActivities().collectAsState(initial = emptyList())
@@ -81,6 +82,14 @@ fun GoalScreen(onBack: () -> Unit) {
                     .toLocalDate()
                     .month == today.month
             }.sumOf { it.elevationGainMeters }
+    val thisWeekElevation =
+        activities
+            .filter {
+                it.startedAt
+                    .atZone(java.time.ZoneId.systemDefault())
+                    .toLocalDate() >= today.minusDays(6)
+            }.sumOf { it.elevationGainMeters }
+    val thisYearElevation = activities.sumOf { it.elevationGainMeters }
 
     Scaffold(
         topBar = {
@@ -189,7 +198,8 @@ fun GoalScreen(onBack: () -> Unit) {
                     when (GoalType.entries.firstOrNull { it.name == goal.type }) {
                         GoalType.WEEKLY_DISTANCE -> thisWeekDistance
                         GoalType.MONTHLY_DISTANCE -> thisMonthDistance
-                        GoalType.ANNUAL_ELEVATION, GoalType.WEEKLY_ELEVATION -> thisMonthElevation
+                        GoalType.WEEKLY_ELEVATION -> thisWeekElevation
+                        GoalType.ANNUAL_ELEVATION -> thisYearElevation
                         null -> 0.0
                     }
                 val progress = if (goal.targetValue <= 0) 0f else (done / goal.targetValue).toFloat().coerceIn(0f, 1f)
@@ -209,6 +219,13 @@ fun GoalScreen(onBack: () -> Unit) {
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.primary,
                             )
+                            androidx.compose.material3.TextButton(
+                                onClick = {
+                                    scope.launch {
+                                        database.goalDao().delete(goal.id)
+                                    }
+                                },
+                            ) { Text("Delete") }
                         }
                         LinearProgressIndicator(
                             progress = { progress },

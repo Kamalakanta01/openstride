@@ -17,6 +17,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -26,6 +27,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
 import dev.openstride.recording.formatDuration
 import dev.openstride.ui.map.OpenStrideMap
+import kotlinx.coroutines.launch
 
 /**
  * The athlete's local segments.
@@ -52,6 +55,7 @@ fun SegmentScreen(onBack: () -> Unit) {
 
     val activities by repository.observeActivities().collectAsState(initial = emptyList())
     val segments by repository.observeSegments().collectAsState(initial = emptyList())
+    val scope = rememberCoroutineScope()
 
     var open by remember { mutableStateOf<Long?>(null) }
     var found by remember { mutableStateOf(0) }
@@ -67,9 +71,7 @@ fun SegmentScreen(onBack: () -> Unit) {
 
     if (selected != null) {
         SegmentDetail(
-            segmentId = selected.id,
-            name = selected.name,
-            distanceMeters = selected.distanceMeters,
+            segment = selected,
             onBack = { open = null },
         )
         return
@@ -150,10 +152,19 @@ fun SegmentScreen(onBack: () -> Unit) {
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
-                        Text(
-                            text = "%.0f m".format(segment.distanceMeters),
-                            style = MaterialTheme.typography.titleSmall,
-                        )
+                        Column(horizontalAlignment = Alignment.End) {
+                            Text(
+                                text = "%.0f m".format(segment.distanceMeters),
+                                style = MaterialTheme.typography.titleSmall,
+                            )
+                            androidx.compose.material3.TextButton(
+                                onClick = {
+                                    scope.launch {
+                                        repository.updateSegment(segment.copy(starred = !segment.starred))
+                                    }
+                                },
+                            ) { Text(if (segment.starred) "Starred" else "Star") }
+                        }
                     }
                 }
             }
@@ -165,20 +176,26 @@ fun SegmentScreen(onBack: () -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SegmentDetail(
-    segmentId: Long,
-    name: String,
-    distanceMeters: Double,
+    segment: dev.openstride.local.SegmentEntity,
     onBack: () -> Unit,
 ) {
+    val segmentId = segment.id
+    val name = segment.name
+    val distanceMeters = segment.distanceMeters
     val context = LocalContext.current
     val repository = (context.applicationContext as OpenStrideApplication).repository
+    val scope = rememberCoroutineScope()
     var efforts by remember { mutableStateOf(emptyList<dev.openstride.local.SegmentEffortEntity>()) }
     var points by remember { mutableStateOf(emptyList<dev.openstride.recording.TrackPoint>()) }
+    var editing by remember { mutableStateOf(false) }
+    var newName by remember { mutableStateOf(name) }
 
     LaunchedEffect(segmentId) {
         efforts = repository.segmentEfforts(segmentId)
         points = repository.segmentPoints(segmentId)
     }
+
+    val best = efforts.minByOrNull { it.elapsedSeconds }
 
     Scaffold(
         topBar = {
@@ -205,11 +222,52 @@ private fun SegmentDetail(
                         .height(220.dp),
                 track = points,
             )
-            Text(
-                text = "%.0f m".format(distanceMeters),
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(16.dp),
-            )
+            if (editing) {
+                OutlinedTextField(
+                    value = newName,
+                    onValueChange = { newName = it },
+                    label = { Text("Name") },
+                    singleLine = true,
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                )
+                androidx.compose.material3.Button(
+                    onClick = {
+                        scope.launch {
+                            repository.updateSegment(segment.copy(name = newName))
+                            editing = false
+                        }
+                    },
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                ) { Text("Save name") }
+            } else {
+                Row(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "%.0f m".format(distanceMeters),
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                        if (best != null) {
+                            Text(
+                                text = "Best: ${formatDuration(best.elapsedSeconds)}",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                        }
+                    }
+                    androidx.compose.material3.TextButton(onClick = { editing = true }) {
+                        Text("Rename")
+                    }
+                }
+            }
             if (efforts.isEmpty()) {
                 Text(
                     text = "No efforts on this segment yet.",
@@ -218,7 +276,7 @@ private fun SegmentDetail(
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )
             } else {
-                efforts.forEach { effort ->
+                efforts.sortedBy { it.elapsedSeconds }.forEach { effort ->
                     Row(
                         modifier =
                             Modifier
@@ -226,8 +284,20 @@ private fun SegmentDetail(
                                 .padding(horizontal = 16.dp, vertical = 6.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        Text("Activity ${effort.activityId}", style = MaterialTheme.typography.bodyMedium)
-                        Text(formatDuration(effort.elapsedSeconds), style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            text = "Activity ${effort.activityId}",
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                        Text(
+                            text = formatDuration(effort.elapsedSeconds),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight =
+                                if (effort == best) {
+                                    androidx.compose.ui.text.font.FontWeight.Bold
+                                } else {
+                                    androidx.compose.ui.text.font.FontWeight.Normal
+                                },
+                        )
                     }
                 }
             }

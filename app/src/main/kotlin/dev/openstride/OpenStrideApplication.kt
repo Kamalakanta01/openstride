@@ -33,7 +33,7 @@ class OpenStrideApplication : Application() {
         database =
             Room
                 .databaseBuilder(this, LocalDatabase::class.java, "strava.db")
-                .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                 .build()
         repository = AppRepository(database)
     }
@@ -58,6 +58,61 @@ private val MIGRATION_1_2 =
                     `distanceMeters` REAL NOT NULL,
                     `elevationMeters` REAL NOT NULL,
                     PRIMARY KEY(`segmentId`, `index`)
+                )
+                """.trimIndent(),
+            )
+        }
+    }
+
+/**
+ * Version 3 added the star to a segment.
+ *
+ * SQLite cannot add a column with a default to a table that has rows
+ * without rewriting it, so the table is rebuilt.
+ */
+private val MIGRATION_2_3 =
+    object : Migration(2, 3) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL(
+                """
+                CREATE TABLE IF NOT EXISTS `segments_new` (
+                    `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                    `name` TEXT NOT NULL,
+                    `activityType` TEXT NOT NULL,
+                    `distanceMeters` REAL NOT NULL,
+                    `elevationGainMeters` REAL NOT NULL,
+                    `climbCategory` INTEGER,
+                    `localLegend` TEXT,
+                    `starred` INTEGER NOT NULL DEFAULT 0
+                )
+                """.trimIndent(),
+            )
+            db.execSQL(
+                """
+                INSERT INTO `segments_new` (`id`, `name`, `activityType`, `distanceMeters`,
+                    `elevationGainMeters`, `climbCategory`, `localLegend`, `starred`)
+                SELECT `id`, `name`, `activityType`, `distanceMeters`,
+                    `elevationGainMeters`, `climbCategory`, `localLegend`, 0
+                FROM `segments`
+                """.trimIndent(),
+            )
+            db.execSQL("DROP TABLE `segments`")
+            db.execSQL("ALTER TABLE `segments_new` RENAME TO `segments`")
+        }
+    }
+
+/** Version 4 added the photographs attached to an activity. */
+private val MIGRATION_3_4 =
+    object : Migration(3, 4) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL(
+                """
+                CREATE TABLE IF NOT EXISTS `activity_photos` (
+                    `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                    `activityId` INTEGER NOT NULL,
+                    `uri` TEXT NOT NULL,
+                    `caption` TEXT,
+                    `takenAt` INTEGER NOT NULL
                 )
                 """.trimIndent(),
             )

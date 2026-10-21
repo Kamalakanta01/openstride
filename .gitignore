@@ -56,3 +56,8 @@ smali-out/
 
 # Native engine build output
 map-engine/build/
+
+# The Android emulator's virtual device and scratch files, kept inside the
+# project so that nothing is written outside it.
+.android/
+.scratch/

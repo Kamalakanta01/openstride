@@ -43,7 +43,10 @@ import java.time.format.DateTimeFormatter
  * month of training is easier to read as a shape than as a list.
  */
 @Composable
-fun LogScreen(onOpen: (Long) -> Unit) {
+fun LogScreen(
+    onOpen: (Long) -> Unit,
+    onAdd: () -> Unit = {},
+) {
     // The calendar needs the load of every day, which comes from the same
     // analysis the fitness screen uses, computed once off the main thread.
     val viewModel: FitnessViewModel = viewModel()
@@ -73,13 +76,19 @@ fun LogScreen(onOpen: (Long) -> Unit) {
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         item {
-            Column {
-                Text("Training log", style = MaterialTheme.typography.headlineSmall)
-                Text(
-                    text = month.format(monthFormat),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Training log", style = MaterialTheme.typography.headlineSmall)
+                    Text(
+                        text = month.format(monthFormat),
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                androidx.compose.material3.FilledTonalButton(onClick = onAdd) { Text("Add") }
             }
         }
 

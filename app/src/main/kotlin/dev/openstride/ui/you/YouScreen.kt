@@ -48,7 +48,7 @@ import dev.openstride.ui.settings.SettingsScreen
  * everything that is about the athlete is here.
  */
 @Composable
-fun YouScreen() {
+fun YouScreen(onNewRoute: () -> Unit = {}) {
     val context = LocalContext.current
     val repository = (context.applicationContext as OpenStrideApplication).repository
 
@@ -73,7 +73,7 @@ fun YouScreen() {
         Page.GEAR -> GearScreen(onBack = { page = Page.PROFILE })
         Page.GOALS -> GoalScreen(onBack = { page = Page.PROFILE })
         Page.SEGMENTS -> SegmentScreen(onBack = { page = Page.PROFILE })
-        Page.ROUTES -> RouteScreen(onBack = { page = Page.PROFILE })
+        Page.ROUTES -> RouteScreen(onBack = { page = Page.PROFILE }, onNew = onNewRoute)
         Page.PRIVACY -> PrivacyScreen(onBack = { page = Page.PROFILE })
         Page.SETTINGS -> SettingsScreen(onBack = { page = Page.PROFILE })
     }

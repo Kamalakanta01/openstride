@@ -25,6 +25,7 @@ import java.time.LocalDate
     entities = [
         ActivityEntity::class,
         ActivityStreamEntity::class,
+        ActivityPhotoEntity::class,
         AthleteEntity::class,
         RouteEntity::class,
         RoutePointEntity::class,
@@ -36,7 +37,7 @@ import java.time.LocalDate
         PrivacyZoneEntity::class,
         UnsyncedActivityEntity::class,
     ],
-    version = 2,
+    version = 4,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -44,6 +45,8 @@ abstract class LocalDatabase : RoomDatabase() {
     abstract fun activityDao(): ActivityDao
 
     abstract fun streamDao(): ActivityStreamDao
+
+    abstract fun photoDao(): ActivityPhotoDao
 
     abstract fun athleteDao(): AthleteDao
 
@@ -116,6 +119,37 @@ data class ActivityStreamEntity(
     }
 }
 
+/**
+ * A photograph attached to an activity.
+ *
+ * The original app stores the photographs in the cloud and serves them from
+ * there; here the app keeps the reference to the picture on the device, so
+ * the photograph stays where it is.
+ */
+@Entity(tableName = "activity_photos")
+data class ActivityPhotoEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val activityId: Long,
+    val uri: String,
+    val caption: String?,
+    val takenAt: Instant,
+)
+
+@Dao
+interface ActivityPhotoDao {
+    @Query("SELECT * FROM activity_photos WHERE activityId = :activityId ORDER BY takenAt")
+    fun forActivity(activityId: Long): Flow<List<ActivityPhotoEntity>>
+
+    @Query("SELECT * FROM activity_photos WHERE activityId = :activityId ORDER BY takenAt")
+    suspend fun listForActivity(activityId: Long): List<ActivityPhotoEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(photo: ActivityPhotoEntity): Long
+
+    @Query("DELETE FROM activity_photos WHERE id = :id")
+    suspend fun delete(id: Long): Int
+}
+
 @Entity(tableName = "athletes")
 data class AthleteEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -164,6 +198,7 @@ data class SegmentEntity(
     val elevationGainMeters: Double,
     val climbCategory: Int?,
     val localLegend: String?,
+    val starred: Boolean = false,
 )
 
 /**
@@ -332,6 +367,9 @@ interface SegmentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(segment: SegmentEntity): Long
 
+    @Query("DELETE FROM segments WHERE id = :id")
+    suspend fun delete(id: Long): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertEffort(effort: SegmentEffortEntity): Long
 }
@@ -352,6 +390,9 @@ interface GoalDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(goal: GoalEntity): Long
+
+    @Query("DELETE FROM goals WHERE id = :id")
+    suspend fun delete(id: Long): Int
 }
 
 @Dao

@@ -29,10 +29,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.openstride.ui.activities.ActivityDetailScreen
+import dev.openstride.ui.activities.ActivityEditScreen
+import dev.openstride.ui.activities.ManualActivityScreen
 import dev.openstride.ui.fitness.FitnessScreen
 import dev.openstride.ui.log.LogScreen
 import dev.openstride.ui.map.MapScreen
 import dev.openstride.ui.record.RecordScreen
+import dev.openstride.ui.routes.RoutePlannerScreen
 import dev.openstride.ui.theme.OpenStrideTheme
 import dev.openstride.ui.you.YouScreen
 import org.maplibre.android.MapLibre
@@ -122,14 +125,33 @@ fun OpenStrideApp() {
             composable(Destination.LOG.route) {
                 LogScreen(
                     onOpen = { id -> navController.navigate("activity/$id") },
+                    onAdd = { navController.navigate("activity/manual") },
                 )
+            }
+            composable("activity/manual") {
+                ManualActivityScreen(onDone = { navController.popBackStack() })
             }
             composable("activity/{id}") { entry ->
                 val id = entry.arguments?.getString("id")?.toLongOrNull() ?: 0L
-                ActivityDetailScreen(activityId = id)
+                ActivityDetailScreen(
+                    activityId = id,
+                    onEdit = { navController.navigate("activity/$id/edit") },
+                )
+            }
+            composable("activity/{id}/edit") { entry ->
+                val id = entry.arguments?.getString("id")?.toLongOrNull() ?: 0L
+                ActivityEditScreen(
+                    activityId = id,
+                    onDone = { navController.popBackStack() },
+                )
             }
             composable(Destination.FITNESS.route) { FitnessScreen() }
-            composable(Destination.YOU.route) { YouScreen() }
+            composable(Destination.YOU.route) {
+                YouScreen(onNewRoute = { navController.navigate("routes/new") })
+            }
+            composable("routes/new") {
+                RoutePlannerScreen(onDone = { navController.popBackStack() })
+            }
         }
     }
 }
