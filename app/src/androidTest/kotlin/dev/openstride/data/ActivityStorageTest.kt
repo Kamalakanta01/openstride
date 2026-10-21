@@ -33,6 +33,7 @@ class ActivityStorageTest {
     private lateinit var repository: AppRepository
     private lateinit var database: dev.openstride.local.LocalDatabase
     private var activityId = 0L
+    private val zonesAdded = mutableListOf<Long>()
 
     @Before
     fun setUp() {
@@ -49,7 +50,11 @@ class ActivityStorageTest {
                 // The repository's delete, so the streams go with it.
                 repository.deleteActivity(activityId)
             }
-            database.privacyZoneDao().deleteAll()
+            // Only the zones this test added: the athlete's own zones are
+            // not the test's to delete.
+            for (id in zonesAdded) {
+                database.privacyZoneDao().delete(id)
+            }
         }
 
     /** A closed loop of points, about a kilometre around. */
@@ -207,15 +212,16 @@ class ActivityStorageTest {
             assertFalse(repository.startHidden(activityId))
 
             // With a zone over the start, the beginning is cut off.
-            database.privacyZoneDao().upsert(
-                PrivacyZoneEntity(
-                    name = "Home",
-                    centerLatitude = points.first().latitude,
-                    centerLongitude = points.first().longitude,
-                    radiusMeters = 300.0,
-                    type = PrivacyZoneType.HIDDEN_START.name,
-                ),
-            )
+            zonesAdded +=
+                database.privacyZoneDao().upsert(
+                    PrivacyZoneEntity(
+                        name = "Home",
+                        centerLatitude = points.first().latitude,
+                        centerLongitude = points.first().longitude,
+                        radiusMeters = 300.0,
+                        type = PrivacyZoneType.HIDDEN_START.name,
+                    ),
+                )
             val visible = repository.visibleTrack(activityId)
             assertTrue("the start should be cut off", visible.size < track.size)
             assertTrue("the start should be reported as hidden", repository.startHidden(activityId))

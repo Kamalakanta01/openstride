@@ -54,6 +54,7 @@ import java.time.ZoneId
 fun ActivityDetailScreen(
     activityId: Long,
     onEdit: () -> Unit = {},
+    onShare: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -155,6 +156,7 @@ fun ActivityDetailScreen(
                     modifier = Modifier.weight(1f),
                 )
                 androidx.compose.material3.TextButton(onClick = onEdit) { Text("Edit") }
+                androidx.compose.material3.TextButton(onClick = onShare) { Text("Share") }
                 androidx.compose.material3.TextButton(onClick = { exporting = true }) { Text("Export") }
             }
 

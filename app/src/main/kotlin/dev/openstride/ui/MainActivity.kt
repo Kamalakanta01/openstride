@@ -28,6 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import dev.openstride.share.ShareActivityScreen
 import dev.openstride.ui.activities.ActivityDetailScreen
 import dev.openstride.ui.activities.ActivityEditScreen
 import dev.openstride.ui.activities.ManualActivityScreen
@@ -136,6 +137,14 @@ fun OpenStrideApp() {
                 ActivityDetailScreen(
                     activityId = id,
                     onEdit = { navController.navigate("activity/$id/edit") },
+                    onShare = { navController.navigate("activity/$id/share") },
+                )
+            }
+            composable("activity/{id}/share") { entry ->
+                val id = entry.arguments?.getString("id")?.toLongOrNull() ?: 0L
+                ShareActivityScreen(
+                    activityId = id,
+                    onDone = { navController.popBackStack() },
                 )
             }
             composable("activity/{id}/edit") { entry ->
