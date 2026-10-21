@@ -14,6 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import dev.openstride.location.DeviceLocation
 import dev.openstride.recording.TrackPoint
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.camera.CameraUpdateFactory
@@ -51,6 +52,8 @@ fun OpenStrideMap(
     track: List<TrackPoint> = emptyList(),
     followTrack: Boolean = false,
     onTap: ((TrackPoint) -> Unit)? = null,
+    showAthlete: Boolean = true,
+    followAthlete: Boolean = false,
     onMapReady: (MapLibreMap) -> Unit = {},
 ) {
     val context = LocalContext.current
@@ -130,6 +133,19 @@ fun OpenStrideMap(
                 ),
             )
             true
+        }
+    }
+
+    // The athlete's dot, from the one place the app reads the location.
+    if (showAthlete) {
+        DrawAthlete(map = map, modifier = modifier)
+    }
+
+    // The location source is started once the permission is there, so the
+    // dot appears as soon as the athlete allows it.
+    LaunchedEffect(hasPermission) {
+        if (hasPermission) {
+            DeviceLocation.start(context)
         }
     }
 

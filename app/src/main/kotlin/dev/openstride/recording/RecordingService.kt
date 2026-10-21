@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import dev.openstride.R
 import dev.openstride.local.LocalDatabase
+import dev.openstride.location.DeviceLocation
 import dev.openstride.model.ActivityType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import java.util.UUID
@@ -65,6 +67,7 @@ class RecordingService : LifecycleService() {
 
     private val locationManager by lazy { getSystemService(Context.LOCATION_SERVICE) as LocationManager }
     private var locationListener: LocationListener? = null
+    private var locationJob: Job? = null
     private var lastPoint: TrackPoint? = null
     private var startedAtMillis = 0L
     private var sessionGuid: String = UUID.randomUUID().toString()
@@ -215,30 +218,20 @@ class RecordingService : LifecycleService() {
      */
     private fun beginListening() {
         stopListening()
-        val listener = LocationListener { onLocation(it) }
-        locationListener = listener
-
-        for (provider in PROVIDERS) {
-            if (!hasLocationPermission()) {
-                RecordingSession.update { it.copy(error = "Location permission is missing") }
-                return
-            }
-            try {
-                if (!locationManager.isProviderEnabled(provider)) continue
-                locationManager.requestLocationUpdates(
-                    provider,
-                    MIN_INTERVAL_MILLIS,
-                    MIN_DISTANCE_METERS,
-                    listener,
-                    mainLooper,
-                )
-            } catch (_: SecurityException) {
-                RecordingSession.update { it.copy(error = "Location permission is missing") }
-                return
-            } catch (_: IllegalArgumentException) {
-                // The provider is not on this device.
-            }
+        if (!hasLocationPermission()) {
+            RecordingSession.update { it.copy(error = "Location permission is missing") }
+            return
         }
+        // The same source the map's dot is drawn from, so the dot and the
+        // recorded track can never disagree.
+        DeviceLocation.start(this)
+        locationListener = LocationListener { onLocation(it) }
+        locationJob =
+            scope.launch {
+                DeviceLocation.location.collect { position ->
+                    position?.let { onLocation(it) }
+                }
+            }
     }
 
     private fun stopListening() {

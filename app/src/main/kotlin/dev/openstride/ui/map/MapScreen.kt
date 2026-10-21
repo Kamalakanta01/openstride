@@ -23,11 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
+import dev.openstride.location.DeviceLocation
 import dev.openstride.recording.RecordingSession
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
-import org.maplibre.android.camera.CameraUpdateFactory
-import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 
 /**
@@ -104,13 +103,12 @@ fun MapScreen() {
             FilledTonalIconButton(
                 onClick = {
                     val ready = map ?: return@FilledTonalIconButton
-                    ready.animateCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            LatLng(state.currentLatitude!!, state.currentLongitude!!),
-                            16.0,
-                        ),
-                        500,
-                    )
+                    val position = DeviceLocation.location.value
+                    if (position != null) {
+                        ready.moveTo(position.latitude, position.longitude)
+                    } else {
+                        ready.moveTo(state.currentLatitude!!, state.currentLongitude!!)
+                    }
                 },
                 modifier =
                     Modifier
