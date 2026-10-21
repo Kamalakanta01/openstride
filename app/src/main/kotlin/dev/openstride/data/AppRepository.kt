@@ -10,12 +10,15 @@ import dev.openstride.local.ActivityStreamEntity
 import dev.openstride.local.GearEntity
 import dev.openstride.local.GoalEntity
 import dev.openstride.local.LocalDatabase
+import dev.openstride.local.PrivacyFilter
 import dev.openstride.local.PrivacyZoneEntity
 import dev.openstride.local.RouteEntity
 import dev.openstride.local.RoutePointEntity
 import dev.openstride.local.SegmentEffortEntity
 import dev.openstride.local.SegmentEntity
 import dev.openstride.local.SegmentPointEntity
+import dev.openstride.local.startHiddenBy
+import dev.openstride.local.toModel
 import dev.openstride.model.ActivityType
 import dev.openstride.model.StreamType
 import dev.openstride.recording.TrackPoint
@@ -75,6 +78,24 @@ class AppRepository(
         }
     }
 
+    /**
+     * The part of an activity's track that may be shown.
+     *
+     * The privacy zones are applied here, so that no screen has to remember
+     * to apply them.
+     */
+    suspend fun visibleTrack(activityId: Long): List<TrackPoint> = PrivacyFilter.visibleTrack(track(activityId), privacyZones())
+
+    /** The privacy zones, as the filter wants them. */
+    suspend fun privacyZones(): List<dev.openstride.model.PrivacyZone> = database.privacyZoneDao().all().map { it.toModel() }
+
+    /** Whether the start of an activity is hidden by a zone. */
+    suspend fun startHidden(activityId: Long): Boolean {
+        val zones = privacyZones()
+        if (zones.isEmpty()) return false
+        return startHiddenBy(track(activityId), zones)
+    }
+
     private fun stream(
         streams: List<ActivityStreamEntity>,
         type: StreamType,
@@ -114,10 +135,16 @@ class AppRepository(
             )
         }
 
-    /** The athlete's personal heatmap. */
+    /**
+     * The athlete's personal heatmap.
+     *
+     * The privacy zones are applied to the tracks first: a place the athlete
+     * has hidden does not belong on the heatmap either.
+     */
     suspend fun heatmap(activityIds: List<Long>): List<Heatmap.Cell> =
         withContext(Dispatchers.Default) {
-            val tracks = activityIds.map { track(it) }
+            val zones = privacyZones()
+            val tracks = activityIds.map { PrivacyFilter.visibleTrack(track(it), zones) }
             Heatmap.cells(tracks)
         }
 

@@ -367,6 +367,9 @@ interface PrivacyZoneDao {
 
     @Query("DELETE FROM privacy_zones WHERE id = :id")
     suspend fun delete(id: Long)
+
+    @Query("DELETE FROM privacy_zones")
+    suspend fun deleteAll()
 }
 
 @Dao

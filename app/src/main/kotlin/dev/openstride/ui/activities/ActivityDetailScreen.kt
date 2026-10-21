@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
 import dev.openstride.local.ActivityEntity
 import dev.openstride.recording.decodeDoubles
-import dev.openstride.recording.decodePolyline
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
 import dev.openstride.recording.formatPace
@@ -45,14 +45,21 @@ import java.time.ZoneId
 @Composable
 fun ActivityDetailScreen(activityId: Long) {
     val context = LocalContext.current
+    val repository = (context.applicationContext as OpenStrideApplication).repository
     val database = (context.applicationContext as OpenStrideApplication).database
 
     var activity by remember { mutableStateOf<ActivityEntity?>(null) }
     var altitudes by remember { mutableStateOf<List<Double>>(emptyList()) }
     var splits by remember { mutableStateOf(emptyList<dev.openstride.analysis.Splits.Split>()) }
+    var track by remember { mutableStateOf(emptyList<dev.openstride.recording.TrackPoint>()) }
+    var startHidden by remember { mutableStateOf(false) }
 
     LaunchedEffect(activityId) {
         activity = database.activityDao().byId(activityId)
+        // The track goes through the privacy filter, so the parts the
+        // athlete has hidden are not shown.
+        track = repository.visibleTrack(activityId)
+        startHidden = repository.startHidden(activityId)
         val streams = database.streamDao().forActivity(activityId)
         altitudes = streams.firstOrNull { it.type == "ALTITUDE" }?.let { decodeDoubles(it.data) } ?: emptyList()
 
@@ -92,12 +99,6 @@ fun ActivityDetailScreen(activityId: Long) {
         return
     }
 
-    val track =
-        current.polyline
-            ?.let { decodePolyline(it) }
-            ?.map { (lat, lon) -> dev.openstride.recording.TrackPoint(lat, lon, 0.0, 0L) }
-            ?: emptyList()
-
     Column(
         modifier =
             Modifier
@@ -125,6 +126,17 @@ fun ActivityDetailScreen(activityId: Long) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+
+            if (startHidden) {
+                Card(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = "The start of this activity is hidden by a privacy zone.",
+                        modifier = Modifier.padding(12.dp),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
