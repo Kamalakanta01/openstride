@@ -195,6 +195,13 @@ class RecordingService : LifecycleService() {
                         )
                     }
                     updateNotification()
+
+                    // The track is written out every so often, so that a
+                    // process death loses a few seconds and not the whole
+                    // activity.
+                    if (elapsed % PERSIST_EVERY_SECONDS == 0) {
+                        persistProgress(guid = sessionGuid, state = "IN_PROGRESS")
+                    }
                 }
             }
     }
@@ -355,6 +362,9 @@ class RecordingService : LifecycleService() {
             ),
         )
 
+        // The activity is saved, so the recovery row has done its job.
+        unsyncedDao().delete(sessionGuid)
+
         RecordingSession.reset()
         stopSelf()
     }
@@ -399,7 +409,9 @@ class RecordingService : LifecycleService() {
         type: ActivityType,
         startedAt: java.time.Instant,
     ): String {
-        val time = java.time.LocalTime.ofInstant(startedAt, java.time.ZoneId.systemDefault())
+        // Android's java.time is a subset of the desktop one: LocalTime has
+        // no ofInstant, so the instant is turned into a zoned time first.
+        val time = startedAt.atZone(java.time.ZoneId.systemDefault()).toLocalTime()
         return String.format(java.util.Locale.US, "%s at %d:%02d", type.wireName, time.hour, time.minute)
     }
 
@@ -479,6 +491,7 @@ class RecordingService : LifecycleService() {
         const val START_MODE_RESUME = "resume"
         const val START_MODE_STOP = "stop"
 
+        private const val PERSIST_EVERY_SECONDS = 10
         private const val MIN_INTERVAL_MILLIS = 1000L
         private const val MIN_DISTANCE_METERS = 0f
         private const val MAX_JUMP_METERS = 1000.0

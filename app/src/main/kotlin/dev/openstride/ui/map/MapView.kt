@@ -98,12 +98,19 @@ fun OpenStrideMap(
         }
     }
 
+    // The style arrives after the map does, so the track waits for it
+    // rather than being quietly left off the map.
+    var style by remember { mutableStateOf<Style?>(null) }
+    LaunchedEffect(map) {
+        val ready = map ?: return@LaunchedEffect
+        ready.getStyle { loaded -> style = loaded }
+    }
+
     // The track is a separate effect: the view itself must not be rebuilt
     // every time a new point arrives.
-    LaunchedEffect(map, track) {
+    LaunchedEffect(style, track) {
         val ready = map ?: return@LaunchedEffect
-        val style = ready.style ?: return@LaunchedEffect
-        if (!style.isFullyLoaded) return@LaunchedEffect
+        val style = style ?: return@LaunchedEffect
 
         if (style.getSource(TRACK_SOURCE) == null) {
             style.addSource(GeoJsonSource(TRACK_SOURCE, emptyLineString()))

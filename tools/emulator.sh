@@ -10,7 +10,23 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SDK="${ANDROID_HOME:-$HOME/Android/Sdk}"
+
+# The machine may have more than one Android SDK, and the environment may
+# point at a different project's. The one that has the emulator installed is
+# the one to use.
+SDK=""
+for candidate in "${OPENSTRIDE_ANDROID_SDK:-}" "$HOME/Android/Sdk" "${ANDROID_SDK_ROOT:-}" "${ANDROID_HOME:-}"; do
+  if [ -n "$candidate" ] && [ -x "$candidate/emulator/emulator" ]; then
+    SDK="$candidate"
+    break
+  fi
+done
+if [ -z "$SDK" ]; then
+  echo "no Android SDK with the emulator was found" >&2
+  echo "install it with: sdkmanager 'emulator' 'system-images;android-30;default;x86_64'" >&2
+  exit 1
+fi
+
 AVD_HOME="$ROOT/.android/avd"
 AVD_NAME="openstride"
 
@@ -22,8 +38,8 @@ export PATH="$SDK/emulator:$SDK/platform-tools:$PATH"
 
 # The caps. The machine has 12 cores and 6.6 GB of memory, and the build
 # needs most of the memory, so the emulator gets a small slice.
-CORES=2
-MEMORY=2048
+CORES=1
+MEMORY=1536
 # The disk image is small: the app and the system fit easily.
 DISK=2048
 
@@ -56,7 +72,6 @@ case "${1:-status}" in
       -memory "$MEMORY" \
       -cores "$CORES" \
       -partition-size 2048 \
-      -read-only \
       -no-metrics \
       -port 5554 \
       -camera-back none \

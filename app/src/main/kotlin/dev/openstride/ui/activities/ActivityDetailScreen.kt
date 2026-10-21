@@ -331,7 +331,12 @@ fun ActivityDetailScreen(
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Text(
-                            text = "${split.index} km",
+                            text =
+                                if (split.distanceMeters >= 1000) {
+                                    "${(split.distanceMeters / 1000).let { "%.2f".format(it) }} km"
+                                } else {
+                                    "${split.distanceMeters.toInt()} m"
+                                },
                             style = MaterialTheme.typography.bodyMedium,
                         )
                         Text(

@@ -423,6 +423,9 @@ interface UnsyncedActivityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(activity: UnsyncedActivityEntity)
+
+    @Query("DELETE FROM unsynced_activities WHERE guid = :guid")
+    suspend fun delete(guid: String): Int
 }
 
 class Converters {
