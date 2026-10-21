@@ -10,6 +10,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import dev.openstride.recording.TrackPoint
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.camera.CameraUpdateFactory
@@ -51,6 +55,7 @@ fun OpenStrideMap(
 ) {
     val context = LocalContext.current
     var map by remember { mutableStateOf<MapLibreMap?>(null) }
+    var hasPermission by remember { mutableStateOf(hasLocationPermission(context)) }
 
     val mapView =
         remember {
@@ -77,6 +82,36 @@ fun OpenStrideMap(
         onDispose {
             mapView.onDestroy()
         }
+    }
+
+    // The map opens before the athlete has given permission, so it cannot
+    // centre on them yet. When the permission arrives - which happens in a
+    // system dialog, and the app is resumed afterwards - the camera moves.
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer =
+            LifecycleEventObserver { _: LifecycleOwner, event: Lifecycle.Event ->
+                if (event == Lifecycle.Event.ON_RESUME) {
+                    val granted = hasLocationPermission(context)
+                    if (granted && !hasPermission) {
+                        hasPermission = true
+                    }
+                }
+            }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    LaunchedEffect(map, hasPermission) {
+        if (!hasPermission) return@LaunchedEffect
+        val ready = map ?: return@LaunchedEffect
+        val (position, zoom) = MapStart.cameraFor(context)
+        ready.cameraPosition =
+            CameraPosition
+                .Builder()
+                .target(position)
+                .zoom(zoom)
+                .build()
     }
 
     // Tapping the map reports the point that was tapped, which is how the

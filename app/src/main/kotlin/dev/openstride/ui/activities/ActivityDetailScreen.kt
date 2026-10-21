@@ -281,7 +281,7 @@ fun ActivityDetailScreen(
                                             track,
                                             dev.openstride.io.Export.Format.GPX,
                                         )
-                                        exported = file.absolutePath
+                                        exported = "${file.name} (${file.length()} bytes)"
                                     }
                                 },
                             ) { Text("GPX") }
@@ -302,14 +302,14 @@ fun ActivityDetailScreen(
                                             track,
                                             dev.openstride.io.Export.Format.JSON,
                                         )
-                                        exported = file.absolutePath
+                                        exported = "${file.name} (${file.length()} bytes)"
                                     }
                                 },
                             ) { Text("JSON") }
                         }
                         if (exported != null) {
                             Text(
-                                text = "Written to $exported",
+                                text = "Written $exported",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(top = 8.dp),

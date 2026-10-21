@@ -46,7 +46,8 @@ class ActivityStorageTest {
     fun tearDown() =
         runBlocking {
             if (activityId != 0L) {
-                database.activityDao().delete(activityId)
+                // The repository's delete, so the streams go with it.
+                repository.deleteActivity(activityId)
             }
             database.privacyZoneDao().deleteAll()
         }

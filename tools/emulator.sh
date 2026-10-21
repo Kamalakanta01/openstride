@@ -5,7 +5,7 @@
 # Everything it writes - the virtual device, its snapshots, its logs - stays
 # inside this directory. Nothing is written to the home directory.
 #
-# Usage: tools/emulator.sh start|stop|status
+# Usage: tools/emulator.sh start|stop|status|window
 
 set -euo pipefail
 
@@ -38,8 +38,8 @@ export PATH="$SDK/emulator:$SDK/platform-tools:$PATH"
 
 # The caps. The machine has 12 cores and 6.6 GB of memory, and the build
 # needs most of the memory, so the emulator gets a small slice.
-CORES=1
-MEMORY=1536
+CORES=2
+MEMORY=2048
 # The disk image is small: the app and the system fit easily.
 DISK=2048
 
@@ -60,11 +60,14 @@ case "${1:-status}" in
       "$AVD_HOME/$AVD_NAME.avd/config.ini"
     echo "the virtual device is at $AVD_HOME/$AVD_NAME.avd"
     ;;
-  start)
+  start|window)
     mkdir -p "$ROOT/.scratch/emulator"
+    # "window" shows the emulator on the desktop; "start" runs it headless,
+    # which is what the automated runs use.
+    if [ "$1" = "window" ]; then WINDOW=""; else WINDOW="-no-window"; fi
     exec emulator \
       -avd "$AVD_NAME" \
-      -no-window \
+      $WINDOW \
       -no-audio \
       -no-boot-anim \
       -no-snapshot \

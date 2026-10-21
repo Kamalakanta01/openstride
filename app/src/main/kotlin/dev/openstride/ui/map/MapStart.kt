@@ -28,9 +28,7 @@ object MapStart {
 
     /** The last position the phone's GPS or network provider knew about. */
     fun lastKnownLocation(context: Context): Pair<Double, Double>? {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) !=
-            PackageManager.PERMISSION_GRANTED
-        ) {
+        if (!hasLocationPermission(context)) {
             return null
         }
         val manager = context.getSystemService(Context.LOCATION_SERVICE) as? LocationManager ?: return null
@@ -58,3 +56,8 @@ object MapStart {
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), zoom), 800)
     }
 }
+
+/** Whether the app may read the location. */
+fun hasLocationPermission(context: Context): Boolean =
+    ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
+        PackageManager.PERMISSION_GRANTED

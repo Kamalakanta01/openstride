@@ -174,6 +174,25 @@ personal heatmap.
 
 ---
 
+## Running it
+
+The app installs and runs on a phone and on an emulator. The repository has a
+script for the emulator that keeps everything inside the project directory and
+caps what it takes from the machine:
+
+```bash
+tools/emulator.sh create     # make the virtual device
+tools/emulator.sh window     # run it with a window
+tools/emulator.sh start      # run it headless, for the automated tests
+tools/emulator.sh stop
+```
+
+The virtual device lives in `.android/` inside the project, which is
+gitignored, so nothing is written outside the repository. It is given two
+cores, two gigabytes of memory and a 1080x1920 display at 420dpi — the same
+density as the phone — which is about the most a six gigabyte machine can
+spare while a build is running.
+
 ## The data
 
 Everything is in one SQLite database, through Room. The schema and the
