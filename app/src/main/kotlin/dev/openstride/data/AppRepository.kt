@@ -193,7 +193,10 @@ class AppRepository(
      * stretch of road covered twice becomes a segment, and every activity
      * over it afterwards is an effort.
      */
-    suspend fun discoverSegments(activities: List<ActivityEntity>): Int {
+    suspend fun discoverSegments(activities: List<ActivityEntity>): Int =
+        withContext(Dispatchers.Default) { discoverSegmentsOn(activities) }
+
+    private suspend fun discoverSegmentsOn(activities: List<ActivityEntity>): Int {
         var found = 0
         val known = database.segmentDao().all().toMutableList()
 

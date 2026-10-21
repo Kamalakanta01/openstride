@@ -108,7 +108,12 @@ object Export {
         activity: ActivityEntity,
         format: Format,
     ): String {
-        val stamp = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmm", Locale.US).format(activity.startedAt)
+        // A pattern needs a date and a time, not an instant, so the instant
+        // is turned into the local time first.
+        val stamp =
+            DateTimeFormatter
+                .ofPattern("yyyy-MM-dd-HHmm", Locale.US)
+                .format(activity.startedAt.atZone(java.time.ZoneId.systemDefault()))
         val safe = activity.name.replace(Regex("[^A-Za-z0-9]+"), "-").trim('-')
         return "$stamp-${if (safe.isEmpty()) "activity" else safe}.${format.extension}"
     }
