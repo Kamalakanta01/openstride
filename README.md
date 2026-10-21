@@ -211,7 +211,7 @@ python3 tools/verify_api_parity.py
 | Local data model | 🟡 Scaffolded (Room entities + DAOs) |
 | Local API server | 🟡 Contract defined; implementation stubbed |
 | Recording service | 🟡 Foreground-service skeleton |
-| Map engine | 🟡 API 1:1 (312/312 symbols); 234/312 methods implemented — see `map-engine/` |
+| Map engine | 🟡 API 1:1 (312/312 symbols); 234/312 methods implemented; **it draws the map** — see `map-engine/` |
 | Social features | ⬜ Not started — see the scope note below |
 | Build | ✅ Compiles for arm64-v8a and armeabi-v7a; unit tests pass; CI green |
 | Map engine build | ✅ Compiles; 45 host checks pass; ships in the APK with all 312 symbols |

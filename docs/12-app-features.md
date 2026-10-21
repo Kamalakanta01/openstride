@@ -161,16 +161,35 @@ The full boundary is in [10-local-only-feasibility.md](10-local-only-feasibility
 
 ## The map
 
-The basemap is drawn by **MapLibre**, using OpenFreeMap's "liberty" style,
-which needs no API key and no account. The original's map is the Fatmap
-engine, which this project also builds as a 1:1 clean-room reimplementation
-(see [11-fatmap-engine-deep-dive.md](11-fatmap-engine-deep-dive.md)) — but
-that engine has no GL context, no tile fetching and no rasteriser yet, so it
-renders nothing. Until that work lands, the app draws its basemap with
-MapLibre and talks to the engine through the generated Fatmap API.
+The basemap is drawn by **our own engine** — the 1:1 clean-room
+reimplementation of the original's Fatmap engine (see
+[11-fatmap-engine-deep-dive.md](11-fatmap-engine-deep-dive.md)). It has an
+OpenGL context on a thread of its own, fetches the tiles, decodes the vector
+tile geometry and draws it with its own style. The map screen has a switch
+between the engine and MapLibre, which is the fallback while the engine
+finishes its layers.
 
-Two map layers are drawn by the app itself: the recorded track, and the
-personal heatmap.
+Two things the engine does that the original does not:
+
+- **It asks the application for the tiles.** The engine has no TLS of its
+  own. The original carries its own certificate bundle, which means it
+  trusts what the app shipped rather than what the phone trusts; here the
+  platform's network stack does the work and the phone's trust store
+  decides.
+- **It reads the tile set's own description at runtime.** A tile set is
+  versioned — the address of the tiles changes when it is republished — so
+  the real address has to be read rather than guessed.
+
+The style is the app's own. The original's fifteen styles are in their
+package and cannot be copied; the layer names and the classes are the open
+ones the tiles use, so any source with the same schema can be drawn.
+
+The engine draws the water and the land now. The roads, the labels and the
+3D terrain are the next layer of work, and the terrain needs a source that
+is not Strava's private data.
+
+Two map layers are drawn by the app itself, over whichever basemap is in
+use: the recorded track, and the personal heatmap.
 
 ---
 
