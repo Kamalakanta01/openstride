@@ -20,17 +20,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import dev.openstride.OpenStrideApplication
-import dev.openstride.analysis.Fitness
-import dev.openstride.data.AppRepository
-import dev.openstride.data.toModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.openstride.local.ActivityEntity
 import dev.openstride.model.ActivityType
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
+import dev.openstride.ui.FitnessViewModel
 import dev.openstride.ui.components.FilterRow
 import dev.openstride.ui.components.StatRow
 import dev.openstride.ui.components.TrainingCalendar
@@ -47,17 +44,15 @@ import java.time.format.DateTimeFormatter
  */
 @Composable
 fun LogScreen(onOpen: (Long) -> Unit) {
-    val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
-
-    val activities by repository.observeActivities().collectAsState(initial = emptyList())
+    // The calendar needs the load of every day, which comes from the same
+    // analysis the fitness screen uses, computed once off the main thread.
+    val viewModel: FitnessViewModel = viewModel()
+    val analysis by viewModel.analysis.collectAsState()
+    val activities by viewModel.activityList.collectAsState()
     var month by remember { mutableStateOf(LocalDate.now().withDayOfMonth(1)) }
     var filter by remember { mutableStateOf<ActivityType?>(null) }
 
-    val loads =
-        remember(activities) {
-            Fitness.dailyLoads(activities.map { it.toModel() }).associate { it.date to it.load }
-        }
+    val loads = remember(analysis) { analysis.loads.associate { it.date to it.load } }
     val selectedType = filter
     val shown = activities.filter { selectedType == null || it.type == selectedType.wireName }
     val monthActivities =

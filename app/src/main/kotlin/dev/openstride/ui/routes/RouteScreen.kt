@@ -33,7 +33,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
-import dev.openstride.data.AppRepository
 import dev.openstride.recording.formatDistance
 import dev.openstride.ui.map.OpenStrideMap
 
@@ -49,7 +48,7 @@ import dev.openstride.ui.map.OpenStrideMap
 @Composable
 fun RouteScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
 
     val routes by repository.observeRoutes().collectAsState(initial = emptyList())
     var open by remember { mutableStateOf<Long?>(null) }

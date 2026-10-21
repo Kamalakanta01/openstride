@@ -3,14 +3,10 @@ package dev.openstride.ui.map
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import dev.openstride.OpenStrideApplication
-import dev.openstride.analysis.Heatmap
-import dev.openstride.data.AppRepository
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.openstride.ui.MapViewModel
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
@@ -36,16 +32,11 @@ fun DrawHeatmap(
     activityIds: List<Long>,
     modifier: Modifier = Modifier,
 ) {
-    val context = LocalContext.current
-    var cells by remember { mutableStateOf(emptyList<Heatmap.Cell>()) }
+    val viewModel: MapViewModel = viewModel()
+    val cells by viewModel.heatmap.collectAsStateWithLifecycle()
 
     LaunchedEffect(activityIds) {
-        if (activityIds.isEmpty()) {
-            cells = emptyList()
-            return@LaunchedEffect
-        }
-        val repository = AppRepository((context.applicationContext as OpenStrideApplication).database)
-        cells = repository.heatmap(activityIds)
+        viewModel.setActivities(activityIds)
     }
 
     LaunchedEffect(map, cells) {
@@ -65,7 +56,6 @@ fun DrawHeatmap(
             )
         }
 
-        val busiest = cells.maxOfOrNull { it.count } ?: 0
         val features =
             cells.map { cell ->
                 Feature.fromGeometry(Point.fromLngLat(cell.longitude, cell.latitude))

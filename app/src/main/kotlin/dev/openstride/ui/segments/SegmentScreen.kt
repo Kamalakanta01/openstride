@@ -33,7 +33,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
-import dev.openstride.data.AppRepository
 import dev.openstride.recording.formatDuration
 import dev.openstride.ui.map.OpenStrideMap
 
@@ -49,7 +48,7 @@ import dev.openstride.ui.map.OpenStrideMap
 @Composable
 fun SegmentScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
 
     val activities by repository.observeActivities().collectAsState(initial = emptyList())
     val segments by repository.observeSegments().collectAsState(initial = emptyList())
@@ -172,7 +171,7 @@ private fun SegmentDetail(
     onBack: () -> Unit,
 ) {
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
     var efforts by remember { mutableStateOf(emptyList<dev.openstride.local.SegmentEffortEntity>()) }
     var points by remember { mutableStateOf(emptyList<dev.openstride.recording.TrackPoint>()) }
 

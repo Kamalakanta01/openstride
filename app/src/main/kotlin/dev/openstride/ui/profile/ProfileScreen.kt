@@ -1,11 +1,14 @@
 package dev.openstride.ui.profile
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +25,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -29,6 +34,7 @@ import dev.openstride.OpenStrideApplication
 import dev.openstride.local.AthleteEntity
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
+import dev.openstride.ui.components.Stat
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.ZoneId
@@ -45,6 +51,10 @@ fun ProfileScreen() {
     val database = (context.applicationContext as OpenStrideApplication).database
     val scope = rememberCoroutineScope()
 
+    // The first focusable in a screen takes the focus when the screen
+    // appears, and a text field does, so the keyboard opens over the screen
+    // the moment the tab is tapped. A focusable of nothing takes it instead.
+    val focusRequester = remember { FocusRequester() }
     var athlete by remember { mutableStateOf<AthleteEntity?>(null) }
     var name by remember { mutableStateOf("") }
     var weight by remember { mutableStateOf("") }
@@ -52,6 +62,7 @@ fun ProfileScreen() {
     var saved by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
         val current = database.athleteDao().current()
         athlete = current
         name = current?.name ?: ""
@@ -69,6 +80,13 @@ fun ProfileScreen() {
                 .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        Box(
+            modifier =
+                Modifier
+                    .size(0.dp)
+                    .focusRequester(focusRequester)
+                    .focusable(),
+        )
         Text("Profile", style = MaterialTheme.typography.headlineSmall)
 
         Card(modifier = Modifier.fillMaxWidth()) {
@@ -158,26 +176,6 @@ fun ProfileScreen() {
                 "This app has no server. Everything you record stays on this device, " +
                     "and there is no account to sign in to.",
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
-}
-
-/** One number on the profile panel. */
-@Composable
-private fun Stat(
-    label: String,
-    value: String,
-) {
-    Column {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }

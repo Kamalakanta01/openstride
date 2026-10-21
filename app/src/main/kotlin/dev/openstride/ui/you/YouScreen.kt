@@ -32,7 +32,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
-import dev.openstride.data.AppRepository
 import dev.openstride.ui.gear.GearScreen
 import dev.openstride.ui.goals.GoalScreen
 import dev.openstride.ui.privacy.PrivacyScreen
@@ -51,7 +50,7 @@ import dev.openstride.ui.settings.SettingsScreen
 @Composable
 fun YouScreen() {
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
 
     val activities by repository.observeActivities().collectAsState(initial = emptyList())
     val gear by repository.observeGear().collectAsState(initial = emptyList())

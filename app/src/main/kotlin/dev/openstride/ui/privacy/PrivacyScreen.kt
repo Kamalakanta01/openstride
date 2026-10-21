@@ -34,7 +34,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
-import dev.openstride.data.AppRepository
 import dev.openstride.local.PrivacyZoneEntity
 import dev.openstride.model.PrivacyZoneType
 import dev.openstride.ui.map.OpenStrideMap
@@ -53,7 +52,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun PrivacyScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
     val scope = rememberCoroutineScope()
 
     val zones by repository.observePrivacyZones().collectAsState(initial = emptyList())

@@ -35,10 +35,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import dev.openstride.model.ActivityType
@@ -47,6 +45,7 @@ import dev.openstride.recording.RecordingSession
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
 import dev.openstride.recording.formatPace
+import dev.openstride.ui.components.Stat
 import dev.openstride.ui.map.OpenStrideMap
 
 /**
@@ -190,25 +189,5 @@ fun RecordScreen() {
                 }
             }
         }
-    }
-}
-
-/** One number on the recording panel. */
-@Composable
-private fun Stat(
-    label: String,
-    value: String,
-) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
     }
 }

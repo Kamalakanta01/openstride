@@ -33,7 +33,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
-import dev.openstride.data.AppRepository
 import dev.openstride.local.GearEntity
 import dev.openstride.model.GearType
 import dev.openstride.recording.formatDistance
@@ -50,7 +49,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun GearScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
     val scope = rememberCoroutineScope()
 
     val activities by repository.observeActivities().collectAsState(initial = emptyList())

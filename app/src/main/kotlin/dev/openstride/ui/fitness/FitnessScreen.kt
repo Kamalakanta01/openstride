@@ -15,17 +15,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import dev.openstride.OpenStrideApplication
-import dev.openstride.analysis.Achievements
-import dev.openstride.analysis.Fitness
-import dev.openstride.analysis.Records
-import dev.openstride.data.AppRepository
-import dev.openstride.data.toModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.openstride.ui.FitnessViewModel
 import dev.openstride.ui.components.FitnessChart
 import dev.openstride.ui.components.StatRow
 import dev.openstride.ui.components.WeeklyLoadChart
@@ -40,24 +34,13 @@ import dev.openstride.ui.components.WeeklyLoadChart
  */
 @Composable
 fun FitnessScreen() {
-    val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
-
-    val activities by repository.observeActivities().collectAsState(initial = emptyList())
-
-    val series =
-        remember(activities) {
-            val loads = Fitness.dailyLoads(activities.map { it.toModel() })
-            Fitness.series(loads, endDate = loads.lastOrNull()?.date?.plusDays(10))
-        }
-    val weeks = remember(activities) { Fitness.weeks(Fitness.dailyLoads(activities.map { it.toModel() })) }
-    val records = remember(activities) { Records.of(activities.map { it.toModel() }) }
-    val badges = remember(activities) { Achievements.of(activities.map { it.toModel() }) }
-    val streak = remember(activities) { Fitness.currentWeekStreak(activities.map { it.toModel() }) }
-    val consistency = remember(activities) { Fitness.consistency(Fitness.dailyLoads(activities.map { it.toModel() })) }
+    // The analysis is computed once, off the main thread, by the view model.
+    val viewModel: FitnessViewModel = viewModel()
+    val analysis by viewModel.analysis.collectAsState()
+    val series = analysis.series
 
     val latest = series.lastOrNull()
-    val unlocked = badges.count { it.unlocked }
+    val unlocked = analysis.badges.count { it.unlocked }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -108,15 +91,15 @@ fun FitnessScreen() {
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.SemiBold,
                     )
-                    WeeklyLoadChart(weeks = weeks, modifier = Modifier.padding(top = 8.dp))
-                    val thisWeek = weeks.lastOrNull()
+                    WeeklyLoadChart(weeks = analysis.weeks, modifier = Modifier.padding(top = 8.dp))
+                    val thisWeek = analysis.weeks.lastOrNull()
                     StatRow(
                         stats =
                             listOf(
                                 "This week" to (thisWeek?.load?.toInt()?.toString() ?: "0"),
-                                "Weeks streak" to "$streak",
-                                "Consistency" to "$consistency%",
-                                "Badges" to "$unlocked/${badges.size}",
+                                "Weeks streak" to "${analysis.streak}",
+                                "Consistency" to "${analysis.consistency}%",
+                                "Badges" to "$unlocked/${analysis.badges.size}",
                             ),
                         modifier = Modifier.padding(top = 8.dp),
                     )
@@ -133,7 +116,7 @@ fun FitnessScreen() {
             )
         }
 
-        if (records.isEmpty()) {
+        if (analysis.records.isEmpty()) {
             item {
                 Text(
                     text = "Record an activity and your best times will appear here.",
@@ -143,7 +126,7 @@ fun FitnessScreen() {
             }
         }
 
-        items(records, key = { it.title }) { record ->
+        items(analysis.records, key = { it.title }) { record ->
             Card(modifier = Modifier.fillMaxWidth()) {
                 Row(
                     modifier = Modifier.padding(14.dp),
@@ -175,7 +158,7 @@ fun FitnessScreen() {
             )
         }
 
-        items(badges, key = { it.title }) { badge ->
+        items(analysis.badges, key = { it.title }) { badge ->
             Card(modifier = Modifier.fillMaxWidth()) {
                 Column(modifier = Modifier.padding(14.dp)) {
                     Row(

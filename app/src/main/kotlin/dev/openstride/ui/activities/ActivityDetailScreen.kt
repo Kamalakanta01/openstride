@@ -37,6 +37,7 @@ import dev.openstride.recording.formatDuration
 import dev.openstride.recording.formatPace
 import dev.openstride.recording.formatSpeed
 import dev.openstride.recording.haversineMeters
+import dev.openstride.ui.components.Stat
 import dev.openstride.ui.map.OpenStrideMap
 import java.time.ZoneId
 
@@ -239,26 +240,6 @@ private fun ElevationProfile(
             color = line,
             radius = 6f,
             center = Offset(altitudes.size * stepX, size.height),
-        )
-    }
-}
-
-/** One number on the detail panel. */
-@Composable
-private fun Stat(
-    label: String,
-    value: String,
-) {
-    Column {
-        Text(
-            text = value,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

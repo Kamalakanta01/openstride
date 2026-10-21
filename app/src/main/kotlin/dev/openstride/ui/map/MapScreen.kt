@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.openstride.OpenStrideApplication
-import dev.openstride.data.AppRepository
 import dev.openstride.recording.RecordingSession
 import dev.openstride.recording.formatDistance
 import dev.openstride.recording.formatDuration
@@ -41,7 +40,7 @@ import org.maplibre.android.maps.MapLibreMap
 fun MapScreen() {
     val state by RecordingSession.state.collectAsState()
     val context = LocalContext.current
-    val repository = remember { AppRepository((context.applicationContext as OpenStrideApplication).database) }
+    val repository = (context.applicationContext as OpenStrideApplication).repository
     val activities by repository.observeActivities().collectAsState(initial = emptyList())
     var map by remember { mutableStateOf<MapLibreMap?>(null) }
     var heatmapOn by remember { mutableStateOf(false) }

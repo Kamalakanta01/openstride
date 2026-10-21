@@ -30,6 +30,10 @@ import java.time.LocalDate
  * The original app is a client of Strava's servers: every screen asks the
  * network for a page of results. Here the database is the server, and this
  * class is the API the screens talk to.
+ *
+ * There is one instance of this, held by the application, so the expensive
+ * work — rebuilding the tracks, recomputing the analysis, rebuilding the
+ * heatmap — is done once and shared by every screen.
  */
 class AppRepository(
     private val database: LocalDatabase,
@@ -84,39 +88,30 @@ class AppRepository(
         return values
     }
 
-    // ---- training load -------------------------------------------------
+    // ---- the training analysis -----------------------------------------
 
-    /** The training load of each day. */
-    suspend fun dailyLoads(activities: List<ActivityEntity>): List<Fitness.DailyLoad> =
+    /**
+     * The training analysis of a set of activities.
+     *
+     * Everything is computed from one pass over the activities, off the main
+     * thread. The screens used to compute this five times over, on the main
+     * thread, every time they recomposed.
+     */
+    suspend fun analysis(activities: List<ActivityEntity>): TrainingAnalysis =
         withContext(Dispatchers.Default) {
-            Fitness.dailyLoads(activities.map { it.toModel() })
-        }
-
-    /** The fitness and freshness chart. */
-    suspend fun fitnessSeries(
-        activities: List<ActivityEntity>,
-        days: Int = 90,
-    ): List<Fitness.Point> =
-        withContext(Dispatchers.Default) {
-            Fitness.series(dailyLoads(activities), days)
-        }
-
-    /** The load of each week. */
-    suspend fun weeklyLoad(activities: List<ActivityEntity>): List<Fitness.Week> =
-        withContext(Dispatchers.Default) {
-            Fitness.weeks(dailyLoads(activities))
-        }
-
-    /** The athlete's personal bests. */
-    suspend fun records(activities: List<ActivityEntity>): List<Records.Record> =
-        withContext(Dispatchers.Default) {
-            Records.of(activities.map { it.toModel() })
-        }
-
-    /** The badges the athlete has earned. */
-    suspend fun achievements(activities: List<ActivityEntity>): List<Achievements.Badge> =
-        withContext(Dispatchers.Default) {
-            Achievements.of(activities.map { it.toModel() })
+            val models = activities.map { it.toModel() }
+            val loads = Fitness.dailyLoads(models)
+            TrainingAnalysis(
+                loads = loads,
+                // The curve carries on for a while past the last activity:
+                // the recovery is the interesting part of it.
+                series = Fitness.series(loads, endDate = loads.lastOrNull()?.date?.plusDays(10)),
+                weeks = Fitness.weeks(loads),
+                records = Records.of(models),
+                badges = Achievements.of(models),
+                streak = Fitness.currentWeekStreak(models),
+                consistency = Fitness.consistency(loads),
+            )
         }
 
     /** The athlete's personal heatmap. */
@@ -270,6 +265,24 @@ class AppRepository(
 
     suspend fun deletePrivacyZone(id: Long) = database.privacyZoneDao().delete(id)
 }
+
+/**
+ * The training analysis, all of it at once.
+ *
+ * The screens show the load, the fitness curve, the weekly load, the
+ * records, the badges, the streak and the consistency. They are all derived
+ * from the same activities, so they are computed together rather than five
+ * times over.
+ */
+data class TrainingAnalysis(
+    val loads: List<Fitness.DailyLoad> = emptyList(),
+    val series: List<Fitness.Point> = emptyList(),
+    val weeks: List<Fitness.Week> = emptyList(),
+    val records: List<Records.Record> = emptyList(),
+    val badges: List<Achievements.Badge> = emptyList(),
+    val streak: Int = 0,
+    val consistency: Int = 0,
+)
 
 /** Converts a stored activity into the model the analysis code works on. */
 fun ActivityEntity.toModel() =
