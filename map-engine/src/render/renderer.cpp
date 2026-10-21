@@ -271,10 +271,12 @@ void Renderer::featureVertices(
             out.push_back(clip.first);
             out.push_back(clip.second);
         }
-        // A pair of degenerate points closes the strip, so one line does not
-        // join the next.
-        out.push_back(0.0f);
-        out.push_back(0.0f);
+        // The strip has to be broken between one path and the next, or the
+        // line joins them. Repeating the last point does it: the segment
+        // between the two copies has no length, so the line does not move.
+        const auto& last = path.back();
+        out.push_back(toClip(last.first, last.second).first);
+        out.push_back(toClip(last.first, last.second).second);
     }
 }
 
